@@ -10,7 +10,7 @@ import structs { Context }
 @['/sms_opt'; post]
 pub fn (app &Authentication) find_sms_opt_handler(mut ctx Context) veb.Result {
 	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
-	_, opt_token := crypt.opt_generate(ctx.config.jwt.secret)
+	_, opt_token := crypt.opt_generate(ctx.config.crypt.jwt_secret)
 	return ctx.json(api.json_success(
 		code:   200
 		status: 200

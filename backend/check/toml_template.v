@@ -7,6 +7,10 @@ port = 9009
 request_timeout = 30  # web请求超时时间,单位:秒
 shutdown_timeout = 30 # 优雅关闭等待时间,单位:秒
 
+[crypt]
+jwt_secret = 'your_jwt_secret' #  签名密钥（32字节以上，请修改为自己的密钥） b17989d7-57d2-4ffa-88ab-f6987feb3eec
+aksk_encrypt = 'your_aksk_encrypt'  # API Key AK/SK 加密密钥（32字节以上，请修改为自己的密钥）
+
 [logging]
 log_level = 'info' # 默认info [debug info warn error fatal]
 

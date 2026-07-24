@@ -56,8 +56,8 @@ fn create_apikey_usecase(mut ctx Context, req CreateApiKeyReq) !CreateApiKeyResp
 	ak := 'ak-${ak_bytes.hex()}'
 	sk := 'sk-${sk_bytes.hex()}'
 
-	master_key := ctx.config.jwt.effective_master_key()
-	sk_cipher := crypt.aes_encrypt(sk, master_key) or {
+	aksk_encrypt := ctx.config.crypt.effective_aksk_encrypt()
+	sk_cipher := crypt.aes_encrypt(sk, aksk_encrypt) or {
 		return error('Failed to encrypt SK: ${err}')
 	}
 

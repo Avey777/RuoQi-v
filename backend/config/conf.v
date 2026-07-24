@@ -105,15 +105,15 @@ pub fn parse_data() !GlobalConfig {
 	}
 
 	// 解析 crypt 配置节
-	jwt_config := JwtConf{
-		secret:     doc.value('crypt.secret').string()
-		master_key: doc.value('crypt.master_key').string()
+	crypt_config := CryptConf{
+		jwt_secret:   doc.value('crypt.jwt_secret').string()
+		aksk_encrypt: doc.value('crypt.aksk_encrypt').string()
 	}
 
 	// 构建完整配置对象
 	cfg := GlobalConfig{
 		web:     web_config
-		jwt:     jwt_config
+		crypt:   crypt_config
 		logging: log_config
 		dbconf:  db_config
 		redis:   redis_config

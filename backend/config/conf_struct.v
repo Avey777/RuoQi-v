@@ -5,7 +5,7 @@ module config
 pub struct GlobalConfig {
 pub:
 	web     WebConf
-	jwt     JwtConf
+	crypt   CryptConf
 	logging LogConf
 	dbconf  DBConf
 	redis   RedisConf
@@ -19,17 +19,17 @@ pub:
 	shutdown_timeout int = 30
 }
 
-// JWT / 认证配置
-pub struct JwtConf {
+// crypt — 加密与签名配置
+pub struct CryptConf {
 pub:
-	secret     string // JWT 签名密钥
-	master_key string // API Key SK 加密主密钥（32字节以上）
+	jwt_secret   string // JWT 签名密钥 (HS256)
+	aksk_encrypt string // API Key SK 加密主密钥 (AES-256-CTR, 32字节以上)
 }
 
-// effective_master_key 返回 API Key SK 加密主密钥。
+// effective_aksk_encrypt 返回 API Key SK 加密主密钥。
 // 若未配置，返回空字符串——调用方应在启动时校验。
-pub fn (j JwtConf) effective_master_key() string {
-	return j.master_key
+pub fn (c CryptConf) effective_aksk_encrypt() string {
+	return c.aksk_encrypt
 }
 
 //[logging]

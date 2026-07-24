@@ -57,7 +57,7 @@ pub struct SignupByAccountResp {
 fn signup_by_account_repo(mut ctx Context, req SignupByAccountReq) !SignupByAccountResp {
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
-	if !crypt.captcha_verify(ctx.config.jwt.secret, req.captcha_id, req.captcha_text) {
+	if !crypt.captcha_verify(ctx.config.crypt.jwt_secret, req.captcha_id, req.captcha_text) {
 		return error('Captcha error')
 	}
 	dup := sql db {

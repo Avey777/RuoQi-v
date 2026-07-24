@@ -57,7 +57,7 @@ pub struct LoginByEmailResp {
 fn login_by_email_repo(mut ctx Context, req LoginByEmailReq) !LoginByEmailResp {
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
-	if !crypt.opt_verify(ctx.config.jwt.secret, req.opt_token, req.opt_num) {
+	if !crypt.opt_verify(ctx.config.crypt.jwt_secret, req.opt_token, req.opt_num) {
 		return error('OTP error')
 	}
 	user_info := sql db {

@@ -10,18 +10,18 @@ import common.crypt
 
 fn test_secret_cipher_roundtrip() {
 	sk := 'sk-0123456789abcdef'
-	master_key := 'test-master-key'
-	encrypted := crypt.aes_encrypt(sk, master_key)!
+	encrypt_key := 'test-master-key'
+	encrypted := crypt.aes_encrypt(sk, encrypt_key)!
 	assert encrypted != ''
 	assert encrypted != sk
-	assert crypt.aes_decrypt(encrypted, master_key)! == sk
+	assert crypt.aes_decrypt(encrypted, encrypt_key)! == sk
 }
 
 fn test_secret_cipher_long_sk() {
 	sk := 'sk-${`A`.repeat(128)}'
-	master_key := 'long-key-test'
-	encrypted := crypt.aes_encrypt(sk, master_key)!
-	assert crypt.aes_decrypt(encrypted, master_key)! == sk
+	encrypt_key := 'long-key-test'
+	encrypted := crypt.aes_encrypt(sk, encrypt_key)!
+	assert crypt.aes_decrypt(encrypted, encrypt_key)! == sk
 }
 
 // ---- error paths ------------------------------------------------------------

@@ -50,7 +50,7 @@ fn iam_auth_dispatch(mut ctx Context) bool {
 // ═══════════════════════════════════════════════════════════════════════════════
 
 fn authenticate_jwt(mut ctx Context, token string) bool {
-	secret := ctx.config.jwt.secret
+	secret := ctx.config.crypt.jwt_secret
 	payload := crypt.verify_and_decode[crypt.AuthPayload](secret, token) or {
 		ctx.json(api.json_error_401())
 		return false
@@ -105,8 +105,8 @@ fn authenticate_aksk_signature(mut ctx Context, ak string) bool {
 
 	key := middle.find_apis_by_aksk(mut ctx, ak) or { return reject(mut ctx, api.json_error_401()) }
 
-	master_key := ctx.config.jwt.effective_master_key()
-	sk := crypt.aes_decrypt(key.secret_key_cipher, master_key) or {
+	aksk_encrypt := ctx.config.crypt.effective_aksk_encrypt()
+	sk := crypt.aes_decrypt(key.secret_key_cipher, aksk_encrypt) or {
 		log.warn('aes_decrypt failed for apikey ${key.id}: ${err}')
 		ctx.json(api.json_error_401())
 		return false
