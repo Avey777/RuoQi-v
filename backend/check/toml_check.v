@@ -14,42 +14,25 @@ pub fn check_all() ! {
 	check_config_toml_data(doc) //检查配置文件内必要数据是否配置
 }
 
-//检查配置文件是否存在
-fn check_config_toml() ! {
+//检查配置文件是否存在，若不存在则自动生成模板并继续启动
+fn check_config_toml() !string {
 	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
-	default_path := os.join_path(@VMODROOT, 'config_template.toml')
 
-	// 只调用一次 find_toml()
 	config_path := config.find_toml() or {
-		// 当找不到配置文件时，使用指定路径
-		log.warn('未找到配置文件，将使用默认路径: ${default_path}')
-		'etc/config.toml'
+		// 未找到任何配置文件，自动生成配置模板（直接覆盖）
+		template_path := os.join_path(@VMODROOT, 'config_template.toml')
+		log.warn('未找到配置文件，自动生成配置模板: ${template_path}')
+		os.write_file(template_path, data) or {
+			log.fatal('无法写入配置模板: ${template_path}')
+			return err
+		}
+		log.info('配置模板已生成: ${template_path}')
+		log.warn('>>> 请参考模板配置，复制为 etc/config.toml 后修改参数重新启动 <<<')
+		return template_path
 	}
 
-	log.info('检查配置文件是否存在')
-	if !os.exists(config_path) {
-		log.warn('配置文件不存在，生成新配置文件模板: ${default_path}')
-		mut f := os.create(default_path) or {
-			log.fatal('配置文件创建失败')
-			return
-		}
-		log.info('配置文件已创建')
-
-		log.info('初始化配置数据文件模板: ${default_path}')
-		os.write_file(default_path, data) or {
-			log.error('${default_path} 配置数据模板写入错误')
-			return
-		}
-		log.info('${default_path} 配置数据模板写入成功,请参考模板配置')
-
-		defer {
-			f.close()
-		} // 记得关闭文件句柄
-		log.info('正在退出程序...')
-		exit(0) // 生产配置模板后，退出程序
-	} else {
-		log.info('配置文件加载完成: ${config.find_toml() or { return }}')
-	}
+	log.info('配置文件加载完成: ${config_path}')
+	return config_path
 }
 
 //检查配置文件内必要数据是否配置
@@ -75,11 +58,11 @@ fn check_config_toml_data(doc toml.Doc) {
 	}
 
 	doc.value_opt('dbconf.type') or {
-		log.fatal('必要配置数据：dbconf.type 键无效或键没有值，请检查配置数据,应为mysql或tidb')
+		log.fatal('必要配置数据：dbconf.type 键无效或键没有值，请检查配置数据,应为mysql、tidb或pgsql')
 	}
 	dbconf_type := doc.value('dbconf.type').string()
-	if dbconf_type != 'mysql' && dbconf_type != 'tidb' {
-		log.fatal('必要配置数据：dbconf.type 的值无效，应为mysql或tidb')
+	if dbconf_type != 'mysql' && dbconf_type != 'tidb' && dbconf_type != 'pgsql' {
+		log.fatal('必要配置数据：dbconf.type 的值无效，应为mysql、tidb或pgsql')
 	}
 
 	doc.value_opt('dbconf.host') or {

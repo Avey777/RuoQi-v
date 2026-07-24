@@ -167,11 +167,13 @@ pub fn find_toml() !string {
 			os.join_path(@VMODROOT, 'etc', 'config_dev.toml'),
 			os.join_path(@VMODROOT, 'etc', 'config_test.toml'),
 			os.join_path(@VMODROOT, 'etc', 'config.toml'),
+			os.join_path(@VMODROOT, 'config_template.toml'),
 		]
 	} $else {
 		paths = [
 			os.join_path(@VMODROOT, 'config.toml'),
 			os.join_path(@VMODROOT, 'etc', 'config.toml'),
+			os.join_path(@VMODROOT, 'config_template.toml'),
 		]
 	}
 
