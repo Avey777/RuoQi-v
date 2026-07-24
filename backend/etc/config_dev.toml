@@ -13,20 +13,20 @@ log_level = 'debug' # 默认info [debug info warn error fatal]
 [localeconf]
 Dir = './internal/i18n'
 
-[dbconf]
-type = 'mysql'            # mysql  tidb
-host = '127.0.0.1'
-port = '3306'
-username = 'root'
-password = 'mysql_123456'
-dbname = 'vcore'
-ssl_verify = false        #设置为false 时，不验证ssl证书
-# 连接池配置
-max_conns = 50     # 默认 100 个
-min_idle_conns = 5 # 默认 10 个
-max_lifetime = 60  # 默认 60 minute
-idle_timeout = 30  # 默认 30 minute
-get_timeout = 5    # 默认 3 second
+# [dbconf]
+# type = 'mysql'            # mysql  tidb
+# host = '127.0.0.1'
+# port = '3306'
+# username = 'root'
+# password = 'mysql_123456'
+# dbname = 'vcore'
+# ssl_verify = false        #设置为false 时，不验证ssl证书
+# # 连接池配置
+# max_conns = 50     # 默认 100 个
+# min_idle_conns = 5 # 默认 10 个
+# max_lifetime = 60  # 默认 60 minute
+# idle_timeout = 30  # 默认 30 minute
+# get_timeout = 5    # 默认 3 second
 
 # [dbconf]
 # type = 'mysql'                # mysql  tidb
@@ -57,6 +57,20 @@ get_timeout = 5    # 默认 3 second
 # ssl_ca = './etc/client-cert.pem'
 # ssl_capath = ''
 # ssl_cipher = ''
+
+[dbconf]
+type = 'pgsql'
+host = '127.0.0.1'
+port = 5432
+username = 'postgres'
+password = 'pgsql_123456'
+dbname = 'vcore_test'
+# 连接池配置
+max_conns = 100 # 默认 100 个
+min_idle_conns = 10 # 默认 10 个
+max_lifetime = 60 # 默认 60 minute
+idle_timeout = 30 # 默认 30 minute
+get_timeout = 3  # 默认 3 second
 
 # [dbconf]
 # type = 'pgsql'

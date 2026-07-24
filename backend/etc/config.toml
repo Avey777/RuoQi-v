@@ -29,20 +29,20 @@ Dir = './internal/i18n'
 # idle_timeout = 30 # 默认 30 minute
 # get_timeout = 3  # 默认 3 second
 
-[dbconf]
-type = 'mysql'                # mysql  tidb
-host = 'mysql2.sqlpub.com'
-port = '3307'
-username = 'vcore_test'
-password = 'wfo8wS7CylT0qIMg'
-dbname = 'vcore_test'
-ssl_verify = false            #设置为false 时，不验证ssl证书
-# 连接池配置
-max_conns = 100     # 默认 100 个
-min_idle_conns = 10 # 默认 10 个
-max_lifetime = 60   # 默认 60 minute
-idle_timeout = 30   # 默认 30 minute
-get_timeout = 5     # 默认 3 second
+# [dbconf]
+# type = 'mysql'                # mysql  tidb
+# host = 'mysql2.sqlpub.com'
+# port = '3307'
+# username = 'vcore_test'
+# password = 'wfo8wS7CylT0qIMg'
+# dbname = 'vcore_test'
+# ssl_verify = false            #设置为false 时，不验证ssl证书
+# # 连接池配置
+# max_conns = 100     # 默认 100 个
+# min_idle_conns = 10 # 默认 10 个
+# max_lifetime = 60   # 默认 60 minute
+# idle_timeout = 30   # 默认 30 minute
+# get_timeout = 5     # 默认 3 second
 
 # [dbconf]
 # type = 'tidb'
@@ -64,19 +64,19 @@ get_timeout = 5     # 默认 3 second
 # idle_timeout = 30   # 默认 30 minute
 # get_timeout = 3     # 默认 3 second
 
-# [dbconf]
-# type = 'pgsql'
-# host = 'ep-wandering-king-akw206lc-pooler.c-3.us-west-2.aws.neon.tech'
-# port = 5432
-# username = 'neondb_owner'
-# password = 'npg_U4j7sqBcgIMO'
-# dbname = 'vcore_test'
-# # 连接池配置
-# max_conns = 100 # 默认 100 个
-# min_idle_conns = 10 # 默认 10 个
-# max_lifetime = 60 # 默认 60 minute
-# idle_timeout = 30 # 默认 30 minute
-# get_timeout = 3  # 默认 3 second
+[dbconf]
+type = 'pgsql'
+host = 'ep-wandering-king-akw206lc-pooler.c-3.us-west-2.aws.neon.tech'
+port = 5432
+username = 'neondb_owner'
+password = 'npg_U4j7sqBcgIMO'
+dbname = 'vcore_test'
+# 连接池配置
+max_conns = 100 # 默认 100 个
+min_idle_conns = 10 # 默认 10 个
+max_lifetime = 60 # 默认 60 minute
+idle_timeout = 30 # 默认 30 minute
+get_timeout = 3  # 默认 3 second
 
 [redisconf]
 host = 'mutual-mako-84612.upstash.io'
