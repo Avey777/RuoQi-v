@@ -13,7 +13,7 @@ pub:
 	sender                        string  @[comment: 'Message Sender | 消息发送者'; immutable; omitempty; sql: 'sender'; sql_type: 'CHAR(36)']
 	receiver                      string  @[comment: 'Message Receiver | 消息接收者'; immutable; omitempty; sql: 'receiver'; sql_type: 'CHAR(36)']
 	is_read                       u8      @[comment: 'Read symbol | 已读状态'; omitempty; required; sql: 'is_read'; sql_type: 'tinyint(1)']
-	inner_msg_category_inner_msgs ?u64    @[comment: 'Message category reference'; omitempty; sql: 'inner_msg_category_inner_msgs'; sql_type: 'bigint unsigned']
+	inner_msg_category_inner_msgs ?string @[comment: 'Message category reference'; omitempty; sql: 'inner_msg_category_inner_msgs'; sql_type: 'CHAR(36)']
 
 	updater_id ?string    @[comment: '修改者ID'; omitempty; sql_type: 'CHAR(36)']
 	updated_at time.Time  @[comment: 'Update Time | 修改日期'; omitempty; sql_type: 'TIMESTAMP']

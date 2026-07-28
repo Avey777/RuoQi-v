@@ -6,7 +6,7 @@ import time
 @[table: 'job_task']
 pub struct JobTask {
 pub:
-	id              string @[auto_inc; comment: 'UUID'; primary; sql: 'id'; sql_type: 'CHAR(36)']
+	id              string @[comment: 'UUID'; primary; sql: 'id'; sql_type: 'CHAR(36)']
 	name            string @[comment: 'Task Name | 任务名称'; omitempty; required; sql: 'name'; sql_type: 'VARCHAR(255)']
 	task_group      string @[comment: 'Task Group | 任务分组'; omitempty; required; sql: 'task_group'; sql_type: 'VARCHAR(255)']
 	cron_expression string @[comment: 'Cron expression | 定时任务表达式'; omitempty; required; sql: 'cron_expression'; sql_type: 'VARCHAR(255)']

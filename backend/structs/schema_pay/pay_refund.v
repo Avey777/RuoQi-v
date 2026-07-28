@@ -6,7 +6,7 @@ import time
 @[table: 'pay_refund']
 pub struct PayRefund {
 pub:
-	id                  string     @[auto_inc; comment: 'UUID'; primary; sql: 'id'; sql_type: 'CHAR(36)']
+	id                  string     @[comment: 'UUID'; primary; sql: 'id'; sql_type: 'CHAR(36)']
 	no                  string     @[comment: '退款单号'; omitempty; required; sql: 'no'; sql_type: 'VARCHAR(255)']
 	channel_code        string     @[comment: '渠道编码'; omitempty; required; sql: 'channel_code'; sql_type: 'VARCHAR(255)']
 	order_id            string     @[comment: '支付订单编号 pay_order 表id'; omitempty; required; sql: 'order_id'; sql_type: 'CHAR(36)']

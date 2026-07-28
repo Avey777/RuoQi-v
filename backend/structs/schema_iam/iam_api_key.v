@@ -6,7 +6,7 @@ import time
 @[table: 'iam_api_key']
 pub struct IamApiKey {
 pub:
-	id      string @[primary; sql_type: 'CHAR(36)']
+	id      string @[comment: 'UUID'; primary; sql_type: 'CHAR(36)']
 	user_id string @[comment: '所属用户ID'; sql_type: 'CHAR(36)']
 	name    string @[comment: '密钥名称/备注'; sql_type: 'VARCHAR(255)']
 

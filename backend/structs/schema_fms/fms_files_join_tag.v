@@ -1,6 +1,7 @@
 module schema_fms
 
 // 文件与标签关联表
+@[unique_key: 'file_tag_id,file_id']
 @[table: 'fms_file_join_tag']
 pub struct FmsFileJoinTag {
 pub:

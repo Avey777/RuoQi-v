@@ -11,7 +11,7 @@ pub:
 	name         string     @[comment: '岗位名称'; sql_type: 'VARCHAR(255)']
 	code         string     @[comment: '岗位编码'; sql_type: 'VARCHAR(64)']
 	description  string     @[comment: '描述'; sql_type: 'VARCHAR(500)']
-	sort         u32        @[comment: '排序'; default: 0; sql_type: 'int']
+	sort         u32        @[comment: '排序'; default: 0; sql_type: 'int unsigned']
 	status       u8         @[comment: '0正常 1停用'; default: 0; sql_type: 'tinyint']
 	updater_id   ?string    @[comment: '修改者ID'; sql_type: 'CHAR(36)']
 	updated_at   time.Time  @[comment: '修改日期'; sql_type: 'TIMESTAMP']

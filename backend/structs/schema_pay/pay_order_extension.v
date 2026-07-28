@@ -6,7 +6,7 @@ import time
 @[table: 'pay_order_extension']
 pub struct PayOrderExtension {
 pub:
-	id                  string  @[auto_inc; comment: 'UUID'; primary; sql: 'id'; sql_type: 'CHAR(36)']
+	id                  string  @[comment: 'UUID'; primary; sql: 'id'; sql_type: 'CHAR(36)']
 	no                  string  @[comment: '支付订单号'; omitempty; required; sql: 'no'; sql_type: 'VARCHAR(255)']
 	order_id            string  @[comment: '渠道编号'; omitempty; required; sql: 'order_id'; sql_type: 'CHAR(36)']
 	channel_code        string  @[comment: '渠道编码'; omitempty; required; sql: 'channel_code'; sql_type: 'VARCHAR(255)']

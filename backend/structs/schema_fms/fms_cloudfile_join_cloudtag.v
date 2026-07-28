@@ -1,6 +1,7 @@
 module schema_fms
 
 // 云文件与标签关联表
+@[unique_key: 'cloud_file_tag_id,cloud_file_id']
 @[table: 'fms_cloudfile_join_cloudtag']
 pub struct FmsCloudFileCloudFileTag {
 pub:

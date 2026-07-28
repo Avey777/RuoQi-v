@@ -26,6 +26,7 @@ pub fn (app &Base) init_platform(mut ctx Context) veb.Result {
 		create table schema_platform.PfDictionary
 		create table schema_platform.PfDictionaryDetail
 		create table schema_platform.PfProduct
+		create table schema_platform.PfPortal
 		create table schema_platform.PfPlan
 		create table schema_platform.PfPlanPrice
 	} or { return ctx.text('error creating table:  ${err}') }

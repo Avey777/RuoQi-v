@@ -38,8 +38,8 @@ SaaS 多租户的本质是 **订阅**。平台定义可订阅的目录，租户�
 
 | 属性 | 含义 |
 |------|------|
-| `product.code` | `mall / wms / tms` |
-| `product.name` | MALL电商平台 / WMS仓库管理 |
+| `product.product_code` | `mall / wms / tms` |
+| `product.product_name` | MALL电商平台 / WMS仓库管理 |
 
 ---
 
@@ -196,12 +196,12 @@ product（目录）
 ## 举个例子（MALL）
 
 ```
-pf_product:    code=mall, name=MALL电商平台
+pf_product:    product_code=mall, product_name=MALL电商平台
 pf_plan:       product_id=mall, code=enterprise, 企业版
 pf_app:        product_id=mall, code=payment, 支付模块
 pf_app:        product_id=mall, code=crm, 客户管理模块
-pf_portal:     product_id=mall, code=seller, 商家端
-pf_portal:     product_id=mall, code=buyer,  买家端
+pf_portal:     product_id=mall, portal_code=seller, portal_name=商家端
+pf_portal:     product_id=mall, portal_code=buyer,  portal_name=买家端
 
 → 某电商公司签约 MALL 企业版
    tn_subproduct: product_id=mall, plan_id=enterprise, company=某电商
@@ -211,10 +211,10 @@ pf_portal:     product_id=mall, code=buyer,  买家端
    tn_subapp: subproduct_id=..., app_id=crm
 
 → seller 商家入驻该公司的 MALL
-   tn_subportal: subproduct_id=..., portal_id=seller, shop_name=某某店
+   tn_subportal: tenant_id=..., workspace_id=..., portal_id=seller, shop_name=某某店
 
 → buyer 注册购物
-   tn_subportal: subproduct_id=..., portal_id=buyer, user_name=张三
+   tn_subportal: tenant_id=..., workspace_id=..., portal_id=buyer, user_name=张三
 ```
 
 一条数据线从头到尾：

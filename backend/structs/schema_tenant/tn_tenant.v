@@ -6,7 +6,7 @@ import time
 @[table: 'tn_tenant']
 pub struct TnTenant {
 pub:
-	id         string     @[comment: 'UUID'; immutable; primary; sql: 'id'; sql_type: 'CHAR(36)'; unique]
+	id         string     @[comment: 'UUID'; immutable; primary; sql: 'id'; sql_type: 'CHAR(36)']
 	owner_id   string     @[comment: '所有者用户ID'; sql_type: 'CHAR(36)']
 	logo_url   string     @[comment: '租户Logo地址'; sql_type: 'VARCHAR(500)']
 	name       string     @[comment: '租户名称'; default: '"我的团队"'; sql_type: 'VARCHAR(100)']
