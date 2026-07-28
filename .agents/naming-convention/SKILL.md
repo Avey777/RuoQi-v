@@ -155,6 +155,7 @@ product（目录）
       tn_subproduct  租户订阅产品 → 实例
       tn_subapp      租户开通应用 → 实例
       tn_subportal   客户入住门户 → 实例
+      tn_config      租户产品配置 → 自定义设置
 ```
 
 **前缀：**
@@ -172,6 +173,7 @@ product（目录）
 | subproduct | `tn_subproduct` |
 | subapp | `tn_subapp` |
 | subportal | `tn_subportal` |
+| config | `tn_config` |
 
 ---
 
@@ -197,7 +199,7 @@ product（目录）
 
 ```
 pf_product:    product_code=mall, product_name=MALL电商平台
-pf_plan:       product_id=mall, code=enterprise, 企业版
+pf_plan:       product_id=mall, plan_code=enterprise, plan_name=企业版
 pf_app:        product_id=mall, code=payment, 支付模块
 pf_app:        product_id=mall, code=crm, 客户管理模块
 pf_portal:     product_id=mall, portal_code=seller, portal_name=商家端

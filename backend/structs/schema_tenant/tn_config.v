@@ -1,12 +1,17 @@
-module schema_platform
+module schema_tenant
 
 import time
 
-@[table: 'pf_configuration']
-@[comment: '平台配置表']
-pub struct PfConfiguration {
+// unique_key 说明：同一租户对同一产品的同一配置项只能有一条记录，防止重复；
+// 更新配置值通过 UPDATE value 实现，不受此约束影响。
+@[comment: '租户产品配置表——租户对已订阅产品的自定义配置']
+@[unique_key: 'tenant_id,product_id,key']
+@[table: 'tn_config']
+pub struct TnConfig {
 pub:
 	id          string     @[comment: 'UUID'; primary; sql_type: 'CHAR(36)']
+	tenant_id   string     @[comment: '租户ID'; immutable; sql_type: 'CHAR(36)']
+	product_id  string     @[comment: '产品ID'; immutable; sql_type: 'CHAR(36)']
 	key         string     @[comment: '配置键'; sql_type: 'VARCHAR(128)']
 	value       string     @[comment: '配置值'; sql_type: 'TEXT']
 	category    string     @[comment: '分类'; sql_type: 'VARCHAR(64)']

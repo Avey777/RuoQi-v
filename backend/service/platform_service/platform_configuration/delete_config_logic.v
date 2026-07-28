@@ -4,7 +4,7 @@ import veb
 import log
 import json2 as json
 import structs { Context }
-import structs.schema_platform { PfConfiguration }
+import structs.schema_platform { PfConfig }
 import common.api
 
 // ═══ Handler ═══
@@ -45,7 +45,7 @@ fn delete_config_repo(mut ctx Context, req DeleteConfigReq) !DeleteConfigResp {
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 	sql db {
-		update PfConfiguration set del_flag = 1 where id == req.id
+		update PfConfig set del_flag = 1 where id == req.id
 	}!
 	return DeleteConfigResp{
 		msg: 'Configuration deleted'

@@ -4,7 +4,7 @@ import veb
 import log
 import json2 as json
 import structs { Context }
-import structs.schema_platform { PfConfiguration }
+import structs.schema_platform { PfConfig }
 import common.api
 
 // ═══ Handler ═══
@@ -57,7 +57,7 @@ fn update_config_repo(mut ctx Context, req UpdateConfigReq) !UpdateConfigResp {
 		if status := req.status { status == status }
 	}
 	sql db {
-		dynamic update PfConfiguration set up_expr where id == req.id
+		dynamic update PfConfig set up_expr where id == req.id
 	}!
 	return UpdateConfigResp{
 		msg: 'Configuration updated'

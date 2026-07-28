@@ -3,7 +3,7 @@ module platform_configuration
 import veb
 import log
 import structs { Context }
-import structs.schema_platform { PfConfiguration }
+import structs.schema_platform { PfConfig }
 import common.api
 
 // ═══ Handler ═══
@@ -15,16 +15,16 @@ pub fn (app &PlatformConfiguration) find_config_all_handler(mut ctx Context) veb
 }
 
 // ═══ Use Case ═══
-pub fn find_config_all_usecase(mut ctx Context) ![]PfConfiguration {
+pub fn find_config_all_usecase(mut ctx Context) ![]PfConfig {
 	return find_config_all_repo(mut ctx)
 }
 
 // ═══ Repository ═══
-fn find_config_all_repo(mut ctx Context) ![]PfConfiguration {
+fn find_config_all_repo(mut ctx Context) ![]PfConfig {
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 	configs := sql db {
-		select from PfConfiguration where del_flag == 0
+		select from PfConfig where del_flag == 0
 	} or { return error('Failed: ${err}') }
 	return configs
 }

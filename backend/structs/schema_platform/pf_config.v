@@ -2,14 +2,14 @@ module schema_platform
 
 import time
 
-@[comment: '套餐定义（基础版/企业版/旗舰版）']
-@[table: 'pf_plan']
-pub struct PfPlan {
+@[comment: '平台配置表']
+@[table: 'pf_config']
+pub struct PfConfig {
 pub:
 	id          string     @[comment: 'UUID'; primary; sql_type: 'CHAR(36)']
-	product_id  string     @[comment: '所属产品ID'; sql_type: 'CHAR(36)']
-	plan_name   string     @[comment: '套餐名称'; sql_type: 'VARCHAR(255)']
-	plan_code   string     @[comment: '套餐编码: basic/enterprise/ultimate'; sql_type: 'VARCHAR(64)']
+	key         string     @[comment: '配置键'; sql_type: 'VARCHAR(128)']
+	value       string     @[comment: '配置值'; sql_type: 'TEXT']
+	category    string     @[comment: '分类'; sql_type: 'VARCHAR(64)']
 	description string     @[comment: '描述'; sql_type: 'VARCHAR(500)']
 	status      u8         @[comment: '0正常 1停用'; default: 0; sql_type: 'tinyint']
 	updater_id  ?string    @[comment: '修改者ID'; sql_type: 'CHAR(36)']

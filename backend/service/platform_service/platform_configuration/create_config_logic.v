@@ -6,7 +6,7 @@ import time
 import rand
 import json2 as json
 import structs { Context }
-import structs.schema_platform { PfConfiguration }
+import structs.schema_platform { PfConfig }
 import common.api
 
 // ═══ Handler ═══
@@ -50,7 +50,7 @@ pub struct CreateConfigResp {
 fn create_config_repo(mut ctx Context, req CreateConfigReq) !CreateConfigResp {
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
-	c := PfConfiguration{
+	c := PfConfig{
 		id:          rand.uuid_v7()
 		key:         req.key
 		value:       req.value
@@ -61,7 +61,7 @@ fn create_config_repo(mut ctx Context, req CreateConfigReq) !CreateConfigResp {
 		updated_at:  time.now()
 	}
 	sql db {
-		insert c into PfConfiguration
+		insert c into PfConfig
 	} or { return error('Failed: ${err}') }
 	return CreateConfigResp{
 		id:  c.id

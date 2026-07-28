@@ -24,6 +24,7 @@ pub fn (app &Base) init_tenant(mut ctx Context) veb.Result {
 		create table schema_tenant.TnSubProduct
 		create table schema_tenant.TnSubPortal
 		create table schema_tenant.TnInvoice
+		create table schema_tenant.TnConfig
 	} or { return ctx.text('error creating table:  ${err}') }
 	log.info('schema_tenant init success')
 

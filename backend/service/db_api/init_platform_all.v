@@ -22,7 +22,7 @@ pub fn (app &Base) init_platform(mut ctx Context) veb.Result {
 	sql db {
 		create table schema_platform.PfMenu
 		create table schema_platform.PfApi
-		create table schema_platform.PfConfiguration
+		create table schema_platform.PfConfig
 		create table schema_platform.PfDictionary
 		create table schema_platform.PfDictionaryDetail
 		create table schema_platform.PfProduct
