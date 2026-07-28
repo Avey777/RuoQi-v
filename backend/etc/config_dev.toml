@@ -63,7 +63,7 @@ type = 'pgsql'
 host = '127.0.0.1'
 port = 5432
 username = 'postgres'
-password = 'pgsql_123456'
+password = 'pg_123456'
 dbname = 'vcore_test'
 # 连接池配置
 max_conns = 100 # 默认 100 个
