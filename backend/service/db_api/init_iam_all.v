@@ -22,6 +22,7 @@ pub fn (app &Base) init_iam(mut ctx Context) veb.Result {
 	sql db {
 		create table schema_iam.IamUser
 		create table schema_iam.IamToken
+		create table schema_iam.IamApiKey
 		create table schema_iam.IamConfiguration
 		create table schema_iam.IamConnector
 		create table schema_iam.IamUserConnector

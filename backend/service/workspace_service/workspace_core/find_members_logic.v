@@ -64,20 +64,20 @@ fn find_members_repo(mut ctx Context, req FindMembersReq) !FindMembersResp {
 		select from WsMemberRole where workspace_id == req.workspace_id
 	} or { return error('Failed to query member roles: ${err}') }
 
-	// 3. 组装：成员 + 角色列表
+	// 3. 构建 user_id → role_ids 映射（O(n+m)）
+	mut role_map := map[string][]string{}
+	for mr in all_roles {
+		role_map[mr.user_id] << mr.role_id
+	}
+
+	// 4. 组装：成员 + 角色列表
 	mut result := []MemberInfo{cap: members.len}
 	for m in members {
-		mut role_ids := []string{}
-		for mr in all_roles {
-			if mr.user_id == m.user_id {
-				role_ids << mr.role_id
-			}
-		}
 		result << MemberInfo{
 			user_id:   m.user_id
 			joined_at: m.joined_at
 			status:    m.status
-			role_ids:  role_ids
+			role_ids:  role_map[m.user_id]
 		}
 	}
 

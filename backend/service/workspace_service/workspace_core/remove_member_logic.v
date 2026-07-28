@@ -2,6 +2,7 @@ module workspace_core
 
 import veb
 import log
+import time
 import json2 as json
 import model { Context }
 import model.schema_workspace { WsMember, WsMemberRole }
@@ -50,7 +51,7 @@ fn remove_member_repo(mut ctx Context, req RemoveMemberReq) !RemoveMemberResp {
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
 	if role_id := req.role_id {
-		// 仅移除指定角色
+		// 仅移除指定角色 — 单条语句，无需事务
 		sql db {
 			delete from WsMemberRole where workspace_id == req.workspace_id && user_id == req.user_id
 			&& role_id == role_id
@@ -60,13 +61,22 @@ fn remove_member_repo(mut ctx Context, req RemoveMemberReq) !RemoveMemberResp {
 		}
 	}
 
-	// 移除成员所有角色 + 成员实体
+	// 移除成员所有角色 + 软删除成员实体 — 事务保证原子性
+	db.execute('BEGIN') or { return error('Failed to begin transaction: ${err}') }
 	sql db {
 		delete from WsMemberRole where workspace_id == req.workspace_id && user_id == req.user_id
-	}!
+	} or {
+		db.execute('ROLLBACK') or {}
+		return error('Failed to delete member roles: ${err}')
+	}
 	sql db {
-		delete from WsMember where workspace_id == req.workspace_id && user_id == req.user_id
-	}!
+		update WsMember set del_flag = 1, deleted_at = time.now() where
+		workspace_id == req.workspace_id && user_id == req.user_id
+	} or {
+		db.execute('ROLLBACK') or {}
+		return error('Failed to remove member: ${err}')
+	}
+	db.execute('COMMIT') or { return error('Failed to commit transaction: ${err}') }
 	return RemoveMemberResp{
 		msg: 'Member removed'
 	}

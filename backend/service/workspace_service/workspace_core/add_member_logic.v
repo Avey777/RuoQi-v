@@ -52,6 +52,9 @@ fn add_member_repo(mut ctx Context, req AddMemberReq) !AddMemberResp {
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
+	// 事务保证成员实体与角色分配的一致性
+	db.execute('BEGIN') or { return error('Failed to begin transaction: ${err}') }
+
 	// 1. 维护成员实体记录（一行一个成员）
 	m := WsMember{
 		workspace_id: req.workspace_id
@@ -63,7 +66,10 @@ fn add_member_repo(mut ctx Context, req AddMemberReq) !AddMemberResp {
 	}
 	sql db {
 		upsert m into WsMember
-	} or { return error('Failed to upsert member: ${err}') }
+	} or {
+		db.execute('ROLLBACK') or {}
+		return error('Failed to upsert member: ${err}')
+	}
 
 	// 2. 分配角色（一行一个角色分配）
 	mr := WsMemberRole{
@@ -73,8 +79,12 @@ fn add_member_repo(mut ctx Context, req AddMemberReq) !AddMemberResp {
 	}
 	sql db {
 		upsert mr into WsMemberRole
-	} or { return error('Failed to upsert member role: ${err}') }
+	} or {
+		db.execute('ROLLBACK') or {}
+		return error('Failed to upsert member role: ${err}')
+	}
 
+	db.execute('COMMIT') or { return error('Failed to commit transaction: ${err}') }
 	return AddMemberResp{
 		user_id: req.user_id
 		msg:     'Member added'
