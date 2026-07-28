@@ -6,8 +6,6 @@ import service.iam_service.iam_api { Iam }
 import service.iam_service.iam_api.authentication { Authentication }
 import service.iam_service.iam_api.user { User }
 import service.iam_service.iam_api.profile { Profile }
-import service.iam_service.iam_api.role { Role }
-import service.iam_service.iam_api.permission { Permission }
 import service.iam_service.iam_api.token { Token }
 import service.iam_service.iam_api.apikey { ApiKey }
 
@@ -15,7 +13,8 @@ import service.iam_service.iam_api.apikey { ApiKey }
 // IAM 路由注册
 //
 // 无需认证：auth（登录/注册/MFA）
-// 需 IAM 认证：user / profile / role / permission / token
+// 仅认证（自服务）：profile / token — 已登录即可访问
+// 全量认证+授权：user / apikey — 需 workspace 权限（admin 通过 workspace_admin 角色获得 all）
 // =============================================================================
 
 fn (mut app AliasApp) routes_iam(mut ctx Context) {
@@ -26,11 +25,11 @@ fn (mut app AliasApp) routes_iam(mut ctx Context) {
 	app.register_routes_no_auth[Authentication, Context](mut &Authentication{}, '/iam/auth', mut
 		ctx)
 
-	// 需要 IAM 认证 —— 用户 / 角色 / 权限 / Token 管理
+	// 仅认证（自服务）—— 已登录即可访问，不检查 workspace 权限
+	app.register_routes_authenticated[Profile, Context](mut &Profile{}, '/iam/profile', mut ctx)
+	app.register_routes_authenticated[Token, Context](mut &Token{}, '/iam/token', mut ctx)
+
+	// 全量认证+授权 —— 需要 workspace 权限
 	app.register_routes_platform[User, Context](mut &User{}, '/iam/user', mut ctx)
-	app.register_routes_platform[Profile, Context](mut &Profile{}, '/iam/profile', mut ctx)
-	app.register_routes_platform[Role, Context](mut &Role{}, '/iam/role', mut ctx)
-	app.register_routes_platform[Permission, Context](mut &Permission{}, '/iam/permission', mut ctx)
-	app.register_routes_platform[Token, Context](mut &Token{}, '/iam/token', mut ctx)
 	app.register_routes_platform[ApiKey, Context](mut &ApiKey{}, '/iam/apikey', mut ctx)
 }

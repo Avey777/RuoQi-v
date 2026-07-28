@@ -1,4 +1,4 @@
-module permission
+module workspace_core
 
 import veb
 import log
@@ -8,26 +8,26 @@ import model.schema_workspace { WsRoleMenu }
 import common.api
 
 // ═══ Handler ═══
-@['/find_role_menu'; post]
-pub fn (app &Permission) find_role_menu_handler(mut ctx Context) veb.Result {
+@['/find_role_menus'; post]
+pub fn (app &WorkspaceCore) find_role_menus_handler(mut ctx Context) veb.Result {
 	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 	req := json.decode[FindRolePermReq](ctx.req.data) or {
 		return ctx.json(api.json_error_400(err.msg()))
 	}
-	result := find_role_menu_usecase(mut ctx, req) or {
-		return ctx.json(api.json_error_500(err.msg()))
+	result := find_role_menus_usecase(mut ctx, req) or {
+		return ctx.json(api.json_error_500('Internal Server Error: ${err}'))
 	}
 	return ctx.json(api.json_success_200(result))
 }
 
 // ═══ Use Case ═══
-pub fn find_role_menu_usecase(mut ctx Context, req FindRolePermReq) ![]WsRoleMenu {
-	find_role_menu_domain(req)!
-	return find_role_menu_repo(mut ctx, req)
+pub fn find_role_menus_usecase(mut ctx Context, req FindRolePermReq) ![]WsRoleMenu {
+	find_role_menus_domain(req)!
+	return find_role_menus_repo(mut ctx, req)
 }
 
 // ═══ Domain ═══
-fn find_role_menu_domain(req FindRolePermReq) ! {
+fn find_role_menus_domain(req FindRolePermReq) ! {
 	if req.workspace_id == '' {
 		return error('workspace_id is required')
 	}
@@ -37,7 +37,7 @@ fn find_role_menu_domain(req FindRolePermReq) ! {
 }
 
 // ═══ Repository ═══
-fn find_role_menu_repo(mut ctx Context, req FindRolePermReq) ![]WsRoleMenu {
+fn find_role_menus_repo(mut ctx Context, req FindRolePermReq) ![]WsRoleMenu {
 	ctx.scope_sc.workspace_id = req.workspace_id
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }

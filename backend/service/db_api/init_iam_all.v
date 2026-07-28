@@ -21,8 +21,6 @@ pub fn (app &Base) init_iam(mut ctx Context) veb.Result {
 
 	sql db {
 		create table schema_iam.IamUser
-		create table schema_iam.IamRole
-		create table schema_iam.IamUserRole
 		create table schema_iam.IamToken
 		create table schema_iam.IamConfiguration
 		create table schema_iam.IamConnector
@@ -30,7 +28,7 @@ pub fn (app &Base) init_iam(mut ctx Context) veb.Result {
 	} or { return ctx.text('error creating table:  ${err}') }
 	log.info('schema_iam init success')
 
-	sql_commands := [iam_user, iam_role, iam_user_role]
+	sql_commands := [iam_user]
 	for cmd in sql_commands {
 		db.execute(cmd) or {
 			return ctx.json(api.json_error_500('执行 ${cmd} SQL失败: ${err}'))
@@ -38,5 +36,5 @@ pub fn (app &Base) init_iam(mut ctx Context) veb.Result {
 		log.info('${cmd} init_sys_data success')
 	}
 
-	return ctx.json(api.json_success_200('IAM database init Successfull'))
+	return ctx.json(api.json_success_200('IAM database init Successful'))
 }

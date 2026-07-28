@@ -4,6 +4,7 @@
 import time
 
 @[comment: 'xxx 表 | Xxx Table']
+@[unique_key: 'xxx_id,yyy_id']
 @[table: 'xxx']
 pub struct Xxx {
 pub:

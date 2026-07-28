@@ -9,12 +9,12 @@ Add a new business module to the RuoQi-v backend following established Clean Arc
 
 ## Directory layout
 
-A new module in `sys_admin_api` named `audit_log` creates these files:
+A new module in `platform_service` named `audit_log` creates these files:
 
 ```
 backend/
 ├── model/schema_sys/sys_audit_log.v          # ORM schema struct
-├── service/sys_admin_api/audit_log/
+├── service/platform_service/audit_log/
 │   ├── app_struct.v                         # Module struct (embeds model.App)
 │   ├── create_audit_log_logic.v             # POST: handler + usecase + domain + DTO + repo
 │   ├── find_audit_log_all_logic.v           # POST: list query
@@ -22,7 +22,7 @@ backend/
 │   ├── update_audit_log_logic.v             # POST: update
 │   ├── delete_audit_log_logic.v             # POST: soft-delete
 │   └── audit_log_test.v                     # Test file
-└── route/route_sys_admin.v                 # Register the module route
+└── route/route_platform.v                 # Register the module route
 ```
 
 ## Step-by-step workflow
@@ -78,23 +78,32 @@ In the appropriate `backend/route/route_<scope>.v`, add the import and registrat
 
 **API group → route file → registration method:**
 
-| API group          | Route file              | Method                    | Auth required       |
-|--------------------|-------------------------|---------------------------|---------------------|
-| `base_api`         | `route_base.v`          | `register_routes_no_auth` | None                |
-| `sys_admin_api`    | `route_sys_admin.v`     | `register_routes_platform`     | System admin JWT    |
-| `core_admin_api`   | `route_core_admin.v`    | `register_routes_platform`     | System admin JWT    |
-| `core_tenant_api`  | `route_core_tenant.v`   | `register_routes_core`    | Core business JWT   |
-| `fms_api`          | (file API route)         | `register_routes_core`    | Core business JWT   |
-| `job_api`          | (job API route)          | `register_routes_platform`     | System admin JWT    |
-| `msg_api`          | (msg API route)          | `register_routes_platform`     | System admin JWT    |
-| `pay_api`          | (pay API route)          | `register_routes_core`    | Core business JWT   |
+| API group           | Route file           | Method                         | Auth required                    |
+|---------------------|----------------------|--------------------------------|----------------------------------|
+| `base_api`          | `route_base.v`       | `register_routes_no_auth`      | 无                               |
+| `iam_service`（自服务）| `route_iam.v`       | `register_routes_authenticated`| 仅 JWT 认证                      |
+| `iam_service`（管理） | `route_iam.v`       | `register_routes_platform`     | JWT + workspace 权限              |
+| `platform_service`  | `route_platform.v`   | `register_routes_platform`     | JWT + workspace 权限              |
+| `workspace_service` | `route_workspace.v`  | `register_routes_workspace`    | JWT + workspace 权限 + datascope  |
+| `db_api`            | `route_db.v`         | manual middleware              | 无                               |
+| `pay_api`           | (pay API route)      | `register_routes_platform`     | JWT + workspace 权限              |
+
+**中间件说明：**
+- `register_routes_no_auth` — 无需认证（common middleware only）
+- `register_routes_authenticated` — 仅 JWT 身份验证，不检查 workspace 业务权限（用于个人资料、Token 管理等自服务端点）
+- `register_routes_platform` — JWT 认证 + workspace 权限校验（`iam_full_middleware`）
+- `register_routes_workspace` — 上述全部 + tenant/workspace 数据隔离（datascope）
+
+> **注意：** 业务权限（API/菜单）统一通过 workspace 角色管理。IAM 层只负责身份认证，不持有角色。用户未加入任何 workspace 则无业务权限。
 
 Example:
 ```v
-import service.sys_admin_api.audit_log { AuditLog }
+// 添加到对应 route 文件，如 route_platform.v
+import service.platform_service.new_module { NewModule }
 
-fn (mut app AliasApp) routes_sys_admin(mut ctx Context) {
-    app.register_routes_platform[AuditLog, Context](mut &AuditLog{}, '/audit_log', mut ctx)
+fn (mut app AliasApp) routes_platform(mut ctx Context) {
+    // ...
+    app.register_routes_platform[NewModule, Context](mut &NewModule{}, '/new_module', mut ctx)
 }
 ```
 
@@ -134,7 +143,7 @@ fn test_create_audit_log() {
 | Response DTO| `{Action}{Module}Resp`           | `CreateAuditLogResp`       |
 | Schema file | `{domain}_{module}.v`            | `sys_audit_log.v`          |
 | Schema struct| `{Domain}{Module}`              | `SysAuditLog`              |
-| Route file  | `route_<scope>.v`                | `route_sys_admin.v`        |
+| Route file  | `route_<scope>.v`                | `route_platform.v`         |
 | Test file   | `{module_name}_test.v`           | `audit_log_test.v`         |
 
 ## Directories to NOT modify

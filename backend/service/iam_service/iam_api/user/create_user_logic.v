@@ -6,7 +6,7 @@ import time
 import rand
 import json2 as json
 import model { Context }
-import model.schema_iam { IamUser, IamUserRole }
+import model.schema_iam { IamUser }
 import common.api
 import common.encrypt
 
@@ -55,7 +55,6 @@ pub struct CreateUserReq {
 	status       u8        @[json: 'status']
 	username     string    @[json: 'username']
 	position_ids []string  @[json: 'positionIds']
-	role_ids     []string  @[json: 'roleIds']
 	created_at   time.Time @[json: 'createdAt']
 	updated_at   time.Time @[json: 'updatedAt']
 }
@@ -86,13 +85,4 @@ fn create_user_repo(mut ctx Context, req CreateUserReq, user_id string, password
 	sql db {
 		insert user into IamUser
 	}!
-	for role_id in req.role_ids {
-		ur := IamUserRole{
-			user_id: user_id
-			role_id: role_id
-		}
-		sql db {
-			insert ur into IamUserRole
-		}!
-	}
 }

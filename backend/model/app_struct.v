@@ -39,7 +39,6 @@ pub struct ServiceContextIam {
 pub mut:
 	user_id        string
 	token_jwt      string
-	iam_role_ids   []string
 	tenant_ids     []string
 	subproduct_ids []string
 	subportal_ids  []string

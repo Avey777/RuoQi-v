@@ -19,20 +19,49 @@ $if debug {
 	const debug_sk = 'DEBUG-FULL-SECRET-KEY'
 }
 
-// iam_auth_dispatch — 鉴权入口，按请求头分流到对应策略：
+// ═══════════════════════════════════════════════════════════════════════════════
+// 鉴权调度入口 — 按请求头分流到对应策略：
 //   Bearer <token>                → JWT
 //   X-Access-Key + X-Timestamp + X-Signature → AK/SK HMAC 签名模式
-fn iam_auth_dispatch(mut ctx Context) bool {
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// iam_auth_identity — 仅身份认证，不检查 workspace 业务权限
+// 用于：个人资料、Token 管理等"已登录即可"的自服务端点
+fn iam_auth_identity(mut ctx Context) bool {
 	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 
 	auth_header := ctx.get_header(.authorization) or { '' }
 
-	// Bearer token → JWT
+	// Bearer token → JWT（仅验证身份）
 	if auth_header.starts_with('Bearer ') {
-		return authenticate_jwt(mut ctx, auth_header.all_after('Bearer ').trim_space())
+		return authenticate_jwt_identity(mut ctx, auth_header.all_after('Bearer ').trim_space())
 	}
 
-	// X-Access-Key → HMAC 签名模式
+	// X-Access-Key → HMAC 签名模式（AK/SK 自带 scope 校验）
+	access_key := ctx.req.header.get_custom(crypt.sig_header_access_key) or { '' }
+	if access_key.len > 0 {
+		return authenticate_aksk_signature(mut ctx, access_key)
+	}
+
+	ctx.json(api.json_error_401())
+	return false
+}
+
+// iam_auth_full — 身份认证 + workspace 业务权限校验
+// 用于：用户管理、工作区管理等需要 workspace 权限的端点
+fn iam_auth_full(mut ctx Context) bool {
+	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
+
+	auth_header := ctx.get_header(.authorization) or { '' }
+
+	// Bearer token → JWT（验证身份 + workspace 权限）
+	if auth_header.starts_with('Bearer ') {
+		token := auth_header.all_after('Bearer ').trim_space()
+		return authenticate_jwt_identity(mut ctx, token)
+			&& authorize_workspace_permission(mut ctx, token)
+	}
+
+	// X-Access-Key → HMAC 签名模式（AK/SK 自带 scope 校验）
 	access_key := ctx.req.header.get_custom(crypt.sig_header_access_key) or { '' }
 	if access_key.len > 0 {
 		return authenticate_aksk_signature(mut ctx, access_key)
@@ -43,13 +72,11 @@ fn iam_auth_dispatch(mut ctx Context) bool {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// JWT 鉴权路径
-//   身份: JWT 验签 (crypt.verify_and_decode)
-//   权限: IamToken → WsMemberRole → WsRoleApi → PfApi → scope 匹配
-//   数据隔离: datascope (SQL WHERE 行级过滤)
+// JWT 鉴权 — 身份验证层
+//   仅验证 JWT 签名并提取 user_id，不检查业务权限
 // ═══════════════════════════════════════════════════════════════════════════════
 
-fn authenticate_jwt(mut ctx Context, token string) bool {
+fn authenticate_jwt_identity(mut ctx Context, token string) bool {
 	secret := ctx.config.crypt.jwt_secret
 	payload := crypt.verify_and_decode[crypt.AuthPayload](secret, token) or {
 		ctx.json(api.json_error_401())
@@ -57,22 +84,25 @@ fn authenticate_jwt(mut ctx Context, token string) bool {
 	}
 	ctx.svc_iam.user_id = payload.sub
 	ctx.svc_iam.token_jwt = token
-	ctx.svc_iam.iam_role_ids = payload.role_ids
+	return true
+}
 
-	// API 权限校验（JWT / Core 路径）
-	// root 用户（* 角色）跳过权限校验；其余查 WsMemberRole → ws_role_api + pf_api
-	if !payload.role_ids.contains('*') {
-		scopes := middle.find_user_apis_by_token(mut ctx, token) or {
-			log.warn('find_user_apis_by_token failed: ${err}')
-			ctx.json(api.json_error_403())
-			return false
-		}
-		check_scopes(scopes, ctx.req.method.str(), ctx.req.url.all_before('?')) or {
-			ctx.json(api.json_error(code: 1, status: 403, error: err.msg()))
-			return false
-		}
+// ═══════════════════════════════════════════════════════════════════════════════
+// JWT 鉴权 — workspace 权限校验层
+//   查询链: IamToken → WsMemberRole → WsRoleApi → PfApi → scope 匹配
+//   数据隔离: datascope (SQL WHERE 行级过滤)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+fn authorize_workspace_permission(mut ctx Context, token string) bool {
+	scopes := middle.find_user_apis_by_token(mut ctx, token) or {
+		log.warn('find_user_apis_by_token failed: ${err}')
+		ctx.json(api.json_error_403())
+		return false
 	}
-
+	check_scopes(scopes, ctx.req.method.str(), ctx.req.url.all_before('?')) or {
+		ctx.json(api.json_error(code: 1, status: 403, error: err.msg()))
+		return false
+	}
 	return true
 }
 
@@ -289,7 +319,6 @@ $if debug {
 		ctx.svc_iam.tenant_ids = []
 		ctx.svc_iam.subproduct_ids = []
 		ctx.svc_iam.subportal_ids = []
-		ctx.svc_iam.iam_role_ids = ['admin']
 		return true
 	}
 }
@@ -299,9 +328,26 @@ fn reject(mut ctx Context, err api.ApiErrorResponse) bool {
 	return false
 }
 
-pub fn iam_middleware() veb.MiddlewareOptions[Context] {
+// iam_identity_middleware — 仅验证 JWT/AK/SK 身份，不检查 workspace 业务权限
+// 用于：个人资料、Token 管理、等"已登录即可"的自服务端点
+pub fn iam_identity_middleware() veb.MiddlewareOptions[Context] {
 	return veb.MiddlewareOptions[Context]{
-		handler: iam_auth_dispatch
+		handler: iam_auth_identity
 		after:   false
 	}
+}
+
+// iam_full_middleware — 身份认证 + workspace 业务权限校验
+// 用于：用户管理、工作区管理等需要 workspace 权限的管理端点
+pub fn iam_full_middleware() veb.MiddlewareOptions[Context] {
+	return veb.MiddlewareOptions[Context]{
+		handler: iam_auth_full
+		after:   false
+	}
+}
+
+// iam_middleware — 兼容别名，等同 iam_full_middleware
+@[deprecated]
+pub fn iam_middleware() veb.MiddlewareOptions[Context] {
+	return iam_full_middleware()
 }

@@ -4,7 +4,7 @@ import veb
 import log
 import json2 as json
 import model { Context }
-import model.schema_iam { IamUser, IamUserRole }
+import model.schema_iam { IamUser }
 import common.api
 import common.encrypt
 
@@ -44,17 +44,16 @@ fn update_user_domain(req UpdateUserReq) ! {
 
 // ═══ DTO ═══
 pub struct UpdateUserReq {
-	user_id     string   @[json: 'id']
-	role_ids    []string @[json: 'roleIds']
-	avatar      ?string  @[json: 'avatar']
-	description ?string  @[json: 'description']
-	email       ?string  @[json: 'email']
-	home_path   ?string  @[json: 'homePath']
-	mobile      ?string  @[json: 'mobile']
-	nickname    ?string  @[json: 'nickname']
-	password    ?string  @[json: 'password']
-	status      ?u8      @[json: 'status']
-	username    ?string  @[json: 'username']
+	user_id     string  @[json: 'id']
+	avatar      ?string @[json: 'avatar']
+	description ?string @[json: 'description']
+	email       ?string @[json: 'email']
+	home_path   ?string @[json: 'homePath']
+	mobile      ?string @[json: 'mobile']
+	nickname    ?string @[json: 'nickname']
+	password    ?string @[json: 'password']
+	status      ?u8     @[json: 'status']
+	username    ?string @[json: 'username']
 }
 
 pub struct UpdateUserResp {
@@ -79,18 +78,4 @@ fn update_user_repo(mut ctx Context, req UpdateUserReq, password_hash string) ! 
 	sql db {
 		dynamic update IamUser set up_expr where id == req.user_id
 	}!
-	if req.role_ids.len > 0 {
-		sql db {
-			delete from IamUserRole where user_id == req.user_id
-		}!
-		for role_id in req.role_ids {
-			ur := IamUserRole{
-				user_id: req.user_id
-				role_id: role_id
-			}
-			sql db {
-				insert ur into IamUserRole
-			}!
-		}
-	}
 }

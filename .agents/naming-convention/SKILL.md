@@ -214,12 +214,11 @@ product（目录）
 | `subportal_id` | `tn_subportal.id` | 客户门户实例 ID |
 | `workspace_id` | `ws_workspace.id` | 工作区 ID |
 | `user_id` | `iam_user.id` | 用户 ID |
-| `role_id`（ws_ 表内） | `ws_role.id` | 工作区角色 ID |
-| `role_id`（iam_ 表内） | `iam_role.id` | IAM 系统角色 ID |
+| `role_id` | `ws_role.id` | 工作区角色 ID |
 
 > **注意：** 实例侧的外键字段名也带 `sub-` 前缀——`subproduct_id` 而不叫 `tn_product_id`。字段名指向的是表名（`tn_subproduct`），不是前缀缩写。
 >
-> **注意：** `role_id` 在不同上下文中指向不同：IAM 表（`iam_user_role`）的 `role_id` 指向 `iam_role`（系统角色），workspace 表（`ws_member_role`、`ws_role_api`）的 `role_id` 指向 `ws_role`（工作区角色）。
+> **注意：** `role_id` 在所有表中均指向 `ws_role.id`（工作区角色）。IAM 层不持有角色——身份认证由 IAM 负责，业务权限全部走 workspace 角色。
 
 ---
 

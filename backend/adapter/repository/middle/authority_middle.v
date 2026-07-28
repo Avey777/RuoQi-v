@@ -2,7 +2,7 @@ module middle
 
 import model { Context }
 import model.schema_iam { IamToken }
-import model.schema_workspace { WsMemberRole, WsRoleApi }
+import model.schema_workspace { WsMemberRole, WsRole, WsRoleApi }
 import model.schema_platform { PfApi }
 import log
 
@@ -36,7 +36,7 @@ pub fn get_userapilist_from_token(mut ctx Context, req_token string) ![]string {
 }
 
 // find_user_apis_by_token 根据 token 查询用户可访问的 API 权限列表（JWT / Core 路径）
-// 查询链: IamToken → WsMemberRole → WsRoleApi → PfApi
+// 查询链: IamToken → WsMemberRole → WsRole (admin check) → WsRoleApi → PfApi
 pub fn find_user_apis_by_token(mut ctx Context, req_token string) ![]string {
 	log.debug('\${@METHOD}  \${@MOD}.\${@FILE_LINE}')
 
@@ -48,17 +48,23 @@ pub fn find_user_apis_by_token(mut ctx Context, req_token string) ![]string {
 	db, conn := ctx.dbpool.acquire() or { return error('Failed to acquire DB conn: \${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: \${err}') } }
 
-	// 2. roles → api_ids (ws_role_api)
+	// 2. 检查是否有 workspace_admin 角色 → 全量权限（平台管理员）
+	admin_roles := sql db {
+		select from WsRole where id in role_ids && code == 'workspace_admin' && status == 0
+		&& del_flag == 0
+	} or { return []string{} }
+	if admin_roles.len > 0 { return ['all'] }
+	// 3. roles → api_ids (ws_role_api)
 	role_apis := sql db {
 		select from WsRoleApi where role_id in role_ids
 	} or { return error('Failed to query role APIs: \${err}') }
 	api_ids := role_apis.map(it.api_id)
 	if api_ids.len == 0 { return []string{} }
-	// 3. api_ids → path + method (pf_api)
+	// 4. api_ids → path + method (pf_api)
 	apis := sql db {
 		select from PfApi where id in api_ids && del_flag == 0
 	} or { return []string{} }
 
-	// 4. 返回 scope 格式: ["METHOD:/path", ...]
+	// 5. 返回 scope 格式: ["METHOD:/path", ...]
 	return apis.map('\${it.method}:\${it.path}')
 }

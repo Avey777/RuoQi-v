@@ -13,9 +13,8 @@ module crypt
 pub struct AuthPayload {
 	BasePayload
 pub:
-	role_ids  []string // 角色数组
-	client_ip string   // 客户端 IP
-	device_id string   // 设备 ID
+	client_ip string // 客户端 IP
+	device_id string // 设备 ID
 }
 
 // auth_generate 签发认证 JWT token。
