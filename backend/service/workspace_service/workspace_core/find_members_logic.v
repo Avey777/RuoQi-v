@@ -2,9 +2,10 @@ module workspace_core
 
 import veb
 import log
+import time
 import json2 as json
 import model { Context }
-import model.schema_workspace { WsMember }
+import model.schema_workspace { WsMember, WsMemberRole }
 import common.api
 
 // ═══ Handler ═══
@@ -21,7 +22,7 @@ pub fn (app &WorkspaceCore) find_members_handler(mut ctx Context) veb.Result {
 }
 
 // ═══ Use Case ═══
-pub fn find_members_usecase(mut ctx Context, req FindMembersReq) ![]WsMember {
+pub fn find_members_usecase(mut ctx Context, req FindMembersReq) !FindMembersResp {
 	find_members_domain(req)!
 	return find_members_repo(mut ctx, req)
 }
@@ -36,12 +37,51 @@ pub struct FindMembersReq {
 	workspace_id string @[json: 'workspaceId']
 }
 
+pub struct MemberInfo {
+	user_id   string    @[json: 'userId']
+	joined_at time.Time @[json: 'joinedAt']
+	status    u8        @[json: 'status']
+	role_ids  []string  @[json: 'roleIds']
+}
+
+pub struct FindMembersResp {
+	members []MemberInfo @[json: 'members']
+}
+
 // ═══ Repository ═══
-fn find_members_repo(mut ctx Context, req FindMembersReq) ![]WsMember {
+fn find_members_repo(mut ctx Context, req FindMembersReq) !FindMembersResp {
 	ctx.scope_sc.workspace_id = req.workspace_id
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn') } }
-	return sql db {
-		select from WsMember where workspace_id == req.workspace_id
-	} or { return error('Failed: ${err}') }
+
+	// 1. 查询所有成员实体
+	members := sql db {
+		select from WsMember where workspace_id == req.workspace_id && del_flag == 0
+	} or { return error('Failed to query members: ${err}') }
+
+	// 2. 查询所有角色分配
+	all_roles := sql db {
+		select from WsMemberRole where workspace_id == req.workspace_id
+	} or { return error('Failed to query member roles: ${err}') }
+
+	// 3. 组装：成员 + 角色列表
+	mut result := []MemberInfo{cap: members.len}
+	for m in members {
+		mut role_ids := []string{}
+		for mr in all_roles {
+			if mr.user_id == m.user_id {
+				role_ids << mr.role_id
+			}
+		}
+		result << MemberInfo{
+			user_id:   m.user_id
+			joined_at: m.joined_at
+			status:    m.status
+			role_ids:  role_ids
+		}
+	}
+
+	return FindMembersResp{
+		members: result
+	}
 }

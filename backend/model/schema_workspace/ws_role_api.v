@@ -6,7 +6,7 @@ module schema_workspace
 pub struct WsRoleApi {
 pub:
 	workspace_id string @[comment: '工作区ID'; sql_type: 'CHAR(36)']
-	role_id      string @[comment: '角色ID'; sql_type: 'CHAR(36)']
+	role_id      string @[comment: '工作区角色ID→ws_role.id'; sql_type: 'CHAR(36)']
 	api_id       string @[comment: 'API ID'; sql_type: 'CHAR(36)']
 	source_type  string @[comment: '应用来源: wms/tms/mall'; sql_type: 'VARCHAR(32)']
 	source_id    string @[comment: '应用实例ID'; sql_type: 'CHAR(36)']

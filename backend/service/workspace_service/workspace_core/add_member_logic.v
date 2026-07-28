@@ -2,9 +2,10 @@ module workspace_core
 
 import veb
 import log
+import time
 import json2 as json
 import model { Context }
-import model.schema_workspace { WsMember }
+import model.schema_workspace { WsMember, WsMemberRole }
 import common.api
 
 // ═══ Handler ═══
@@ -30,6 +31,7 @@ pub fn add_member_usecase(mut ctx Context, req AddMemberReq) !AddMemberResp {
 fn add_member_domain(req AddMemberReq) ! {
 	if req.workspace_id == '' { return error('workspace_id is required') }
 	if req.user_id == '' { return error('user_id is required') }
+	if req.role_id == '' { return error('role_id is required') }
 }
 
 // ═══ DTO ═══
@@ -40,7 +42,8 @@ pub struct AddMemberReq {
 }
 
 pub struct AddMemberResp {
-	msg string @[json: 'msg']
+	user_id string @[json: 'userId']
+	msg     string @[json: 'msg']
 }
 
 // ═══ Repository ═══
@@ -48,15 +51,32 @@ fn add_member_repo(mut ctx Context, req AddMemberReq) !AddMemberResp {
 	ctx.scope_sc.workspace_id = req.workspace_id
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
+
+	// 1. 维护成员实体记录（一行一个成员）
 	m := WsMember{
+		workspace_id: req.workspace_id
+		user_id:      req.user_id
+		joined_at:    time.now()
+		status:       0
+		created_at:   time.now()
+		updated_at:   time.now()
+	}
+	sql db {
+		upsert m into WsMember
+	} or { return error('Failed to upsert member: ${err}') }
+
+	// 2. 分配角色（一行一个角色分配）
+	mr := WsMemberRole{
 		workspace_id: req.workspace_id
 		user_id:      req.user_id
 		role_id:      req.role_id
 	}
 	sql db {
-		upsert m into WsMember
-	} or { return error('Failed: ${err}') }
+		upsert mr into WsMemberRole
+	} or { return error('Failed to upsert member role: ${err}') }
+
 	return AddMemberResp{
-		msg: 'Member added'
+		user_id: req.user_id
+		msg:     'Member added'
 	}
 }

@@ -21,7 +21,9 @@ pub fn (app &Base) init_workspace(mut ctx Context) veb.Result {
 
 	sql db {
 		create table schema_workspace.WsWorkspace
+		create table schema_workspace.WsRole
 		create table schema_workspace.WsMember
+		create table schema_workspace.WsMemberRole
 		create table schema_workspace.WsRoleApi
 		create table schema_workspace.WsRoleMenu
 		create table schema_workspace.WsDepartment
@@ -30,7 +32,7 @@ pub fn (app &Base) init_workspace(mut ctx Context) veb.Result {
 	log.info('schema_workspace init success')
 
 	log.info('insert sys data')
-	sql_commands := [ws_workspace, ws_member, ws_department, ws_position]
+	sql_commands := [ws_workspace, ws_role, ws_member, ws_member_role, ws_department, ws_position]
 	for cmd in sql_commands {
 		db.execute(cmd) or {
 			return ctx.json(api.json_error_500('执行 ${cmd} SQL失败: ${err}'))

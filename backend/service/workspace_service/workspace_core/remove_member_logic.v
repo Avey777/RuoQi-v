@@ -4,7 +4,7 @@ import veb
 import log
 import json2 as json
 import model { Context }
-import model.schema_workspace { WsMember }
+import model.schema_workspace { WsMember, WsMemberRole }
 import common.api
 
 // ═══ Handler ═══
@@ -34,8 +34,9 @@ fn remove_member_domain(req RemoveMemberReq) ! {
 
 // ═══ DTO ═══
 pub struct RemoveMemberReq {
-	workspace_id string @[json: 'workspaceId']
-	user_id      string @[json: 'userId']
+	workspace_id string  @[json: 'workspaceId']
+	user_id      string  @[json: 'userId']
+	role_id      ?string @[json: 'roleId']
 }
 
 pub struct RemoveMemberResp {
@@ -47,6 +48,22 @@ fn remove_member_repo(mut ctx Context, req RemoveMemberReq) !RemoveMemberResp {
 	ctx.scope_sc.workspace_id = req.workspace_id
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
+
+	if role_id := req.role_id {
+		// 仅移除指定角色
+		sql db {
+			delete from WsMemberRole where workspace_id == req.workspace_id && user_id == req.user_id
+			&& role_id == role_id
+		}!
+		return RemoveMemberResp{
+			msg: 'Role removed from member'
+		}
+	}
+
+	// 移除成员所有角色 + 成员实体
+	sql db {
+		delete from WsMemberRole where workspace_id == req.workspace_id && user_id == req.user_id
+	}!
 	sql db {
 		delete from WsMember where workspace_id == req.workspace_id && user_id == req.user_id
 	}!

@@ -3,7 +3,7 @@ module schema_tenant
 import time
 
 // 关系说明：tenant_id → tn_tenant, workspace_id → ws_workspace, product_id → pf_product, portal_id → pf_portal；
-// 入驻粒度是 workspace，用户权限通过 ws_member 控制。
+// 入驻粒度是 workspace，用户权限通过 ws_member 和 ws_member_role 控制。
 // 同一 workspace 可有多条入驻记录，支持多店铺（同一 workspace 对同一门户多次入驻）。
 @[comment: '客户入住门户表（seller/buyer/owner/admin等）— subportal = subscription to a portal']
 @[table: 'tn_subportal']

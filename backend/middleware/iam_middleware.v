@@ -45,7 +45,7 @@ fn iam_auth_dispatch(mut ctx Context) bool {
 // ═══════════════════════════════════════════════════════════════════════════════
 // JWT 鉴权路径
 //   身份: JWT 验签 (crypt.verify_and_decode)
-//   权限: IamToken → IamUserRole → WsRoleApi → PfApi → scope 匹配
+//   权限: IamToken → WsMemberRole → WsRoleApi → PfApi → scope 匹配
 //   数据隔离: datascope (SQL WHERE 行级过滤)
 // ═══════════════════════════════════════════════════════════════════════════════
 
@@ -60,7 +60,7 @@ fn authenticate_jwt(mut ctx Context, token string) bool {
 	ctx.svc_iam.iam_role_ids = payload.role_ids
 
 	// API 权限校验（JWT / Core 路径）
-	// root 用户（* 角色）跳过权限校验；其余查 ws_role_api + pf_api
+	// root 用户（* 角色）跳过权限校验；其余查 WsMemberRole → ws_role_api + pf_api
 	if !payload.role_ids.contains('*') {
 		scopes := middle.find_user_apis_by_token(mut ctx, token) or {
 			log.warn('find_user_apis_by_token failed: ${err}')

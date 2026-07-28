@@ -1,4 +1,4 @@
-// TEMPLATE: Schema struct — copy to backend/structs/schema_xxx/xxx.v
+// TEMPLATE: Schema struct — copy to backend/model/schema_xxx/xxx.v
 // Replace Xxx, xxx with actual names.
 // Defines the database table mapping for V ORM.
 import time

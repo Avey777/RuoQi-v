@@ -1,8 +1,8 @@
 module middle
 
 import model { Context }
-import model.schema_iam { IamToken, IamUserRole }
-import model.schema_workspace { WsRoleApi }
+import model.schema_iam { IamToken }
+import model.schema_workspace { WsMemberRole, WsRoleApi }
 import model.schema_platform { PfApi }
 import log
 
@@ -24,9 +24,9 @@ pub fn get_userapilist_from_token(mut ctx Context, req_token string) ![]string {
 
 	user_id := tokens[0].user_id
 
-	// 查询用户角色
+	// 查询用户在工作区中的角色（ws_member_role）
 	roles := sql db {
-		select from IamUserRole where user_id == user_id
+		select from WsMemberRole where user_id == user_id
 	}!
 	role_ids := roles.map(it.role_id)
 	ctx.scope_sc.svc_sys_role_ids = role_ids
@@ -36,7 +36,7 @@ pub fn get_userapilist_from_token(mut ctx Context, req_token string) ![]string {
 }
 
 // find_user_apis_by_token 根据 token 查询用户可访问的 API 权限列表（JWT / Core 路径）
-// 查询链: IamToken → IamUserRole → WsRoleApi → PfApi
+// 查询链: IamToken → WsMemberRole → WsRoleApi → PfApi
 pub fn find_user_apis_by_token(mut ctx Context, req_token string) ![]string {
 	log.debug('\${@METHOD}  \${@MOD}.\${@FILE_LINE}')
 

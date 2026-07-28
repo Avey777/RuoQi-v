@@ -13,9 +13,9 @@ A new module in `sys_admin_api` named `audit_log` creates these files:
 
 ```
 backend/
-├── structs/schema_sys/sys_audit_log.v       # ORM schema struct
+├── model/schema_sys/sys_audit_log.v          # ORM schema struct
 ├── service/sys_admin_api/audit_log/
-│   ├── app_struct.v                         # Module struct (embeds structs.App)
+│   ├── app_struct.v                         # Module struct (embeds model.App)
 │   ├── create_audit_log_logic.v             # POST: handler + usecase + domain + DTO + repo
 │   ├── find_audit_log_all_logic.v           # POST: list query
 │   ├── find_audit_log_by_id_logic.v         # POST: single record by ID
@@ -29,7 +29,7 @@ backend/
 
 ### Step 1: Create the Schema struct
 
-Create `backend/structs/schema_<domain>/<name>.v`. Use [schema-template.v](references/schema-template.v).
+Create `backend/model/schema_<domain>/<name>.v`. Use [schema-template.v](references/schema-template.v).
 
 Key rules:
 - `id` is always `string` with `rand.uuid_v7()`, attributes: `immutable; primary; required; sql_type: 'CHAR(36)'; unique`
@@ -39,7 +39,7 @@ Key rules:
 
 ### Step 2: Create the module directory and app_struct.v
 
-Create `backend/service/<api_group>/<module_name>/`. Create `app_struct.v`. The struct embeds `structs.App` — named after the module, without any suffix (e.g., `pub struct AuditLog { App }`).
+Create `backend/service/<api_group>/<module_name>/`. Create `app_struct.v`. The struct embeds `model.App` — named after the module, without any suffix (e.g., `pub struct AuditLog { App }`).
 
 ### Step 3: Create CRUD logic files
 
@@ -117,7 +117,7 @@ fn test_create_audit_log() {
 ### Step 6: Verify integration
 
 - The route function is called from `backend/route/route.v` or a route index file
-- Schema struct is importable from `structs.schema_<domain>`
+- Schema struct is importable from `model.schema_<domain>`
 - All logic files and the test file share the same `module` name as the directory
 
 ## Naming conventions
@@ -153,7 +153,7 @@ These directories are code-generated or infrastructure-only, per AGENTS.md. Neve
 - **DB connection leak:** Every `ctx.dbpool.acquire()` must have `defer { ctx.dbpool.release(conn) or {} }`
 - **JSON decode errors:** Always `json.decode[...](ctx.req.data) or { return ctx.json(api.json_error_400(err.msg())) }`
 - **Same-module imports:** Logic files sharing a directory do NOT import each other — only external packages
-- **Schema location:** Schema structs go in `structs/schema_<domain>/`, not in the service directory
+- **Schema location:** Schema structs go in `model/schema_<domain>/`, not in the service directory
 - **Soft delete:** Delete operations set `del_flag = 1`; never issue a physical `DELETE`
 - **UUIDs:** Use `rand.uuid_v7()` for all primary key generation
 - **One API per file:** Each `*_logic.v` must contain exactly one `@['/xxx'; post]` handler — never bundle multiple routes in one file

@@ -150,19 +150,33 @@ product（目录）
 │     pf_plan       有什么套餐（产品定价）
 │     pf_app        有什么应用模块
 │     pf_portal     有什么门户
+│     pf_api        有什么 API
+│     pf_menu       有什么菜单
 │
-└─ tenant 层（租户有什么 + 租户客户有什么）
-      tn_subproduct  租户订阅产品 → 实例
-      tn_subapp      租户开通应用 → 实例
-      tn_subportal   客户入住门户 → 实例
-      tn_config      租户产品配置 → 自定义设置
+├─ tenant 层（租户有什么 + 租户客户有什么）
+│     tn_tenant      租户
+│     tn_subproduct  租户订阅产品 → 实例
+│     tn_subapp      租户开通应用 → 实例
+│     tn_subportal   客户入住门户 → 实例
+│     tn_config      租户产品配置 → 自定义设置
+│
+└─ workspace 层（空间内组织管理）
+      ws_workspace   工作区（运营单元）
+      ws_role        工作区角色（空间内自定义）
+      ws_member      工作区成员（= 用户 + 加入日期 + 状态）
+      ws_member_role 成员角色关联（一个成员可有多角色）
+      ws_role_api    角色 → API 权限
+      ws_role_menu   角色 → 菜单权限
+      ws_department  部门
+      ws_position    岗位
 ```
 
 **前缀：**
 - `pf_` = platform，平台层。平台定义的可订阅目录。
 - `tn_` = tenant，租户层。所有订阅产生的实例，不论订阅者是租户自己还是租户的客户。客户的实例挂在租户的 subproduct 之下，归租户层管。
+- `ws_` = workspace，工作区层。租户下的运营组织单元，存放部门/岗位/成员/角色等空间内管理数据。
 
-**表名规则：** 目录表直接用概念名（`pf_product`），实例表用 `sub-` 前缀（`tn_subproduct`）。概念名和表名一一对应，没有映射负担。
+**表名规则：** 目录表直接用概念名（`pf_product`），实例表用 `sub-` 前缀（`tn_subproduct`），空间内表用 `ws_` 前缀（`ws_member`）。概念名和表名一一对应，没有映射负担。
 
 | 概念 | 表 |
 |------|-----|
@@ -174,6 +188,14 @@ product（目录）
 | subapp | `tn_subapp` |
 | subportal | `tn_subportal` |
 | config | `tn_config` |
+| workspace | `ws_workspace` |
+| workspace role | `ws_role` |
+| member | `ws_member` |
+| member role | `ws_member_role` |
+| role → API | `ws_role_api` |
+| role → menu | `ws_role_menu` |
+| department | `ws_department` |
+| position | `ws_position` |
 
 ---
 
@@ -190,8 +212,14 @@ product（目录）
 | `subproduct_id` | `tn_subproduct.id` | 租户产品实例 ID |
 | `subapp_id` | `tn_subapp.id` | 租户应用实例 ID |
 | `subportal_id` | `tn_subportal.id` | 客户门户实例 ID |
+| `workspace_id` | `ws_workspace.id` | 工作区 ID |
+| `user_id` | `iam_user.id` | 用户 ID |
+| `role_id`（ws_ 表内） | `ws_role.id` | 工作区角色 ID |
+| `role_id`（iam_ 表内） | `iam_role.id` | IAM 系统角色 ID |
 
 > **注意：** 实例侧的外键字段名也带 `sub-` 前缀——`subproduct_id` 而不叫 `tn_product_id`。字段名指向的是表名（`tn_subproduct`），不是前缀缩写。
+>
+> **注意：** `role_id` 在不同上下文中指向不同：IAM 表（`iam_user_role`）的 `role_id` 指向 `iam_role`（系统角色），workspace 表（`ws_member_role`、`ws_role_api`）的 `role_id` 指向 `ws_role`（工作区角色）。
 
 ---
 
@@ -232,9 +260,13 @@ pf_portal:     product_id=mall, portal_code=buyer,  portal_name=买家端
 
 ## 常见问题
 
+### `ws_` 和 `tn_` 的关系？
+
+`tn_` = tenant，租户层的订阅实例（谁订阅了哪个产品、开通了哪些应用、入驻了哪个门户）。`ws_` = workspace，租户下的运营组织单元。一个租户可以创建多个 workspace（如不同门店、不同项目组），每个 workspace 内有自己的部门/岗位/成员/角色。`ws_` 不替代 `tn_`——两者的职责不同：`tn_` 管"谁有什么"，`ws_` 管"谁在里面干什么"。
+
 ### `tn_` 为什么不区分租户和客户？
 
-客户的 subportal 挂在租户的 subproduct 之下——客户不能脱离租户独立存在。用同一个 `tn_` 前缀表达这种归属关系，比引入 `ws_` 或 `cs_` 更简单。如果未来客户数据膨胀到需要独立分层，再引入新前缀。
+客户的 subportal 挂在租户的 subproduct 之下——客户不能脱离租户独立存在。用同一个 `tn_` 前缀表达这种归属关系。如果未来客户数据膨胀到需要独立分层，再引入新前缀。
 
 ### `subapp` 跟 `subproduct` 的区别？
 
