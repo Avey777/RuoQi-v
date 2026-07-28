@@ -1,6 +1,6 @@
 module token
 
-import structs { App }
+import model { App }
 
 pub struct Token {
 	App

@@ -1,6 +1,6 @@
 module platform_dictionary
 
-import structs { App }
+import model { App }
 
 pub struct PlatformDictionary {
 	App

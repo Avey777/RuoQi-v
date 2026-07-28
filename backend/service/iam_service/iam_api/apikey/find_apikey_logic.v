@@ -3,8 +3,8 @@ module apikey
 import veb
 import log
 import json2 as json
-import structs { Context }
-import structs.schema_iam { IamApiKey }
+import model { Context }
+import model.schema_iam { IamApiKey }
 import common.api
 
 pub struct ApiKeyItem {

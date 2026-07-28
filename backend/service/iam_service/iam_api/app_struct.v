@@ -1,6 +1,6 @@
 module iam_api
 
-import structs { App, Context }
+import model { App, Context }
 import veb
 import log
 import common.api { json_success_200 }

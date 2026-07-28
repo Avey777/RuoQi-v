@@ -5,8 +5,8 @@ import log
 import time
 import rand
 import json2 as json
-import structs { Context }
-import structs.schema_workspace { WsWorkspace }
+import model { Context }
+import model.schema_workspace { WsWorkspace }
 import common.api
 
 // ═══ Handler ═══

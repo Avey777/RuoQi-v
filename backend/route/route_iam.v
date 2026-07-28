@@ -1,7 +1,7 @@
 module route
 
 import log
-import structs { Context }
+import model { Context }
 import service.iam_service.iam_api { Iam }
 import service.iam_service.iam_api.authentication { Authentication }
 import service.iam_service.iam_api.user { User }

@@ -1,6 +1,6 @@
 module role
 
-import structs { App }
+import model { App }
 
 pub struct Role {
 	App

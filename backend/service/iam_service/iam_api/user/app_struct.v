@@ -1,6 +1,6 @@
 module user
 
-import structs { App }
+import model { App }
 
 pub struct User {
 	App

@@ -3,9 +3,9 @@ module apikey
 import veb
 import log
 import json2 as json
-import structs { Context }
+import model { Context }
 import common.api
-import structs.schema_iam { IamApiKey }
+import model.schema_iam { IamApiKey }
 
 pub struct DeleteApiKeyReq {
 	id string @[json: 'id']

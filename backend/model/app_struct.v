@@ -1,4 +1,4 @@
-module structs
+module model
 
 import veb
 import common.crypt { AuthPayload }

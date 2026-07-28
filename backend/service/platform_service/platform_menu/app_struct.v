@@ -1,6 +1,6 @@
 module platform_menu
 
-import structs { App }
+import model { App }
 
 pub struct PlatformMenu {
 	App

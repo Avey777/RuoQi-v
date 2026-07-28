@@ -2,7 +2,7 @@ module token
 
 import time
 import rand
-import structs { Context }
+import model { Context }
 import common.crypt
 
 pub fn generate_iam_token(mut ctx Context, user_id string, username string, login_ip string, device_id string) !string {

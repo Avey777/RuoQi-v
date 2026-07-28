@@ -2,7 +2,7 @@ module middleware
 
 import log
 import veb
-import structs { Context }
+import model { Context }
 
 //日志中间件
 pub fn logger_middleware(mut ctx Context) bool {

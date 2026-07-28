@@ -1,6 +1,6 @@
 module workspace_position
 
-import structs { App }
+import model { App }
 
 pub struct WorkspacePosition {
 	App

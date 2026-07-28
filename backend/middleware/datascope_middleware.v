@@ -1,7 +1,7 @@
 module middleware
 
 import veb
-import structs { Context }
+import model { Context }
 import adapter.datascope { ScopeConfig }
 
 // datascope_middleware 数据范围中间件 — 将 ScopeConfig 构建为 ScopeContext 写入 ctx.scope_sc

@@ -1,7 +1,7 @@
 module route
 
 import log
-import structs { Context }
+import model { Context }
 import service.platform_service.platform_api { PlatformApi }
 import service.platform_service.platform_menu { PlatformMenu }
 import service.platform_service.platform_dictionary { PlatformDictionary }

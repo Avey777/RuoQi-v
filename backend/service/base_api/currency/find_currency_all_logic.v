@@ -3,9 +3,9 @@ module currency
 import veb
 import log
 import time
-import structs.schema_base { BaseCurrency }
+import model.schema_base { BaseCurrency }
 import common.api
-import structs { Context }
+import model { Context }
 import json2 as json
 
 // ═══ Handler ═══

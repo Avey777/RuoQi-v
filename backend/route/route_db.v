@@ -1,7 +1,7 @@
 module route
 
 import log
-import structs { Context }
+import model { Context }
 import middleware
 import service.db_api { Base }
 

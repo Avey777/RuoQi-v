@@ -1,5 +1,5 @@
 module fms_api
 
-import structs { App }
+import model { App }
 
 type HandlerApp = App

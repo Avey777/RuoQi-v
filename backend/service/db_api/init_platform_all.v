@@ -3,8 +3,8 @@ module db_api
 import veb
 import log
 import common.api
-import structs { Context }
-import structs.schema_platform
+import model { Context }
+import model.schema_platform
 
 @['/init/init_platform'; get]
 pub fn (app &Base) init_platform(mut ctx Context) veb.Result {

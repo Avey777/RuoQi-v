@@ -4,7 +4,7 @@ import os
 import veb
 import log
 import time
-import structs { Context }
+import model { Context }
 import middleware
 import config
 import locale

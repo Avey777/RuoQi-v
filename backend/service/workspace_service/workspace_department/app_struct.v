@@ -1,6 +1,6 @@
 module workspace_department
 
-import structs { App }
+import model { App }
 
 pub struct WorkspaceDepartment {
 	App

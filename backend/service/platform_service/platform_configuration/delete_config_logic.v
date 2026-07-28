@@ -3,8 +3,8 @@ module platform_configuration
 import veb
 import log
 import json2 as json
-import structs { Context }
-import structs.schema_platform { PfConfig }
+import model { Context }
+import model.schema_platform { PfConfig }
 import common.api
 
 // ═══ Handler ═══

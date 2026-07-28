@@ -1,6 +1,6 @@
 module profile
 
-import structs { App }
+import model { App }
 
 pub struct Profile {
 	App

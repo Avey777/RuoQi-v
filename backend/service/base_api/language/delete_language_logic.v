@@ -3,9 +3,9 @@ module language
 import veb
 import log
 import json2 as json
-import structs.schema_base { BaseLanguage }
+import model.schema_base { BaseLanguage }
 import common.api
-import structs { Context }
+import model { Context }
 
 // ═══ Handler ═══
 @['/delete'; post]

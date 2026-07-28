@@ -3,8 +3,8 @@ module workspace_department
 import veb
 import log
 import json2 as json
-import structs { Context }
-import structs.schema_workspace { WsDepartment }
+import model { Context }
+import model.schema_workspace { WsDepartment }
 import common.api
 
 // ═══ Handler ═══

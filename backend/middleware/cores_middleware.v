@@ -2,7 +2,7 @@ module middleware
 
 import log
 import veb
-import structs { Context }
+import model { Context }
 
 const cors_origin = ['*', 'xx.com']
 

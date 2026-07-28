@@ -2,7 +2,7 @@ module middleware
 
 import veb
 import log
-import structs { Context }
+import model { Context }
 import adapter.cache_pool
 import config
 

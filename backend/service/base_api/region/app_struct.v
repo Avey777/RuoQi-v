@@ -1,6 +1,6 @@
 module region
 
-import structs { App }
+import model { App }
 
 pub struct Region {
 	App

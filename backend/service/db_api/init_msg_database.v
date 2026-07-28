@@ -3,8 +3,8 @@ module db_api
 import veb
 import log
 import common.api
-import structs { Context }
-import structs.schema_msg
+import model { Context }
+import model.schema_msg
 
 @['/init/init_mcms'; get]
 pub fn (app &Base) init_mcms(mut ctx Context) veb.Result {

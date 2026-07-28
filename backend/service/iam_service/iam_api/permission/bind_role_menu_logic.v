@@ -3,8 +3,8 @@ module permission
 import veb
 import log
 import json2 as json
-import structs { Context }
-import structs.schema_workspace { WsRoleMenu }
+import model { Context }
+import model.schema_workspace { WsRoleMenu }
 import common.api
 
 // ═══ Handler ═══

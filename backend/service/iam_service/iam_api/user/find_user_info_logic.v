@@ -2,8 +2,8 @@ module user
 
 import veb
 import log
-import structs { Context }
-import structs.schema_iam { IamUser }
+import model { Context }
+import model.schema_iam { IamUser }
 import common.api
 
 // ═══ Handler ═══

@@ -4,8 +4,8 @@ import time
 import veb
 import log
 import json2 as json
-import structs { Context }
-import structs.schema_iam { IamApiKey }
+import model { Context }
+import model.schema_iam { IamApiKey }
 import common.api
 import common.crypt
 import adapter.repository.middle

@@ -1,6 +1,6 @@
 module db_api
 
-import structs { App }
+import model { App }
 
 pub struct Base {
 	App

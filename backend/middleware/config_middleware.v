@@ -1,7 +1,7 @@
 module middleware
 
 import veb
-import structs { Context }
+import model { Context }
 import config
 
 // 配置中间件 - 将全局配置注入请求上下文

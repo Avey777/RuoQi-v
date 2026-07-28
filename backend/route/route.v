@@ -2,7 +2,7 @@ module route
 
 import log
 import veb
-import structs { Context }
+import model { Context }
 import adapter.datascope { ScopeConfig, ScopeField }
 import middleware
 

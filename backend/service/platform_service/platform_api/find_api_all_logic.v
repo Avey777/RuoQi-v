@@ -2,8 +2,8 @@ module platform_api
 
 import veb
 import log
-import structs { Context }
-import structs.schema_platform { PfApi }
+import model { Context }
+import model.schema_platform { PfApi }
 import common.api as capi
 
 // ═══ Handler ═══

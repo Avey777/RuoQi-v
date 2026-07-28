@@ -66,7 +66,7 @@ v_project/
 │   ├── auth_routes.v               # 认证模块路由
 │   └── openapi_routes.v            # API 文档路由
 │
-├── structs/                        # 数据结构定义（Infra Schema）
+├── model/                          # 数据结构定义（Infra Schema）
 │   ├── db/                         # 数据库结构体（ORM 映射）
 │   │   └── user_db_struct.v
 │   ├── request/                    # 外部请求载体（第三方 API 输入）

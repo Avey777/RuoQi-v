@@ -1,6 +1,6 @@
 module workspace_core
 
-import structs { App }
+import model { App }
 
 pub struct WorkspaceCore {
 	App

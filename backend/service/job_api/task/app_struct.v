@@ -1,6 +1,6 @@
 module task
 
-import structs { App }
+import model { App }
 
 pub struct Task {
 	App

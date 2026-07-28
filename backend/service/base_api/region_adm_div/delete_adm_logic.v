@@ -3,9 +3,9 @@ module region_adm_div
 import veb
 import log
 import json2 as json
-import structs.schema_base { BaseRegionAdmDiv }
+import model.schema_base { BaseRegionAdmDiv }
 import common.api
-import structs { Context }
+import model { Context }
 
 // ═══ Handler ═══
 @['/delete'; post]

@@ -3,8 +3,8 @@ module db_api
 import veb
 import log
 import common.api
-import structs { Context }
-import structs.schema_fms
+import model { Context }
+import model.schema_fms
 
 @['/init/init_fms'; get]
 pub fn (app &Base) init_fms(mut ctx Context) veb.Result {

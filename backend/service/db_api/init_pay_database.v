@@ -3,8 +3,8 @@ module db_api
 import veb
 import log
 import common.api
-import structs { Context }
-import structs.schema_pay
+import model { Context }
+import model.schema_pay
 
 @['/init/init_pay'; get]
 pub fn (app &Base) init_pay(mut ctx Context) veb.Result {

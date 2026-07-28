@@ -3,8 +3,8 @@ module db_api
 import veb
 import log
 import common.api
-import structs { Context }
-import structs.schema_job
+import model { Context }
+import model.schema_job
 
 @['/init/init_job'; get]
 pub fn (app &Base) init_job(mut ctx Context) veb.Result {

@@ -1,6 +1,6 @@
 module authentication
 
-import structs { App }
+import model { App }
 
 pub struct Authentication {
 	App

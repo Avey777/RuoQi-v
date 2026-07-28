@@ -3,8 +3,8 @@ module db_api
 import veb
 import log
 import common.api
-import structs { Context }
-import structs.schema_iam
+import model { Context }
+import model.schema_iam
 
 @['/init/init_iam'; get]
 pub fn (app &Base) init_iam(mut ctx Context) veb.Result {

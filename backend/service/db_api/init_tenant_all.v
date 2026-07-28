@@ -3,8 +3,8 @@ module db_api
 import veb
 import log
 import common.api
-import structs { Context }
-import structs.schema_tenant
+import model { Context }
+import model.schema_tenant
 
 @['/init/init_tenant'; get]
 pub fn (app &Base) init_tenant(mut ctx Context) veb.Result {

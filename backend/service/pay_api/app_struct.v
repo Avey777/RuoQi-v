@@ -1,6 +1,6 @@
 module pay_api
 
-import structs { App }
+import model { App }
 
 pub struct Pay {
 	App

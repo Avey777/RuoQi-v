@@ -3,9 +3,9 @@ module region
 import veb
 import log
 import time
-import structs.schema_base { BaseRegion }
+import model.schema_base { BaseRegion }
 import common.api
-import structs { Context }
+import model { Context }
 import json2 as json
 
 // ═══ Handler ═══

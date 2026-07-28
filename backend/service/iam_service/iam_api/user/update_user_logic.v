@@ -3,8 +3,8 @@ module user
 import veb
 import log
 import json2 as json
-import structs { Context }
-import structs.schema_iam { IamUser, IamUserRole }
+import model { Context }
+import model.schema_iam { IamUser, IamUserRole }
 import common.api
 import common.encrypt
 

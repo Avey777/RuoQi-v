@@ -1,6 +1,6 @@
 module language
 
-import structs { App }
+import model { App }
 
 pub struct Language {
 	App

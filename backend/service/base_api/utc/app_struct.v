@@ -1,6 +1,6 @@
 module utc
 
-import structs { App }
+import model { App }
 
 pub struct Utc {
 	App

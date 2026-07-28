@@ -4,7 +4,7 @@ import veb
 import log
 import common.crypt
 import common.api
-import structs { Context }
+import model { Context }
 
 // ═══ Handler ═══
 @['/sms_opt'; post]

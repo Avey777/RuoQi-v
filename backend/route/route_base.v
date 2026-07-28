@@ -1,7 +1,7 @@
 module route
 
 import log
-import structs { Context }
+import model { Context }
 import service.base_api.currency { Currency }
 import service.base_api.language { Language }
 import service.base_api.region { Region }

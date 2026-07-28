@@ -1,7 +1,7 @@
 module route
 
 import log
-import structs { Context }
+import model { Context }
 import service.workspace_service.workspace_core { WorkspaceCore }
 import service.workspace_service.workspace_department { WorkspaceDepartment }
 import service.workspace_service.workspace_position { WorkspacePosition }

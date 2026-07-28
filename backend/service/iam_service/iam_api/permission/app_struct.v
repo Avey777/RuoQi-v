@@ -1,6 +1,6 @@
 module permission
 
-import structs { App }
+import model { App }
 
 pub struct Permission {
 	App

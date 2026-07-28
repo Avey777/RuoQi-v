@@ -3,7 +3,7 @@ module middleware
 import veb
 import log
 import time
-import structs { Context }
+import model { Context }
 import adapter.dbpool
 import config
 

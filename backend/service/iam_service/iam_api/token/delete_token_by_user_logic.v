@@ -2,8 +2,8 @@ module token
 
 import veb
 import log
-import structs { Context }
-import structs.schema_iam { IamToken }
+import model { Context }
+import model.schema_iam { IamToken }
 import common.api
 
 // ═══ Handler ═══

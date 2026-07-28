@@ -5,9 +5,9 @@ import log
 // import time
 import rand
 import json2 as json
-import structs.schema_base { BaseUtc }
+import model.schema_base { BaseUtc }
 import common.api
-import structs { Context }
+import model { Context }
 
 // ═══ Handler ═══
 @['/create'; post]

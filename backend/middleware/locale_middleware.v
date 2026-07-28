@@ -2,7 +2,7 @@ module middleware
 
 import veb
 import log
-import structs { Context }
+import model { Context }
 import locale
 
 pub fn locale_middleware(locale_app &locale.LocaleStore) veb.MiddlewareOptions[Context] {

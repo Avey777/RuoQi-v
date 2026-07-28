@@ -3,8 +3,8 @@ module platform_dictionary
 import veb
 import log
 import json2 as json
-import structs { Context }
-import structs.schema_platform { PfDictionary }
+import model { Context }
+import model.schema_platform { PfDictionary }
 import common.api
 
 // ═══ Handler ═══

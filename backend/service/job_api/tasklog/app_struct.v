@@ -1,6 +1,6 @@
 module tasklog
 
-import structs { App }
+import model { App }
 
 pub struct TaskLog {
 	App

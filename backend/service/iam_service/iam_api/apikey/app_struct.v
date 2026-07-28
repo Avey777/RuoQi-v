@@ -1,6 +1,6 @@
 module apikey
 
-import structs { App }
+import model { App }
 
 pub struct ApiKey {
 	App

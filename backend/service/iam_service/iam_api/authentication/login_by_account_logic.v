@@ -5,9 +5,9 @@ import log
 import time
 import rand
 import json2 as json
-import structs { Context }
+import model { Context }
 import service.iam_service.iam_api.token
-import structs.schema_iam { IamToken, IamUser }
+import model.schema_iam { IamToken, IamUser }
 import common.api
 import common.crypt
 import common.encrypt

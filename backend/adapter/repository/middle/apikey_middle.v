@@ -2,8 +2,8 @@ module middle
 
 import time
 import log
-import structs { Context }
-import structs.schema_iam { IamApiKey }
+import model { Context }
+import model.schema_iam { IamApiKey }
 
 pub fn find_apis_by_aksk(mut ctx Context, ak string) !IamApiKey {
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }

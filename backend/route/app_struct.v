@@ -1,7 +1,7 @@
 module route
 
 import veb
-import structs { App }
+import model { App }
 
 pub struct AliasApp {
 	App

@@ -1,7 +1,7 @@
 module route
 
 import log
-import structs { Context }
+import model { Context }
 
 // 根据条件编译，选择运行的服务
 pub fn (mut app AliasApp) setup_conditional_routes(mut ctx Context) {

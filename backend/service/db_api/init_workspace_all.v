@@ -3,8 +3,8 @@ module db_api
 import veb
 import log
 import common.api
-import structs { Context }
-import structs.schema_workspace
+import model { Context }
+import model.schema_workspace
 
 @['/init/init_workspace'; get]
 pub fn (app &Base) init_workspace(mut ctx Context) veb.Result {

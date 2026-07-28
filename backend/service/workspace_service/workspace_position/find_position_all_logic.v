@@ -3,8 +3,8 @@ module workspace_position
 import veb
 import log
 import json2 as json
-import structs { Context }
-import structs.schema_workspace { WsPosition }
+import model { Context }
+import model.schema_workspace { WsPosition }
 import common.api
 
 // ═══ Handler ═══

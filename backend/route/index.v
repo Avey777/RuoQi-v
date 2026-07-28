@@ -3,7 +3,7 @@ module route
 import veb
 import log
 import common.api
-import structs { Context }
+import model { Context }
 import os
 
 @['/get'; get]

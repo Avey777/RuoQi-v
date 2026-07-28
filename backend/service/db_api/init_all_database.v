@@ -3,7 +3,7 @@ module db_api
 import veb
 import log
 import common.api
-import structs { Context }
+import model { Context }
 
 @['/init/all_database'; get]
 fn (app &Base) init_all(mut ctx Context) veb.Result {

@@ -1,9 +1,9 @@
 module middle
 
-import structs { Context }
-import structs.schema_iam { IamToken, IamUserRole }
-import structs.schema_workspace { WsRoleApi }
-import structs.schema_platform { PfApi }
+import model { Context }
+import model.schema_iam { IamToken, IamUserRole }
+import model.schema_workspace { WsRoleApi }
+import model.schema_platform { PfApi }
 import log
 
 // get_userapilist_from_token 根据 token 获取用户 API 权限列表（Sys 认证用）。

@@ -1,6 +1,6 @@
 module platform_api
 
-import structs { App }
+import model { App }
 
 pub struct PlatformApi {
 	App

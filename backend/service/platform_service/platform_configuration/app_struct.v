@@ -1,6 +1,6 @@
 module platform_configuration
 
-import structs { App }
+import model { App }
 
 pub struct PlatformConfiguration {
 	App

@@ -2,8 +2,8 @@ module platform_configuration
 
 import veb
 import log
-import structs { Context }
-import structs.schema_platform { PfConfig }
+import model { Context }
+import model.schema_platform { PfConfig }
 import common.api
 
 // ═══ Handler ═══

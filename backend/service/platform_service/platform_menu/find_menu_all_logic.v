@@ -2,8 +2,8 @@ module platform_menu
 
 import veb
 import log
-import structs { Context }
-import structs.schema_platform { PfMenu }
+import model { Context }
+import model.schema_platform { PfMenu }
 import common.api
 
 // ═══ Handler ═══

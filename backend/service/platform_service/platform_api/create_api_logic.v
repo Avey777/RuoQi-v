@@ -5,8 +5,8 @@ import log
 import time
 import rand
 import json2 as json
-import structs { Context }
-import structs.schema_platform { PfApi }
+import model { Context }
+import model.schema_platform { PfApi }
 import common.api as capi
 
 // ═══ Handler ═══

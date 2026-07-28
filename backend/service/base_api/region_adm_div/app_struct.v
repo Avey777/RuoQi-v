@@ -1,6 +1,6 @@
 module region_adm_div
 
-import structs { App }
+import model { App }
 
 pub struct RegionAdmDiv {
 	App

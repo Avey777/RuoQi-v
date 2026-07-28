@@ -1,6 +1,6 @@
 module currency
 
-import structs { App }
+import model { App }
 
 pub struct Currency {
 	App

@@ -2,8 +2,8 @@ module platform_dictionary
 
 import veb
 import log
-import structs { Context }
-import structs.schema_platform { PfDictionary }
+import model { Context }
+import model.schema_platform { PfDictionary }
 import common.api
 
 // ═══ Handler ═══
