@@ -2,6 +2,7 @@ module fms_api
 
 import veb
 import log
+import time
 import json2 as json
 import model.schema_fms { FmsStorageProvider }
 import common.api
@@ -19,7 +20,7 @@ pub fn (app &Fms) find_fms_storage_provider_by_id_handler(mut ctx Context) veb.R
 	return ctx.json(api.json_success_200(result))
 }
 
-pub fn find_fms_storage_provider_by_id_usecase(mut ctx Context, req FmsStorageProviderByIdReq) !FmsStorageProvider {
+pub fn find_fms_storage_provider_by_id_usecase(mut ctx Context, req FmsStorageProviderByIdReq) !FmsStorageProviderByIdResp {
 	find_fms_storage_provider_by_id_domain(req)!
 	return find_fms_storage_provider_by_id_repo(mut ctx, req)
 }
@@ -32,12 +33,36 @@ pub struct FmsStorageProviderByIdReq {
 	id string @[json: 'id']
 }
 
-fn find_fms_storage_provider_by_id_repo(mut ctx Context, req FmsStorageProviderByIdReq) !FmsStorageProvider {
+pub struct FmsStorageProviderByIdResp {
+	data FmsStorageProviderData
+}
+
+fn find_fms_storage_provider_by_id_repo(mut ctx Context, req FmsStorageProviderByIdReq) !FmsStorageProviderByIdResp {
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 	providers := sql db {
 		select from FmsStorageProvider where id == req.id limit 1
 	} or { return error('Failed: ${err}') }
 	if providers.len == 0 { return error('FmsStorageProvider not found') }
-	return providers[0]
+
+	row := providers[0]
+	return FmsStorageProviderByIdResp{
+		data: FmsStorageProviderData{
+			id:         row.id
+			name:       row.name
+			bucket:     row.bucket
+			endpoint:   row.endpoint
+			folder:     row.folder
+			region:     row.region
+			is_default: row.is_default
+			use_cdn:    row.use_cdn
+			cdn_url:    row.cdn_url
+			status:     row.status
+			creator_id: row.creator_id
+			updater_id: row.updater_id
+			created_at: row.created_at.format_ss()
+			updated_at: row.updated_at.format_ss()
+			deleted_at: (row.deleted_at or { time.Time{} }).format_ss()
+		}
+	}
 }

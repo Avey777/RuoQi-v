@@ -26,12 +26,14 @@ pub fn (app &Fms) find_fms_cloud_file_all_handler(mut ctx Context) veb.Result {
 
 // ═══ Use Case ═══
 pub fn find_fms_cloud_file_all_usecase(mut ctx Context, req FmsCloudFileListReq) !FmsCloudFileListResp {
-	find_fms_cloud_file_all_domain()
+	find_fms_cloud_file_all_domain(req)!
 	return find_fms_cloud_file_all_repo(mut ctx, req)
 }
 
 // ═══ Domain ═══
-fn find_fms_cloud_file_all_domain() {
+fn find_fms_cloud_file_all_domain(req FmsCloudFileListReq) ! {
+	if req.page <= 0 { return error('page must be greater than 0') }
+	if req.page_size <= 0 { return error('page_size must be greater than 0') }
 }
 
 // ═══ DTO ═══
@@ -40,6 +42,7 @@ pub struct FmsCloudFileListReq {
 	page_size int    @[json: 'pageSize']
 	name      string @[json: 'name']
 	user_id   string @[json: 'userId']
+	file_type []u8   @[json: 'fileType']
 	status    []u8   @[json: 'status']
 }
 
@@ -72,7 +75,7 @@ fn find_fms_cloud_file_all_repo(mut ctx Context, req FmsCloudFileListReq) !FmsCl
 	}
 
 	mut count := sql db {
-		select count from FmsCloudFile
+		select count from FmsCloudFile where del_flag == 0
 	} or { return error('Failed to execute SQL query: ${err}') }
 
 	offset_num := (req.page - 1) * req.page_size
@@ -80,6 +83,7 @@ fn find_fms_cloud_file_all_repo(mut ctx Context, req FmsCloudFileListReq) !FmsCl
 	where_expr := {
 		if req.name != '' {name == req.name},
 		if req.user_id != '' {user_id == req.user_id},
+		if req.file_type.len > 0 {file_type in req.file_type},
 		if req.status.len > 0 {status in req.status}
 	}
 	// vfmt on

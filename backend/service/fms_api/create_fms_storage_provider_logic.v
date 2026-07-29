@@ -29,6 +29,18 @@ pub fn create_fms_storage_provider_usecase(mut ctx Context, req CreateFmsStorage
 fn create_fms_storage_provider_domain(req CreateFmsStorageProviderReq) ! {
 	if req.name == '' { return error('provider name is required') }
 	if req.bucket == '' { return error('bucket is required') }
+	if req.secret_id == '' {
+		return error('secret id is required')
+	}
+	if req.secret_key == '' {
+		return error('secret key is required')
+	}
+	if req.endpoint == '' {
+		return error('endpoint is required')
+	}
+	if req.region == '' {
+		return error('region is required')
+	}
 }
 
 pub struct CreateFmsStorageProviderReq {

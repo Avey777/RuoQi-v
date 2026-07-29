@@ -54,10 +54,13 @@ fn update_task_log_repo(mut ctx Context, req UpdateTaskLogReq) !UpdateTaskLogRes
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
+	time_now := time.now()
 	up_expr := {
 		if finished_at := req.finished_at { finished_at == finished_at },
 		if result := req.result { result == result },
-		if task_task_logs := req.task_task_logs { task_task_logs == task_task_logs }
+		if task_task_logs := req.task_task_logs { task_task_logs == task_task_logs },
+		updated_at == time_now,
+		updater_id == ctx.svc_iam.user_id
 	}
 
 	sql db {

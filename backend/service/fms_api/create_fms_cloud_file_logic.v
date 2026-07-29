@@ -39,6 +39,12 @@ fn create_fms_cloud_file_domain(req CreateFmsCloudFileReq) ! {
 	if req.url == '' {
 		return error('file url is required')
 	}
+	if req.file_type == 0 {
+		return error('file type is required')
+	}
+	if req.size == 0 {
+		return error('file size is required')
+	}
 }
 
 // ═══ DTO ═══

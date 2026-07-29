@@ -17,6 +17,6 @@
 
 ## 注意
 
-与 `tenant_portal_api`（已重命名）区分：
+与 `wms_tenant_portal_api`（已重命名为 `wms_admin_portal_api`）区分：
 - `tenant_portal_api`：租户进入 WMS 后配置域内业务规则
 - 本门户：平台管理员视角，管理 WMS 平台本身

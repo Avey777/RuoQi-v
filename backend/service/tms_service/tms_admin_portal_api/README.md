@@ -17,6 +17,6 @@
 
 ## 注意
 
-与 `tenant_portal_api`（已重命名）区分：
+与 `tms_tenant_portal_api`（已重命名为 `tms_admin_portal_api`）区分：
 - `tenant_portal_api`：租户进入 TMS 后配置域内业务规则
 - 本门户：平台管理员视角，管理 TMS 平台本身

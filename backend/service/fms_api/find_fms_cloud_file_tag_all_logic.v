@@ -21,11 +21,14 @@ pub fn (app &Fms) find_fms_cloud_file_tag_all_handler(mut ctx Context) veb.Resul
 }
 
 pub fn find_fms_cloud_file_tag_all_usecase(mut ctx Context, req FmsCloudFileTagListReq) !FmsCloudFileTagListResp {
-	find_fms_cloud_file_tag_all_domain()
+	find_fms_cloud_file_tag_all_domain(req)!
 	return find_fms_cloud_file_tag_all_repo(mut ctx, req)
 }
 
-fn find_fms_cloud_file_tag_all_domain() {}
+fn find_fms_cloud_file_tag_all_domain(req FmsCloudFileTagListReq) ! {
+	if req.page <= 0 { return error('page must be greater than 0') }
+	if req.page_size <= 0 { return error('page_size must be greater than 0') }
+}
 
 pub struct FmsCloudFileTagListReq {
 	page      int    @[json: 'page']
@@ -55,8 +58,8 @@ fn find_fms_cloud_file_tag_all_repo(mut ctx Context, req FmsCloudFileTagListReq)
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 	mut count := sql db {
-		select count from FmsCloudFileTag
-	} or { return error('Failed: ${err}') }
+		select count from FmsCloudFileTag where del_flag == 0
+	} or { return error('Failed to execute SQL query: ${err}') }
 	offset_num := (req.page - 1) * req.page_size
 	where_expr := {
 		if req.name != '' { name == req.name },
@@ -64,7 +67,7 @@ fn find_fms_cloud_file_tag_all_repo(mut ctx Context, req FmsCloudFileTagListReq)
 	}
 	result := sql db {
 		dynamic select from FmsCloudFileTag where where_expr limit req.page_size offset offset_num
-	} or { return error('Failed: ${err}') }
+	} or { return error('Failed to execute SQL query: ${err}') }
 	mut datalist := []FmsCloudFileTagData{}
 	for row in result {
 		datalist << FmsCloudFileTagData{

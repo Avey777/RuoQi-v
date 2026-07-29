@@ -2,6 +2,7 @@ module tenant_member
 
 import veb
 import log
+import time
 import json2 as json
 import model { Context }
 import model.schema_tenant { TnMember }
@@ -49,11 +50,20 @@ fn remove_member_repo(mut ctx Context, req RemoveMemberReq) !RemoveMemberResp {
 	product_id := ctx.svc_iam.active_subproduct_id
 	portal_id := ctx.svc_iam.active_subportal_id
 
+	// Verify member exists before soft-deleting
+	existing := sql db {
+		select from TnMember where user_id == req.user_id && tenant_id == tenant_id
+		&& product_id == product_id && portal_id == portal_id && del_flag == 0 limit 1
+	} or { return error('Failed to query member: ${err}') }
+	if existing.len == 0 {
+		return error('member not found')
+	}
+
 	sql db {
-		update TnMember set del_flag = 1, status = 1 where user_id == req.user_id
-		&& tenant_id == tenant_id && product_id == product_id && portal_id == portal_id
-		&& del_flag == 0
-	}!
+		update TnMember set del_flag = 1, status = 1, updated_at = time.now() where
+		user_id == req.user_id && tenant_id == tenant_id && product_id == product_id
+		&& portal_id == portal_id && del_flag == 0
+	} or { return error('Failed to remove member: ${err}') }
 	return RemoveMemberResp{
 		msg: '成员已移除'
 	}

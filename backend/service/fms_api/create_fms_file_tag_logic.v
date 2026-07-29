@@ -36,6 +36,9 @@ fn create_fms_file_tag_domain(req CreateFmsFileTagReq) ! {
 	if req.name == '' {
 		return error('tag name is required')
 	}
+	if req.status == 0 {
+		return error('status is required')
+	}
 }
 
 // ═══ DTO ═══

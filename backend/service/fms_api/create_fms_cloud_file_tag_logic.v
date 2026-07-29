@@ -32,6 +32,9 @@ pub fn create_fms_cloud_file_tag_usecase(mut ctx Context, req CreateFmsCloudFile
 
 fn create_fms_cloud_file_tag_domain(req CreateFmsCloudFileTagReq) ! {
 	if req.name == '' { return error('tag name is required') }
+	if req.status == 0 {
+		return error('status is required')
+	}
 }
 
 pub struct CreateFmsCloudFileTagReq {

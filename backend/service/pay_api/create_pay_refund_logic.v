@@ -5,7 +5,7 @@ import log
 import time
 import rand
 import json2 as json
-import model.schema_pay { PayRefund }
+import model.schema_pay { PayOrder, PayRefund }
 import common.api
 import model { Context }
 
@@ -39,6 +39,12 @@ fn create_pay_refund_domain(req CreatePayRefundReq) ! {
 	if req.reason == '' {
 		return error('refund reason is required')
 	}
+	if req.refund_price <= 0 {
+		return error('refund price must be greater than 0')
+	}
+	if req.pay_price <= 0 {
+		return error('pay price must be greater than 0')
+	}
 }
 
 // ═══ DTO ═══
@@ -63,6 +69,39 @@ pub struct CreatePayRefundResp {
 // ═══ Repository ═══
 fn create_pay_refund_repo(mut ctx Context, req CreatePayRefundReq) !CreatePayRefundResp {
 	time_now := time.now()
+
+	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
+	defer {
+		ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') }
+	}
+
+	// Validate target order exists and is refundable
+	orders := sql db {
+		select from PayOrder where id == req.order_id && del_flag == 0
+	} or { return error('Failed to query order: ${err}') }
+	if orders.len == 0 {
+		return error('order not found')
+	}
+	order := orders[0]
+	if order.status != 1 {
+		return error('order is not in a refundable state')
+	}
+	if req.refund_price > order.price {
+		return error('refund price exceeds pay price')
+	}
+
+	// Validate cumulative refunds would not exceed pay price
+	existing_refunds := sql db {
+		select from PayRefund where order_id == req.order_id && del_flag == 0
+	} or { return error('Failed to query existing refunds: ${err}') }
+	mut total_refunded := 0
+	for r in existing_refunds {
+		total_refunded += r.refund_price
+	}
+	if total_refunded + req.refund_price > order.price {
+		return error('cumulative refunds would exceed pay price')
+	}
+
 	refund := PayRefund{
 		id:                 rand.uuid_v7()
 		no:                 req.no
@@ -83,14 +122,36 @@ fn create_pay_refund_repo(mut ctx Context, req CreatePayRefundReq) !CreatePayRef
 		updated_at:         time_now
 	}
 
-	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
-	defer {
-		ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') }
-	}
+	// Transaction: insert refund and update parent order's refund_price
+	db.execute('BEGIN') or { return error('Failed to begin transaction: ${err}') }
 
 	sql db {
 		insert refund into PayRefund
-	} or { return error('Failed to create PayRefund: ${err}') }
+	} or {
+		db.execute('ROLLBACK') or {}
+		return error('Failed to create PayRefund: ${err}')
+	}
+
+	// Recalculate total refunded amount for this order
+	all_refunds := sql db {
+		select from PayRefund where order_id == req.order_id && del_flag == 0
+	} or {
+		db.execute('ROLLBACK') or {}
+		return error('Failed to query refunds for order update: ${err}')
+	}
+	mut new_total := 0
+	for r in all_refunds {
+		new_total += r.refund_price
+	}
+
+	sql db {
+		update PayOrder set refund_price = new_total, updated_at = time_now where id == req.order_id
+	} or {
+		db.execute('ROLLBACK') or {}
+		return error('Failed to update order refund price: ${err}')
+	}
+
+	db.execute('COMMIT') or { return error('Failed to commit transaction: ${err}') }
 
 	return CreatePayRefundResp{
 		msg: 'PayRefund created successfully'

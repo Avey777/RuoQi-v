@@ -26,12 +26,14 @@ pub fn (app &Fms) find_fms_file_all_handler(mut ctx Context) veb.Result {
 
 // ═══ Use Case ═══
 pub fn find_fms_file_all_usecase(mut ctx Context, req FmsFileListReq) !FmsFileListResp {
-	find_fms_file_all_domain()
+	find_fms_file_all_domain(req)!
 	return find_fms_file_all_repo(mut ctx, req)
 }
 
 // ═══ Domain ═══
-fn find_fms_file_all_domain() {
+fn find_fms_file_all_domain(req FmsFileListReq) ! {
+	if req.page <= 0 { return error('page must be greater than 0') }
+	if req.page_size <= 0 { return error('page_size must be greater than 0') }
 }
 
 // ═══ DTO ═══
@@ -73,7 +75,7 @@ fn find_fms_file_all_repo(mut ctx Context, req FmsFileListReq) !FmsFileListResp 
 	}
 
 	mut count := sql db {
-		select count from FmsFile
+		select count from FmsFile where del_flag == 0
 	} or { return error('Failed to execute SQL query: ${err}') }
 
 	offset_num := (req.page - 1) * req.page_size

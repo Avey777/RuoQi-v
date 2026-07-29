@@ -43,6 +43,14 @@ pub struct UpdateFmsCloudFileTagResp {
 fn update_fms_cloud_file_tag_repo(mut ctx Context, req UpdateFmsCloudFileTagReq) !UpdateFmsCloudFileTagResp {
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
+
+	existing := sql db {
+		select from FmsCloudFileTag where id == req.id limit 1
+	} or { return error('Failed to check existence: ${err}') }
+	if existing.len == 0 {
+		return error('FmsCloudFileTag with id ${req.id} not found')
+	}
+
 	up_expr := {
 		if name := req.name { name == name },
 		if remark := req.remark { remark == remark },
@@ -52,7 +60,7 @@ fn update_fms_cloud_file_tag_repo(mut ctx Context, req UpdateFmsCloudFileTagReq)
 	}
 	sql db {
 		dynamic update FmsCloudFileTag set up_expr where id == req.id
-	} or { return error('Failed: ${err}') }
+	} or { return error('Failed to update cloud file tag: ${err}') }
 	return UpdateFmsCloudFileTagResp{
 		msg: 'FmsCloudFileTag updated successfully'
 	}

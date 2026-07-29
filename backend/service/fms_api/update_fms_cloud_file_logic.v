@@ -56,6 +56,13 @@ fn update_fms_cloud_file_repo(mut ctx Context, req UpdateFmsCloudFileReq) !Updat
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
+	existing := sql db {
+		select from FmsCloudFile where id == req.id limit 1
+	} or { return error('Failed to check existence: ${err}') }
+	if existing.len == 0 {
+		return error('FmsCloudFile with id ${req.id} not found')
+	}
+
 	up_expr := {
 		if name := req.name { name == name },
 		if url := req.url { url == url },

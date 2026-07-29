@@ -7,6 +7,7 @@ import rand
 import json2 as json
 import model { Context }
 import model.schema_tenant { TnSubProduct }
+import model.schema_platform { PfPlan, PfProduct }
 import common.api as capi
 
 // ═══ Handler ═══
@@ -51,6 +52,22 @@ fn create_subproduct_repo(mut ctx Context, req CreateSubProductReq) !CreateSubPr
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
 	tenant_id := ctx.svc_iam.active_tenant_id
+
+	// Verify product_id exists
+	product_exists := sql db {
+		select from PfProduct where id == req.product_id && del_flag == 0 limit 1
+	} or { return error('Failed to verify product: ${err}') }
+	if product_exists.len == 0 {
+		return error('product not found')
+	}
+
+	// Verify plan_id exists
+	plan_exists := sql db {
+		select from PfPlan where id == req.plan_id && del_flag == 0 limit 1
+	} or { return error('Failed to verify plan: ${err}') }
+	if plan_exists.len == 0 {
+		return error('plan not found')
+	}
 
 	subproduct := TnSubProduct{
 		id:         rand.uuid_v7()

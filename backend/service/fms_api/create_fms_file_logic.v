@@ -39,6 +39,12 @@ fn create_fms_file_domain(req CreateFmsFileReq) ! {
 	if req.path == '' {
 		return error('file path is required')
 	}
+	if req.file_type == 0 {
+		return error('file type is required')
+	}
+	if req.size == 0 {
+		return error('file size is required')
+	}
 }
 
 // ═══ DTO ═══

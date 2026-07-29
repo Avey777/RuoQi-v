@@ -2,7 +2,6 @@ module tasklog
 
 import veb
 import log
-import time
 import model.schema_job { JobTaskLog }
 import common.api
 import model { Context }
@@ -26,12 +25,14 @@ pub fn (app &TaskLog) find_task_log_all_handler(mut ctx Context) veb.Result {
 
 // ═══ Use Case ═══
 pub fn find_task_log_all_usecase(mut ctx Context, req TaskLogListReq) !TaskLogListResp {
-	find_task_log_all_domain()
+	find_task_log_all_domain(req)!
 	return find_task_log_all_repo(mut ctx, req)
 }
 
 // ═══ Domain ═══
-fn find_task_log_all_domain() {
+fn find_task_log_all_domain(req TaskLogListReq) ! {
+	if req.page <= 0 { return error('page must be greater than 0') }
+	if req.page_size <= 0 { return error('page_size must be greater than 0') }
 }
 
 // ═══ DTO ═══
@@ -62,7 +63,7 @@ fn find_task_log_all_repo(mut ctx Context, req TaskLogListReq) !TaskLogListResp 
 	}
 
 	mut count := sql db {
-		select count from JobTaskLog
+		select count from JobTaskLog where del_flag == 0
 	} or { return error('Failed to execute SQL query: ${err}') }
 
 	offset_num := (req.page - 1) * req.page_size

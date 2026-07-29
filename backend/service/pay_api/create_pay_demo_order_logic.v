@@ -33,8 +33,8 @@ pub fn create_pay_demo_order_usecase(mut ctx Context, req CreatePayDemoOrderReq)
 
 // ═══ Domain ═══
 fn create_pay_demo_order_domain(req CreatePayDemoOrderReq) ! {
-	if req.user_id == '' {
-		return error('user id is required')
+	if req.price <= 0 {
+		return error('price must be greater than 0')
 	}
 }
 
@@ -56,7 +56,7 @@ fn create_pay_demo_order_repo(mut ctx Context, req CreatePayDemoOrderReq) !Creat
 	time_now := time.now()
 	order := PayDemoOrder{
 		id:         rand.uuid_v7()
-		user_id:    req.user_id
+		user_id:    ctx.svc_iam.user_id
 		spu_id:     req.spu_id
 		spu_name:   req.spu_name
 		price:      req.price

@@ -51,6 +51,14 @@ pub struct UpdateFmsStorageProviderResp {
 fn update_fms_storage_provider_repo(mut ctx Context, req UpdateFmsStorageProviderReq) !UpdateFmsStorageProviderResp {
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
+
+	existing := sql db {
+		select from FmsStorageProvider where id == req.id limit 1
+	} or { return error('Failed to check existence: ${err}') }
+	if existing.len == 0 {
+		return error('FmsStorageProvider with id ${req.id} not found')
+	}
+
 	up_expr := {
 		if name := req.name { name == name },
 		if bucket := req.bucket { bucket == bucket },
@@ -68,7 +76,7 @@ fn update_fms_storage_provider_repo(mut ctx Context, req UpdateFmsStorageProvide
 	}
 	sql db {
 		dynamic update FmsStorageProvider set up_expr where id == req.id
-	} or { return error('Failed: ${err}') }
+	} or { return error('Failed to update storage provider: ${err}') }
 	return UpdateFmsStorageProviderResp{
 		msg: 'FmsStorageProvider updated successfully'
 	}

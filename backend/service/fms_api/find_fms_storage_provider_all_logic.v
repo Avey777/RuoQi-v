@@ -21,11 +21,14 @@ pub fn (app &Fms) find_fms_storage_provider_all_handler(mut ctx Context) veb.Res
 }
 
 pub fn find_fms_storage_provider_all_usecase(mut ctx Context, req FmsStorageProviderListReq) !FmsStorageProviderListResp {
-	find_fms_storage_provider_all_domain()
+	find_fms_storage_provider_all_domain(req)!
 	return find_fms_storage_provider_all_repo(mut ctx, req)
 }
 
-fn find_fms_storage_provider_all_domain() {}
+fn find_fms_storage_provider_all_domain(req FmsStorageProviderListReq) ! {
+	if req.page <= 0 { return error('page must be greater than 0') }
+	if req.page_size <= 0 { return error('page_size must be greater than 0') }
+}
 
 pub struct FmsStorageProviderListReq {
 	page      int    @[json: 'page']
@@ -61,8 +64,8 @@ fn find_fms_storage_provider_all_repo(mut ctx Context, req FmsStorageProviderLis
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 	mut count := sql db {
-		select count from FmsStorageProvider
-	} or { return error('Failed: ${err}') }
+		select count from FmsStorageProvider where del_flag == 0
+	} or { return error('Failed to execute SQL query: ${err}') }
 	offset_num := (req.page - 1) * req.page_size
 	where_expr := {
 		if req.name != '' { name == req.name },
@@ -70,7 +73,7 @@ fn find_fms_storage_provider_all_repo(mut ctx Context, req FmsStorageProviderLis
 	}
 	result := sql db {
 		dynamic select from FmsStorageProvider where where_expr limit req.page_size offset offset_num
-	} or { return error('Failed: ${err}') }
+	} or { return error('Failed to execute SQL query: ${err}') }
 	mut datalist := []FmsStorageProviderData{}
 	for row in result {
 		datalist << FmsStorageProviderData{

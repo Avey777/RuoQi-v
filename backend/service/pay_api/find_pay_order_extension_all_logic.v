@@ -26,12 +26,14 @@ pub fn (app &Pay) find_pay_order_extension_all_handler(mut ctx Context) veb.Resu
 
 // ═══ Use Case ═══
 pub fn find_pay_order_extension_all_usecase(mut ctx Context, req PayOrderExtensionListReq) !PayOrderExtensionListResp {
-	find_pay_order_extension_all_domain()
+	find_pay_order_extension_all_domain(req)!
 	return find_pay_order_extension_all_repo(mut ctx, req)
 }
 
 // ═══ Domain ═══
-fn find_pay_order_extension_all_domain() {
+fn find_pay_order_extension_all_domain(req PayOrderExtensionListReq) ! {
+	if req.page <= 0 { return error('page must be greater than 0') }
+	if req.page_size <= 0 { return error('page_size must be greater than 0') }
 }
 
 // ═══ DTO ═══
@@ -74,7 +76,7 @@ fn find_pay_order_extension_all_repo(mut ctx Context, req PayOrderExtensionListR
 	}
 
 	mut count := sql db {
-		select count from PayOrderExtension
+		select count from PayOrderExtension where del_flag == 0
 	} or { return error('Failed to execute SQL query: ${err}') }
 
 	offset_num := (req.page - 1) * req.page_size

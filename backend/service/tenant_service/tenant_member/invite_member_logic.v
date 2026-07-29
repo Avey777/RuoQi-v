@@ -57,6 +57,15 @@ fn invite_member_repo(mut ctx Context, req InviteMemberReq) !InviteMemberResp {
 	product_id := ctx.svc_iam.active_subproduct_id
 	portal_id := ctx.svc_iam.active_subportal_id
 
+	// Check if user is already a member
+	existing := sql db {
+		select from TnMember where tenant_id == tenant_id && product_id == product_id
+		&& portal_id == portal_id && user_id == req.user_id && del_flag == 0 limit 1
+	} or { return error('Failed to check existing member: ${err}') }
+	if existing.len > 0 {
+		return error('用户已是成员')
+	}
+
 	member := TnMember{
 		tenant_id:  tenant_id
 		product_id: product_id

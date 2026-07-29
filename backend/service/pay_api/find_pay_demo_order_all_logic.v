@@ -26,12 +26,14 @@ pub fn (app &Pay) find_pay_demo_order_all_handler(mut ctx Context) veb.Result {
 
 // ═══ Use Case ═══
 pub fn find_pay_demo_order_all_usecase(mut ctx Context, req PayDemoOrderListReq) !PayDemoOrderListResp {
-	find_pay_demo_order_all_domain()
+	find_pay_demo_order_all_domain(req)!
 	return find_pay_demo_order_all_repo(mut ctx, req)
 }
 
 // ═══ Domain ═══
-fn find_pay_demo_order_all_domain() {
+fn find_pay_demo_order_all_domain(req PayDemoOrderListReq) ! {
+	if req.page <= 0 { return error('page must be greater than 0') }
+	if req.page_size <= 0 { return error('page_size must be greater than 0') }
 }
 
 // ═══ DTO ═══
@@ -74,7 +76,7 @@ fn find_pay_demo_order_all_repo(mut ctx Context, req PayDemoOrderListReq) !PayDe
 	}
 
 	mut count := sql db {
-		select count from PayDemoOrder
+		select count from PayDemoOrder where del_flag == 0
 	} or { return error('Failed to execute SQL query: ${err}') }
 
 	offset_num := (req.page - 1) * req.page_size

@@ -36,6 +36,9 @@ fn create_pay_order_domain(req CreatePayOrderReq) ! {
 	if req.merchant_order_id == '' {
 		return error('merchant order id is required')
 	}
+	if req.price <= 0 {
+		return error('price must be greater than 0')
+	}
 }
 
 // ═══ DTO ═══

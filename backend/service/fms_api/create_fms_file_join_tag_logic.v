@@ -61,6 +61,13 @@ fn create_fms_file_join_tag_repo(mut ctx Context, req CreateFmsFileJoinTagReq) !
 		ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') }
 	}
 
+	existing := sql db {
+		select from FmsFileJoinTag where file_tag_id == req.file_tag_id && file_id == req.file_id limit 1
+	} or { return error('Failed to check duplicate: ${err}') }
+	if existing.len > 0 {
+		return error('Link between file and tag already exists')
+	}
+
 	sql db {
 		insert join into FmsFileJoinTag
 	} or { return error('Failed to create file-tag link: ${err}') }

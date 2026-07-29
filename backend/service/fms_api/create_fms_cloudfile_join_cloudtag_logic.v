@@ -45,9 +45,17 @@ fn create_fms_cloudfile_join_cloudtag_repo(mut ctx Context, req CreateFmsCloudFi
 	}
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
+	existing := sql db {
+		select from FmsCloudFileCloudFileTag where cloud_file_tag_id == req.cloud_file_tag_id
+		&& cloud_file_id == req.cloud_file_id limit 1
+	} or { return error('Failed to check duplicate: ${err}') }
+	if existing.len > 0 {
+		return error('Link between cloud file and cloud tag already exists')
+	}
+
 	sql db {
 		insert join into FmsCloudFileCloudFileTag
-	} or { return error('Failed: ${err}') }
+	} or { return error('Failed to create cloud file-tag link: ${err}') }
 	return CreateFmsCloudFileCloudFileTagResp{
 		msg: 'Cloud file-tag link created successfully'
 	}

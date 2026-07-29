@@ -25,12 +25,14 @@ pub fn (app &Fms) find_fms_file_join_tag_all_handler(mut ctx Context) veb.Result
 
 // ═══ Use Case ═══
 pub fn find_fms_file_join_tag_all_usecase(mut ctx Context, req FmsFileJoinTagListReq) !FmsFileJoinTagListResp {
-	find_fms_file_join_tag_all_domain()
+	find_fms_file_join_tag_all_domain(req)!
 	return find_fms_file_join_tag_all_repo(mut ctx, req)
 }
 
 // ═══ Domain ═══
-fn find_fms_file_join_tag_all_domain() {
+fn find_fms_file_join_tag_all_domain(req FmsFileJoinTagListReq) ! {
+	if req.page <= 0 { return error('page must be greater than 0') }
+	if req.page_size <= 0 { return error('page_size must be greater than 0') }
 }
 
 // ═══ DTO ═══

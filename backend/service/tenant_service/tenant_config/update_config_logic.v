@@ -61,9 +61,16 @@ fn update_config_repo(mut ctx Context, req UpdateConfigReq) !UpdateConfigResp {
 	} or { return error('Failed to query config: ${err}') }
 
 	if existing.len > 0 {
+		time_now := time.now()
+		up_expr := {
+			value == req.value,
+			if req.category != '' { category == req.category },
+			if req.description != '' { description == req.description },
+			updater_id == ctx.svc_iam.user_id,
+			updated_at == time_now
+		}
 		sql db {
-			update TnConfig set value = req.value, updater_id = ctx.svc_iam.user_id, updated_at = time.now()
-			where id == existing[0].id
+			dynamic update TnConfig set up_expr where id == existing[0].id
 		}!
 	} else {
 		config := TnConfig{

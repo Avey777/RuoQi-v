@@ -2,6 +2,7 @@ module fms_api
 
 import veb
 import log
+import time
 import json2 as json
 import model.schema_fms { FmsFileTag }
 import common.api
@@ -24,7 +25,7 @@ pub fn (app &Fms) find_fms_file_tag_by_id_handler(mut ctx Context) veb.Result {
 }
 
 // ═══ Use Case ═══
-pub fn find_fms_file_tag_by_id_usecase(mut ctx Context, req FmsFileTagByIdReq) !FmsFileTag {
+pub fn find_fms_file_tag_by_id_usecase(mut ctx Context, req FmsFileTagByIdReq) !FmsFileTagByIdResp {
 	find_fms_file_tag_by_id_domain(req)!
 	return find_fms_file_tag_by_id_repo(mut ctx, req)
 }
@@ -41,8 +42,12 @@ pub struct FmsFileTagByIdReq {
 	id string @[json: 'id']
 }
 
+pub struct FmsFileTagByIdResp {
+	data FmsFileTagData
+}
+
 // ═══ Repository ═══
-fn find_fms_file_tag_by_id_repo(mut ctx Context, req FmsFileTagByIdReq) !FmsFileTag {
+fn find_fms_file_tag_by_id_repo(mut ctx Context, req FmsFileTagByIdReq) !FmsFileTagByIdResp {
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
@@ -54,5 +59,18 @@ fn find_fms_file_tag_by_id_repo(mut ctx Context, req FmsFileTagByIdReq) !FmsFile
 		return error('FmsFileTag not found')
 	}
 
-	return tags[0]
+	row := tags[0]
+	return FmsFileTagByIdResp{
+		data: FmsFileTagData{
+			id:         row.id
+			name:       row.name
+			remark:     row.remark
+			status:     row.status
+			creator_id: row.creator_id
+			updater_id: row.updater_id
+			created_at: row.created_at.format_ss()
+			updated_at: row.updated_at.format_ss()
+			deleted_at: (row.deleted_at or { time.Time{} }).format_ss()
+		}
+	}
 }

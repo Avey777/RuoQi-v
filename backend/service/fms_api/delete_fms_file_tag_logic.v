@@ -3,7 +3,7 @@ module fms_api
 import veb
 import log
 import json2 as json
-import model.schema_fms { FmsFileTag }
+import model.schema_fms { FmsFileJoinTag, FmsFileTag }
 import common.api
 import model { Context }
 
@@ -49,6 +49,10 @@ pub struct DeleteFmsFileTagResp {
 fn delete_fms_file_tag_repo(mut ctx Context, ids []string) !DeleteFmsFileTagResp {
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
+
+	sql db {
+		delete from FmsFileJoinTag where file_tag_id in ids
+	} or { return error('Failed to delete join table rows: ${err}') }
 
 	sql db {
 		delete from FmsFileTag where id in ids
