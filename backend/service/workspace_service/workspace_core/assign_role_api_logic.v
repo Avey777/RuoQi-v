@@ -37,8 +37,6 @@ pub struct AssignRoleApiReq {
 	workspace_id string   @[json: 'workspaceId']
 	role_id      string   @[json: 'roleId']
 	api_ids      []string @[json: 'apiIds']
-	source_type  string   @[json: 'sourceType']
-	source_id    string   @[json: 'sourceId']
 }
 
 pub struct AssignRoleApiResp {
@@ -58,8 +56,6 @@ fn assign_role_api_repo(mut ctx Context, req AssignRoleApiReq) !AssignRoleApiRes
 			workspace_id: req.workspace_id
 			role_id:      req.role_id
 			api_id:       api_id
-			source_type:  req.source_type
-			source_id:    req.source_id
 		}
 		sql db {
 			insert ra into WsRoleApi

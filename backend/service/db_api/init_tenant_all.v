@@ -23,12 +23,13 @@ pub fn (app &Base) init_tenant(mut ctx Context) veb.Result {
 		create table schema_tenant.TnTenant
 		create table schema_tenant.TnSubProduct
 		create table schema_tenant.TnSubPortal
+		create table schema_tenant.TnMember
 		create table schema_tenant.TnInvoice
 		create table schema_tenant.TnConfig
 	} or { return ctx.text('error creating table:  ${err}') }
 	log.info('schema_tenant init success')
 
-	sql_commands := [tn_tenant]
+	sql_commands := [tn_tenant, tn_subportal, tn_member]
 	for cmd in sql_commands {
 		db.execute(cmd) or {
 			return ctx.json(api.json_error_500('执行 ${cmd} SQL失败: ${err}'))

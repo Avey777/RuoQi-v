@@ -43,6 +43,18 @@ fn (mut app AliasApp) register_routes_platform[T, U](mut ctrl T, url_path string
 	ctrl.route_use('${url_path}/*', veb.encode_auto[Context]())
 }
 
+// register_routes_scoped — 身份认证 + 租户成员校验 + datascope 隔离
+// 用于：会员端、顾客端等需要租户数据隔离但不需要 workspace 权限的端点
+fn (mut app AliasApp) register_routes_scoped[T, U](mut ctrl T, url_path string, mut ctx Context) {
+	ctrl.use(middleware.iam_scoped_middleware())
+	app.common_middleware[T, U](mut ctrl, mut ctx)
+	ctrl.use(middleware.datascope_middleware(ScopeConfig{
+		enabled_fields: [ScopeField.tenant_id]
+	}))
+	app.register_controller[T, U](url_path, mut ctrl) or { log.error('${err}') }
+	ctrl.route_use('${url_path}/*', veb.encode_auto[Context]())
+}
+
 fn (mut app AliasApp) register_routes_workspace[T, U](mut ctrl T, url_path string, mut ctx Context) {
 	app.common_middleware[T, U](mut ctrl, mut ctx)
 	ctrl.use(middleware.iam_full_middleware())

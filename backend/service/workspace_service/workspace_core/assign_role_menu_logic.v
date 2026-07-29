@@ -37,8 +37,6 @@ pub struct AssignRoleMenuReq {
 	workspace_id string   @[json: 'workspaceId']
 	role_id      string   @[json: 'roleId']
 	menu_ids     []string @[json: 'menuIds']
-	source_type  string   @[json: 'sourceType']
-	source_id    string   @[json: 'sourceId']
 }
 
 pub struct AssignRoleMenuResp {
@@ -58,8 +56,6 @@ fn assign_role_menu_repo(mut ctx Context, req AssignRoleMenuReq) !AssignRoleMenu
 			workspace_id: req.workspace_id
 			role_id:      req.role_id
 			menu_id:      menu_id
-			source_type:  req.source_type
-			source_id:    req.source_id
 		}
 		sql db {
 			insert rm into WsRoleMenu

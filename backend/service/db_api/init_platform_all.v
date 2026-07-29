@@ -32,7 +32,7 @@ pub fn (app &Base) init_platform(mut ctx Context) veb.Result {
 	} or { return ctx.text('error creating table:  ${err}') }
 	log.info('schema_platform init success')
 
-	sql_commands := [pf_menu, pf_api]
+	sql_commands := [pf_product, pf_portal, pf_menu, pf_api]
 	for cmd in sql_commands {
 		db.execute(cmd) or {
 			return ctx.json(api.json_error_500('执行 ${cmd} SQL失败: ${err}'))

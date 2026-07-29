@@ -6,6 +6,7 @@ import log
 import json2 as json
 import model { Context }
 import model.schema_iam { IamApiKey }
+import model.schema_tenant { TnMember }
 import common.api
 import common.crypt
 import adapter.repository.middle
@@ -17,6 +18,31 @@ const sig_skew_seconds = i64(300) // ±5 分钟时间戳偏差
 $if debug {
 	const debug_ak = 'DEBUG-FULL-ACCESS-KEY'
 	const debug_sk = 'DEBUG-FULL-SECRET-KEY'
+}
+
+// iam_auth_scoped — 身份认证 + 租户成员校验 + datascope 隔离
+// 用于：会员端、顾客端等需要租户数据隔离但不需要 workspace 权限的端点
+//   Bearer token → JWT 验证身份 → 校验 tn_member (X-Tenant-ID) → 写入 scope_sc
+//   X-Access-Key → HMAC 签名模式（AK/SK 自带 scope + 隔离）
+fn iam_auth_scoped(mut ctx Context) bool {
+	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
+
+	auth_header := ctx.get_header(.authorization) or { '' }
+
+	// Bearer token → JWT（验证身份 + 租户成员校验）
+	if auth_header.starts_with('Bearer ') {
+		token := auth_header.all_after('Bearer ').trim_space()
+		return authenticate_jwt_identity(mut ctx, token) && authorize_tenant_membership(mut ctx)
+	}
+
+	// X-Access-Key → HMAC 签名模式（AK/SK 自带 scope + 隔离）
+	access_key := ctx.req.header.get_custom(crypt.sig_header_access_key) or { '' }
+	if access_key.len > 0 {
+		return authenticate_aksk_signature(mut ctx, access_key)
+	}
+
+	ctx.json(api.json_error_401())
+	return false
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -103,6 +129,59 @@ fn authorize_workspace_permission(mut ctx Context, token string) bool {
 		ctx.json(api.json_error(code: 1, status: 403, error: err.msg()))
 		return false
 	}
+	return true
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// JWT 鉴权 — 租户成员校验层
+//   查询 tn_member 确认用户已入驻 X-Tenant-ID + X-Product-ID + X-Portal-ID 组合
+//   每个门户有独立的注册/授权流程，入驻后才可访问
+//   写入 scope_sc 用于 datascope，不检查 workspace 角色
+//   适用于会员/顾客等非管理员用户
+// ═══════════════════════════════════════════════════════════════════════════════
+
+fn authorize_tenant_membership(mut ctx Context) bool {
+	tenant_id := ctx.req.header.get_custom('X-Tenant-ID') or { '' }
+	product_id := ctx.req.header.get_custom('X-Product-ID') or { '' }
+	portal_id := ctx.req.header.get_custom('X-Portal-ID') or { '' }
+	if tenant_id == '' || product_id == '' || portal_id == '' {
+		ctx.json(api.json_error(
+			code:   1
+			status: 400
+			error:  'X-Tenant-ID, X-Product-ID and X-Portal-ID are required'
+		))
+		return false
+	}
+
+	db, conn := ctx.dbpool.acquire() or {
+		ctx.json(api.json_error_500('Failed to acquire DB conn'))
+		return false
+	}
+	defer {
+		ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') }
+	}
+
+	members := sql db {
+		select from TnMember where tenant_id == tenant_id && user_id == ctx.svc_iam.user_id
+		&& product_id == product_id && portal_id == portal_id && status == 0 && del_flag == 0 limit 1
+	} or {
+		ctx.json(api.json_error_403())
+		return false
+	}
+	if members.len == 0 {
+		ctx.json(api.json_error(
+			code:   1
+			status: 403
+			error:  'user not a member of this tenant/product/portal'
+		))
+		return false
+	}
+
+	// 写入 scope_sc 和 svc_iam，datascope 中间件将按 tenant_id 过滤数据
+	ctx.scope_sc.tenant_id = tenant_id
+	ctx.svc_iam.active_tenant_id = tenant_id
+	ctx.svc_iam.active_subproduct_id = product_id
+	ctx.svc_iam.active_subportal_id = portal_id
 	return true
 }
 
@@ -342,6 +421,15 @@ pub fn iam_identity_middleware() veb.MiddlewareOptions[Context] {
 pub fn iam_full_middleware() veb.MiddlewareOptions[Context] {
 	return veb.MiddlewareOptions[Context]{
 		handler: iam_auth_full
+		after:   false
+	}
+}
+
+// iam_scoped_middleware — 身份认证 + 租户成员校验 + datascope 隔离
+// 用于：会员端、顾客端等需要租户数据隔离但不需要 workspace 权限的端点
+pub fn iam_scoped_middleware() veb.MiddlewareOptions[Context] {
+	return veb.MiddlewareOptions[Context]{
+		handler: iam_auth_scoped
 		after:   false
 	}
 }
