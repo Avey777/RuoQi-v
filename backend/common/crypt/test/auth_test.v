@@ -21,7 +21,6 @@ fn test_auth_generate() {
 			iat: now
 			jti: 'jti-001'
 		}
-		role_ids:    ['admin']
 		client_ip:   '10.0.0.1'
 		device_id:   'dev-a'
 	}
