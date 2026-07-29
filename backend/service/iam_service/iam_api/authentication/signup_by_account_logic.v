@@ -34,6 +34,10 @@ pub fn signup_by_account_usecase(mut ctx Context, req SignupByAccountReq) !Signu
 fn signup_by_account_domain(req SignupByAccountReq) ! {
 	if req.username == '' { return error('username is required') }
 	if req.password == '' { return error('password is required') }
+	if req.password.len < 8 { return error('password must be at least 8 characters') }
+	if req.mobile != '' && !req.mobile.bytes().all(it.is_digit()) {
+		return error('mobile must contain only digits')
+	}
 	if req.captcha_id == '' || req.captcha_text == '' { return error('captcha is required') }
 }
 

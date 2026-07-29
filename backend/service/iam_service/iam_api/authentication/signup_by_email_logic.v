@@ -33,7 +33,9 @@ pub fn signup_by_email_usecase(mut ctx Context, req SignupByEmailReq) !SignupByE
 // ═══ Domain ═══
 fn signup_by_email_domain(req SignupByEmailReq) ! {
 	if req.email == '' { return error('email is required') }
+	if !req.email.contains('@') || !req.email.contains('.') { return error('invalid email format') }
 	if req.password == '' { return error('password is required') }
+	if req.password.len < 8 { return error('password must be at least 8 characters') }
 	if req.opt_num == '' || req.opt_token == '' { return error('OTP is required') }
 }
 

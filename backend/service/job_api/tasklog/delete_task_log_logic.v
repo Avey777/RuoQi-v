@@ -1,5 +1,6 @@
 module tasklog
 
+import time
 import veb
 import log
 import json2 as json
@@ -51,7 +52,8 @@ fn delete_task_log_repo(mut ctx Context, ids []string) !DeleteTaskLogResp {
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
 	sql db {
-		delete from JobTaskLog where id in ids
+		update JobTaskLog set del_flag = 1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
+		where id in ids && del_flag == 0
 	} or { return error('Failed to delete task log: ${err}') }
 
 	return DeleteTaskLogResp{

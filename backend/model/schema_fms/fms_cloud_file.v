@@ -7,10 +7,10 @@ import time
 pub struct FmsCloudFile {
 pub:
 	id                           string  @[comment: 'UUID'; immutable; primary; sql: 'id'; sql_type: 'CHAR(36)']
-	name                         string  @[comment: 'The file`s name | 文件名'; index: 'cloudfile_name'; omitempty; required; sql: 'name'; sql_type: 'CHAR(36)']
-	url                          string  @[comment: 'The file`s url | 文件地址'; omitempty; required; sql: 'url'; sql_type: 'CHAR(36)']
-	size                         u64     @[comment: 'The file`s size | 文件大小'; omitempty; required; sql: 'size'; sql_type: 'bigint unsigned']
-	file_type                    u8      @[comment: 'The file`s type | 文件类型'; index: 'cloudfile_file_type'; omitempty; required; sql: 'file_type'; sql_type: 'tinyint unsigned']
+	name                         string  @[comment: 'The file`s name | 文件名'; index: 'cloudfile_name'; omitempty; required; sql: 'name'; sql_type: 'VARCHAR(255)']
+	url                          string  @[comment: 'The file`s url | 文件名'; omitempty; required; sql: 'url'; sql_type: 'VARCHAR(2048)']
+	size                         u64     @[comment: 'The file`s size | 文件名'; omitempty; required; sql: 'size'; sql_type: 'bigint unsigned']
+	file_type                    u8      @[comment: 'The file`s type | 文件名'; index: 'cloudfile_file_type'; omitempty; required; sql: 'file_type'; sql_type: 'tinyint unsigned']
 	user_id                      string  @[comment: 'The user who upload the file | 上传用户的 ID'; omitempty; required; sql: 'user_id'; sql_type: 'CHAR(36)']
 	cloud_file_storage_providers ?string @[comment: 'Reference to storage provider'; omitempty; sql: 'cloud_file_storage_providers'; sql_type: 'CHAR(36)']
 	status                       u8      @[comment: 'State true: normal false: ban | 状态 true 正常 false 禁用'; default: 1; omitempty; sql: 'status'; sql_type: 'tinyint(1)']

@@ -48,9 +48,16 @@ fn assign_role_api_repo(mut ctx Context, req AssignRoleApiReq) !AssignRoleApiRes
 	ctx.scope_sc.workspace_id = req.workspace_id
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
+
+	db.execute('BEGIN') or { return error('Failed to begin transaction: ${err}') }
+
 	sql db {
 		delete from WsRoleApi where workspace_id == req.workspace_id && role_id == req.role_id
-	}!
+	} or {
+		db.execute('ROLLBACK') or {}
+		return error('Failed to delete existing role API assignments: ${err}')
+	}
+
 	for api_id in req.api_ids {
 		ra := WsRoleApi{
 			workspace_id: req.workspace_id
@@ -59,8 +66,14 @@ fn assign_role_api_repo(mut ctx Context, req AssignRoleApiReq) !AssignRoleApiRes
 		}
 		sql db {
 			insert ra into WsRoleApi
-		}!
+		} or {
+			db.execute('ROLLBACK') or {}
+			return error('Failed to insert role API assignment: ${err}')
+		}
 	}
+
+	db.execute('COMMIT') or { return error('Failed to commit transaction: ${err}') }
+
 	return AssignRoleApiResp{
 		msg: 'Role API assigned'
 	}

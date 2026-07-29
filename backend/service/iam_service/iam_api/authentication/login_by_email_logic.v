@@ -33,6 +33,7 @@ pub fn login_by_email_usecase(mut ctx Context, req LoginByEmailReq) !LoginByEmai
 // ═══ Domain ═══
 fn login_by_email_domain(req LoginByEmailReq) ! {
 	if req.email == '' { return error('email is required') }
+	if !req.email.contains('@') { return error('invalid email format') }
 	if req.opt_num == '' || req.opt_token == '' { return error('OTP is required') }
 }
 
@@ -61,7 +62,7 @@ fn login_by_email_repo(mut ctx Context, req LoginByEmailReq) !LoginByEmailResp {
 		return error('OTP error')
 	}
 	user_info := sql db {
-		select id, username, email, status from IamUser where email == req.email limit 1
+		select id, username, email, status from IamUser where email == req.email && del_flag == 0 limit 1
 	} or { return error('Failed: ${err}') }
 	if user_info.len == 0 { return error('email not exist') }
 	expired_at := time.now().add_days(30)

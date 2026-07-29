@@ -6,7 +6,7 @@ import time
 @[table: 'pay_demo_order']
 pub struct PayDemoOrder {
 pub:
-	id               string     @[comment: 'UUID'; primary; sql: 'id'; sql_type: 'CHAR(36)']
+	id               string     @[comment: 'UUID'; immutable; primary; sql: 'id'; sql_type: 'CHAR(36)']
 	user_id          string     @[comment: '用户编号'; omitempty; required; sql: 'user_id'; sql_type: 'CHAR(36)']
 	spu_id           u64        @[comment: '商品编号'; omitempty; required; sql: 'spu_id'; sql_type: 'bigint unsigned']
 	spu_name         string     @[comment: '商品名称'; omitempty; required; sql: 'spu_name'; sql_type: 'VARCHAR(255)']

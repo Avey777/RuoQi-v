@@ -13,7 +13,7 @@ import time
 @[table: 'pf_portal']
 pub struct PfPortal {
 pub:
-	id          string     @[comment: 'UUID'; primary; sql_type: 'CHAR(36)']
+	id          string     @[comment: 'UUID'; immutable; primary; sql_type: 'CHAR(36)']
 	product_id  string     @[comment: '所属产品ID'; sql_type: 'CHAR(36)']
 	portal_code string     @[comment: '门户编码: seller/buyer/owner/admin'; sql_type: 'VARCHAR(64)']
 	portal_name string     @[comment: '门户显示名称: Mall_买家端/店铺端等'; sql_type: 'VARCHAR(255)']

@@ -25,7 +25,7 @@ pub fn new_cache_pool(config CacheConfig) !&CachePool {
 		password: config.password
 		port:     config.port
 		tls:      config.tls or { false }
-	}) or { panic(err) }
+	}) or { return error('Failed to connect Redis at ${config.host}:${config.port}: ${err}') }
 
 	return &CachePool{redisdb}
 }

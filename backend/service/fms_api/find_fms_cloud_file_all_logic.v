@@ -81,6 +81,7 @@ fn find_fms_cloud_file_all_repo(mut ctx Context, req FmsCloudFileListReq) !FmsCl
 	offset_num := (req.page - 1) * req.page_size
 	// vfmt off
 	where_expr := {
+		del_flag == 0,
 		if req.name != '' {name == req.name},
 		if req.user_id != '' {user_id == req.user_id},
 		if req.file_type.len > 0 {file_type in req.file_type},

@@ -6,7 +6,7 @@ import time
 @[table: 'iam_connector']
 pub struct IamConnector {
 pub:
-	id          string     @[comment: 'UUID'; primary; sql_type: 'CHAR(36)']
+	id          string     @[comment: 'UUID'; immutable; primary; sql_type: 'CHAR(36)']
 	name        string     @[comment: '连接器显示名称'; sql_type: 'VARCHAR(100)']
 	logo        string     @[comment: '连接器Logo'; sql_type: 'VARCHAR(255)']
 	provider    string     @[comment: '认证提供商: google/github/wechat'; sql_type: 'VARCHAR(100)']

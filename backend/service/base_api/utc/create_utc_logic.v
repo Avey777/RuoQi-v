@@ -2,7 +2,7 @@ module utc
 
 import veb
 import log
-// import time
+import time
 import rand
 import json2 as json
 import model.schema_base { BaseUtc }
@@ -60,7 +60,7 @@ pub struct CreateUtcResp {
 
 // ═══ Repository ═══
 fn create_utc_repo(mut ctx Context, req CreateUtcReq) !CreateUtcResp {
-	// time_now := time.now()
+	time_now := time.now()
 	base_utc := BaseUtc{
 		id:              rand.uuid_v7()
 		sort:            req.sort
@@ -68,8 +68,8 @@ fn create_utc_repo(mut ctx Context, req CreateUtcReq) !CreateUtcResp {
 		lng_range_start: req.lng_range_start
 		lng_range_end:   req.lng_range_end
 		lng_mid:         req.lng_mid
-		// created_at:      time_now
-		// updated_at:      time_now
+		created_at:      time_now
+		updated_at:      time_now
 	}
 
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
@@ -79,7 +79,7 @@ fn create_utc_repo(mut ctx Context, req CreateUtcReq) !CreateUtcResp {
 
 	sql db {
 		insert base_utc into BaseUtc
-	} or { return error('Failed to create Currency: ${err}') }
+	} or { return error('Failed to create UTC: ${err}') }
 
 	return CreateUtcResp{
 		msg: 'Utc created successfully'

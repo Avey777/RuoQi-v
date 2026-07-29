@@ -6,7 +6,7 @@ import time
 @[table: 'msg_sms_provider']
 pub struct MsgSmsProvider {
 pub:
-	id         string @[comment: 'UUID'; primary; sql: 'id'; sql_type: 'CHAR(36)']
+	id         string @[comment: 'UUID'; immutable; primary; sql: 'id'; sql_type: 'CHAR(36)']
 	name       string @[comment: 'The SMS provider name | 短信服务的提供商'; omitempty; required; sql: 'name'; sql_type: 'VARCHAR(255)'; unique: 'name']
 	secret_id  string @[comment: 'The secret ID | 密钥 ID'; omitempty; required; sql: 'secret_id'; sql_type: 'VARCHAR(255)']
 	secret_key string @[comment: 'The secret key | 密钥 Key'; omitempty; required; sql: 'secret_key'; sql_type: 'VARCHAR(255)']

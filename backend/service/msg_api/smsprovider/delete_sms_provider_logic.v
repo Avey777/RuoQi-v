@@ -1,5 +1,6 @@
 module smsprovider
 
+import time
 import veb
 import log
 import json2 as json
@@ -51,8 +52,9 @@ fn delete_sms_provider_repo(mut ctx Context, ids []string) !DeleteSmsProviderRes
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
 	sql db {
-		delete from MsgSmsProvider where id in ids
-	} or { return error('Failed to delete sms provider: ${err}') }
+		update MsgSmsProvider set del_flag = 1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
+		where id in ids && del_flag == 0
+	} or { return error('Failed to soft-delete sms provider: ${err}') }
 
 	return DeleteSmsProviderResp{
 		msg: '${ids.len} SmsProvider(s) deleted successfully'

@@ -1,5 +1,6 @@
 module region
 
+import time
 import veb
 import log
 import json2 as json
@@ -55,8 +56,9 @@ fn delete_region_repo(mut ctx Context, region_ids []string) !DeleteRegionResp {
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
 	sql db {
-		delete from BaseRegion where id in region_ids
-	} or { return error('Failed to delete region: ${err}') }
+		update BaseRegion set del_flag = 1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
+		where id in region_ids && del_flag == 0
+	} or { return error('Failed to soft-delete region: ${err}') }
 
 	return DeleteRegionResp{
 		msg: '${region_ids} region(s) deleted successfully'

@@ -6,10 +6,10 @@ import time
 @[table: 'pay_refund']
 pub struct PayRefund {
 pub:
-	id                  string     @[comment: 'UUID'; primary; sql: 'id'; sql_type: 'CHAR(36)']
+	id                  string     @[comment: 'UUID'; immutable; primary; sql: 'id'; sql_type: 'CHAR(36)']
 	no                  string     @[comment: '退款单号'; omitempty; required; sql: 'no'; sql_type: 'VARCHAR(255)']
 	channel_code        string     @[comment: '渠道编码'; omitempty; required; sql: 'channel_code'; sql_type: 'VARCHAR(255)']
-	order_id            string     @[comment: '支付订单编号 pay_order 表id'; omitempty; required; sql: 'order_id'; sql_type: 'CHAR(36)']
+	order_id            string     @[comment: '支付订单编号 pay_order 表id'; index: 'idx_pay_refund_order'; omitempty; required; sql: 'order_id'; sql_type: 'CHAR(36)']
 	order_no            string     @[comment: '支付订单 no'; omitempty; required; sql: 'order_no'; sql_type: 'VARCHAR(255)']
 	merchant_order_id   string     @[comment: '商户订单编号（商户系统生成）'; omitempty; required; sql: 'merchant_order_id'; sql_type: 'VARCHAR(255)']
 	merchant_refund_id  string     @[comment: '商户退款订单号（商户系统生成）'; omitempty; required; sql: 'merchant_refund_id'; sql_type: 'VARCHAR(255)']

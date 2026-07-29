@@ -6,12 +6,12 @@ import time
 @[table: 'iam_user']
 pub struct IamUser {
 pub:
-	id          string     @[comment: 'UUID'; primary; sql: 'id'; sql_type: 'CHAR(36)']
+	id          string     @[comment: 'UUID'; immutable; primary; sql: 'id'; sql_type: 'CHAR(36)']
 	username    string     @[comment: '登录名'; sql_type: 'VARCHAR(255)'; unique: 'username']
 	password    string     @[comment: '密码'; sql_type: 'VARCHAR(255)']
 	nickname    string     @[comment: '昵称'; sql_type: 'VARCHAR(255)']
 	description string     @[comment: '用户描述'; sql_type: 'VARCHAR(255)']
-	home_path   string     @[comment: '登录后首页路径'; default: '"/dashboard"'; sql_type: 'VARCHAR(255)']
+	home_path   string     @[comment: '登录后首页路径'; default: '/dashboard'; sql_type: 'VARCHAR(255)']
 	mobile      string     @[comment: '手机号'; sql_type: 'VARCHAR(255)']
 	email       string     @[comment: '邮箱'; sql_type: 'VARCHAR(255)']
 	avatar      string     @[comment: '头像路径'; sql_type: 'VARCHAR(512)']

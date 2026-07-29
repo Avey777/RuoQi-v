@@ -79,6 +79,7 @@ fn find_task_all_repo(mut ctx Context, req TaskListReq) !TaskListResp {
 	offset_num := (req.page - 1) * req.page_size
 	// vfmt off
 	where_expr := {
+		del_flag == 0,
 		if req.name != '' {name == req.name},
 		if req.task_group != '' {task_group == req.task_group},
 		if req.status.len > 0 {status in req.status}

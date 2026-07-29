@@ -27,18 +27,20 @@ pub fn (app &Currency) create_currency_handler(mut ctx Context) veb.Result {
 
 // ═══ Use Case ═══
 pub fn create_currency_usecase(mut ctx Context, req CreateCurrencyReq) !CreateCurrencyResp {
-	// create_currency_domain(req)!
+	create_currency_domain(req)!
 	return create_currency_repo(mut ctx, req)
 }
 
 // ═══ Domain ═══
-// fn create_currency_domain(req CreateCurrencyReq) ! {
-// if req.path == '' {
-// 	return error('path is required')
-// }
-// if req.method == '' {
-// 	return error('method is required')
-// }
+fn create_currency_domain(req CreateCurrencyReq) ! {
+	if req.currency_code == '' {
+		return error('currency_code is required')
+	}
+	if req.english_name == '' && req.simplified_name == '' {
+		return error('english_name or simplified_name is required')
+	}
+}
+
 // if req.service_name == '' {
 // 	return error('service_name is required')
 // }

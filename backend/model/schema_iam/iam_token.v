@@ -6,10 +6,10 @@ import time
 @[table: 'iam_token']
 pub struct IamToken {
 pub:
-	id         string     @[comment: 'UUID'; primary; sql: 'id'; sql_type: 'CHAR(36)']
-	user_id    string     @[comment: '用户ID'; sql: 'user_id'; sql_type: 'CHAR(36)']
+	id         string     @[comment: 'UUID'; immutable; primary; sql: 'id'; sql_type: 'CHAR(36)']
+	user_id    string     @[comment: '用户ID'; index: 'idx_iam_token_user_id'; sql: 'user_id'; sql_type: 'CHAR(36)']
 	username   string     @[comment: '用户名'; sql_type: 'VARCHAR(255)']
-	token      string     @[comment: 'Token字符串'; sql_type: 'VARCHAR(1000)']
+	token      string     @[comment: 'Token字符串'; index: 'idx_iam_token_token'; sql_type: 'VARCHAR(1000)']
 	source     string     @[comment: '来源: sys/本地, 第三方如github'; sql_type: 'VARCHAR(255)']
 	expired_at time.Time  @[comment: '过期时间'; sql_type: 'TIMESTAMP']
 	status     u8         @[comment: '0正常 1禁用'; default: 0; sql_type: 'tinyint']

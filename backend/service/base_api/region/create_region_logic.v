@@ -27,18 +27,20 @@ pub fn (app &Region) create_region_handler(mut ctx Context) veb.Result {
 
 // ═══ Use Case ═══
 pub fn create_region_usecase(mut ctx Context, req CreateRegionReq) !CreateRegionResp {
-	// create_region_domain(req)!
+	create_region_domain(req)!
 	return create_region_repo(mut ctx, req)
 }
 
 // ═══ Domain ═══
-// fn create_region_domain(req CreateRegionReq) ! {
-// if req.path == '' {
-// 	return error('path is required')
-// }
-// if req.method == '' {
-// 	return error('method is required')
-// }
+fn create_region_domain(req CreateRegionReq) ! {
+	if req.sys_region_code == '' {
+		return error('sys_region_code is required')
+	}
+	if req.sys_region_name == '' {
+		return error('sys_region_name is required')
+	}
+}
+
 // if req.service_name == '' {
 // 	return error('service_name is required')
 // }
@@ -99,8 +101,8 @@ fn create_region_repo(mut ctx Context, req CreateRegionReq) !CreateRegionResp {
 		status:               req.status
 		name_en:              req.name_en
 		name_zh:              req.name_zh
-		updater_id:           req.updater_id
-		creator_id:           req.creator_id
+		updater_id:           ctx.svc_iam.user_id
+		creator_id:           ctx.svc_iam.user_id
 		created_at:           time_now
 		updated_at:           time_now
 	}

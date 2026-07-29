@@ -6,10 +6,10 @@ import time
 @[table: 'pf_menu']
 pub struct PfMenu {
 pub:
-	id         string     @[comment: 'UUID'; primary; sql_type: 'CHAR(36)']
-	parent_id  string     @[comment: '父菜单ID，0为根'; default: '0'; sql_type: 'CHAR(36)']
-	menu_level u8         @[comment: '菜单级别: 0目录 1菜单 2按钮'; sql_type: 'tinyint(1)']
-	menu_type  u8         @[comment: '菜单类型: 0目录 1菜单 2按钮'; sql_type: 'tinyint(1)']
+	id         string     @[comment: 'UUID'; immutable; primary; sql_type: 'CHAR(36)']
+	parent_id  string     @[comment: '父菜单ID，0为根'; default: '0'; index: 'idx_pf_menu_parent'; sql_type: 'CHAR(36)']
+	menu_level u8         @[comment: '菜单层级: 0一级 1二级 2三级'; sql_type: 'tinyint(1)']
+	menu_type  u8         @[comment: '菜单类型: 0目录(容器) 1菜单(页面) 2按钮(操作)'; sql_type: 'tinyint(1)']
 	path       string     @[comment: '路由路径'; sql_type: 'VARCHAR(255)']
 	name       string     @[comment: '菜单名称'; sql_type: 'VARCHAR(255)']
 	redirect   string     @[comment: '重定向路径'; sql_type: 'VARCHAR(255)']

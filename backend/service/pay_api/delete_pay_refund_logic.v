@@ -1,5 +1,6 @@
 module pay_api
 
+import time
 import veb
 import log
 import json2 as json
@@ -51,8 +52,9 @@ fn delete_pay_refund_repo(mut ctx Context, ids []string) !DeletePayRefundResp {
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
 	sql db {
-		delete from PayRefund where id in ids
-	} or { return error('Failed to delete pay refund: ${err}') }
+		update PayRefund set del_flag = 1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
+		where id in ids && del_flag == 0
+	} or { return error('Failed to soft-delete pay refund: ${err}') }
 
 	return DeletePayRefundResp{
 		msg: '${ids.len} PayRefund(s) deleted successfully'

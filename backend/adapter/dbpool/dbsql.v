@@ -47,6 +47,9 @@ fn new_pgsql_pool(config DatabaseConfig) !&DatabasePool[pg.DB] {
 	pool_conf := pool.ConnectionPoolConfig{
 		max_conns:      config.max_conns
 		min_idle_conns: config.min_idle_conns
+		max_lifetime:   config.max_lifetime
+		idle_timeout:   config.idle_timeout
+		get_timeout:    config.get_timeout
 	}
 	inner_pool := pool.new_connection_pool(create_conn, pool_conf)!
 	return &DatabasePool[pg.DB]{
@@ -85,6 +88,9 @@ fn new_mysql_pool(config DatabaseConfig) !&DatabasePool[mysql.DB] {
 	pool_conf := pool.ConnectionPoolConfig{
 		max_conns:      config.max_conns
 		min_idle_conns: config.min_idle_conns
+		max_lifetime:   config.max_lifetime
+		idle_timeout:   config.idle_timeout
+		get_timeout:    config.get_timeout
 	}
 	inner_pool := pool.new_connection_pool(create_conn, pool_conf)!
 	return &DatabasePool[mysql.DB]{

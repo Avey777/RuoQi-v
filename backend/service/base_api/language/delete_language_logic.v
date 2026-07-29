@@ -1,5 +1,6 @@
 module language
 
+import time
 import veb
 import log
 import json2 as json
@@ -55,8 +56,9 @@ fn delete_language_repo(mut ctx Context, language_ids []string) !DeleteLanguageR
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
 	sql db {
-		delete from BaseLanguage where id in language_ids
-	} or { return error('Failed to delete language: ${err}') }
+		update BaseLanguage set del_flag = 1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
+		where id in language_ids && del_flag == 0
+	} or { return error('Failed to soft-delete language: ${err}') }
 
 	return DeleteLanguageResp{
 		msg: '${language_ids} language(s) deleted successfully'

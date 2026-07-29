@@ -6,9 +6,9 @@ import time
 @[table: 'ws_department']
 pub struct WsDepartment {
 pub:
-	id           string     @[comment: 'UUID'; primary; sql_type: 'CHAR(36)']
+	id           string     @[comment: 'UUID'; immutable; primary; sql_type: 'CHAR(36)']
 	workspace_id string     @[comment: '工作区ID'; sql_type: 'CHAR(36)']
-	parent_id    string     @[comment: '父部门ID，0为根'; default: '0'; sql_type: 'CHAR(36)']
+	parent_id    string     @[comment: '父部门ID，0为根'; default: '0'; index: 'idx_ws_dept_parent'; sql_type: 'CHAR(36)']
 	name         string     @[comment: '部门名称'; sql_type: 'VARCHAR(255)']
 	code         string     @[comment: '部门编码'; sql_type: 'VARCHAR(64)']
 	description  string     @[comment: '描述'; sql_type: 'VARCHAR(500)']

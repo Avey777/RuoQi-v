@@ -2,6 +2,7 @@ module user
 
 import veb
 import log
+import time
 import json2 as json
 import model { Context }
 import model.schema_iam { IamUser }
@@ -15,7 +16,7 @@ pub fn (app &User) delete_user_handler(mut ctx Context) veb.Result {
 		return ctx.json(api.json_error_400(err.msg()))
 	}
 	result := delete_user_usecase(mut ctx, req) or {
-		return ctx.json(api.json_error_500(err.msg()))
+		return ctx.json(api.json_error_500('Internal Server Error: ${err}'))
 	}
 	return ctx.json(api.json_success_200(result))
 }
@@ -23,7 +24,7 @@ pub fn (app &User) delete_user_handler(mut ctx Context) veb.Result {
 // ═══ Use Case ═══
 pub fn delete_user_usecase(mut ctx Context, req DeleteUserReq) !DeleteUserResp {
 	delete_user_domain(req)!
-	delete_user_repo(mut ctx, req)!
+	delete_user_repo(mut ctx, req) or { return error('Failed to delete user: ${err}') }
 	return DeleteUserResp{
 		msg: 'User deleted'
 	}
@@ -50,6 +51,7 @@ fn delete_user_repo(mut ctx Context, req DeleteUserReq) ! {
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 	sql db {
-		update IamUser set del_flag = 1 where id == req.user_id
-	}!
+		update IamUser set del_flag = 1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
+		where id == req.user_id && del_flag == 0
+	} or { return error('Failed to delete user: ${err}') }
 }

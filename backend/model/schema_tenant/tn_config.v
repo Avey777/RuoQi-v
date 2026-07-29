@@ -9,7 +9,7 @@ import time
 @[table: 'tn_config']
 pub struct TnConfig {
 pub:
-	id          string     @[comment: 'UUID'; primary; sql_type: 'CHAR(36)']
+	id          string     @[comment: 'UUID'; immutable; primary; sql_type: 'CHAR(36)']
 	tenant_id   string     @[comment: '租户ID'; immutable; sql_type: 'CHAR(36)']
 	product_id  string     @[comment: '产品ID'; immutable; sql_type: 'CHAR(36)']
 	key         string     @[comment: '配置键'; sql_type: 'VARCHAR(128)']

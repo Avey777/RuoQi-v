@@ -58,7 +58,7 @@ fn update_fms_file_repo(mut ctx Context, req UpdateFmsFileReq) !UpdateFmsFileRes
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
 	existing := sql db {
-		select from FmsFile where id == req.id limit 1
+		select from FmsFile where id == req.id && del_flag == 0 limit 1
 	} or { return error('Failed to check existence: ${err}') }
 	if existing.len == 0 {
 		return error('FmsFile with id ${req.id} not found')
@@ -76,7 +76,7 @@ fn update_fms_file_repo(mut ctx Context, req UpdateFmsFileReq) !UpdateFmsFileRes
 	}
 
 	sql db {
-		dynamic update FmsFile set up_expr where id == req.id
+		dynamic update FmsFile set up_expr where id == req.id && del_flag == 0
 	} or { return error('Failed to execute SQL query: ${err}') }
 
 	return UpdateFmsFileResp{

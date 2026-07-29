@@ -6,7 +6,7 @@ import time
 @[table: 'pf_dictionary_detail']
 pub struct PfDictionaryDetail {
 pub:
-	id            string     @[comment: 'UUID'; primary; sql_type: 'CHAR(36)']
+	id            string     @[comment: 'UUID'; immutable; primary; sql_type: 'CHAR(36)']
 	dictionary_id string     @[comment: '字典ID'; sql_type: 'CHAR(36)']
 	label         string     @[comment: '显示标签'; sql_type: 'VARCHAR(255)']
 	value         string     @[comment: '值'; sql_type: 'VARCHAR(255)']

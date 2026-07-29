@@ -6,7 +6,7 @@ import time
 @[table: 'pf_plan']
 pub struct PfPlan {
 pub:
-	id          string     @[comment: 'UUID'; primary; sql_type: 'CHAR(36)']
+	id          string     @[comment: 'UUID'; immutable; primary; sql_type: 'CHAR(36)']
 	product_id  string     @[comment: '所属产品ID'; sql_type: 'CHAR(36)']
 	plan_name   string     @[comment: '套餐名称'; sql_type: 'VARCHAR(255)']
 	plan_code   string     @[comment: '套餐编码: basic/enterprise/ultimate'; sql_type: 'VARCHAR(64)']

@@ -6,7 +6,7 @@ import time
 @[table: 'ws_position']
 pub struct WsPosition {
 pub:
-	id           string     @[comment: 'UUID'; primary; sql_type: 'CHAR(36)']
+	id           string     @[comment: 'UUID'; immutable; primary; sql_type: 'CHAR(36)']
 	workspace_id string     @[comment: '工作区ID'; sql_type: 'CHAR(36)']
 	name         string     @[comment: '岗位名称'; sql_type: 'VARCHAR(255)']
 	code         string     @[comment: '岗位编码'; sql_type: 'VARCHAR(64)']

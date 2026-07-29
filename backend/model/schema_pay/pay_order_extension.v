@@ -6,9 +6,9 @@ import time
 @[table: 'pay_order_extension']
 pub struct PayOrderExtension {
 pub:
-	id                  string  @[comment: 'UUID'; primary; sql: 'id'; sql_type: 'CHAR(36)']
+	id                  string  @[comment: 'UUID'; immutable; primary; sql: 'id'; sql_type: 'CHAR(36)']
 	no                  string  @[comment: '支付订单号'; omitempty; required; sql: 'no'; sql_type: 'VARCHAR(255)']
-	order_id            string  @[comment: '渠道编号'; omitempty; required; sql: 'order_id'; sql_type: 'CHAR(36)']
+	order_id            string  @[comment: '支付订单ID → pay_order.id'; omitempty; required; sql: 'order_id'; sql_type: 'CHAR(36)']
 	channel_code        string  @[comment: '渠道编码'; omitempty; required; sql: 'channel_code'; sql_type: 'VARCHAR(255)']
 	user_ip             string  @[comment: '用户 IP'; omitempty; required; sql: 'user_ip'; sql_type: 'VARCHAR(255)']
 	channel_extras      ?string @[comment: '支付渠道的额外参数'; omitempty; sql: 'channel_extras'; sql_type: 'json']

@@ -75,30 +75,43 @@ fn create_pay_refund_repo(mut ctx Context, req CreatePayRefundReq) !CreatePayRef
 		ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') }
 	}
 
+	// Transaction: all validation + insert + update within single transaction to prevent race
+	db.execute('BEGIN') or { return error('Failed to begin transaction: ${err}') }
+
 	// Validate target order exists and is refundable
 	orders := sql db {
 		select from PayOrder where id == req.order_id && del_flag == 0
-	} or { return error('Failed to query order: ${err}') }
+	} or {
+		db.execute('ROLLBACK') or {}
+		return error('Failed to query order: ${err}')
+	}
 	if orders.len == 0 {
+		db.execute('ROLLBACK') or {}
 		return error('order not found')
 	}
 	order := orders[0]
 	if order.status != 1 {
+		db.execute('ROLLBACK') or {}
 		return error('order is not in a refundable state')
 	}
 	if req.refund_price > order.price {
+		db.execute('ROLLBACK') or {}
 		return error('refund price exceeds pay price')
 	}
 
 	// Validate cumulative refunds would not exceed pay price
 	existing_refunds := sql db {
 		select from PayRefund where order_id == req.order_id && del_flag == 0
-	} or { return error('Failed to query existing refunds: ${err}') }
+	} or {
+		db.execute('ROLLBACK') or {}
+		return error('Failed to query existing refunds: ${err}')
+	}
 	mut total_refunded := 0
 	for r in existing_refunds {
 		total_refunded += r.refund_price
 	}
 	if total_refunded + req.refund_price > order.price {
+		db.execute('ROLLBACK') or {}
 		return error('cumulative refunds would exceed pay price')
 	}
 
@@ -122,9 +135,6 @@ fn create_pay_refund_repo(mut ctx Context, req CreatePayRefundReq) !CreatePayRef
 		updated_at:         time_now
 	}
 
-	// Transaction: insert refund and update parent order's refund_price
-	db.execute('BEGIN') or { return error('Failed to begin transaction: ${err}') }
-
 	sql db {
 		insert refund into PayRefund
 	} or {
@@ -132,18 +142,8 @@ fn create_pay_refund_repo(mut ctx Context, req CreatePayRefundReq) !CreatePayRef
 		return error('Failed to create PayRefund: ${err}')
 	}
 
-	// Recalculate total refunded amount for this order
-	all_refunds := sql db {
-		select from PayRefund where order_id == req.order_id && del_flag == 0
-	} or {
-		db.execute('ROLLBACK') or {}
-		return error('Failed to query refunds for order update: ${err}')
-	}
-	mut new_total := 0
-	for r in all_refunds {
-		new_total += r.refund_price
-	}
-
+	// Update order's total refund amount (new_total = pre-existing + this refund)
+	new_total := total_refunded + req.refund_price
 	sql db {
 		update PayOrder set refund_price = new_total, updated_at = time_now where id == req.order_id
 	} or {

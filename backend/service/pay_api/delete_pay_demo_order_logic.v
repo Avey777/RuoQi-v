@@ -1,5 +1,6 @@
 module pay_api
 
+import time
 import veb
 import log
 import json2 as json
@@ -51,8 +52,9 @@ fn delete_pay_demo_order_repo(mut ctx Context, ids []string) !DeletePayDemoOrder
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
 	sql db {
-		delete from PayDemoOrder where id in ids
-	} or { return error('Failed to delete demo order: ${err}') }
+		update PayDemoOrder set del_flag = 1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
+		where id in ids && del_flag == 0
+	} or { return error('Failed to soft-delete demo order: ${err}') }
 
 	return DeletePayDemoOrderResp{
 		msg: '${ids.len} PayDemoOrder(s) deleted successfully'

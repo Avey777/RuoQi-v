@@ -105,8 +105,8 @@ fn create_adm_repo(mut ctx Context, req CreateAdmReq) !CreateAdmResp {
 		first:           req.first
 		name_en:         req.name_en
 		name_zh:         req.name_zh
-		updater_id:      req.updater_id
-		creator_id:      req.creator_id
+		updater_id:      ctx.svc_iam.user_id
+		creator_id:      ctx.svc_iam.user_id
 		created_at:      time_now
 		updated_at:      time_now
 	}

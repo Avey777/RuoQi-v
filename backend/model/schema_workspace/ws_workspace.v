@@ -6,8 +6,8 @@ import time
 @[table: 'ws_workspace']
 pub struct WsWorkspace {
 pub:
-	id          string     @[comment: 'UUID'; primary; sql_type: 'CHAR(36)']
-	tenant_id   string     @[comment: '所属租户ID'; sql_type: 'CHAR(36)']
+	id          string     @[comment: 'UUID'; immutable; primary; sql_type: 'CHAR(36)']
+	tenant_id   string     @[comment: '所属租户ID'; index: 'idx_ws_workspace_tenant'; sql_type: 'CHAR(36)']
 	name        string     @[comment: '工作区名称'; sql_type: 'VARCHAR(255)']
 	description string     @[comment: '描述'; sql_type: 'VARCHAR(255)']
 	status      u8         @[comment: '0正常 1禁用'; default: 0; sql_type: 'tinyint']

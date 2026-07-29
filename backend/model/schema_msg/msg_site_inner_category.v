@@ -6,7 +6,7 @@ import time
 @[table: 'msg_site_inner_category']
 pub struct MsgSiteInnerCategory {
 pub:
-	id          string  @[comment: 'UUID'; primary; sql: 'id'; sql_type: 'CHAR(36)']
+	id          string  @[comment: 'UUID'; immutable; primary; sql: 'id'; sql_type: 'CHAR(36)']
 	title       string  @[comment: 'Category Title | 分类名称'; omitempty; required; sql: 'title'; sql_type: 'VARCHAR(255)']
 	description ?string @[comment: 'Category Description | 分类描述'; omitempty; sql: 'description'; sql_type: 'VARCHAR(255)']
 	remark      ?string @[comment: 'Category Remark | 备注信息'; omitempty; sql: 'remark'; sql_type: 'VARCHAR(255)']

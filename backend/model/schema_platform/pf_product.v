@@ -6,7 +6,7 @@ import time
 @[table: 'pf_product']
 pub struct PfProduct {
 pub:
-	id           string     @[comment: 'UUID'; primary; sql_type: 'CHAR(36)']
+	id           string     @[comment: 'UUID'; immutable; primary; sql_type: 'CHAR(36)']
 	product_code string     @[comment: '产品编码: wms/tms/mall'; sql_type: 'VARCHAR(64)']
 	product_name string     @[comment: '产品显示名称: SAAS中台/商城/仓储'; sql_type: 'VARCHAR(255)']
 	icon         string     @[comment: '图标'; sql_type: 'VARCHAR(255)']

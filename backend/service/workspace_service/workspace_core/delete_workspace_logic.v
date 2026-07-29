@@ -2,6 +2,7 @@ module workspace_core
 
 import veb
 import log
+import time
 import json2 as json
 import model { Context }
 import model.schema_workspace { WsWorkspace }
@@ -42,11 +43,13 @@ pub struct DeleteWsResp {
 
 // ═══ Repository ═══
 fn delete_workspace_repo(mut ctx Context, req DeleteWsReq) !DeleteWsResp {
+	ctx.scope_sc.workspace_id = req.id
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 	sql db {
-		update WsWorkspace set del_flag = 1 where id == req.id
-	}!
+		update WsWorkspace set del_flag = 1, updated_at = time.now() where id == req.id
+		&& del_flag == 0
+	} or { return error('Failed to delete workspace: ${err}') }
 	return DeleteWsResp{
 		msg: 'Workspace deleted'
 	}

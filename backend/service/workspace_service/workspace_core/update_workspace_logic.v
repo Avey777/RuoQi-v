@@ -2,6 +2,7 @@ module workspace_core
 
 import veb
 import log
+import time
 import json2 as json
 import model { Context }
 import model.schema_workspace { WsWorkspace }
@@ -45,16 +46,18 @@ pub struct UpdateWsResp {
 
 // ═══ Repository ═══
 fn update_workspace_repo(mut ctx Context, req UpdateWsReq) !UpdateWsResp {
+	ctx.scope_sc.workspace_id = req.id
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 	up_expr := {
 		if name := req.name { name == name },
 		if description := req.description { description == description },
-		if status := req.status { status == status }
+		if status := req.status { status == status },
+		updated_at == time.now()
 	}
 	sql db {
-		dynamic update WsWorkspace set up_expr where id == req.id
-	}!
+		dynamic update WsWorkspace set up_expr where id == req.id && del_flag == 0
+	} or { return error('Failed to update workspace: ${err}') }
 	return UpdateWsResp{
 		msg: 'Workspace updated'
 	}

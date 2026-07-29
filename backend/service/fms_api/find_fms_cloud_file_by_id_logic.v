@@ -52,7 +52,7 @@ fn find_fms_cloud_file_by_id_repo(mut ctx Context, req FmsCloudFileByIdReq) !Fms
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
 	files := sql db {
-		select from FmsCloudFile where id == req.id limit 1
+		select from FmsCloudFile where id == req.id && del_flag == 0 limit 1
 	} or { return error('Failed: ${err}') }
 
 	if files.len == 0 {

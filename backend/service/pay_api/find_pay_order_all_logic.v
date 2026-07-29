@@ -84,6 +84,7 @@ fn find_pay_order_all_repo(mut ctx Context, req PayOrderListReq) !PayOrderListRe
 	offset_num := (req.page - 1) * req.page_size
 	// vfmt off
 	where_expr := {
+		del_flag == 0,
 		if req.merchant_order_id != '' {merchant_order_id == req.merchant_order_id},
 		if req.channel_code != '' {channel_code == req.channel_code},
 		if req.status.len > 0 {status in req.status}

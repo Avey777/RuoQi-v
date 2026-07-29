@@ -6,7 +6,7 @@ import time
 @[table: 'fms_storage_provider']
 pub struct FmsStorageProvider {
 pub:
-	id         string  @[comment: 'UUID'; primary; sql: 'id'; sql_type: 'CHAR(36)']
+	id         string  @[comment: 'UUID'; immutable; primary; sql: 'id'; sql_type: 'CHAR(36)']
 	name       string  @[comment: 'The cloud storage service name | 服务名称'; omitempty; required; sql: 'name'; sql_type: 'VARCHAR(255)'; unique: 'name']
 	bucket     string  @[comment: 'The cloud storage bucket name | 云存储服务的存储桶'; omitempty; required; sql: 'bucket'; sql_type: 'VARCHAR(255)']
 	secret_id  string  @[comment: 'The secret ID | 密钥 ID'; omitempty; required; sql: 'secret_id'; sql_type: 'VARCHAR(255)']

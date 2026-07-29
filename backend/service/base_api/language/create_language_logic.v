@@ -27,18 +27,20 @@ pub fn (app &Language) create_language_handler(mut ctx Context) veb.Result {
 
 // ═══ Use Case ═══
 pub fn create_language_usecase(mut ctx Context, req CreateLanguageReq) !CreateLanguageResp {
-	// create_language_domain(req)!
+	create_language_domain(req)!
 	return create_language_repo(mut ctx, req)
 }
 
 // ═══ Domain ═══
-// fn create_language_domain(req CreateLanguageReq) ! {
-// if req.path == '' {
-// 	return error('path is required')
-// }
-// if req.method == '' {
-// 	return error('method is required')
-// }
+fn create_language_domain(req CreateLanguageReq) ! {
+	if req.language_code == '' {
+		return error('language_code is required')
+	}
+	if req.language_self_proclaimed == '' {
+		return error('language_self_proclaimed is required')
+	}
+}
+
 // if req.service_name == '' {
 // 	return error('service_name is required')
 // }

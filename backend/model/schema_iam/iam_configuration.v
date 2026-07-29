@@ -6,7 +6,7 @@ import time
 @[table: 'iam_configuration']
 pub struct IamConfiguration {
 pub:
-	id         string     @[comment: 'UUID'; primary; sql: 'id'; sql_type: 'CHAR(36)']
+	id         string     @[comment: 'UUID'; immutable; primary; sql: 'id'; sql_type: 'CHAR(36)']
 	name       string     @[comment: '配置名称'; sql_type: 'VARCHAR(255)']
 	key        string     @[comment: '配置键名'; sql_type: 'VARCHAR(255)']
 	value      string     @[comment: '配置值'; sql_type: 'VARCHAR(255)']

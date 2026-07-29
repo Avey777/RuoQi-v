@@ -48,9 +48,16 @@ fn assign_role_menu_repo(mut ctx Context, req AssignRoleMenuReq) !AssignRoleMenu
 	ctx.scope_sc.workspace_id = req.workspace_id
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
+
+	db.execute('BEGIN') or { return error('Failed to begin transaction: ${err}') }
+
 	sql db {
 		delete from WsRoleMenu where workspace_id == req.workspace_id && role_id == req.role_id
-	}!
+	} or {
+		db.execute('ROLLBACK') or {}
+		return error('Failed to delete existing role menu assignments: ${err}')
+	}
+
 	for menu_id in req.menu_ids {
 		rm := WsRoleMenu{
 			workspace_id: req.workspace_id
@@ -59,8 +66,14 @@ fn assign_role_menu_repo(mut ctx Context, req AssignRoleMenuReq) !AssignRoleMenu
 		}
 		sql db {
 			insert rm into WsRoleMenu
-		}!
+		} or {
+			db.execute('ROLLBACK') or {}
+			return error('Failed to insert role menu assignment: ${err}')
+		}
 	}
+
+	db.execute('COMMIT') or { return error('Failed to commit transaction: ${err}') }
+
 	return AssignRoleMenuResp{
 		msg: 'Role Menu assigned'
 	}

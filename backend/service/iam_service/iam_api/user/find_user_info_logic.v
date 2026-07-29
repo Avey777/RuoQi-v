@@ -24,7 +24,7 @@ fn find_user_info_repo(mut ctx Context) !IamUser {
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 	users := sql db {
-		select from IamUser where id == ctx.svc_iam.user_id limit 1
+		select from IamUser where id == ctx.svc_iam.user_id && del_flag == 0 limit 1
 	} or { return error('Failed: ${err}') }
 	if users.len == 0 { return error('user not found') }
 	return users[0]

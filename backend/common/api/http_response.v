@@ -62,10 +62,19 @@ pub fn json_error_422(msg string) ApiErrorResponse {
 
 // 500 Internal Server Error - 服务端内部错误
 // 适用场景：未捕获异常/代码崩溃（应尽量避免）
+// 生产环境下返回通用错误消息，避免泄露内部细节；debug 模式下包含原始错误信息
 pub fn json_error_500(err string) ApiErrorResponse {
-	return json_error(
-		code:   1
-		status: 500
-		error:  'Something went wrong on our end. Please try again later: ${err}'
-	)
+	$if debug {
+		return json_error(
+			code:   1
+			status: 500
+			error:  'Internal Server Error: ${err}'
+		)
+	} $else {
+		return json_error(
+			code:   1
+			status: 500
+			error:  'Something went wrong on our end. Please try again later.'
+		)
+	}
 }

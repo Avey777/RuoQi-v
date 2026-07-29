@@ -24,7 +24,7 @@ fn find_user_all_repo(mut ctx Context) ![]IamUser {
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 	users := sql db {
-		select from IamUser
+		select from IamUser where del_flag == 0
 	} or { return error('Failed: ${err}') }
 	return users
 }

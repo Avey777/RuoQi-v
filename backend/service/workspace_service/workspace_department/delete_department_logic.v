@@ -2,6 +2,7 @@ module workspace_department
 
 import veb
 import log
+import time
 import json2 as json
 import model { Context }
 import model.schema_workspace { WsDepartment }
@@ -15,7 +16,7 @@ pub fn (app &WorkspaceDepartment) delete_department_handler(mut ctx Context) veb
 		return ctx.json(api.json_error_400(err.msg()))
 	}
 	result := delete_department_usecase(mut ctx, req) or {
-		return ctx.json(api.json_error_500(err.msg()))
+		return ctx.json(api.json_error_500('Internal Server Error: ${err}'))
 	}
 	return ctx.json(api.json_success_200(result))
 }
@@ -47,8 +48,9 @@ fn delete_department_repo(mut ctx Context, req DeleteDepartmentReq) !DeleteDepar
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 	sql db {
-		update WsDepartment set del_flag = 1 where id == req.id
-	}!
+		update WsDepartment set del_flag = 1, updated_at = time.now() where id == req.id
+		&& del_flag == 0
+	} or { return error('Failed to delete department: ${err}') }
 	return DeleteDepartmentResp{
 		msg: 'Department deleted'
 	}

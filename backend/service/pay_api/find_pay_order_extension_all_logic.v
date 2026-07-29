@@ -82,6 +82,7 @@ fn find_pay_order_extension_all_repo(mut ctx Context, req PayOrderExtensionListR
 	offset_num := (req.page - 1) * req.page_size
 	// vfmt off
 	where_expr := {
+		del_flag == 0,
 		if req.order_id != '' {order_id == req.order_id},
 		if req.channel_code != '' {channel_code == req.channel_code},
 		if req.status.len > 0 {status in req.status}

@@ -1,5 +1,6 @@
 module token
 
+import time
 import veb
 import log
 import model { Context }
@@ -29,6 +30,7 @@ fn delete_token_by_user_repo(mut ctx Context) ! {
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 	sql db {
-		delete from IamToken where user_id == ctx.svc_iam.user_id
-	}!
+		update IamToken set del_flag = 1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
+		where user_id == ctx.svc_iam.user_id && del_flag == 0
+	} or { return error('Failed to soft-delete tokens: ${err}') }
 }

@@ -6,8 +6,8 @@ import time
 @[table: 'pf_config']
 pub struct PfConfig {
 pub:
-	id          string     @[comment: 'UUID'; primary; sql_type: 'CHAR(36)']
-	key         string     @[comment: '配置键'; sql_type: 'VARCHAR(128)']
+	id          string     @[comment: 'UUID'; immutable; primary; sql_type: 'CHAR(36)']
+	key         string     @[comment: '配置键'; index: 'idx_pf_config_key'; sql_type: 'VARCHAR(128)']
 	value       string     @[comment: '配置值'; sql_type: 'TEXT']
 	category    string     @[comment: '分类'; sql_type: 'VARCHAR(64)']
 	description string     @[comment: '描述'; sql_type: 'VARCHAR(500)']

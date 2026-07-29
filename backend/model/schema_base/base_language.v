@@ -8,7 +8,7 @@ pub struct BaseLanguage {
 pub:
 	id                       string @[comment: 'UUID'; immutable; primary; sql: 'id'; sql_type: 'CHAR(36)']
 	language_self_proclaimed string @[comment: '语言自称'; required; sql_type: 'VARCHAR(255)']
-	language_code            string @[comment: '语言代码'; required; sql_type: 'VARCHAR(255)']
+	language_code            string @[comment: '语言代码'; index: 'idx_language_code'; required; sql_type: 'VARCHAR(255)']
 	two_letter_code          string @[comment: '两字母代码'; required; sql_type: 'VARCHAR(255)']
 	three_letter_code        string @[comment: '三字母代码'; required; sql_type: 'VARCHAR(255)']
 	utf8_encoding            string @[comment: 'UTF8编码区域'; required; sql_type: 'VARCHAR(255)']

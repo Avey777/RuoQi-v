@@ -1,5 +1,6 @@
 module utc
 
+import time
 import veb
 import log
 import json2 as json
@@ -55,8 +56,9 @@ fn delete_utc_repo(mut ctx Context, utc_ids []string) !DeleteUtcResp {
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
 	sql db {
-		delete from BaseUtc where id in utc_ids
-	} or { return error('Failed to delete currency: ${err}') }
+		update BaseUtc set del_flag = 1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
+		where id in utc_ids && del_flag == 0
+	} or { return error('Failed to soft-delete utc: ${err}') }
 
 	return DeleteUtcResp{
 		msg: '${utc_ids} token(s) deleted successfully'

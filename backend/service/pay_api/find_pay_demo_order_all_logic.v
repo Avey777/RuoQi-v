@@ -82,6 +82,7 @@ fn find_pay_demo_order_all_repo(mut ctx Context, req PayDemoOrderListReq) !PayDe
 	offset_num := (req.page - 1) * req.page_size
 	// vfmt off
 	where_expr := {
+		del_flag == 0,
 		if req.user_id != '' {user_id == req.user_id},
 		if req.spu_name != '' {spu_name == req.spu_name},
 		if req.pay_status.len > 0 {pay_status in req.pay_status}

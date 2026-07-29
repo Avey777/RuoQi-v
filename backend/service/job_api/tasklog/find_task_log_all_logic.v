@@ -68,6 +68,7 @@ fn find_task_log_all_repo(mut ctx Context, req TaskLogListReq) !TaskLogListResp 
 
 	offset_num := (req.page - 1) * req.page_size
 	where_expr := {
+		del_flag == 0,
 		if req.result.len > 0 { result in req.result }
 	}
 	rows := sql db {

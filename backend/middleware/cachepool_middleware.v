@@ -28,7 +28,7 @@ pub fn init_cache_pool(doc &config.GlobalConfig) !&cache_pool.CachePool {
 
 	// log.debug('${config_redis}')
 	mut conn := cache_pool.new_cache_pool(config_redis) or {
-		log.error('缓存连接失败,请检查配置文件: ${config.config_toml()}: ${doc.redis} : ${err}')
+		log.error('缓存连接失败, 请检查配置文件 ${config.config_toml()} host=${doc.redis.host}:${doc.redis.port}: ${err}')
 		return err
 	}
 	// log.debug('${conn}')

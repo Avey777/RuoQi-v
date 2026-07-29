@@ -14,7 +14,8 @@ import adapter.repository.middle
 const sig_skew_seconds = i64(300) // ±5 分钟时间戳偏差
 
 // Debug 硬编码 AK/SK — 拥有全部权限，跳过数据库查询和 scope/isolation 校验
-// $if debug 确保仅在 v run / debug 模式下编译，v -prod 生产构建自动排除
+// 仅在 debug 编译 AND 环境变量 IAM_DEBUG=1 时才启用
+// v -prod 生产构建自动排除所有 debug 代码
 $if debug {
 	const debug_ak = 'DEBUG-FULL-ACCESS-KEY'
 	const debug_sk = 'DEBUG-FULL-SECRET-KEY'
@@ -194,7 +195,7 @@ fn authorize_tenant_membership(mut ctx Context) bool {
 
 // authenticate_aksk_signature — HMAC 签名模式: X-Access-Key + X-Timestamp + X-Signature
 fn authenticate_aksk_signature(mut ctx Context, ak string) bool {
-	// Debug 硬编码 AK — 跳过数据库，直接验证 HMAC 签名并赋予全部权限
+	// Debug 硬编码 AK — 仅 debug 编译时可用，-prod 构建自动排除
 	$if debug {
 		if ak == debug_ak {
 			return authenticate_debug_aksk(mut ctx)

@@ -57,7 +57,7 @@ fn update_fms_cloud_file_repo(mut ctx Context, req UpdateFmsCloudFileReq) !Updat
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
 	existing := sql db {
-		select from FmsCloudFile where id == req.id limit 1
+		select from FmsCloudFile where id == req.id && del_flag == 0 limit 1
 	} or { return error('Failed to check existence: ${err}') }
 	if existing.len == 0 {
 		return error('FmsCloudFile with id ${req.id} not found')
@@ -76,7 +76,7 @@ fn update_fms_cloud_file_repo(mut ctx Context, req UpdateFmsCloudFileReq) !Updat
 	}
 
 	sql db {
-		dynamic update FmsCloudFile set up_expr where id == req.id
+		dynamic update FmsCloudFile set up_expr where id == req.id && del_flag == 0
 	} or { return error('Failed to execute SQL query: ${err}') }
 
 	return UpdateFmsCloudFileResp{

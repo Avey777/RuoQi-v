@@ -41,7 +41,7 @@ fn find_fms_storage_provider_by_id_repo(mut ctx Context, req FmsStorageProviderB
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 	providers := sql db {
-		select from FmsStorageProvider where id == req.id limit 1
+		select from FmsStorageProvider where id == req.id && del_flag == 0 limit 1
 	} or { return error('Failed: ${err}') }
 	if providers.len == 0 { return error('FmsStorageProvider not found') }
 

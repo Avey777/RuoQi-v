@@ -6,7 +6,7 @@ import time
 @[table: 'iam_user_connector']
 pub struct IamUserConnector {
 pub:
-	id               string     @[comment: 'UUID'; primary; sql_type: 'CHAR(36)']
+	id               string     @[comment: 'UUID'; immutable; primary; sql_type: 'CHAR(36)']
 	user_id          string     @[comment: '用户ID'; sql_type: 'CHAR(36)']
 	connector_id     string     @[comment: '连接器ID'; sql_type: 'CHAR(36)']
 	provider_user_id string     @[comment: '第三方系统中的用户ID'; sql_type: 'CHAR(36)']

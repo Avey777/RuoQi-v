@@ -6,7 +6,7 @@ import time
 @[table: 'fms_cloud_file_tag']
 pub struct FmsCloudFileTag {
 pub:
-	id     string  @[comment: 'UUID'; primary; sql: 'id'; sql_type: 'CHAR(36)']
+	id     string  @[comment: 'UUID'; immutable; primary; sql: 'id'; sql_type: 'CHAR(36)']
 	name   string  @[comment: 'CloudFileTag`s name | 标签名称'; index: 'cloudfiletag_name'; omitempty; required; sql: 'name'; sql_type: 'VARCHAR(255)']
 	remark ?string @[comment: 'The remark of tag | 标签的备注'; omitempty; sql: 'remark'; sql_type: 'VARCHAR(255)']
 	status u8      @[comment: 'Status 1: normal 2: ban | 状态 1 正常 2 禁用'; default: 1; omitempty; sql: 'status'; sql_type: 'tinyint unsigned']

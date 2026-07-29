@@ -9,7 +9,7 @@ pub:
 	id                        string @[comment: 'UUID'; immutable; primary; sql: 'id'; sql_type: 'CHAR(36)']
 	english_name              string @[comment: '货币名称:English'; required; sql_type: 'VARCHAR(255)']
 	simplified_name           string @[comment: '货币名称:简体中文'; required; sql_type: 'VARCHAR(255)']
-	currency_code             string @[comment: '货币代码'; required; sql_type: 'VARCHAR(10)']
+	currency_code             string @[comment: '货币代码'; index: 'idx_currency_code'; required; sql_type: 'VARCHAR(10)']
 	currency_symbol           string @[comment: '货币符号'; required; sql_type: 'VARCHAR(10)']
 	decimal_place             u8     @[comment: '小数位数'; default: 5; required; sql_type: 'TINYINT UNSIGNED']
 	exchange_rate             f64    @[comment: '汇率'; required; sql_type: 'DOUBLE']

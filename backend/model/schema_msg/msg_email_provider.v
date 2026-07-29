@@ -6,7 +6,7 @@ import time
 @[table: 'msg_email_provider']
 pub struct MsgEmailProvider {
 pub:
-	id         string  @[comment: 'UUID'; primary; sql: 'id'; sql_type: 'CHAR(36)']
+	id         string  @[comment: 'UUID'; immutable; primary; sql: 'id'; sql_type: 'CHAR(36)']
 	name       string  @[comment: 'The email provider name | 电子邮件服务的提供商'; omitempty; required; sql: 'name'; sql_type: 'VARCHAR(255)'; unique: 'name']
 	auth_type  u8      @[comment: 'The auth type, supported plain, CRAMMD5 | 鉴权类型, 支持 plain, CRAMMD5'; omitempty; required; sql: 'auth_type'; sql_type: 'tinyint unsigned']
 	email_addr string  @[comment: 'The email address | 邮箱地址'; omitempty; required; sql: 'email_addr'; sql_type: 'VARCHAR(255)']

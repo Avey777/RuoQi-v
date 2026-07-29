@@ -64,7 +64,7 @@ fn login_by_account_repo(mut ctx Context, req LoginByAccountReq) !LoginByAccount
 		return error('Captcha error')
 	}
 	user_info := sql db {
-		select from IamUser where username == req.username limit 1
+		select from IamUser where username == req.username && del_flag == 0 limit 1
 	} or { return error('Failed: ${err}') }
 	if user_info.len == 0 { return error('UserName not exist') }
 	if !encrypt.bcrypt_verify(req.password, user_info[0].password) {

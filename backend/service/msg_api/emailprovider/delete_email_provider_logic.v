@@ -1,5 +1,6 @@
 module emailprovider
 
+import time
 import veb
 import log
 import json2 as json
@@ -51,8 +52,9 @@ fn delete_email_provider_repo(mut ctx Context, ids []string) !DeleteEmailProvide
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
 	sql db {
-		delete from MsgEmailProvider where id in ids
-	} or { return error('Failed to delete email provider: ${err}') }
+		update MsgEmailProvider set del_flag = 1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
+		where id in ids && del_flag == 0
+	} or { return error('Failed to soft-delete email provider: ${err}') }
 
 	return DeleteEmailProviderResp{
 		msg: '${ids.len} EmailProvider(s) deleted successfully'

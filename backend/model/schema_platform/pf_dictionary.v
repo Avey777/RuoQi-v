@@ -6,9 +6,9 @@ import time
 @[table: 'pf_dictionary']
 pub struct PfDictionary {
 pub:
-	id          string     @[comment: 'UUID'; primary; sql_type: 'CHAR(36)']
+	id          string     @[comment: 'UUID'; immutable; primary; sql_type: 'CHAR(36)']
 	name        string     @[comment: '字典名称'; sql_type: 'VARCHAR(255)']
-	code        string     @[comment: '字典编码'; sql_type: 'VARCHAR(64)']
+	code        string     @[comment: '字典编码'; index: 'idx_pf_dict_code'; sql_type: 'VARCHAR(64)']
 	description string     @[comment: '描述'; sql_type: 'VARCHAR(500)']
 	status      u8         @[comment: '0正常 1停用'; default: 0; sql_type: 'tinyint']
 	updater_id  ?string    @[comment: '修改者ID'; sql_type: 'CHAR(36)']
