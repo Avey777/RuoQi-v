@@ -61,6 +61,8 @@ fn create_pay_demo_order_repo(mut ctx Context, req CreatePayDemoOrderReq) !Creat
 		spu_name:   req.spu_name
 		price:      req.price
 		pay_status: req.pay_status
+		creator_id: ctx.svc_iam.user_id
+		updater_id: ctx.svc_iam.user_id
 		created_at: time_now
 		updated_at: time_now
 	}

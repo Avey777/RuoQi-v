@@ -69,6 +69,8 @@ fn create_task_repo(mut ctx Context, req CreateTaskReq) !CreateTaskResp {
 		pattern:         req.pattern
 		payload:         req.payload
 		status:          req.status
+		creator_id:      ctx.svc_iam.user_id
+		updater_id:      ctx.svc_iam.user_id
 		created_at:      time_now
 		updated_at:      time_now
 	}

@@ -55,6 +55,6 @@ fn delete_email_log_repo(mut ctx Context, ids []string) !DeleteEmailLogResp {
 	} or { return error('Failed to delete email log: ${err}') }
 
 	return DeleteEmailLogResp{
-		msg: '${ids} EmailLog(s) deleted successfully'
+		msg: '${ids.len} EmailLog(s) deleted successfully'
 	}
 }

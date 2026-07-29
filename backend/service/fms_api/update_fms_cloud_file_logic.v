@@ -64,6 +64,7 @@ fn update_fms_cloud_file_repo(mut ctx Context, req UpdateFmsCloudFileReq) !Updat
 			cloud_file_storage_providers == cloud_file_storage_providers
 		},
 		if status := req.status { status == status },
+		updater_id == ctx.svc_iam.user_id,
 		updated_at == time.now()
 	}
 

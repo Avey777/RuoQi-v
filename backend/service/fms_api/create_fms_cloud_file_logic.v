@@ -47,7 +47,6 @@ pub struct CreateFmsCloudFileReq {
 	url                          string  @[json: 'url']
 	size                         u64     @[json: 'size']
 	file_type                    u8      @[json: 'fileType']
-	user_id                      string  @[json: 'userId']
 	cloud_file_storage_providers ?string @[json: 'cloudFileStorageProviders']
 	status                       u8      @[json: 'status']
 }
@@ -65,9 +64,11 @@ fn create_fms_cloud_file_repo(mut ctx Context, req CreateFmsCloudFileReq) !Creat
 		url:                          req.url
 		size:                         req.size
 		file_type:                    req.file_type
-		user_id:                      req.user_id
+		user_id:                      ctx.svc_iam.user_id
 		cloud_file_storage_providers: req.cloud_file_storage_providers
 		status:                       req.status
+		creator_id:                   ctx.svc_iam.user_id
+		updater_id:                   ctx.svc_iam.user_id
 		created_at:                   time_now
 		updated_at:                   time_now
 	}

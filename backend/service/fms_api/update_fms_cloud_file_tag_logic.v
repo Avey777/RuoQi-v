@@ -47,6 +47,7 @@ fn update_fms_cloud_file_tag_repo(mut ctx Context, req UpdateFmsCloudFileTagReq)
 		if name := req.name { name == name },
 		if remark := req.remark { remark == remark },
 		if status := req.status { status == status },
+		updater_id == ctx.svc_iam.user_id,
 		updated_at == time.now()
 	}
 	sql db {

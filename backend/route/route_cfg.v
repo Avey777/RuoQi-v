@@ -4,35 +4,30 @@ import log
 import model { Context }
 
 // 根据条件编译，选择运行的服务
+// 使用 $else $if 链式条件，确保每个编译标志只命中一个分支，避免路由重复注册
 pub fn (mut app AliasApp) setup_conditional_routes(mut ctx Context) {
 	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 
 	$if fms ? {
 		log.warn('routes_ifdef - Fms')
 		app.routes_fms(mut ctx)
-	}
-	$if iam ? {
+	} $else $if iam ? {
 		log.warn('routes_ifdef - Core')
 		app.routes_iam(mut ctx)
 		app.routes_workspace(mut ctx)
-	}
-	$if job ? {
+	} $else $if job ? {
 		log.warn('routes_ifdef - Job')
 		app.routes_job(mut ctx)
-	}
-	$if mcms ? {
+	} $else $if mcms ? {
 		log.warn('routes_ifdef - Mcms')
 		app.routes_msg(mut ctx)
-	}
-	$if pay ? {
+	} $else $if pay ? {
 		log.warn('routes_ifdef - Pay')
 		app.routes_pay(mut ctx)
-	}
-	$if tenant ? {
+	} $else $if tenant ? {
 		log.warn('routes_ifdef - Tenant')
 		app.routes_tenant(mut ctx)
-	}
-	$if platform ? {
+	} $else $if platform ? {
 		log.warn('routes_ifdef - Sys')
 		app.routes_platform(mut ctx)
 	} $else {

@@ -67,6 +67,8 @@ fn create_email_log_repo(mut ctx Context, req CreateEmailLogReq) !CreateEmailLog
 		content:     req.content
 		send_status: req.send_status
 		provider:    req.provider
+		creator_id:  ctx.svc_iam.user_id
+		updater_id:  ctx.svc_iam.user_id
 		created_at:  time_now
 		updated_at:  time_now
 	}

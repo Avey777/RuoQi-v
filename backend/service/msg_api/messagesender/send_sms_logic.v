@@ -86,6 +86,6 @@ fn send_sms_repo(mut ctx Context, req SendSmsReq) !SendSmsResp {
 	} or { return error('Failed to create sms send log: ${err}') }
 
 	return SendSmsResp{
-		msg: 'SMS sent successfully to ${req.phone_number}'
+		msg: 'SMS queued successfully to ${req.phone_number}'
 	}
 }

@@ -80,6 +80,7 @@ fn update_pay_order_repo(mut ctx Context, req UpdatePayOrderReq) !UpdatePayOrder
 		if success_time := req.success_time { success_time == success_time },
 		if notify_time := req.notify_time { notify_time == notify_time },
 		if status := req.status { status == status },
+		updater_id == ctx.svc_iam.user_id,
 		updated_at == time.now()
 	}
 

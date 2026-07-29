@@ -67,6 +67,8 @@ fn create_sms_provider_repo(mut ctx Context, req CreateSmsProviderReq) !CreateSm
 		secret_key: req.secret_key
 		region:     req.region
 		is_default: req.is_default
+		creator_id: ctx.svc_iam.user_id
+		updater_id: ctx.svc_iam.user_id
 		created_at: time_now
 		updated_at: time_now
 	}

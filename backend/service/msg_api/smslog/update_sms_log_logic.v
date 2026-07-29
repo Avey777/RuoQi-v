@@ -60,6 +60,7 @@ fn update_sms_log_repo(mut ctx Context, req UpdateSmsLogReq) !UpdateSmsLogResp {
 		if content := req.content { content == content },
 		if send_status := req.send_status { send_status == send_status },
 		if provider := req.provider { provider == provider },
+		updater_id == ctx.svc_iam.user_id,
 		updated_at == time.now()
 	}
 

@@ -55,6 +55,6 @@ fn delete_pay_refund_repo(mut ctx Context, ids []string) !DeletePayRefundResp {
 	} or { return error('Failed to delete pay refund: ${err}') }
 
 	return DeletePayRefundResp{
-		msg: '${ids} PayRefund(s) deleted successfully'
+		msg: '${ids.len} PayRefund(s) deleted successfully'
 	}
 }

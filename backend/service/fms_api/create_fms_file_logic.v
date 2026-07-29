@@ -47,7 +47,6 @@ pub struct CreateFmsFileReq {
 	file_type u8     @[json: 'fileType']
 	size      u64    @[json: 'size']
 	path      string @[json: 'path']
-	user_id   string @[json: 'userId']
 	md5       string @[json: 'md5']
 	status    u8     @[json: 'status']
 }
@@ -65,9 +64,11 @@ fn create_fms_file_repo(mut ctx Context, req CreateFmsFileReq) !CreateFmsFileRes
 		file_type:  req.file_type
 		size:       req.size
 		path:       req.path
-		user_id:    req.user_id
+		user_id:    ctx.svc_iam.user_id
 		md5:        req.md5
 		status:     req.status
+		creator_id: ctx.svc_iam.user_id
+		updater_id: ctx.svc_iam.user_id
 		created_at: time_now
 		updated_at: time_now
 	}

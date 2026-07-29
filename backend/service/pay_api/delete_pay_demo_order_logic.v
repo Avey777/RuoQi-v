@@ -55,6 +55,6 @@ fn delete_pay_demo_order_repo(mut ctx Context, ids []string) !DeletePayDemoOrder
 	} or { return error('Failed to delete demo order: ${err}') }
 
 	return DeletePayDemoOrderResp{
-		msg: '${ids} PayDemoOrder(s) deleted successfully'
+		msg: '${ids.len} PayDemoOrder(s) deleted successfully'
 	}
 }

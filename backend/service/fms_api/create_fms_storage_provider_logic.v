@@ -64,6 +64,8 @@ fn create_fms_storage_provider_repo(mut ctx Context, req CreateFmsStorageProvide
 		use_cdn:    req.use_cdn
 		cdn_url:    req.cdn_url
 		status:     req.status
+		creator_id: ctx.svc_iam.user_id
+		updater_id: ctx.svc_iam.user_id
 		created_at: time_now
 		updated_at: time_now
 	}

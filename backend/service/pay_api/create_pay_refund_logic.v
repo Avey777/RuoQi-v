@@ -77,6 +77,8 @@ fn create_pay_refund_repo(mut ctx Context, req CreatePayRefundReq) !CreatePayRef
 		user_ip:            req.user_ip
 		channel_order_no:   req.channel_order_no
 		status:             1
+		creator_id:         ctx.svc_iam.user_id
+		updater_id:         ctx.svc_iam.user_id
 		created_at:         time_now
 		updated_at:         time_now
 	}

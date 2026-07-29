@@ -62,7 +62,8 @@ fn update_config_repo(mut ctx Context, req UpdateConfigReq) !UpdateConfigResp {
 
 	if existing.len > 0 {
 		sql db {
-			update TnConfig set value = req.value, updated_at = time.now() where id == existing[0].id
+			update TnConfig set value = req.value, updater_id = ctx.svc_iam.user_id, updated_at = time.now()
+			where id == existing[0].id
 		}!
 	} else {
 		config := TnConfig{
@@ -74,6 +75,8 @@ fn update_config_repo(mut ctx Context, req UpdateConfigReq) !UpdateConfigResp {
 			category:    req.category
 			description: req.description
 			status:      0
+			creator_id:  ctx.svc_iam.user_id
+			updater_id:  ctx.svc_iam.user_id
 			created_at:  time.now()
 			updated_at:  time.now()
 		}

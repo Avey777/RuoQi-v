@@ -21,4 +21,4 @@ workspace_portal_api → 选择工作区 → 看到租户订阅了 TMS → 跳�
 | `tms_driver_portal_api` | 司机 |
 | `tms_enterprise_portal_api` | 运输企业 |
 | `tms_station_portal_api` | 场站操作人员 |
-| `tms_tenant_portal_api` | 租户在 TMS 域内的配置 |
+| `tms_admin_portal_api` | 租户在 TMS 域内的配置 |

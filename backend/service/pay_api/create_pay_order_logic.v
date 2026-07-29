@@ -72,6 +72,8 @@ fn create_pay_order_repo(mut ctx Context, req CreatePayOrderReq) !CreatePayOrder
 		expire_time:       req.expire_time
 		refund_price:      0
 		status:            req.status
+		creator_id:        ctx.svc_iam.user_id
+		updater_id:        ctx.svc_iam.user_id
 		created_at:        time_now
 		updated_at:        time_now
 	}

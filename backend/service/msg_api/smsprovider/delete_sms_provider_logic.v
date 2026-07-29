@@ -55,6 +55,6 @@ fn delete_sms_provider_repo(mut ctx Context, ids []string) !DeleteSmsProviderRes
 	} or { return error('Failed to delete sms provider: ${err}') }
 
 	return DeleteSmsProviderResp{
-		msg: '${ids} SmsProvider(s) deleted successfully'
+		msg: '${ids.len} SmsProvider(s) deleted successfully'
 	}
 }

@@ -64,6 +64,7 @@ fn update_task_repo(mut ctx Context, req UpdateTaskReq) !UpdateTaskResp {
 		if pattern := req.pattern { pattern == pattern },
 		if payload := req.payload { payload == payload },
 		if status := req.status { status == status },
+		updater_id == ctx.svc_iam.user_id,
 		updated_at == time.now()
 	}
 

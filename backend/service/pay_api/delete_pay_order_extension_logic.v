@@ -55,6 +55,6 @@ fn delete_pay_order_extension_repo(mut ctx Context, ids []string) !DeletePayOrde
 	} or { return error('Failed to delete order extension: ${err}') }
 
 	return DeletePayOrderExtensionResp{
-		msg: '${ids} PayOrderExtension(s) deleted successfully'
+		msg: '${ids.len} PayOrderExtension(s) deleted successfully'
 	}
 }

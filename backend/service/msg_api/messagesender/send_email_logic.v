@@ -88,6 +88,6 @@ fn send_email_repo(mut ctx Context, req SendEmailReq) !SendEmailResp {
 	} or { return error('Failed to create email send log: ${err}') }
 
 	return SendEmailResp{
-		msg: 'Email sent successfully to ${req.target}'
+		msg: 'Email queued successfully to ${req.target}'
 	}
 }

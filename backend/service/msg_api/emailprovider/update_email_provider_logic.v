@@ -72,6 +72,7 @@ fn update_email_provider_repo(mut ctx Context, req UpdateEmailProviderReq) !Upda
 		if port := req.port { port == port },
 		if tls := req.tls { tls == tls },
 		if is_default := req.is_default { is_default == is_default },
+		updater_id == ctx.svc_iam.user_id,
 		updated_at == time.now()
 	}
 

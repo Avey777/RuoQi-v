@@ -38,7 +38,6 @@ pub struct FmsStorageProviderData {
 	id         string  @[json: 'id']
 	name       string  @[json: 'name']
 	bucket     string  @[json: 'bucket']
-	secret_id  string  @[json: 'secretId']
 	endpoint   string  @[json: 'endpoint']
 	folder     ?string @[json: 'folder']
 	region     string  @[json: 'region']
@@ -78,7 +77,6 @@ fn find_fms_storage_provider_all_repo(mut ctx Context, req FmsStorageProviderLis
 			id:         row.id
 			name:       row.name
 			bucket:     row.bucket
-			secret_id:  row.secret_id
 			endpoint:   row.endpoint
 			folder:     row.folder
 			region:     row.region

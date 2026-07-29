@@ -55,6 +55,6 @@ fn delete_email_provider_repo(mut ctx Context, ids []string) !DeleteEmailProvide
 	} or { return error('Failed to delete email provider: ${err}') }
 
 	return DeleteEmailProviderResp{
-		msg: '${ids} EmailProvider(s) deleted successfully'
+		msg: '${ids.len} EmailProvider(s) deleted successfully'
 	}
 }

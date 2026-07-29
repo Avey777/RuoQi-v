@@ -62,6 +62,7 @@ fn update_sms_provider_repo(mut ctx Context, req UpdateSmsProviderReq) !UpdateSm
 		if secret_key := req.secret_key { secret_key == secret_key },
 		if region := req.region { region == region },
 		if is_default := req.is_default { is_default == is_default },
+		updater_id == ctx.svc_iam.user_id,
 		updated_at == time.now()
 	}
 

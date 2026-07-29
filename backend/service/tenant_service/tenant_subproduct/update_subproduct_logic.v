@@ -6,6 +6,7 @@ import json2 as json
 import model { Context }
 import model.schema_tenant { TnSubProduct }
 import common.api as capi
+import time
 
 // ═══ Handler ═══
 @['/update_subproduct'; post]
@@ -49,7 +50,9 @@ fn update_subproduct_repo(mut ctx Context, req UpdateSubProductReq) !UpdateSubPr
 
 	up_expr := {
 		if plan_id := req.plan_id { plan_id == plan_id },
-		if status := req.status { status == status }
+		if status := req.status { status == status },
+		updater_id == ctx.svc_iam.user_id,
+		updated_at == time.now()
 	}
 	sql db {
 		dynamic update TnSubProduct set up_expr where id == req.id

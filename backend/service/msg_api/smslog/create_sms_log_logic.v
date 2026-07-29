@@ -62,6 +62,8 @@ fn create_sms_log_repo(mut ctx Context, req CreateSmsLogReq) !CreateSmsLogResp {
 		content:      req.content
 		send_status:  req.send_status
 		provider:     req.provider
+		creator_id:   ctx.svc_iam.user_id
+		updater_id:   ctx.svc_iam.user_id
 		created_at:   time_now
 		updated_at:   time_now
 	}

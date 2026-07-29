@@ -55,6 +55,6 @@ fn delete_pay_order_repo(mut ctx Context, ids []string) !DeletePayOrderResp {
 	} or { return error('Failed to delete pay order: ${err}') }
 
 	return DeletePayOrderResp{
-		msg: '${ids} PayOrder(s) deleted successfully'
+		msg: '${ids.len} PayOrder(s) deleted successfully'
 	}
 }

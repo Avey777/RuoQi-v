@@ -64,6 +64,8 @@ fn invite_member_repo(mut ctx Context, req InviteMemberReq) !InviteMemberResp {
 		user_id:    req.user_id
 		status:     0
 		joined_at:  time.now()
+		creator_id: ctx.svc_iam.user_id
+		updater_id: ctx.svc_iam.user_id
 		created_at: time.now()
 		updated_at: time.now()
 	}

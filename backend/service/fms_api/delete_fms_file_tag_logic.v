@@ -55,6 +55,6 @@ fn delete_fms_file_tag_repo(mut ctx Context, ids []string) !DeleteFmsFileTagResp
 	} or { return error('Failed to delete file tag: ${err}') }
 
 	return DeleteFmsFileTagResp{
-		msg: '${ids} FmsFileTag(s) deleted successfully'
+		msg: '${ids.len} FmsFileTag(s) deleted successfully'
 	}
 }

@@ -55,6 +55,6 @@ fn delete_task_log_repo(mut ctx Context, ids []string) !DeleteTaskLogResp {
 	} or { return error('Failed to delete task log: ${err}') }
 
 	return DeleteTaskLogResp{
-		msg: '${ids} TaskLog(s) deleted successfully'
+		msg: '${ids.len} TaskLog(s) deleted successfully'
 	}
 }

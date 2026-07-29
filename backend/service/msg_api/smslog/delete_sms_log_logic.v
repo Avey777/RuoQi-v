@@ -55,6 +55,6 @@ fn delete_sms_log_repo(mut ctx Context, ids []string) !DeleteSmsLogResp {
 	} or { return error('Failed to delete sms log: ${err}') }
 
 	return DeleteSmsLogResp{
-		msg: '${ids} SmsLog(s) deleted successfully'
+		msg: '${ids.len} SmsLog(s) deleted successfully'
 	}
 }

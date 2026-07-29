@@ -18,4 +18,4 @@ workspace_portal_api → 选择工作区 → 看到租户订阅了 WMS → 跳�
 | 门户 | 用户 |
 |---|---|
 | `wms_owner_portal_api` | 货主 |
-| `wms_tenant_portal_api` | 租户在 WMS 域内的配置 |
+| `wms_admin_portal_api` | 租户在 WMS 域内的配置 |

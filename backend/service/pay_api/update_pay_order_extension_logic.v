@@ -66,6 +66,7 @@ fn update_pay_order_extension_repo(mut ctx Context, req UpdatePayOrderExtensionR
 			channel_notify_data == channel_notify_data
 		},
 		if status := req.status { status == status },
+		updater_id == ctx.svc_iam.user_id,
 		updated_at == time.now()
 	}
 

@@ -68,6 +68,7 @@ fn update_pay_demo_order_repo(mut ctx Context, req UpdatePayDemoOrderReq) !Updat
 		if pay_refund_id := req.pay_refund_id { pay_refund_id == pay_refund_id },
 		if refund_price := req.refund_price { refund_price == refund_price },
 		if refund_time := req.refund_time { refund_time == refund_time },
+		updater_id == ctx.svc_iam.user_id,
 		updated_at == time.now()
 	}
 

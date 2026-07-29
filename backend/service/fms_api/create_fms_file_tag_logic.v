@@ -57,6 +57,8 @@ fn create_fms_file_tag_repo(mut ctx Context, req CreateFmsFileTagReq) !CreateFms
 		name:       req.name
 		remark:     req.remark
 		status:     req.status
+		creator_id: ctx.svc_iam.user_id
+		updater_id: ctx.svc_iam.user_id
 		created_at: time_now
 		updated_at: time_now
 	}

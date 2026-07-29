@@ -58,6 +58,8 @@ fn create_subproduct_repo(mut ctx Context, req CreateSubProductReq) !CreateSubPr
 		product_id: req.product_id
 		plan_id:    req.plan_id
 		status:     1
+		creator_id: ctx.svc_iam.user_id
+		updater_id: ctx.svc_iam.user_id
 		created_at: time.now()
 		updated_at: time.now()
 	}

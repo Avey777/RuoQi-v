@@ -62,6 +62,7 @@ fn update_email_log_repo(mut ctx Context, req UpdateEmailLogReq) !UpdateEmailLog
 		if content := req.content { content == content },
 		if send_status := req.send_status { send_status == send_status },
 		if provider := req.provider { provider == provider },
+		updater_id == ctx.svc_iam.user_id,
 		updated_at == time.now()
 	}
 

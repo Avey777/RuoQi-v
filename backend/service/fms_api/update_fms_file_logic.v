@@ -64,6 +64,7 @@ fn update_fms_file_repo(mut ctx Context, req UpdateFmsFileReq) !UpdateFmsFileRes
 		if path := req.path { path == path },
 		if md5 := req.md5 { md5 == md5 },
 		if status := req.status { status == status },
+		updater_id == ctx.svc_iam.user_id,
 		updated_at == time.now()
 	}
 

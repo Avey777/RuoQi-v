@@ -63,6 +63,7 @@ fn update_fms_storage_provider_repo(mut ctx Context, req UpdateFmsStorageProvide
 		if use_cdn := req.use_cdn { use_cdn == use_cdn },
 		if cdn_url := req.cdn_url { cdn_url == cdn_url },
 		if status := req.status { status == status },
+		updater_id == ctx.svc_iam.user_id,
 		updated_at == time.now()
 	}
 	sql db {

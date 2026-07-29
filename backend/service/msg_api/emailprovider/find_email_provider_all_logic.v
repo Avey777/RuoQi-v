@@ -48,7 +48,6 @@ pub struct EmailProviderData {
 	auth_type  u8      @[json: 'authType']
 	email_addr string  @[json: 'emailAddr']
 	host_name  string  @[json: 'hostName']
-	identify   ?string @[json: 'identify']
 	port       ?u32    @[json: 'port']
 	tls        u8      @[json: 'tls']
 	is_default u8      @[json: 'isDefault']
@@ -94,7 +93,6 @@ fn find_email_provider_all_repo(mut ctx Context, req EmailProviderListReq) !Emai
 			auth_type:  row.auth_type
 			email_addr: row.email_addr
 			host_name:  row.host_name
-			identify:   row.identify
 			port:       row.port
 			tls:        row.tls
 			is_default: row.is_default

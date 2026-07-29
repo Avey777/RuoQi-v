@@ -43,6 +43,6 @@ fn delete_fms_storage_provider_repo(mut ctx Context, ids []string) !DeleteFmsSto
 		delete from FmsStorageProvider where id in ids
 	} or { return error('Failed: ${err}') }
 	return DeleteFmsStorageProviderResp{
-		msg: '${ids} FmsStorageProvider(s) deleted successfully'
+		msg: '${ids.len} FmsStorageProvider(s) deleted successfully'
 	}
 }

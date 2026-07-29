@@ -55,6 +55,6 @@ fn delete_fms_cloud_file_repo(mut ctx Context, ids []string) !DeleteFmsCloudFile
 	} or { return error('Failed to delete cloud file: ${err}') }
 
 	return DeleteFmsCloudFileResp{
-		msg: '${ids} FmsCloudFile(s) deleted successfully'
+		msg: '${ids.len} FmsCloudFile(s) deleted successfully'
 	}
 }

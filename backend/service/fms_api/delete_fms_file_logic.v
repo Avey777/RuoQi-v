@@ -55,6 +55,6 @@ fn delete_fms_file_repo(mut ctx Context, ids []string) !DeleteFmsFileResp {
 	} or { return error('Failed to delete file: ${err}') }
 
 	return DeleteFmsFileResp{
-		msg: '${ids} FmsFile(s) deleted successfully'
+		msg: '${ids.len} FmsFile(s) deleted successfully'
 	}
 }

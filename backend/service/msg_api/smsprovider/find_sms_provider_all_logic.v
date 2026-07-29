@@ -44,7 +44,6 @@ pub struct SmsProviderListReq {
 pub struct SmsProviderData {
 	id         string  @[json: 'id']
 	name       string  @[json: 'name']
-	secret_id  string  @[json: 'secretId']
 	region     string  @[json: 'region']
 	is_default u8      @[json: 'isDefault']
 	updater_id ?string @[json: 'updaterId']
@@ -85,7 +84,6 @@ fn find_sms_provider_all_repo(mut ctx Context, req SmsProviderListReq) !SmsProvi
 		datalist << SmsProviderData{
 			id:         row.id
 			name:       row.name
-			secret_id:  row.secret_id
 			region:     row.region
 			is_default: row.is_default
 			creator_id: row.creator_id

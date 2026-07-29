@@ -55,6 +55,6 @@ fn delete_task_repo(mut ctx Context, ids []string) !DeleteTaskResp {
 	} or { return error('Failed to delete task: ${err}') }
 
 	return DeleteTaskResp{
-		msg: '${ids} Task(s) deleted successfully'
+		msg: '${ids.len} Task(s) deleted successfully'
 	}
 }

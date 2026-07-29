@@ -43,6 +43,6 @@ fn delete_fms_cloud_file_tag_repo(mut ctx Context, ids []string) !DeleteFmsCloud
 		delete from FmsCloudFileTag where id in ids
 	} or { return error('Failed: ${err}') }
 	return DeleteFmsCloudFileTagResp{
-		msg: '${ids} FmsCloudFileTag(s) deleted successfully'
+		msg: '${ids.len} FmsCloudFileTag(s) deleted successfully'
 	}
 }

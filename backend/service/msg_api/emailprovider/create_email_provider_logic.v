@@ -77,6 +77,8 @@ fn create_email_provider_repo(mut ctx Context, req CreateEmailProviderReq) !Crea
 		port:       req.port
 		tls:        req.tls
 		is_default: req.is_default
+		creator_id: ctx.svc_iam.user_id
+		updater_id: ctx.svc_iam.user_id
 		created_at: time_now
 		updated_at: time_now
 	}
