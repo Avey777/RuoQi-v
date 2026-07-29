@@ -1,64 +1,103 @@
 module smsprovider
 
-// import (
-// 	"context"
+import veb
+import log
+import time
+import model.schema_msg { MsgSmsProvider }
+import common.api
+import model { Context }
+import json2 as json
 
-// 	"github.com/suyuan32/simple-admin-common/i18n"
-// 	"github.com/zeromicro/go-zero/core/errorx"
+// ═══ Handler ═══
+@['/all'; get]
+pub fn (app &SmsProvider) find_sms_provider_all_handler(mut ctx Context) veb.Result {
+	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 
-// 	"github.com/suyuan32/simple-admin-message-center/types/mcms"
+	req := json.decode[SmsProviderListReq](ctx.req.data) or {
+		return ctx.json(api.json_error_400(err.msg()))
+	}
 
-// 	"github.com/suyuan32/simple-admin-core/api/internal/svc"
-// 	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	result := find_sms_provider_all_usecase(mut ctx, req) or {
+		return ctx.json(api.json_error_500('Internal Server Error: ${err}'))
+	}
 
-// 	"github.com/zeromicro/go-zero/core/logx"
-// )
+	return ctx.json(api.json_success_200(result))
+}
 
-// type GetSmsProviderListLogic struct {
-// 	logx.Logger
-// 	ctx    context.Context
-// 	svcCtx *svc.ServiceContext
-// }
+// ═══ Use Case ═══
+pub fn find_sms_provider_all_usecase(mut ctx Context, req SmsProviderListReq) !SmsProviderListResp {
+	find_sms_provider_all_domain()
+	return find_sms_provider_all_repo(mut ctx, req)
+}
 
-// func NewGetSmsProviderListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetSmsProviderListLogic {
-// 	return &GetSmsProviderListLogic{
-// 		Logger: logx.WithContext(ctx),
-// 		ctx:    ctx,
-// 		svcCtx: svcCtx,
-// 	}
-// }
+// ═══ Domain ═══
+fn find_sms_provider_all_domain() {
+}
 
-// func (l *GetSmsProviderListLogic) GetSmsProviderList(req *types.SmsProviderListReq) (resp *types.SmsProviderListResp, err error) {
-// 	if !l.svcCtx.Config.McmsRpc.Enabled {
-// 		return nil, errorx.NewCodeUnavailableError(i18n.ServiceUnavailable)
-// 	}
-// 	data, err := l.svcCtx.McmsRpc.GetSmsProviderList(l.ctx,
-// 		&mcms.SmsProviderListReq{
-// 			Page:     req.Page,
-// 			PageSize: req.PageSize,
-// 			Name:     req.Name,
-// 		})
-// 	if err != nil {
-// 		return nil, err
-// 	}
-// 	resp = &types.SmsProviderListResp{}
-// 	resp.Msg = l.svcCtx.Trans.Trans(l.ctx, i18n.Success)
-// 	resp.Data.Total = data.GetTotal()
+// ═══ DTO ═══
+pub struct SmsProviderListReq {
+	page      int    @[json: 'page']
+	page_size int    @[json: 'pageSize']
+	name      string @[json: 'name']
+}
 
-// 	for _, v := range data.Data {
-// 		resp.Data.Data = append(resp.Data.Data,
-// 			types.SmsProviderInfo{
-// 				BaseIDInfo: types.BaseIDInfo{
-// 					Id:        v.Id,
-// 					CreatedAt: v.CreatedAt,
-// 					UpdatedAt: v.UpdatedAt,
-// 				},
-// 				Name:      v.Name,
-// 				SecretId:  v.SecretId,
-// 				SecretKey: v.SecretKey,
-// 				Region:    v.Region,
-// 				IsDefault: v.IsDefault,
-// 			})
-// 	}
-// 	return resp, nil
-// }
+pub struct SmsProviderData {
+	id         string  @[json: 'id']
+	name       string  @[json: 'name']
+	secret_id  string  @[json: 'secretId']
+	region     string  @[json: 'region']
+	is_default u8      @[json: 'isDefault']
+	updater_id ?string @[json: 'updaterId']
+	creator_id ?string @[json: 'creatorId']
+	created_at string  @[json: 'createdAt']
+	updated_at string  @[json: 'updatedAt']
+	deleted_at string  @[json: 'deletedAt']
+}
+
+pub struct SmsProviderListResp {
+	total int
+	data  []SmsProviderData
+}
+
+// ═══ Repository ═══
+fn find_sms_provider_all_repo(mut ctx Context, req SmsProviderListReq) !SmsProviderListResp {
+	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
+	defer {
+		ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') }
+	}
+
+	mut count := sql db {
+		select count from MsgSmsProvider
+	} or { return error('Failed to execute SQL query: ${err}') }
+
+	offset_num := (req.page - 1) * req.page_size
+	// vfmt off
+	where_expr := {
+		if req.name != '' {name == req.name}
+	}
+	// vfmt on
+	result := sql db {
+		dynamic select from MsgSmsProvider where where_expr limit req.page_size offset offset_num
+	} or { return error('Failed to execute SQL query: ${err}') }
+
+	mut datalist := []SmsProviderData{}
+	for row in result {
+		datalist << SmsProviderData{
+			id:         row.id
+			name:       row.name
+			secret_id:  row.secret_id
+			region:     row.region
+			is_default: row.is_default
+			creator_id: row.creator_id
+			updater_id: row.updater_id
+			created_at: row.created_at.format_ss()
+			updated_at: row.updated_at.format_ss()
+			deleted_at: (row.deleted_at or { time.Time{} }).format_ss()
+		}
+	}
+
+	return SmsProviderListResp{
+		total: count
+		data:  datalist
+	}
+}

@@ -1,57 +1,58 @@
 module smslog
 
-// import (
-// 	"context"
+import veb
+import log
+import json2 as json
+import model.schema_msg { MsgSmsLog }
+import common.api
+import model { Context }
 
-// 	"github.com/suyuan32/simple-admin-common/i18n"
-// 	"github.com/zeromicro/go-zero/core/errorx"
+// ═══ Handler ═══
+@['/find_sms_log_by_id'; post]
+pub fn (app &SmsLog) find_sms_log_by_id_handler(mut ctx Context) veb.Result {
+	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 
-// 	"github.com/suyuan32/simple-admin-message-center/types/mcms"
+	req := json.decode[SmsLogByIdReq](ctx.req.data) or {
+		return ctx.json(api.json_error_400(err.msg()))
+	}
 
-// 	"github.com/suyuan32/simple-admin-core/api/internal/svc"
-// 	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	result := find_sms_log_by_id_usecase(mut ctx, req) or {
+		return ctx.json(api.json_error_500('Internal Server Error: ${err}'))
+	}
 
-// 	"github.com/zeromicro/go-zero/core/logx"
-// )
+	return ctx.json(api.json_success_200(result))
+}
 
-// type GetSmsLogByIdLogic struct {
-// 	logx.Logger
-// 	ctx    context.Context
-// 	svcCtx *svc.ServiceContext
-// }
+// ═══ Use Case ═══
+pub fn find_sms_log_by_id_usecase(mut ctx Context, req SmsLogByIdReq) !MsgSmsLog {
+	find_sms_log_by_id_domain(req)!
+	return find_sms_log_by_id_repo(mut ctx, req)
+}
 
-// func NewGetSmsLogByIdLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetSmsLogByIdLogic {
-// 	return &GetSmsLogByIdLogic{
-// 		Logger: logx.WithContext(ctx),
-// 		ctx:    ctx,
-// 		svcCtx: svcCtx,
-// 	}
-// }
+// ═══ Domain ═══
+fn find_sms_log_by_id_domain(req SmsLogByIdReq) ! {
+	if req.id == '' {
+		return error('sms log id is required')
+	}
+}
 
-// func (l *GetSmsLogByIdLogic) GetSmsLogById(req *types.UUIDReq) (resp *types.SmsLogInfoResp, err error) {
-// 	if !l.svcCtx.Config.McmsRpc.Enabled {
-// 		return nil, errorx.NewCodeUnavailableError(i18n.ServiceUnavailable)
-// 	}
-// 	data, err := l.svcCtx.McmsRpc.GetSmsLogById(l.ctx, &mcms.UUIDReq{Id: req.Id})
-// 	if err != nil {
-// 		return nil, err
-// 	}
+// ═══ DTO ═══
+pub struct SmsLogByIdReq {
+	id string @[json: 'id']
+}
 
-// 	return &types.SmsLogInfoResp{
-// 		BaseDataInfo: types.BaseDataInfo{
-// 			Code: 0,
-// 			Msg:  l.svcCtx.Trans.Trans(l.ctx, i18n.Success),
-// 		},
-// 		Data: types.SmsLogInfo{
-// 			BaseUUIDInfo: types.BaseUUIDInfo{
-// 				Id:        data.Id,
-// 				CreatedAt: data.CreatedAt,
-// 				UpdatedAt: data.UpdatedAt,
-// 			},
-// 			PhoneNumber: data.PhoneNumber,
-// 			Content:     data.Content,
-// 			SendStatus:  data.SendStatus,
-// 			Provider:    data.Provider,
-// 		},
-// 	}, nil
-// }
+// ═══ Repository ═══
+fn find_sms_log_by_id_repo(mut ctx Context, req SmsLogByIdReq) !MsgSmsLog {
+	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
+	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
+
+	sms_logs := sql db {
+		select from MsgSmsLog where id == req.id limit 1
+	} or { return error('Failed: ${err}') }
+
+	if sms_logs.len == 0 {
+		return error('SmsLog not found')
+	}
+
+	return sms_logs[0]
+}

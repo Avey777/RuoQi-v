@@ -2,4 +2,6 @@ module fms_api
 
 import model { App }
 
-type HandlerApp = App
+pub struct Fms {
+	App
+}

@@ -1,0 +1,48 @@
+module fms_api
+
+import veb
+import log
+import json2 as json
+import model.schema_fms { FmsCloudFileTag }
+import common.api
+import model { Context }
+
+@['/cloudtag/delete'; post]
+pub fn (app &Fms) delete_fms_cloud_file_tag_handler(mut ctx Context) veb.Result {
+	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
+	req := json.decode[DeleteFmsCloudFileTagReq](ctx.req.data) or {
+		return ctx.json(api.json_error_400(err.msg()))
+	}
+	result := delete_fms_cloud_file_tag_usecase(mut ctx, req) or {
+		return ctx.json(api.json_error_500('Internal Server Error: ${err}'))
+	}
+	return ctx.json(api.json_success_200(result))
+}
+
+pub fn delete_fms_cloud_file_tag_usecase(mut ctx Context, req DeleteFmsCloudFileTagReq) !DeleteFmsCloudFileTagResp {
+	delete_fms_cloud_file_tag_domain(req)!
+	return delete_fms_cloud_file_tag_repo(mut ctx, req.ids)
+}
+
+fn delete_fms_cloud_file_tag_domain(req DeleteFmsCloudFileTagReq) ! {
+	if req.ids.len == 0 { return error('No FmsCloudFileTag ids provided') }
+}
+
+pub struct DeleteFmsCloudFileTagReq {
+	ids []string @[json: 'ids']
+}
+
+pub struct DeleteFmsCloudFileTagResp {
+	msg string @[json: 'msg']
+}
+
+fn delete_fms_cloud_file_tag_repo(mut ctx Context, ids []string) !DeleteFmsCloudFileTagResp {
+	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
+	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
+	sql db {
+		delete from FmsCloudFileTag where id in ids
+	} or { return error('Failed: ${err}') }
+	return DeleteFmsCloudFileTagResp{
+		msg: '${ids} FmsCloudFileTag(s) deleted successfully'
+	}
+}

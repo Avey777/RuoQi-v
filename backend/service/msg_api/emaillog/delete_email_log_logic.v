@@ -1,43 +1,60 @@
 module emaillog
 
-// import (
-// 	"context"
+import veb
+import log
+import json2 as json
+import model.schema_msg { MsgEmailLog }
+import common.api
+import model { Context }
 
-// 	"github.com/suyuan32/simple-admin-common/i18n"
-// 	"github.com/zeromicro/go-zero/core/errorx"
+// ═══ Handler ═══
+@['/delete'; post]
+pub fn (app &EmailLog) delete_email_log_handler(mut ctx Context) veb.Result {
+	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 
-// 	"github.com/suyuan32/simple-admin-message-center/types/mcms"
+	req := json.decode[DeleteEmailLogReq](ctx.req.data) or {
+		return ctx.json(api.json_error_400(err.msg()))
+	}
 
-// 	"github.com/suyuan32/simple-admin-core/api/internal/svc"
-// 	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	result := delete_email_log_usecase(mut ctx, req) or {
+		return ctx.json(api.json_error_500('Internal Server Error: ${err}'))
+	}
 
-// 	"github.com/zeromicro/go-zero/core/logx"
-// )
+	return ctx.json(api.json_success_200(result))
+}
 
-// type DeleteEmailLogLogic struct {
-// 	logx.Logger
-// 	ctx    context.Context
-// 	svcCtx *svc.ServiceContext
-// }
+// ═══ Use Case ═══
+pub fn delete_email_log_usecase(mut ctx Context, req DeleteEmailLogReq) !DeleteEmailLogResp {
+	delete_email_log_domain(req)!
+	return delete_email_log_repo(mut ctx, req.ids)
+}
 
-// func NewDeleteEmailLogLogic(ctx context.Context, svcCtx *svc.ServiceContext) *DeleteEmailLogLogic {
-// 	return &DeleteEmailLogLogic{
-// 		Logger: logx.WithContext(ctx),
-// 		ctx:    ctx,
-// 		svcCtx: svcCtx,
-// 	}
-// }
+// ═══ Domain ═══
+fn delete_email_log_domain(req DeleteEmailLogReq) ! {
+	if req.ids.len == 0 {
+		return error('No EmailLog ids provided')
+	}
+}
 
-// func (l *DeleteEmailLogLogic) DeleteEmailLog(req *types.UUIDsReq) (resp *types.BaseMsgResp, err error) {
-// 	if !l.svcCtx.Config.McmsRpc.Enabled {
-// 		return nil, errorx.NewCodeUnavailableError(i18n.ServiceUnavailable)
-// 	}
-// 	data, err := l.svcCtx.McmsRpc.DeleteEmailLog(l.ctx, &mcms.UUIDsReq{
-// 		Ids: req.Ids,
-// 	})
-// 	if err != nil {
-// 		return nil, err
-// 	}
+// ═══ DTO ═══
+pub struct DeleteEmailLogReq {
+	ids []string @[json: 'ids']
+}
 
-// 	return &types.BaseMsgResp{Msg: l.svcCtx.Trans.Trans(l.ctx, data.Msg)}, nil
-// }
+pub struct DeleteEmailLogResp {
+	msg string @[json: 'msg']
+}
+
+// ═══ Repository ═══
+fn delete_email_log_repo(mut ctx Context, ids []string) !DeleteEmailLogResp {
+	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
+	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
+
+	sql db {
+		delete from MsgEmailLog where id in ids
+	} or { return error('Failed to delete email log: ${err}') }
+
+	return DeleteEmailLogResp{
+		msg: '${ids} EmailLog(s) deleted successfully'
+	}
+}

@@ -1,60 +1,91 @@
 module messagesender
 
-// import (
-// 	"context"
-// 	"strings"
+import veb
+import log
+import time
+import rand
+import json2 as json
+import model.schema_msg { MsgSmsLog, MsgSmsProvider }
+import common.api
+import model { Context }
 
-// 	"github.com/suyuan32/simple-admin-common/i18n"
-// 	"github.com/suyuan32/simple-admin-message-center/types/mcms"
-// 	"github.com/zeromicro/go-zero/core/errorx"
+// ═══ Handler ═══
+@['/send_sms'; post]
+pub fn (app &MessageSender) send_sms_handler(mut ctx Context) veb.Result {
+	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 
-// 	"github.com/suyuan32/simple-admin-core/api/internal/svc"
-// 	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	req := json.decode[SendSmsReq](ctx.req.data) or {
+		return ctx.json(api.json_error_400(err.msg()))
+	}
 
-// 	"github.com/zeromicro/go-zero/core/logx"
-// )
+	result := send_sms_usecase(mut ctx, req) or {
+		return ctx.json(api.json_error_500('Internal Server Error: ${err}'))
+	}
 
-// type SendSmsLogic struct {
-// 	logx.Logger
-// 	ctx    context.Context
-// 	svcCtx *svc.ServiceContext
-// }
+	return ctx.json(api.json_success_200(result))
+}
 
-// func NewSendSmsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *SendSmsLogic {
-// 	return &SendSmsLogic{
-// 		Logger: logx.WithContext(ctx),
-// 		ctx:    ctx,
-// 		svcCtx: svcCtx}
-// }
+// ═══ Use Case ═══
+pub fn send_sms_usecase(mut ctx Context, req SendSmsReq) !SendSmsResp {
+	send_sms_domain(req)!
+	return send_sms_repo(mut ctx, req)
+}
 
-// func (l *SendSmsLogic) SendSms(req *types.SendSmsReq) (resp *types.BaseMsgResp, err error) {
-// 	if !l.svcCtx.Config.McmsRpc.Enabled {
-// 		return nil, errorx.NewCodeUnavailableError(i18n.ServiceUnavailable)
-// 	}
-// 	var result *mcms.BaseUUIDResp
-// 	if req.TemplateId == nil {
-// 		result, err = l.svcCtx.McmsRpc.SendSms(l.ctx, &mcms.SmsInfo{
-// 			PhoneNumber: []string{req.PhoneNumber},
-// 			Params:      strings.Split(req.Params, ","),
-// 			TemplateId:  &l.svcCtx.Config.ProjectConf.SmsTemplateId,
-// 			AppId:       &l.svcCtx.Config.ProjectConf.SmsAppId,
-// 			SignName:    &l.svcCtx.Config.ProjectConf.SmsSignName,
-// 			Provider:    nil,
-// 		})
-// 	} else {
-// 		result, err = l.svcCtx.McmsRpc.SendSms(l.ctx, &mcms.SmsInfo{
-// 			PhoneNumber: []string{req.PhoneNumber},
-// 			Params:      strings.Split(req.Params, ","),
-// 			TemplateId:  req.TemplateId,
-// 			AppId:       req.AppId,
-// 			SignName:    req.SignName,
-// 			Provider:    req.Provider,
-// 		})
-// 	}
+// ═══ Domain ═══
+fn send_sms_domain(req SendSmsReq) ! {
+	if req.phone_number == '' {
+		return error('phone number is required')
+	}
+	if req.content == '' {
+		return error('content is required')
+	}
+	if req.provider == '' {
+		return error('provider name is required')
+	}
+}
 
-// 	if err != nil {
-// 		return nil, err
-// 	}
+// ═══ DTO ═══
+pub struct SendSmsReq {
+	phone_number string @[json: 'phoneNumber']
+	content      string @[json: 'content']
+	provider     string @[json: 'provider']
+}
 
-// 	return &types.BaseMsgResp{Msg: l.svcCtx.Trans.Trans(l.ctx, result.Msg)}, nil
-// }
+pub struct SendSmsResp {
+	msg string @[json: 'msg']
+}
+
+// ═══ Repository ═══
+fn send_sms_repo(mut ctx Context, req SendSmsReq) !SendSmsResp {
+	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
+	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
+
+	// Look up the provider to verify it exists
+	providers := sql db {
+		select from MsgSmsProvider where name == req.provider limit 1
+	} or { return error('Failed to lookup provider: ${err}') }
+
+	if providers.len == 0 {
+		return error('SmsProvider "${req.provider}" not found')
+	}
+
+	// Insert send log with pending status (0 = unknown/pending)
+	time_now := time.now()
+	sms_log := MsgSmsLog{
+		id:           rand.uuid_v7()
+		phone_number: req.phone_number
+		content:      req.content
+		send_status:  0
+		provider:     req.provider
+		created_at:   time_now
+		updated_at:   time_now
+	}
+
+	sql db {
+		insert sms_log into MsgSmsLog
+	} or { return error('Failed to create sms send log: ${err}') }
+
+	return SendSmsResp{
+		msg: 'SMS sent successfully to ${req.phone_number}'
+	}
+}

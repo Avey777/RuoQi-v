@@ -1,0 +1,77 @@
+module fms_api
+
+import veb
+import log
+import time
+import json2 as json
+import model.schema_fms { FmsFile }
+import common.api
+import model { Context }
+
+// ═══ Handler ═══
+@['/file/update'; post]
+pub fn (app &Fms) update_fms_file_handler(mut ctx Context) veb.Result {
+	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
+
+	req := json.decode[UpdateFmsFileReq](ctx.req.data) or {
+		return ctx.json(api.json_error_400(err.msg()))
+	}
+
+	result := update_fms_file_usecase(mut ctx, req) or {
+		return ctx.json(api.json_error_500('Internal Server Error: ${err}'))
+	}
+
+	return ctx.json(api.json_success_200(result))
+}
+
+// ═══ Use Case ═══
+pub fn update_fms_file_usecase(mut ctx Context, req UpdateFmsFileReq) !UpdateFmsFileResp {
+	update_fms_file_domain(req)!
+	return update_fms_file_repo(mut ctx, req)
+}
+
+// ═══ Domain ═══
+fn update_fms_file_domain(req UpdateFmsFileReq) ! {
+	if req.id == '' {
+		return error('file id is required')
+	}
+}
+
+// ═══ DTO ═══
+pub struct UpdateFmsFileReq {
+	id        string  @[json: 'id']
+	name      ?string @[json: 'name']
+	file_type ?u8     @[json: 'fileType']
+	size      ?u64    @[json: 'size']
+	path      ?string @[json: 'path']
+	md5       ?string @[json: 'md5']
+	status    ?u8     @[json: 'status']
+}
+
+pub struct UpdateFmsFileResp {
+	msg string @[json: 'msg']
+}
+
+// ═══ Repository ═══
+fn update_fms_file_repo(mut ctx Context, req UpdateFmsFileReq) !UpdateFmsFileResp {
+	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
+	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
+
+	up_expr := {
+		if name := req.name { name == name },
+		if file_type := req.file_type { file_type == file_type },
+		if size := req.size { size == size },
+		if path := req.path { path == path },
+		if md5 := req.md5 { md5 == md5 },
+		if status := req.status { status == status },
+		updated_at == time.now()
+	}
+
+	sql db {
+		dynamic update FmsFile set up_expr where id == req.id
+	} or { return error('Failed to execute SQL query: ${err}') }
+
+	return UpdateFmsFileResp{
+		msg: 'FmsFile updated successfully'
+	}
+}

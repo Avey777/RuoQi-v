@@ -1,48 +1,75 @@
 module smsprovider
 
-// import (
-// 	"context"
+import veb
+import log
+import time
+import json2 as json
+import model.schema_msg { MsgSmsProvider }
+import common.api
+import model { Context }
 
-// 	"github.com/suyuan32/simple-admin-common/i18n"
-// 	"github.com/zeromicro/go-zero/core/errorx"
+// ═══ Handler ═══
+@['/update'; post]
+pub fn (app &SmsProvider) update_sms_provider_handler(mut ctx Context) veb.Result {
+	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 
-// 	"github.com/suyuan32/simple-admin-message-center/types/mcms"
+	req := json.decode[UpdateSmsProviderReq](ctx.req.data) or {
+		return ctx.json(api.json_error_400(err.msg()))
+	}
 
-// 	"github.com/suyuan32/simple-admin-core/api/internal/svc"
-// 	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	result := update_sms_provider_usecase(mut ctx, req) or {
+		return ctx.json(api.json_error_500('Internal Server Error: ${err}'))
+	}
 
-// 	"github.com/zeromicro/go-zero/core/logx"
-// )
+	return ctx.json(api.json_success_200(result))
+}
 
-// type UpdateSmsProviderLogic struct {
-// 	logx.Logger
-// 	ctx    context.Context
-// 	svcCtx *svc.ServiceContext
-// }
+// ═══ Use Case ═══
+pub fn update_sms_provider_usecase(mut ctx Context, req UpdateSmsProviderReq) !UpdateSmsProviderResp {
+	update_sms_provider_domain(req)!
+	return update_sms_provider_repo(mut ctx, req)
+}
 
-// func NewUpdateSmsProviderLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UpdateSmsProviderLogic {
-// 	return &UpdateSmsProviderLogic{
-// 		Logger: logx.WithContext(ctx),
-// 		ctx:    ctx,
-// 		svcCtx: svcCtx,
-// 	}
-// }
+// ═══ Domain ═══
+fn update_sms_provider_domain(req UpdateSmsProviderReq) ! {
+	if req.id == '' {
+		return error('sms provider id is required')
+	}
+}
 
-// func (l *UpdateSmsProviderLogic) UpdateSmsProvider(req *types.SmsProviderInfo) (resp *types.BaseMsgResp, err error) {
-// 	if !l.svcCtx.Config.McmsRpc.Enabled {
-// 		return nil, errorx.NewCodeUnavailableError(i18n.ServiceUnavailable)
-// 	}
-// 	data, err := l.svcCtx.McmsRpc.UpdateSmsProvider(l.ctx,
-// 		&mcms.SmsProviderInfo{
-// 			Id:        req.Id,
-// 			Name:      req.Name,
-// 			SecretId:  req.SecretId,
-// 			SecretKey: req.SecretKey,
-// 			Region:    req.Region,
-// 			IsDefault: req.IsDefault,
-// 		})
-// 	if err != nil {
-// 		return nil, err
-// 	}
-// 	return &types.BaseMsgResp{Msg: l.svcCtx.Trans.Trans(l.ctx, data.Msg)}, nil
-// }
+// ═══ DTO ═══
+pub struct UpdateSmsProviderReq {
+	id         string  @[json: 'id']
+	name       ?string @[json: 'name']
+	secret_id  ?string @[json: 'secretId']
+	secret_key ?string @[json: 'secretKey']
+	region     ?string @[json: 'region']
+	is_default ?u8     @[json: 'isDefault']
+}
+
+pub struct UpdateSmsProviderResp {
+	msg string @[json: 'msg']
+}
+
+// ═══ Repository ═══
+fn update_sms_provider_repo(mut ctx Context, req UpdateSmsProviderReq) !UpdateSmsProviderResp {
+	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
+	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
+
+	up_expr := {
+		if name := req.name { name == name },
+		if secret_id := req.secret_id { secret_id == secret_id },
+		if secret_key := req.secret_key { secret_key == secret_key },
+		if region := req.region { region == region },
+		if is_default := req.is_default { is_default == is_default },
+		updated_at == time.now()
+	}
+
+	sql db {
+		dynamic update MsgSmsProvider set up_expr where id == req.id
+	} or { return error('Failed to execute SQL query: ${err}') }
+
+	return UpdateSmsProviderResp{
+		msg: 'SmsProvider updated successfully'
+	}
+}

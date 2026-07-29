@@ -1,47 +1,86 @@
 module emaillog
 
-// import (
-// 	"context"
+import veb
+import log
+import time
+import rand
+import json2 as json
+import model.schema_msg { MsgEmailLog }
+import common.api
+import model { Context }
 
-// 	"github.com/suyuan32/simple-admin-common/i18n"
-// 	"github.com/zeromicro/go-zero/core/errorx"
+// ═══ Handler ═══
+@['/create'; post]
+pub fn (app &EmailLog) create_email_log_handler(mut ctx Context) veb.Result {
+	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 
-// 	"github.com/suyuan32/simple-admin-message-center/types/mcms"
+	req := json.decode[CreateEmailLogReq](ctx.req.data) or {
+		return ctx.json(api.json_error_400(err.msg()))
+	}
 
-// 	"github.com/suyuan32/simple-admin-core/api/internal/svc"
-// 	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	result := create_email_log_usecase(mut ctx, req) or {
+		return ctx.json(api.json_error_500('Internal Server Error: ${err}'))
+	}
 
-// 	"github.com/zeromicro/go-zero/core/logx"
-// )
+	return ctx.json(api.json_success_200(result))
+}
 
-// type CreateEmailLogLogic struct {
-// 	logx.Logger
-// 	ctx    context.Context
-// 	svcCtx *svc.ServiceContext
-// }
+// ═══ Use Case ═══
+pub fn create_email_log_usecase(mut ctx Context, req CreateEmailLogReq) !CreateEmailLogResp {
+	create_email_log_domain(req)!
+	return create_email_log_repo(mut ctx, req)
+}
 
-// func NewCreateEmailLogLogic(ctx context.Context, svcCtx *svc.ServiceContext) *CreateEmailLogLogic {
-// 	return &CreateEmailLogLogic{
-// 		Logger: logx.WithContext(ctx),
-// 		ctx:    ctx,
-// 		svcCtx: svcCtx,
-// 	}
-// }
+// ═══ Domain ═══
+fn create_email_log_domain(req CreateEmailLogReq) ! {
+	if req.target == '' {
+		return error('target email address is required')
+	}
+	if req.subject == '' {
+		return error('subject is required')
+	}
+	if req.provider == '' {
+		return error('provider is required')
+	}
+}
 
-// func (l *CreateEmailLogLogic) CreateEmailLog(req *types.EmailLogInfo) (resp *types.BaseMsgResp, err error) {
-// 	if !l.svcCtx.Config.McmsRpc.Enabled {
-// 		return nil, errorx.NewCodeUnavailableError(i18n.ServiceUnavailable)
-// 	}
-// 	data, err := l.svcCtx.McmsRpc.CreateEmailLog(l.ctx,
-// 		&mcms.EmailLogInfo{
-// 			Target:     req.Target,
-// 			Subject:    req.Subject,
-// 			Content:    req.Content,
-// 			SendStatus: req.SendStatus,
-// 			Provider:   req.Provider,
-// 		})
-// 	if err != nil {
-// 		return nil, err
-// 	}
-// 	return &types.BaseMsgResp{Msg: l.svcCtx.Trans.Trans(l.ctx, data.Msg)}, nil
-// }
+// ═══ DTO ═══
+pub struct CreateEmailLogReq {
+	target      string @[json: 'target']
+	subject     string @[json: 'subject']
+	content     string @[json: 'content']
+	send_status u8     @[json: 'sendStatus']
+	provider    string @[json: 'provider']
+}
+
+pub struct CreateEmailLogResp {
+	msg string @[json: 'msg']
+}
+
+// ═══ Repository ═══
+fn create_email_log_repo(mut ctx Context, req CreateEmailLogReq) !CreateEmailLogResp {
+	time_now := time.now()
+	email_log := MsgEmailLog{
+		id:          rand.uuid_v7()
+		target:      req.target
+		subject:     req.subject
+		content:     req.content
+		send_status: req.send_status
+		provider:    req.provider
+		created_at:  time_now
+		updated_at:  time_now
+	}
+
+	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
+	defer {
+		ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') }
+	}
+
+	sql db {
+		insert email_log into MsgEmailLog
+	} or { return error('Failed to create EmailLog: ${err}') }
+
+	return CreateEmailLogResp{
+		msg: 'EmailLog created successfully'
+	}
+}

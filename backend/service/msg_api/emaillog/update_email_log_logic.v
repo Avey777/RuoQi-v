@@ -1,48 +1,75 @@
 module emaillog
 
-// import (
-// 	"context"
+import veb
+import log
+import time
+import json2 as json
+import model.schema_msg { MsgEmailLog }
+import common.api
+import model { Context }
 
-// 	"github.com/suyuan32/simple-admin-common/i18n"
-// 	"github.com/zeromicro/go-zero/core/errorx"
+// ═══ Handler ═══
+@['/update'; post]
+pub fn (app &EmailLog) update_email_log_handler(mut ctx Context) veb.Result {
+	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 
-// 	"github.com/suyuan32/simple-admin-message-center/types/mcms"
+	req := json.decode[UpdateEmailLogReq](ctx.req.data) or {
+		return ctx.json(api.json_error_400(err.msg()))
+	}
 
-// 	"github.com/suyuan32/simple-admin-core/api/internal/svc"
-// 	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	result := update_email_log_usecase(mut ctx, req) or {
+		return ctx.json(api.json_error_500('Internal Server Error: ${err}'))
+	}
 
-// 	"github.com/zeromicro/go-zero/core/logx"
-// )
+	return ctx.json(api.json_success_200(result))
+}
 
-// type UpdateEmailLogLogic struct {
-// 	logx.Logger
-// 	ctx    context.Context
-// 	svcCtx *svc.ServiceContext
-// }
+// ═══ Use Case ═══
+pub fn update_email_log_usecase(mut ctx Context, req UpdateEmailLogReq) !UpdateEmailLogResp {
+	update_email_log_domain(req)!
+	return update_email_log_repo(mut ctx, req)
+}
 
-// func NewUpdateEmailLogLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UpdateEmailLogLogic {
-// 	return &UpdateEmailLogLogic{
-// 		Logger: logx.WithContext(ctx),
-// 		ctx:    ctx,
-// 		svcCtx: svcCtx,
-// 	}
-// }
+// ═══ Domain ═══
+fn update_email_log_domain(req UpdateEmailLogReq) ! {
+	if req.id == '' {
+		return error('email log id is required')
+	}
+}
 
-// func (l *UpdateEmailLogLogic) UpdateEmailLog(req *types.EmailLogInfo) (resp *types.BaseMsgResp, err error) {
-// 	if !l.svcCtx.Config.McmsRpc.Enabled {
-// 		return nil, errorx.NewCodeUnavailableError(i18n.ServiceUnavailable)
-// 	}
-// 	data, err := l.svcCtx.McmsRpc.UpdateEmailLog(l.ctx,
-// 		&mcms.EmailLogInfo{
-// 			Id:         req.Id,
-// 			Target:     req.Target,
-// 			Subject:    req.Subject,
-// 			Content:    req.Content,
-// 			SendStatus: req.SendStatus,
-// 			Provider:   req.Provider,
-// 		})
-// 	if err != nil {
-// 		return nil, err
-// 	}
-// 	return &types.BaseMsgResp{Msg: l.svcCtx.Trans.Trans(l.ctx, data.Msg)}, nil
-// }
+// ═══ DTO ═══
+pub struct UpdateEmailLogReq {
+	id          string  @[json: 'id']
+	target      ?string @[json: 'target']
+	subject     ?string @[json: 'subject']
+	content     ?string @[json: 'content']
+	send_status ?u8     @[json: 'sendStatus']
+	provider    ?string @[json: 'provider']
+}
+
+pub struct UpdateEmailLogResp {
+	msg string @[json: 'msg']
+}
+
+// ═══ Repository ═══
+fn update_email_log_repo(mut ctx Context, req UpdateEmailLogReq) !UpdateEmailLogResp {
+	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
+	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
+
+	up_expr := {
+		if target := req.target { target == target },
+		if subject := req.subject { subject == subject },
+		if content := req.content { content == content },
+		if send_status := req.send_status { send_status == send_status },
+		if provider := req.provider { provider == provider },
+		updated_at == time.now()
+	}
+
+	sql db {
+		dynamic update MsgEmailLog set up_expr where id == req.id
+	} or { return error('Failed to execute SQL query: ${err}') }
+
+	return UpdateEmailLogResp{
+		msg: 'EmailLog updated successfully'
+	}
+}

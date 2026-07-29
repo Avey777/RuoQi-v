@@ -1,47 +1,86 @@
 module smsprovider
 
-// import (
-// 	"context"
+import veb
+import log
+import time
+import rand
+import json2 as json
+import model.schema_msg { MsgSmsProvider }
+import common.api
+import model { Context }
 
-// 	"github.com/suyuan32/simple-admin-common/i18n"
-// 	"github.com/zeromicro/go-zero/core/errorx"
+// ═══ Handler ═══
+@['/create'; post]
+pub fn (app &SmsProvider) create_sms_provider_handler(mut ctx Context) veb.Result {
+	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 
-// 	"github.com/suyuan32/simple-admin-message-center/types/mcms"
+	req := json.decode[CreateSmsProviderReq](ctx.req.data) or {
+		return ctx.json(api.json_error_400(err.msg()))
+	}
 
-// 	"github.com/suyuan32/simple-admin-core/api/internal/svc"
-// 	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	result := create_sms_provider_usecase(mut ctx, req) or {
+		return ctx.json(api.json_error_500('Internal Server Error: ${err}'))
+	}
 
-// 	"github.com/zeromicro/go-zero/core/logx"
-// )
+	return ctx.json(api.json_success_200(result))
+}
 
-// type CreateSmsProviderLogic struct {
-// 	logx.Logger
-// 	ctx    context.Context
-// 	svcCtx *svc.ServiceContext
-// }
+// ═══ Use Case ═══
+pub fn create_sms_provider_usecase(mut ctx Context, req CreateSmsProviderReq) !CreateSmsProviderResp {
+	create_sms_provider_domain(req)!
+	return create_sms_provider_repo(mut ctx, req)
+}
 
-// func NewCreateSmsProviderLogic(ctx context.Context, svcCtx *svc.ServiceContext) *CreateSmsProviderLogic {
-// 	return &CreateSmsProviderLogic{
-// 		Logger: logx.WithContext(ctx),
-// 		ctx:    ctx,
-// 		svcCtx: svcCtx,
-// 	}
-// }
+// ═══ Domain ═══
+fn create_sms_provider_domain(req CreateSmsProviderReq) ! {
+	if req.name == '' {
+		return error('provider name is required')
+	}
+	if req.secret_id == '' {
+		return error('secret id is required')
+	}
+	if req.region == '' {
+		return error('region is required')
+	}
+}
 
-// func (l *CreateSmsProviderLogic) CreateSmsProvider(req *types.SmsProviderInfo) (resp *types.BaseMsgResp, err error) {
-// 	if !l.svcCtx.Config.McmsRpc.Enabled {
-// 		return nil, errorx.NewCodeUnavailableError(i18n.ServiceUnavailable)
-// 	}
-// 	data, err := l.svcCtx.McmsRpc.CreateSmsProvider(l.ctx,
-// 		&mcms.SmsProviderInfo{
-// 			Name:      req.Name,
-// 			SecretId:  req.SecretId,
-// 			SecretKey: req.SecretKey,
-// 			Region:    req.Region,
-// 			IsDefault: req.IsDefault,
-// 		})
-// 	if err != nil {
-// 		return nil, err
-// 	}
-// 	return &types.BaseMsgResp{Msg: l.svcCtx.Trans.Trans(l.ctx, data.Msg)}, nil
-// }
+// ═══ DTO ═══
+pub struct CreateSmsProviderReq {
+	name       string @[json: 'name']
+	secret_id  string @[json: 'secretId']
+	secret_key string @[json: 'secretKey']
+	region     string @[json: 'region']
+	is_default u8     @[json: 'isDefault']
+}
+
+pub struct CreateSmsProviderResp {
+	msg string @[json: 'msg']
+}
+
+// ═══ Repository ═══
+fn create_sms_provider_repo(mut ctx Context, req CreateSmsProviderReq) !CreateSmsProviderResp {
+	time_now := time.now()
+	provider := MsgSmsProvider{
+		id:         rand.uuid_v7()
+		name:       req.name
+		secret_id:  req.secret_id
+		secret_key: req.secret_key
+		region:     req.region
+		is_default: req.is_default
+		created_at: time_now
+		updated_at: time_now
+	}
+
+	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
+	defer {
+		ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') }
+	}
+
+	sql db {
+		insert provider into MsgSmsProvider
+	} or { return error('Failed to create SmsProvider: ${err}') }
+
+	return CreateSmsProviderResp{
+		msg: 'SmsProvider created successfully'
+	}
+}

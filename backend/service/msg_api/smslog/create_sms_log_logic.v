@@ -1,46 +1,81 @@
 module smslog
 
-// import (
-// 	"context"
+import veb
+import log
+import time
+import rand
+import json2 as json
+import model.schema_msg { MsgSmsLog }
+import common.api
+import model { Context }
 
-// 	"github.com/suyuan32/simple-admin-common/i18n"
-// 	"github.com/zeromicro/go-zero/core/errorx"
+// ═══ Handler ═══
+@['/create'; post]
+pub fn (app &SmsLog) create_sms_log_handler(mut ctx Context) veb.Result {
+	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 
-// 	"github.com/suyuan32/simple-admin-message-center/types/mcms"
+	req := json.decode[CreateSmsLogReq](ctx.req.data) or {
+		return ctx.json(api.json_error_400(err.msg()))
+	}
 
-// 	"github.com/suyuan32/simple-admin-core/api/internal/svc"
-// 	"github.com/suyuan32/simple-admin-core/api/internal/types"
+	result := create_sms_log_usecase(mut ctx, req) or {
+		return ctx.json(api.json_error_500('Internal Server Error: ${err}'))
+	}
 
-// 	"github.com/zeromicro/go-zero/core/logx"
-// )
+	return ctx.json(api.json_success_200(result))
+}
 
-// type CreateSmsLogLogic struct {
-// 	logx.Logger
-// 	ctx    context.Context
-// 	svcCtx *svc.ServiceContext
-// }
+// ═══ Use Case ═══
+pub fn create_sms_log_usecase(mut ctx Context, req CreateSmsLogReq) !CreateSmsLogResp {
+	create_sms_log_domain(req)!
+	return create_sms_log_repo(mut ctx, req)
+}
 
-// func NewCreateSmsLogLogic(ctx context.Context, svcCtx *svc.ServiceContext) *CreateSmsLogLogic {
-// 	return &CreateSmsLogLogic{
-// 		Logger: logx.WithContext(ctx),
-// 		ctx:    ctx,
-// 		svcCtx: svcCtx,
-// 	}
-// }
+// ═══ Domain ═══
+fn create_sms_log_domain(req CreateSmsLogReq) ! {
+	if req.phone_number == '' {
+		return error('phone number is required')
+	}
+	if req.provider == '' {
+		return error('provider is required')
+	}
+}
 
-// func (l *CreateSmsLogLogic) CreateSmsLog(req *types.SmsLogInfo) (resp *types.BaseMsgResp, err error) {
-// 	if !l.svcCtx.Config.McmsRpc.Enabled {
-// 		return nil, errorx.NewCodeUnavailableError(i18n.ServiceUnavailable)
-// 	}
-// 	data, err := l.svcCtx.McmsRpc.CreateSmsLog(l.ctx,
-// 		&mcms.SmsLogInfo{
-// 			PhoneNumber: req.PhoneNumber,
-// 			Content:     req.Content,
-// 			SendStatus:  req.SendStatus,
-// 			Provider:    req.Provider,
-// 		})
-// 	if err != nil {
-// 		return nil, err
-// 	}
-// 	return &types.BaseMsgResp{Msg: l.svcCtx.Trans.Trans(l.ctx, data.Msg)}, nil
-// }
+// ═══ DTO ═══
+pub struct CreateSmsLogReq {
+	phone_number string @[json: 'phoneNumber']
+	content      string @[json: 'content']
+	send_status  u8     @[json: 'sendStatus']
+	provider     string @[json: 'provider']
+}
+
+pub struct CreateSmsLogResp {
+	msg string @[json: 'msg']
+}
+
+// ═══ Repository ═══
+fn create_sms_log_repo(mut ctx Context, req CreateSmsLogReq) !CreateSmsLogResp {
+	time_now := time.now()
+	sms_log := MsgSmsLog{
+		id:           rand.uuid_v7()
+		phone_number: req.phone_number
+		content:      req.content
+		send_status:  req.send_status
+		provider:     req.provider
+		created_at:   time_now
+		updated_at:   time_now
+	}
+
+	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
+	defer {
+		ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') }
+	}
+
+	sql db {
+		insert sms_log into MsgSmsLog
+	} or { return error('Failed to create SmsLog: ${err}') }
+
+	return CreateSmsLogResp{
+		msg: 'SmsLog created successfully'
+	}
+}

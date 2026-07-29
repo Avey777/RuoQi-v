@@ -1,0 +1,60 @@
+module pay_api
+
+import veb
+import log
+import json2 as json
+import model.schema_pay { PayDemoOrder }
+import common.api
+import model { Context }
+
+// ═══ Handler ═══
+@['/demo/delete'; post]
+pub fn (app &Pay) delete_pay_demo_order_handler(mut ctx Context) veb.Result {
+	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
+
+	req := json.decode[DeletePayDemoOrderReq](ctx.req.data) or {
+		return ctx.json(api.json_error_400(err.msg()))
+	}
+
+	result := delete_pay_demo_order_usecase(mut ctx, req) or {
+		return ctx.json(api.json_error_500('Internal Server Error: ${err}'))
+	}
+
+	return ctx.json(api.json_success_200(result))
+}
+
+// ═══ Use Case ═══
+pub fn delete_pay_demo_order_usecase(mut ctx Context, req DeletePayDemoOrderReq) !DeletePayDemoOrderResp {
+	delete_pay_demo_order_domain(req)!
+	return delete_pay_demo_order_repo(mut ctx, req.ids)
+}
+
+// ═══ Domain ═══
+fn delete_pay_demo_order_domain(req DeletePayDemoOrderReq) ! {
+	if req.ids.len == 0 {
+		return error('No PayDemoOrder ids provided')
+	}
+}
+
+// ═══ DTO ═══
+pub struct DeletePayDemoOrderReq {
+	ids []string @[json: 'ids']
+}
+
+pub struct DeletePayDemoOrderResp {
+	msg string @[json: 'msg']
+}
+
+// ═══ Repository ═══
+fn delete_pay_demo_order_repo(mut ctx Context, ids []string) !DeletePayDemoOrderResp {
+	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
+	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
+
+	sql db {
+		delete from PayDemoOrder where id in ids
+	} or { return error('Failed to delete demo order: ${err}') }
+
+	return DeletePayDemoOrderResp{
+		msg: '${ids} PayDemoOrder(s) deleted successfully'
+	}
+}
