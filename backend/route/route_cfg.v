@@ -28,6 +28,10 @@ pub fn (mut app AliasApp) setup_conditional_routes(mut ctx Context) {
 		log.warn('routes_ifdef - Pay')
 		app.routes_pay(mut ctx)
 	}
+	$if tenant ? {
+		log.warn('routes_ifdef - Tenant')
+		app.routes_tenant(mut ctx)
+	}
 	$if platform ? {
 		log.warn('routes_ifdef - Sys')
 		app.routes_platform(mut ctx)
@@ -42,5 +46,6 @@ pub fn (mut app AliasApp) setup_conditional_routes(mut ctx Context) {
 		app.routes_pay(mut ctx)
 		app.routes_fms(mut ctx)
 		app.routes_job(mut ctx)
+		app.routes_tenant(mut ctx)
 	}
 }
