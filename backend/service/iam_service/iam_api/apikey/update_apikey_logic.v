@@ -16,7 +16,7 @@ pub struct UpdateApiKeyReq {
 	scopes         ?[]string @[json: 'scopes']
 }
 
-@['/iam/apikey/update'; post]
+@['/update'; post]
 pub fn (app &ApiKey) update_apikey_handler(mut ctx Context) veb.Result {
 	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 	req := json.decode[UpdateApiKeyReq](ctx.req.data) or {

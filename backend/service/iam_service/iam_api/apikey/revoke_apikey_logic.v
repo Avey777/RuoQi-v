@@ -11,7 +11,7 @@ pub struct RevokeApiKeyReq {
 	id string @[json: 'id']
 }
 
-@['/iam/apikey/revoke'; post]
+@['/revoke'; post]
 pub fn (app &ApiKey) revoke_apikey_handler(mut ctx Context) veb.Result {
 	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 	req := json.decode[RevokeApiKeyReq](ctx.req.data) or {

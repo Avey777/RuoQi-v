@@ -12,7 +12,7 @@ pub struct ToggleApiKeyReq {
 	action string @[json: 'action']
 }
 
-@['/iam/apikey/toggle'; post]
+@['/toggle'; post]
 pub fn (app &ApiKey) toggle_apikey_handler(mut ctx Context) veb.Result {
 	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 	req := json.decode[ToggleApiKeyReq](ctx.req.data) or {

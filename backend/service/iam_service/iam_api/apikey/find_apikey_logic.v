@@ -28,7 +28,7 @@ pub struct ApiKeyListResp {
 	total int          @[json: 'total']
 }
 
-@['/iam/apikey/list'; post]
+@['/list'; post]
 pub fn (app &ApiKey) find_apikey_all_handler(mut ctx Context) veb.Result {
 	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 	result := find_apikey_all_usecase(mut ctx) or { return ctx.json(api.json_error_500('${err}')) }
@@ -55,7 +55,7 @@ fn find_apikey_all_repo(mut ctx Context) ![]IamApiKey {
 	} or { return error('Failed: ${err}') }
 }
 
-@['/iam/apikey/detail'; post]
+@['/detail'; post]
 pub fn (app &ApiKey) find_apikey_by_id_handler(mut ctx Context) veb.Result {
 	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 	req := json.decode[FindApiKeyByIdReq](ctx.req.data) or {

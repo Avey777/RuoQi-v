@@ -30,7 +30,7 @@ fn (mut app AliasApp) routes_iam(mut ctx Context) {
 	// 仅认证（自服务）—— 已登录即可访问，不检查 workspace 权限
 	app.register_routes_authenticated[Profile, Context](mut &Profile{}, '/iam/profile', mut ctx)
 	app.register_routes_authenticated[Token, Context](mut &Token{}, '/iam/token', mut ctx)
-	app.register_routes_authenticated[Tenant, Context](mut &Tenant{}, '/iam', mut ctx)
+	app.register_routes_authenticated[Tenant, Context](mut &Tenant{}, '/iam/tenant', mut ctx)
 
 	// 全量认证+授权 —— 需要 workspace 权限
 	app.register_routes_platform[User, Context](mut &User{}, '/iam/user', mut ctx)

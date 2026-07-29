@@ -11,7 +11,7 @@ pub struct DeleteApiKeyReq {
 	id string @[json: 'id']
 }
 
-@['/iam/apikey/delete'; post]
+@['/delete'; post]
 pub fn (app &ApiKey) delete_apikey_handler(mut ctx Context) veb.Result {
 	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 	req := json.decode[DeleteApiKeyReq](ctx.req.data) or {

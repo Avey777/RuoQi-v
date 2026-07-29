@@ -35,7 +35,7 @@ pub struct CreateApiKeyResp {
 	created_at     string   @[json: 'created_at']
 }
 
-@['/iam/apikey/create'; post]
+@['/create'; post]
 pub fn (app &ApiKey) create_apikey_handler(mut ctx Context) veb.Result {
 	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 	req := json.decode[CreateApiKeyReq](ctx.req.data) or {
