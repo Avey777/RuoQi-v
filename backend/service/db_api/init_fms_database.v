@@ -7,7 +7,7 @@ import model { Context }
 import model.schema_fms
 
 @['/init/init_fms'; get]
-pub fn (app &Base) init_fms(mut ctx Context) veb.Result {
+pub fn (app &Database) init_fms(mut ctx Context) veb.Result {
 	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 
 	db, conn := ctx.dbpool.acquire() or {

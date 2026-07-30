@@ -7,7 +7,7 @@ import model { Context }
 import model.schema_pay
 
 @['/init/init_pay'; get]
-pub fn (app &Base) init_pay(mut ctx Context) veb.Result {
+pub fn (app &Database) init_pay(mut ctx Context) veb.Result {
 	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 
 	db, conn := ctx.dbpool.acquire() or {

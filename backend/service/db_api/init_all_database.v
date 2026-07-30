@@ -6,7 +6,7 @@ import common.api
 import model { Context }
 
 @['/init/all_database'; get]
-fn (app &Base) init_all(mut ctx Context) veb.Result {
+fn (app &Database) init_all(mut ctx Context) veb.Result {
 	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 
 	app.init_fms(mut ctx)

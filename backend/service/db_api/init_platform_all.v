@@ -7,7 +7,7 @@ import model { Context }
 import model.schema_platform
 
 @['/init/init_platform'; get]
-pub fn (app &Base) init_platform(mut ctx Context) veb.Result {
+pub fn (app &Database) init_platform(mut ctx Context) veb.Result {
 	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 
 	mut db, conn := ctx.dbpool.acquire() or {

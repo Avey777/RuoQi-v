@@ -7,7 +7,7 @@ import model { Context }
 import model.schema_workspace
 
 @['/init/init_workspace'; get]
-pub fn (app &Base) init_workspace(mut ctx Context) veb.Result {
+pub fn (app &Database) init_workspace(mut ctx Context) veb.Result {
 	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 
 	mut db, conn := ctx.dbpool.acquire() or {

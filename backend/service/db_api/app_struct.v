@@ -2,6 +2,6 @@ module db_api
 
 import model { App }
 
-pub struct Base {
+pub struct Database {
 	App
 }
