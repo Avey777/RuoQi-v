@@ -22,9 +22,9 @@ pub:
 	postal_code          ?string @[comment: 'International postal code | 国际邮编'; sql_type: 'VARCHAR(255)']
 	domain_name          ?string @[comment: 'International domain names (IDN) | 国际域名'; sql_type: 'VARCHAR(255)']
 	continent_code       ?string @[comment: 'Big week code | 所属大州字母代码'; sql_type: 'VARCHAR(255)']
-	coord_bounds         ?string @[comment: 'Geographical Coordinate Boundaries | 地理坐标边界'; sql_type: 'LONGTEXT']
-	sort                 ?int    @[comment: 'Sort Number | 排序编号'; sql_type: 'INT UNSIGNED']
-	status               u8      @[comment: 'Status  0: normal 1: ban | 状态'; default: 0; sql_type: 'TINYINT UNSIGNED']
+	coord_bounds         ?string @[comment: 'Geographical Coordinate Boundaries | 地理坐标边界'; sql_type: 'text']
+	sort                 ?int    @[comment: 'Sort Number | 排序编号'; sql_type: 'integer']
+	status               u8      @[comment: 'Status  0: normal 1: ban | 状态'; default: 0; sql_type: 'smallint']
 	name_en              ?string @[comment: 'English short name(ISO) | 地区&国家简称(英文)'; sql_type: 'VARCHAR(255)']
 	name_zh              ?string @[comment: 'zh_CN short name(ISO) | 地区&国家简称(中文)'; sql_type: 'VARCHAR(255)']
 
@@ -32,6 +32,6 @@ pub:
 	updated_at time.Time  @[comment: 'Update Time | 修改日期'; sql_type: 'TIMESTAMP']
 	creator_id ?string    @[comment: '创建者ID'; immutable; sql_type: 'CHAR(36)']
 	created_at time.Time  @[comment: 'Create Time | 创建日期'; immutable; sql_type: 'TIMESTAMP']
-	del_flag   u8         @[comment: '逻辑删除，0：未删除，1：已删除'; default: 0; sql_type: 'TINYINT UNSIGNED']
+	del_flag   u8         @[comment: '逻辑删除，0：未删除，1：已删除'; default: 0; sql_type: 'smallint']
 	deleted_at ?time.Time @[comment: 'Delete Time | 删除日期'; sql_type: 'TIMESTAMP']
 }

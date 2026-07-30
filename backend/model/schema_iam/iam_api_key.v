@@ -15,12 +15,12 @@ pub:
 	key_last_four     string @[comment: 'SK 末4位, UI 辅助识别'; sql_type: 'VARCHAR(4)']
 	secret_key_cipher string @[comment: 'SK 密文（AES-256-CTR），用于 HMAC 签名验证'; sql_type: 'VARCHAR(512)']
 
-	tenant_ids     string @[comment: '租户ID列表(JSON), 空=不限'; default: '[]'; sql_type: 'VARCHAR(1000)']
-	subproduct_ids string @[comment: '订阅的产品ID列表(JSON), 空=不限'; default: '[]'; sql_type: 'VARCHAR(1000)']
-	subportal_ids  string @[comment: '订阅产品的订阅门户ID列表(JSON), 空=不限'; default: '[]'; sql_type: 'VARCHAR(1000)']
+	tenant_ids     string @[comment: '租户ID列表(JSON), 空=不限'; sql_type: "VARCHAR(1000) DEFAULT '[]'"]
+	subproduct_ids string @[comment: '订阅的产品ID列表(JSON), 空=不限'; sql_type: "VARCHAR(1000) DEFAULT '[]'"]
+	subportal_ids  string @[comment: '订阅产品的订阅门户ID列表(JSON), 空=不限'; sql_type: "VARCHAR(1000) DEFAULT '[]'"]
 
-	scopes       string     @[comment: 'API权限范围(JSON), ["all"]=不限'; default: '["all"]'; sql_type: 'VARCHAR(1000)']
-	status       u8         @[comment: '0正常 1禁用 2已撤销'; default: 0; sql_type: 'tinyint']
+	scopes       string     @[comment: 'API权限范围(JSON), ["all"]=不限'; sql_type: "VARCHAR(1000) DEFAULT '[\"all\"]'"]
+	status       u8         @[comment: '0正常 1禁用 2已撤销'; default: 0; sql_type: 'smallint']
 	last_used_at ?time.Time @[comment: '最后使用时间'; sql_type: 'TIMESTAMP']
 	expired_at   ?time.Time @[comment: '过期时间, null=永不过期'; sql_type: 'TIMESTAMP']
 
@@ -29,6 +29,6 @@ pub:
 	updated_at time.Time  @[comment: '修改日期'; sql_type: 'TIMESTAMP']
 	creator_id ?string    @[comment: '创建者ID'; immutable; sql_type: 'CHAR(36)']
 	created_at time.Time  @[comment: '创建日期'; immutable; sql_type: 'TIMESTAMP']
-	del_flag   u8         @[comment: '0未删除 1已删除'; default: 0; sql_type: 'tinyint(1)']
+	del_flag   u8         @[comment: '0未删除 1已删除'; default: 0; sql_type: 'smallint']
 	deleted_at ?time.Time @[comment: '删除日期'; sql_type: 'TIMESTAMP']
 }

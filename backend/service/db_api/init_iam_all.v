@@ -5,18 +5,14 @@ import log
 import common.api
 import model { Context }
 import model.schema_iam
+import adapter.dbpool
 
-@['/init/init_iam'; get]
-pub fn (app &Database) init_iam(mut ctx Context) veb.Result {
+fn (app &Database) init_iam_tables(mut pool dbpool.DatabasePoolable) ! {
 	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 
-	mut db, conn := ctx.dbpool.acquire() or {
-		return ctx.json(api.json_error_500('获取的连接无效: ${err}'))
-	}
+	mut db, conn := pool.acquire() or { return error('Failed to acquire connection: ${err}') }
 	defer {
-		ctx.dbpool.release(conn) or {
-			log.warn('Failed to release connection ${@LOCATION}: ${err}')
-		}
+		pool.release(conn) or { log.warn('Failed to release connection ${@LOCATION}: ${err}') }
 	}
 
 	sql db {
@@ -26,16 +22,21 @@ pub fn (app &Database) init_iam(mut ctx Context) veb.Result {
 		create table schema_iam.IamConfiguration
 		create table schema_iam.IamConnector
 		create table schema_iam.IamUserConnector
-	} or { return ctx.text('error creating table:  ${err}') }
-	log.info('schema_iam init success')
-
-	sql_commands := [iam_user]
-	for cmd in sql_commands {
-		db.execute(cmd) or {
-			return ctx.json(api.json_error_500('执行 ${cmd} SQL失败: ${err}'))
-		}
-		log.info('${cmd} init_sys_data success')
+	} or {
+		if !err.msg().contains('already exists') { return error('error creating table: ${err}') }
 	}
+	log.info('schema_iam init success')
+	iam_upsert(db) or { return error('Failed to upsert seed data: ${err}') }
+	log.info('schema_iam seed data success')
 
+	return
+}
+
+@['/init/init_iam'; get]
+pub fn (app &Database) init_iam(mut ctx Context) veb.Result {
+	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
+	app.init_iam_tables(mut ctx.dbpool) or {
+		return ctx.json(api.json_error_500('init_iam failed: ${err}'))
+	}
 	return ctx.json(api.json_success_200('IAM database init Successful'))
 }

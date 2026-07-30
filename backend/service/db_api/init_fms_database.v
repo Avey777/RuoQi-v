@@ -5,18 +5,14 @@ import log
 import common.api
 import model { Context }
 import model.schema_fms
+import adapter.dbpool
 
-@['/init/init_fms'; get]
-pub fn (app &Database) init_fms(mut ctx Context) veb.Result {
+fn (app &Database) init_fms_tables(mut pool dbpool.DatabasePoolable) ! {
 	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
 
-	db, conn := ctx.dbpool.acquire() or {
-		return ctx.json(api.json_error_500('Failed to acquire connection: ${err}'))
-	}
+	mut db, conn := pool.acquire() or { return error('Failed to acquire connection: ${err}') }
 	defer {
-		ctx.dbpool.release(conn) or {
-			log.warn('Failed to release connection ${@LOCATION}: ${err}')
-		}
+		pool.release(conn) or { log.warn('Failed to release connection ${@LOCATION}: ${err}') }
 	}
 
 	sql db {
@@ -27,8 +23,19 @@ pub fn (app &Database) init_fms(mut ctx Context) veb.Result {
 		create table schema_fms.FmsCloudFileCloudFileTag
 		create table schema_fms.FmsCloudFile
 		create table schema_fms.FmsCloudFileTag
-	} or { return ctx.text('error creating table:  ${err}') }
-	log.debug('Database init_fms success')
+	} or {
+		if !err.msg().contains('already exists') { return error('error creating table: ${err}') }
+	}
+	log.info('schema_fms init success')
 
+	return
+}
+
+@['/init/init_fms'; get]
+pub fn (app &Database) init_fms(mut ctx Context) veb.Result {
+	log.debug('${@METHOD}  ${@MOD}.${@FILE_LINE}')
+	app.init_fms_tables(mut ctx.dbpool) or {
+		return ctx.json(api.json_error_500('init_fms failed: ${err}'))
+	}
 	return ctx.json(api.json_success_200('FMF database init Successfull'))
 }

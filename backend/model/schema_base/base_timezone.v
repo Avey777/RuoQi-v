@@ -12,7 +12,7 @@ module schema_base
 pub struct BaseTimeZone {
 pub:
 	id             string @[comment: 'UUID'; immutable; primary; sql: 'id'; sql_type: 'CHAR(36)']
-	sort           ?int   @[comment: 'Sort Number | 排序编号'; sql_type: 'INT UNSIGNED']
+	sort           ?int   @[comment: 'Sort Number | 排序编号'; sql_type: 'integer']
 	time_zone_city string @[comment: '时区ID'; sql_type: 'VARCHAR(255)']
 	utc_offset     int    @[comment: 'UTC偏移量'; sql_type: 'INT']
 	summer_start   int    @[comment: '夏令时开始时间'; sql_type: 'INT']
