@@ -71,6 +71,7 @@ port = 5432
 username = 'neondb_owner'
 password = 'npg_U4j7sqBcgIMO'
 dbname = 'vcore_test'
+ssl_verify = false        #设置为false 时，不验证ssl证书
 # 连接池配置
 max_conns = 100 # 默认 100 个
 min_idle_conns = 10 # 默认 10 个
