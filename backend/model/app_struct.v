@@ -25,7 +25,7 @@ pub struct Context {
 pub mut:
 	scope_sc     ScopeContext
 	dbpool       &dbpool.DatabasePoolable @[noinit]
-	cache_pool   &cache_pool.CachePool
+	cache_pool   ?&cache_pool.CachePool // Redis 暂不使用，改为可空字段
 	config       &config.GlobalConfig
 	jwt_payload  ?AuthPayload
 	locale       &locale.LocaleStore
