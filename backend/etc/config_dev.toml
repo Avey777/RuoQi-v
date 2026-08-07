@@ -63,7 +63,7 @@ type = 'pgsql'
 host = '127.0.0.1'
 port = 5432
 username = 'postgres'
-password = 'pg_123456'
+password = 'pgsql_123456'
 dbname = 'vcore_test'
 ssl_verify = false        #设置为false 时，不验证ssl证书
 # 连接池配置
