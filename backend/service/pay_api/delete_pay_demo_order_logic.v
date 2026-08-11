@@ -52,7 +52,7 @@ fn delete_pay_demo_order_repo(mut ctx Context, ids []string) !DeletePayDemoOrder
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
 	sql db {
-		update PayDemoOrder set del_flag = 1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
+		update PayDemoOrder set del_flag = -1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
 		where id in ids && del_flag == 0
 	} or { return error('Failed to soft-delete demo order: ${err}') }
 

@@ -107,7 +107,7 @@ pub struct CreateTaskReq {
 	cron_expression string @[json: 'cronExpression']
 	pattern         string @[json: 'pattern']
 	payload         string @[json: 'payload']
-	status          u8     @[json: 'status']
+	status          i16    @[json: 'status']
 }
 
 pub struct CreateTaskResp {

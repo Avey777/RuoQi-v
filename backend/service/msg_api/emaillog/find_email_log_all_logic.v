@@ -41,7 +41,7 @@ pub struct EmailLogListReq {
 	target      string @[json: 'target']
 	subject     string @[json: 'subject']
 	provider    string @[json: 'provider']
-	send_status []u8   @[json: 'sendStatus']
+	send_status []i16  @[json: 'sendStatus']
 }
 
 pub struct EmailLogData {
@@ -49,7 +49,7 @@ pub struct EmailLogData {
 	target      string  @[json: 'target']
 	subject     string  @[json: 'subject']
 	content     string  @[json: 'content']
-	send_status u8      @[json: 'sendStatus']
+	send_status i16     @[json: 'sendStatus']
 	provider    string  @[json: 'provider']
 	updater_id  ?string @[json: 'updaterId']
 	creator_id  ?string @[json: 'creatorId']

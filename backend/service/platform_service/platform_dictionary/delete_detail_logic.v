@@ -45,7 +45,7 @@ fn delete_detail_repo(mut ctx Context, req DeleteDetailReq) !DeleteDetailResp {
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 	sql db {
-		update PfDictionaryDetail set del_flag = 1 where id == req.id
+		update PfDictionaryDetail set del_flag = -1 where id == req.id
 	}!
 	return DeleteDetailResp{
 		msg: 'Detail deleted'

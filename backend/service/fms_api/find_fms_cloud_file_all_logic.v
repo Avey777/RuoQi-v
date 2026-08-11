@@ -42,8 +42,8 @@ pub struct FmsCloudFileListReq {
 	page_size int    @[json: 'pageSize']
 	name      string @[json: 'name']
 	user_id   string @[json: 'userId']
-	file_type []u8   @[json: 'fileType']
-	status    []u8   @[json: 'status']
+	file_type []i16  @[json: 'fileType']
+	status    []i16  @[json: 'status']
 }
 
 pub struct FmsCloudFileData {
@@ -51,10 +51,10 @@ pub struct FmsCloudFileData {
 	name                         string  @[json: 'name']
 	url                          string  @[json: 'url']
 	size                         u64     @[json: 'size']
-	file_type                    u8      @[json: 'fileType']
+	file_type                    i16     @[json: 'fileType']
 	user_id                      string  @[json: 'userId']
 	cloud_file_storage_providers ?string @[json: 'cloudFileStorageProviders']
-	status                       u8      @[json: 'status']
+	status                       i16     @[json: 'status']
 	updater_id                   ?string @[json: 'updaterId']
 	creator_id                   ?string @[json: 'creatorId']
 	created_at                   string  @[json: 'createdAt']

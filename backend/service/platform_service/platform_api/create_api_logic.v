@@ -40,7 +40,7 @@ pub struct CreateApiReq {
 	api_group    string  @[json: 'apiGroup']
 	service_name string  @[json: 'serviceName']
 	method       string  @[json: 'method']
-	is_required  u8      @[json: 'isRequired']
+	is_required  i16     @[json: 'isRequired']
 }
 
 pub struct CreateApiResp {

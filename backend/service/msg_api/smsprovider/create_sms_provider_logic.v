@@ -50,7 +50,7 @@ pub struct CreateSmsProviderReq {
 	secret_id  string @[json: 'secretId']
 	secret_key string @[json: 'secretKey']
 	region     string @[json: 'region']
-	is_default u8     @[json: 'isDefault']
+	is_default i16    @[json: 'isDefault']
 }
 
 pub struct CreateSmsProviderResp {

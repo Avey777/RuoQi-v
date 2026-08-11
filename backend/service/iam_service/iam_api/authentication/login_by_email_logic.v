@@ -39,7 +39,7 @@ fn login_by_email_domain(req LoginByEmailReq) ! {
 
 // ═══ DTO ═══
 pub struct LoginByEmailReq {
-	status    u8     @[json: 'status']
+	status    i16    @[json: 'status']
 	email     string @[json: 'email']
 	opt_num   string @[json: 'optNum']
 	opt_token string @[json: 'optToken']

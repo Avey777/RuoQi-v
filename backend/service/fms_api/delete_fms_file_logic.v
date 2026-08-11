@@ -61,7 +61,7 @@ fn delete_fms_file_repo(mut ctx Context, ids []string) !DeleteFmsFileResp {
 	}
 
 	sql db {
-		update FmsFile set del_flag = 1, deleted_at = time.now(), updated_at = time.now(),
+		update FmsFile set del_flag = -1, deleted_at = time.now(), updated_at = time.now(),
 		updater_id = ctx.svc_iam.user_id where id in ids && del_flag == 0
 	} or {
 		db.execute('ROLLBACK') or {}

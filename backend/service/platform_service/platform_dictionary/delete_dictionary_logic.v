@@ -45,7 +45,7 @@ fn delete_dictionary_repo(mut ctx Context, req DeleteDictionaryReq) !DeleteDicti
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 	sql db {
-		update PfDictionary set del_flag = 1 where id == req.id
+		update PfDictionary set del_flag = -1 where id == req.id
 	}!
 	return DeleteDictionaryResp{
 		msg: 'Dictionary deleted'

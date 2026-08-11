@@ -40,7 +40,7 @@ pub struct FindMembersReq {
 pub struct MemberInfo {
 	user_id   string    @[json: 'userId']
 	joined_at time.Time @[json: 'joinedAt']
-	status    u8        @[json: 'status']
+	status    i16       @[json: 'status']
 	role_ids  []string  @[json: 'roleIds']
 }
 

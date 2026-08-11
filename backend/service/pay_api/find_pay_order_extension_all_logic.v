@@ -42,7 +42,7 @@ pub struct PayOrderExtensionListReq {
 	page_size    int    @[json: 'pageSize']
 	order_id     string @[json: 'orderId']
 	channel_code string @[json: 'channelCode']
-	status       []u8   @[json: 'status']
+	status       []i16  @[json: 'status']
 }
 
 pub struct PayOrderExtensionData {
@@ -55,7 +55,7 @@ pub struct PayOrderExtensionData {
 	channel_error_code  ?string @[json: 'channelErrorCode']
 	channel_error_msg   ?string @[json: 'channelErrorMsg']
 	channel_notify_data ?string @[json: 'channelNotifyData']
-	status              u8      @[json: 'status']
+	status              i16     @[json: 'status']
 	updater_id          ?string @[json: 'updaterId']
 	creator_id          ?string @[json: 'creatorId']
 	created_at          string  @[json: 'createdAt']

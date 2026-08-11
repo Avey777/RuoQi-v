@@ -43,8 +43,8 @@ pub struct LanguageListReq {
 	two_letter_code          string @[json: 'twoLetterCode']
 	three_letter_code        string @[json: 'threeLetterCode']
 	utf8_encoding            string @[json: 'utf8Encoding']
-	status                   []u8   @[json: 'status']
-	is_basic                 u8     @[json: 'isBasic']
+	status                   []i16  @[json: 'status']
+	is_basic                 i16    @[json: 'isBasic']
 }
 
 pub struct LanguageData {
@@ -55,8 +55,8 @@ pub struct LanguageData {
 	three_letter_code        string  @[json: 'threeLetterCode']
 	utf8_encoding            string  @[json: 'utf8Encoding']
 	sort                     ?int    @[json: 'sort']
-	status                   u8      @[json: 'status']
-	is_basic                 u8      @[json: 'isBasic']
+	status                   i16     @[json: 'status']
+	is_basic                 i16     @[json: 'isBasic']
 	updater_id               ?string @[json: 'updaterId']
 	creator_id               ?string @[json: 'creatorId']
 	created_at               string  @[json: 'createdAt']

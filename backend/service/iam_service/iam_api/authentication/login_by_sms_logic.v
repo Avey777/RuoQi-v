@@ -38,7 +38,7 @@ fn login_by_sms_domain(req LoginBySmsReq) ! {
 
 // ═══ DTO ═══
 pub struct LoginBySmsReq {
-	status    u8     @[json: 'status']
+	status    i16    @[json: 'status']
 	mobile    string @[json: 'mobile']
 	opt_num   string @[json: 'optNum']
 	opt_token string @[json: 'optToken']

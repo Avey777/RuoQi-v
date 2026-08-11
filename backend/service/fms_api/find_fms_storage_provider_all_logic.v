@@ -34,7 +34,7 @@ pub struct FmsStorageProviderListReq {
 	page      int    @[json: 'page']
 	page_size int    @[json: 'pageSize']
 	name      string @[json: 'name']
-	status    []u8   @[json: 'status']
+	status    []i16  @[json: 'status']
 }
 
 pub struct FmsStorageProviderData {
@@ -44,10 +44,10 @@ pub struct FmsStorageProviderData {
 	endpoint   string  @[json: 'endpoint']
 	folder     ?string @[json: 'folder']
 	region     string  @[json: 'region']
-	is_default u8      @[json: 'isDefault']
-	use_cdn    u8      @[json: 'useCdn']
+	is_default i16     @[json: 'isDefault']
+	use_cdn    i16     @[json: 'useCdn']
 	cdn_url    ?string @[json: 'cdnUrl']
-	status     u8      @[json: 'status']
+	status     i16     @[json: 'status']
 	updater_id ?string @[json: 'updaterId']
 	creator_id ?string @[json: 'creatorId']
 	created_at string  @[json: 'createdAt']

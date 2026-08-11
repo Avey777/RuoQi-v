@@ -37,16 +37,16 @@ fn find_task_log_all_domain(req TaskLogListReq) ! {
 
 // ═══ DTO ═══
 pub struct TaskLogListReq {
-	page      int  @[json: 'page']
-	page_size int  @[json: 'pageSize']
-	result    []u8 @[json: 'result']
+	page      int   @[json: 'page']
+	page_size int   @[json: 'pageSize']
+	result    []i16 @[json: 'result']
 }
 
 pub struct TaskLogData {
 	id             string  @[json: 'id']
 	started_at     string  @[json: 'startedAt']
 	finished_at    string  @[json: 'finishedAt']
-	result         u8      @[json: 'result']
+	result         i16     @[json: 'result']
 	task_task_logs ?string @[json: 'taskTaskLogs']
 }
 

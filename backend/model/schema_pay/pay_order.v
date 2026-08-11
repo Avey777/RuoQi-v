@@ -23,12 +23,12 @@ pub:
 	refund_price      int        @[comment: '退款总金额，单位：分'; omitempty; required; sql: 'refund_price'; sql_type: 'int']
 	channel_user_id   ?string    @[comment: '渠道用户编号'; omitempty; sql: 'channel_user_id'; sql_type: 'VARCHAR(255)']
 	channel_order_no  ?string    @[comment: '渠道订单号'; omitempty; sql: 'channel_order_no'; sql_type: 'VARCHAR(255)']
-	status            u8         @[comment: 'Status 1: normal 2: ban | 状态 1 正常 2 禁用'; default: 1; omitempty; sql: 'status'; sql_type: 'smallint']
+	status            i16        @[comment: 'Status 1: normal 2: ban | 状态 1 正常 2 禁用'; default: 1; omitempty; sql: 'status'; sql_type: 'smallint']
 
 	updater_id ?string    @[comment: '修改者ID'; omitempty; sql_type: 'CHAR(36)']
 	updated_at time.Time  @[comment: 'Update Time | 修改日期'; omitempty; sql_type: 'TIMESTAMP']
 	creator_id ?string    @[comment: '创建者ID'; immutable; omitempty; sql_type: 'CHAR(36)']
 	created_at time.Time  @[comment: 'Create Time | 创建日期'; immutable; omitempty; sql_type: 'TIMESTAMP']
-	del_flag   u8         @[comment: '删除标记，0：未删除，1：已删除'; default: 0; omitempty; sql_type: 'smallint']
+	del_flag   i16        @[comment: '删除标记，-1：已删除，0：未删除'; default: 0; omitempty; sql_type: 'smallint']
 	deleted_at ?time.Time @[comment: 'Delete Time | 删除日期'; omitempty; sql_type: 'TIMESTAMP']
 }

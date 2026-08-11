@@ -52,7 +52,7 @@ pub struct CreateUserReq {
 	home_path    string    @[json: 'homePath']
 	nickname     string    @[json: 'nickname']
 	password     string    @[json: 'password']
-	status       u8        @[json: 'status']
+	status       i16       @[json: 'status']
 	username     string    @[json: 'username']
 	position_ids []string  @[json: 'positionIds']
 	created_at   time.Time @[json: 'createdAt']

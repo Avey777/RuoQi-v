@@ -47,7 +47,7 @@ fn cancel_subproduct_repo(mut ctx Context, req CancelSubProductReq) !CancelSubPr
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
 	sql db {
-		update TnSubProduct set del_flag = 1, status = 2, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
+		update TnSubProduct set del_flag = -1, status = 2, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
 		where id == req.id && del_flag == 0
 	} or { return error('Failed to cancel subproduct: ${err}') }
 	return CancelSubProductResp{

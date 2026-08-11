@@ -40,7 +40,7 @@ fn create_fms_cloud_file_tag_domain(req CreateFmsCloudFileTagReq) ! {
 pub struct CreateFmsCloudFileTagReq {
 	name   string  @[json: 'name']
 	remark ?string @[json: 'remark']
-	status u8      @[json: 'status']
+	status i16     @[json: 'status']
 }
 
 pub struct CreateFmsCloudFileTagResp {

@@ -42,7 +42,7 @@ pub struct PayDemoOrderListReq {
 	page_size  int    @[json: 'pageSize']
 	user_id    string @[json: 'userId']
 	spu_name   string @[json: 'spuName']
-	pay_status []u8   @[json: 'payStatus']
+	pay_status []i16  @[json: 'payStatus']
 }
 
 pub struct PayDemoOrderData {
@@ -51,7 +51,7 @@ pub struct PayDemoOrderData {
 	spu_id           u64     @[json: 'spuId']
 	spu_name         string  @[json: 'spuName']
 	price            int     @[json: 'price']
-	pay_status       u8      @[json: 'payStatus']
+	pay_status       i16     @[json: 'payStatus']
 	pay_order_id     ?string @[json: 'payOrderId']
 	pay_channel_code ?string @[json: 'payChannelCode']
 	pay_refund_id    ?string @[json: 'payRefundId']

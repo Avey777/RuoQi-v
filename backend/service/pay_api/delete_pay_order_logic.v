@@ -52,7 +52,7 @@ fn delete_pay_order_repo(mut ctx Context, ids []string) !DeletePayOrderResp {
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
 	sql db {
-		update PayOrder set del_flag = 1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
+		update PayOrder set del_flag = -1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
 		where id in ids && del_flag == 0
 	} or { return error('Failed to soft-delete pay order: ${err}') }
 

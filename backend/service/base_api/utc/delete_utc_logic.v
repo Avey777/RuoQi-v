@@ -56,7 +56,7 @@ fn delete_utc_repo(mut ctx Context, utc_ids []string) !DeleteUtcResp {
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
 	sql db {
-		update BaseUtc set del_flag = 1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
+		update BaseUtc set del_flag = -1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
 		where id in utc_ids && del_flag == 0
 	} or { return error('Failed to soft-delete utc: ${err}') }
 
