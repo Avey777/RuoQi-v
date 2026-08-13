@@ -146,7 +146,8 @@ v_project/
 │   ├── openapi.md                  # 注释标注规范说明 (@summary / @tag / @security…)
 │   ├── rapidoc.html                # RapiDoc  交互式文档 (GET /rapidoc)
 │   ├── redoc.html                  # Redoc    静态文档   (GET /redoc)
-│   └── stoplight_elements.html     # Stoplight Elements 文档 (GET /sleapidoc)
+│   ├── stoplight_elements.html     # Stoplight Elements 文档 (GET /sleapidoc)
+│   └── scalar.html                 # Scalar   API 文档   (GET /scalar)
 │
 ├── common/                         # 通用基础库（非业务）
 │   ├── captcha/                    # 验证码模块

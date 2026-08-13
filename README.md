@@ -6,7 +6,7 @@ RuoQi-V 是基于 v 语言的 veb 框架开发的后端项目
 
 ## OpenAPI 文档
 
-### 三种文档查看器
+### 四种文档查看器
 
 启动服务后，浏览器访问：
 
@@ -15,7 +15,8 @@ RuoQi-V 是基于 v 语言的 veb 框架开发的后端项目
 | `http://localhost:9009/rapidoc`      | RapiDoc            | 交互式调试、暗色主题、Schema 表格视图 |
 | `http://localhost:9009/redoc`        | Redoc              | 三栏经典布局、搜索深度展开            |
 | `http://localhost:9009/sleapidoc`    | Stoplight Elements | 现代化 UI、侧边栏导航、Try It 面板    |
-| `http://localhost:9009/openapi.json` | OpenAPI 3.0.3 JSON | 原始规范数据，三种查看器共用此数据源  |
+| `http://localhost:9009/scalar`       | Scalar             | 现代化 UI、内置 API 测试、代码示例    |
+| `http://localhost:9009/openapi.json` | OpenAPI 3.0.3 JSON | 原始规范数据，四种查看器共用此数据源  |
 
 ### 生成 OpenAPI 规范
 
