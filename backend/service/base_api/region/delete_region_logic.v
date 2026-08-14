@@ -56,7 +56,7 @@ fn delete_region_repo(mut ctx Context, region_ids []string) !DeleteRegionResp {
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
 	sql db {
-		update BaseRegion set del_flag = 1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
+		update BaseRegion set del_flag = -1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
 		where id in region_ids && del_flag == 0
 	} or { return error('Failed to soft-delete region: ${err}') }
 

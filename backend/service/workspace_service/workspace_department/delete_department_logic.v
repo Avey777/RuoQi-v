@@ -48,7 +48,7 @@ fn delete_department_repo(mut ctx Context, req DeleteDepartmentReq) !DeleteDepar
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 	sql db {
-		update WsDepartment set del_flag = 1, updated_at = time.now() where id == req.id
+		update WsDepartment set del_flag = -1, updated_at = time.now() where id == req.id
 		&& del_flag == 0
 	} or { return error('Failed to delete department: ${err}') }
 	return DeleteDepartmentResp{

@@ -45,7 +45,7 @@ fn create_sms_log_domain(req CreateSmsLogReq) ! {
 pub struct CreateSmsLogReq {
 	phone_number string @[json: 'phoneNumber']
 	content      string @[json: 'content']
-	send_status  u8     @[json: 'sendStatus']
+	send_status  i16    @[json: 'sendStatus']
 	provider     string @[json: 'provider']
 }
 

@@ -44,7 +44,7 @@ pub struct LoginByAccountReq {
 	password     string  @[json: 'password']
 	captcha_text string  @[json: 'captcha_text']
 	captcha_id   string  @[json: 'captcha_id']
-	status       u8      @[json: 'status']
+	status       i16     @[json: 'status']
 	source       string  @[json: 'source']
 	login_ip     ?string @[json: 'login_ip']
 	device_id    ?string @[json: 'device_id']

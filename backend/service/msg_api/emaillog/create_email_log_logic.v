@@ -49,7 +49,7 @@ pub struct CreateEmailLogReq {
 	target      string @[json: 'target']
 	subject     string @[json: 'subject']
 	content     string @[json: 'content']
-	send_status u8     @[json: 'sendStatus']
+	send_status i16    @[json: 'sendStatus']
 	provider    string @[json: 'provider']
 }
 

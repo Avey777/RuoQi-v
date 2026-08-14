@@ -52,9 +52,9 @@ pub struct CreateFmsCloudFileReq {
 	name                         string  @[json: 'name']
 	url                          string  @[json: 'url']
 	size                         u64     @[json: 'size']
-	file_type                    u8      @[json: 'fileType']
+	file_type                    i16     @[json: 'fileType']
 	cloud_file_storage_providers ?string @[json: 'cloudFileStorageProviders']
-	status                       u8      @[json: 'status']
+	status                       i16     @[json: 'status']
 }
 
 pub struct CreateFmsCloudFileResp {

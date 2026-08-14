@@ -42,7 +42,7 @@ pub struct PayRefundListReq {
 	page_size    int    @[json: 'pageSize']
 	order_id     string @[json: 'orderId']
 	channel_code string @[json: 'channelCode']
-	status       []u8   @[json: 'status']
+	status       []i16  @[json: 'status']
 }
 
 pub struct PayRefundData {
@@ -57,7 +57,7 @@ pub struct PayRefundData {
 	refund_price       int     @[json: 'refundPrice']
 	reason             string  @[json: 'reason']
 	channel_refund_no  ?string @[json: 'channelRefundNo']
-	status             u8      @[json: 'status']
+	status             i16     @[json: 'status']
 	updater_id         ?string @[json: 'updaterId']
 	creator_id         ?string @[json: 'creatorId']
 	created_at         string  @[json: 'createdAt']

@@ -50,11 +50,11 @@ fn create_fms_file_domain(req CreateFmsFileReq) ! {
 // ═══ DTO ═══
 pub struct CreateFmsFileReq {
 	name      string @[json: 'name']
-	file_type u8     @[json: 'fileType']
+	file_type i16    @[json: 'fileType']
 	size      u64    @[json: 'size']
 	path      string @[json: 'path']
 	md5       string @[json: 'md5']
-	status    u8     @[json: 'status']
+	status    i16    @[json: 'status']
 }
 
 pub struct CreateFmsFileResp {

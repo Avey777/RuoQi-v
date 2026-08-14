@@ -40,14 +40,14 @@ pub struct SmsLogListReq {
 	page_size    int    @[json: 'pageSize']
 	phone_number string @[json: 'phoneNumber']
 	provider     string @[json: 'provider']
-	send_status  []u8   @[json: 'sendStatus']
+	send_status  []i16  @[json: 'sendStatus']
 }
 
 pub struct SmsLogData {
 	id           string  @[json: 'id']
 	phone_number string  @[json: 'phoneNumber']
 	content      string  @[json: 'content']
-	send_status  u8      @[json: 'sendStatus']
+	send_status  i16     @[json: 'sendStatus']
 	provider     string  @[json: 'provider']
 	updater_id   ?string @[json: 'updaterId']
 	creator_id   ?string @[json: 'creatorId']

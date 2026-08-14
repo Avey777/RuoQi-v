@@ -71,11 +71,12 @@ pub fn new_app() {
 	}
 
 	// 4. 初始化缓存连接池。
-	log.debug('init_cache_pool()')
-	mut conn_cache := middleware.init_cache_pool(doc) or {
-		log.warn('cache_pool 初始化失败: ${err}')
-		return
-	}
+	// Redis 暂不使用，以下初始化已注释掉，直接跳过。
+	// log.debug('init_cache_pool()')
+	// mut conn_cache := middleware.init_cache_pool(doc) or {
+	// 	log.warn('cache_pool 初始化失败: ${err}')
+	// 	return
+	// }
 
 	// 5. 创建 veb 应用实例，并注册系统关闭信号。
 	mut app := &AliasApp{
@@ -91,10 +92,10 @@ pub fn new_app() {
 
 	// 6. 构造全局请求上下文，供中间件和路由共享基础依赖。
 	mut ctx := &Context{
-		cache_pool: conn_cache
-		dbpool:     conn_db
-		config:     doc
-		locale:     locale_app
+		// cache_pool: conn_cache // Redis 暂不使用
+		dbpool: conn_db
+		config: doc
+		locale: locale_app
 	}
 
 	// 7. 注册全局中间件，仅作用于非子路由。

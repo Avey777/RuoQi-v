@@ -45,7 +45,7 @@ fn delete_api_repo(mut ctx Context, req DeleteApiReq) !DeleteApiResp {
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire scoped DB: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 	sql db {
-		update PfApi set del_flag = 1 where id == req.id
+		update PfApi set del_flag = -1 where id == req.id
 	}!
 	return DeleteApiResp{
 		msg: 'API deleted'

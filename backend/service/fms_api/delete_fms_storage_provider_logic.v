@@ -41,7 +41,7 @@ fn delete_fms_storage_provider_repo(mut ctx Context, ids []string) !DeleteFmsSto
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 	sql db {
-		update FmsStorageProvider set del_flag = 1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
+		update FmsStorageProvider set del_flag = -1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
 		where id in ids && del_flag == 0
 	} or { return error('Failed to soft-delete storage providers: ${err}') }
 	return DeleteFmsStorageProviderResp{

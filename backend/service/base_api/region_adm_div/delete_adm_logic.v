@@ -56,7 +56,7 @@ fn delete_adm_repo(mut ctx Context, adm_ids []string) !DeleteAdmResp {
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
 	sql db {
-		update BaseRegionAdmDiv set del_flag = 1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
+		update BaseRegionAdmDiv set del_flag = -1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
 		where id in adm_ids && del_flag == 0
 	} or { return error('Failed to soft-delete adm: ${err}') }
 

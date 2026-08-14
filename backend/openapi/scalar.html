@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>RuoQi-v API 文档 - Scalar</title>
+</head>
+<body>
+	<div id="app"></div>
+
+	<!-- Load the Scalar API Reference script -->
+	<script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>
+
+	<!-- Initialize the Scalar API Reference -->
+	<script>
+		Scalar.createApiReference('#app', {
+			// The URL of the OpenAPI/Swagger document
+			url: '/openapi.json',
+			// 与其它查看器保持一致的暗色主题
+			theme: 'moon',
+		})
+	</script>
+</body>
+</html>

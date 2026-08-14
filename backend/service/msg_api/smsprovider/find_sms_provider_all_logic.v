@@ -45,7 +45,7 @@ pub struct SmsProviderData {
 	id         string  @[json: 'id']
 	name       string  @[json: 'name']
 	region     string  @[json: 'region']
-	is_default u8      @[json: 'isDefault']
+	is_default i16     @[json: 'isDefault']
 	updater_id ?string @[json: 'updaterId']
 	creator_id ?string @[json: 'creatorId']
 	created_at string  @[json: 'createdAt']

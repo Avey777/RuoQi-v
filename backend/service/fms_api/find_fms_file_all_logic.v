@@ -42,19 +42,19 @@ pub struct FmsFileListReq {
 	page_size int    @[json: 'pageSize']
 	name      string @[json: 'name']
 	user_id   string @[json: 'userId']
-	file_type []u8   @[json: 'fileType']
-	status    []u8   @[json: 'status']
+	file_type []i16  @[json: 'fileType']
+	status    []i16  @[json: 'status']
 }
 
 pub struct FmsFileData {
 	id         string  @[json: 'id']
 	name       string  @[json: 'name']
-	file_type  u8      @[json: 'fileType']
+	file_type  i16     @[json: 'fileType']
 	size       u64     @[json: 'size']
 	path       string  @[json: 'path']
 	user_id    string  @[json: 'userId']
 	md5        string  @[json: 'md5']
-	status     u8      @[json: 'status']
+	status     i16     @[json: 'status']
 	updater_id ?string @[json: 'updaterId']
 	creator_id ?string @[json: 'creatorId']
 	created_at string  @[json: 'createdAt']

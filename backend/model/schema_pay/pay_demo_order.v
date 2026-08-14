@@ -11,7 +11,7 @@ pub:
 	spu_id           u64        @[comment: '商品编号'; omitempty; required; sql: 'spu_id'; sql_type: 'bigint']
 	spu_name         string     @[comment: '商品名称'; omitempty; required; sql: 'spu_name'; sql_type: 'VARCHAR(255)']
 	price            int        @[comment: '价格，单位：分'; omitempty; required; sql: 'price'; sql_type: 'int']
-	pay_status       u8         @[comment: '是否支付'; omitempty; required; sql: 'pay_status'; sql_type: 'smallint']
+	pay_status       i16        @[comment: '是否支付'; omitempty; required; sql: 'pay_status'; sql_type: 'smallint']
 	pay_order_id     ?string    @[comment: '支付订单编号'; omitempty; sql: 'pay_order_id'; sql_type: 'CHAR(36)']
 	pay_time         ?time.Time @[comment: '付款时间'; omitempty; sql: 'pay_time'; sql_type: 'TIMESTAMP DEFAULT now()']
 	pay_channel_code ?string    @[comment: '支付渠道'; omitempty; sql: 'pay_channel_code'; sql_type: 'VARCHAR(255)']
@@ -23,6 +23,6 @@ pub:
 	updated_at time.Time  @[comment: 'Update Time | 修改日期'; omitempty; sql_type: 'TIMESTAMP']
 	creator_id ?string    @[comment: '创建者ID'; immutable; omitempty; sql_type: 'CHAR(36)']
 	created_at time.Time  @[comment: 'Create Time | 创建日期'; immutable; omitempty; sql_type: 'TIMESTAMP']
-	del_flag   u8         @[comment: '删除标记，0：未删除，1：已删除'; default: 0; omitempty; sql_type: 'smallint']
+	del_flag   i16        @[comment: '删除标记，-1：已删除，0：未删除'; default: 0; omitempty; sql_type: 'smallint']
 	deleted_at ?time.Time @[comment: 'Delete Time | 删除日期'; omitempty; sql_type: 'TIMESTAMP']
 }

@@ -52,12 +52,12 @@ pub struct CreateCurrencyReq {
 	simplified_name           string @[json: 'simplifiedName']
 	currency_code             string @[json: 'currencyCode']
 	currency_symbol           string @[json: 'currencySymbol']
-	decimal_place             u8     @[json: 'decimalPlace']
+	decimal_place             i16    @[json: 'decimalPlace']
 	exchange_rate             f64    @[json: 'exchangeRate']
 	exchange_rate_fluctuation f64    @[json: 'exchangeRateFluctuation']
 	exchange_rate_used        f64    @[json: 'exchangeRateUsed']
 	sort                      ?int   @[json: 'sort']
-	status                    u8     @[json: 'status']
+	status                    i16    @[json: 'status']
 }
 
 pub struct CreateCurrencyResp {

@@ -38,7 +38,7 @@ pub struct PortalBrief {
 	portal_id    string @[json: 'portalId']
 	portal_code  string @[json: 'portalCode']
 	portal_name  string @[json: 'portalName']
-	portal_type  u8     @[json: 'portalType']
+	portal_type  i16    @[json: 'portalType']
 }
 
 pub struct MyTenantPortals {

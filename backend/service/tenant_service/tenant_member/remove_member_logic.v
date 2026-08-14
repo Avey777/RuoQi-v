@@ -60,7 +60,7 @@ fn remove_member_repo(mut ctx Context, req RemoveMemberReq) !RemoveMemberResp {
 	}
 
 	sql db {
-		update TnMember set del_flag = 1, status = 1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
+		update TnMember set del_flag = -1, status = 1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
 		where user_id == req.user_id && tenant_id == tenant_id && product_id == product_id
 		&& portal_id == portal_id && del_flag == 0
 	} or { return error('Failed to remove member: ${err}') }

@@ -52,7 +52,7 @@ fn delete_pay_refund_repo(mut ctx Context, ids []string) !DeletePayRefundResp {
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 
 	sql db {
-		update PayRefund set del_flag = 1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
+		update PayRefund set del_flag = -1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
 		where id in ids && del_flag == 0
 	} or { return error('Failed to soft-delete pay refund: ${err}') }
 

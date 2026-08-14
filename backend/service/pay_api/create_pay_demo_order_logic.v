@@ -44,7 +44,7 @@ pub struct CreatePayDemoOrderReq {
 	spu_id     u64    @[json: 'spuId']
 	spu_name   string @[json: 'spuName']
 	price      int    @[json: 'price']
-	pay_status u8     @[json: 'payStatus']
+	pay_status i16    @[json: 'payStatus']
 }
 
 pub struct CreatePayDemoOrderResp {

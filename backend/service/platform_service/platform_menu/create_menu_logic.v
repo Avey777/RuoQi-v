@@ -36,8 +36,8 @@ fn create_menu_domain(req CreateMenuReq) ! {
 // ═══ DTO ═══
 pub struct CreateMenuReq {
 	parent_id  string @[json: 'parentId']
-	menu_level u8     @[json: 'menuLevel']
-	menu_type  u8     @[json: 'menuType']
+	menu_level i16    @[json: 'menuLevel']
+	menu_type  i16    @[json: 'menuType']
 	path       string @[json: 'path']
 	name       string @[json: 'name']
 	redirect   string @[json: 'redirect']

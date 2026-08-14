@@ -47,15 +47,15 @@ fn create_email_provider_domain(req CreateEmailProviderReq) ! {
 // ═══ DTO ═══
 pub struct CreateEmailProviderReq {
 	name       string  @[json: 'name']
-	auth_type  u8      @[json: 'authType']
+	auth_type  i16     @[json: 'authType']
 	email_addr string  @[json: 'emailAddr']
 	password   ?string @[json: 'password']
 	host_name  string  @[json: 'hostName']
 	identify   ?string @[json: 'identify']
 	secret     ?string @[json: 'secret']
 	port       ?u32    @[json: 'port']
-	tls        u8      @[json: 'tls']
-	is_default u8      @[json: 'isDefault']
+	tls        i16     @[json: 'tls']
+	is_default i16     @[json: 'isDefault']
 }
 
 pub struct CreateEmailProviderResp {

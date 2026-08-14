@@ -65,7 +65,7 @@ pub struct CreateRegionReq {
 	continent_code       ?string @[json: 'continentCode']
 	coord_bounds         ?string @[json: 'coordBounds']
 	sort                 ?int    @[json: 'sort']
-	status               u8      @[json: 'status']
+	status               i16     @[json: 'status']
 	name_en              ?string @[json: 'nameEn']
 	name_zh              ?string @[json: 'nameZh']
 	updater_id           ?string @[json: 'updaterId']

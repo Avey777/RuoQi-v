@@ -70,7 +70,7 @@ fn remove_member_repo(mut ctx Context, req RemoveMemberReq) !RemoveMemberResp {
 		return error('Failed to delete member roles: ${err}')
 	}
 	sql db {
-		update WsMember set del_flag = 1, deleted_at = time.now() where
+		update WsMember set del_flag = -1, deleted_at = time.now() where
 		workspace_id == req.workspace_id && user_id == req.user_id
 	} or {
 		db.execute('ROLLBACK') or {}

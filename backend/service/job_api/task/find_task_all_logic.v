@@ -42,7 +42,7 @@ pub struct TaskListReq {
 	page_size  int    @[json: 'pageSize']
 	name       string @[json: 'name']
 	task_group string @[json: 'taskGroup']
-	status     []u8   @[json: 'status']
+	status     []i16  @[json: 'status']
 }
 
 pub struct TaskData {
@@ -52,7 +52,7 @@ pub struct TaskData {
 	cron_expression string  @[json: 'cronExpression']
 	pattern         string  @[json: 'pattern']
 	payload         string  @[json: 'payload']
-	status          u8      @[json: 'status']
+	status          i16     @[json: 'status']
 	updater_id      ?string @[json: 'updaterId']
 	creator_id      ?string @[json: 'creatorId']
 	created_at      string  @[json: 'createdAt']

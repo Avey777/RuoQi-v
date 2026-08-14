@@ -51,7 +51,7 @@ fn delete_user_repo(mut ctx Context, req DeleteUserReq) ! {
 	db, conn := ctx.acquire_scoped() or { return error('Failed to acquire DB conn: ${err}') }
 	defer { ctx.dbpool.release(conn) or { log.warn('Failed to release conn: ${err}') } }
 	sql db {
-		update IamUser set del_flag = 1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
+		update IamUser set del_flag = -1, updated_at = time.now(), updater_id = ctx.svc_iam.user_id
 		where id == req.user_id && del_flag == 0
 	} or { return error('Failed to delete user: ${err}') }
 }

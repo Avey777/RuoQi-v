@@ -34,14 +34,14 @@ pub struct FmsCloudFileTagListReq {
 	page      int    @[json: 'page']
 	page_size int    @[json: 'pageSize']
 	name      string @[json: 'name']
-	status    []u8   @[json: 'status']
+	status    []i16  @[json: 'status']
 }
 
 pub struct FmsCloudFileTagData {
 	id         string  @[json: 'id']
 	name       string  @[json: 'name']
 	remark     ?string @[json: 'remark']
-	status     u8      @[json: 'status']
+	status     i16     @[json: 'status']
 	updater_id ?string @[json: 'updaterId']
 	creator_id ?string @[json: 'creatorId']
 	created_at string  @[json: 'createdAt']

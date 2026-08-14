@@ -17,7 +17,7 @@ pub struct ApiKeyItem {
 	subproduct_ids []string @[json: 'subproduct_ids']
 	subportal_ids  []string @[json: 'subportal_ids']
 	scopes         []string @[json: 'scopes']
-	status         u8       @[json: 'status']
+	status         i16      @[json: 'status']
 	last_used_at   ?string  @[json: 'last_used_at']
 	expired_at     ?string  @[json: 'expired_at']
 	created_at     string   @[json: 'created_at']

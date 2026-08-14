@@ -122,6 +122,16 @@ fn (mut app AliasApp) stoplight_elements(mut ctx Context) veb.Result {
 	return ctx.html(html_content)
 }
 
+// http://localhost:9009/scalar 打开 Scalar API 文档
+@['/scalar'; get]
+fn (mut app AliasApp) scalar(mut ctx Context) veb.Result {
+	file_path := os.join_path(os.getwd(), 'openapi/scalar.html')
+	html_content := os.read_file(file_path) or {
+		return ctx.html('<h1>Scalar 页面未找到</h1>')
+	}
+	return ctx.html(html_content)
+}
+
 // http://localhost:9009/openapi.json 获取 OpenAPI JSON 数据
 @['/openapi.json'; get]
 fn (mut app AliasApp) openapi_json(mut ctx Context) veb.Result {

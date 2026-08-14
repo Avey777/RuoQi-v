@@ -45,7 +45,7 @@ fn create_task_log_domain(req CreateTaskLogReq) ! {
 pub struct CreateTaskLogReq {
 	started_at     time.Time @[json: 'startedAt']
 	finished_at    time.Time @[json: 'finishedAt']
-	result         u8        @[json: 'result']
+	result         i16       @[json: 'result']
 	task_task_logs string    @[json: 'taskTaskLogs']
 }
 

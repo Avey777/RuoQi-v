@@ -45,7 +45,7 @@ pub struct CreatePayOrderExtensionReq {
 	channel_code   string  @[json: 'channelCode']
 	user_ip        string  @[json: 'userIp']
 	channel_extras ?string @[json: 'channelExtras']
-	status         u8      @[json: 'status']
+	status         i16     @[json: 'status']
 }
 
 pub struct CreatePayOrderExtensionResp {

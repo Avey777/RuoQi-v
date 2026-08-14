@@ -51,10 +51,10 @@ pub struct CreateFmsStorageProviderReq {
 	endpoint   string  @[json: 'endpoint']
 	folder     ?string @[json: 'folder']
 	region     string  @[json: 'region']
-	is_default u8      @[json: 'isDefault']
-	use_cdn    u8      @[json: 'useCdn']
+	is_default i16     @[json: 'isDefault']
+	use_cdn    i16     @[json: 'useCdn']
 	cdn_url    ?string @[json: 'cdnUrl']
-	status     u8      @[json: 'status']
+	status     i16     @[json: 'status']
 }
 
 pub struct CreateFmsStorageProviderResp {

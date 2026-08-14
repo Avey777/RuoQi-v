@@ -52,7 +52,7 @@ pub struct CreatePayOrderReq {
 	channel_fee_price ?int      @[json: 'channelFeePrice']
 	user_ip           string    @[json: 'userIp']
 	expire_time       time.Time @[json: 'expireTime']
-	status            u8        @[json: 'status']
+	status            i16       @[json: 'status']
 }
 
 pub struct CreatePayOrderResp {
