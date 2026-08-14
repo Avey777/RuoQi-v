@@ -87,7 +87,7 @@ fn main() {
 
 	mut info := map[string]json2.Any{}
 	info['title'] = 'RuoQi-v API'
-	info['version'] = '0.5.0'
+	info['version'] = load_project_version(backend_dir)
 	info['description'] = 'Generated from backend/route and backend/service source files.'
 
 	sorted_info := sort_any(json2.Any(info))
@@ -104,6 +104,21 @@ fn main() {
 
 	content := json2.encode(json2.Any(spec), prettify: true)
 	os.write_file(output_path, content + '\n') or { panic(err) }
+}
+
+fn load_project_version(backend_dir string) string {
+	mod_file := os.join_path(backend_dir, 'v.mod')
+	text := os.read_file(mod_file) or { return '0.0.0' }
+	for raw_line in text.split_into_lines() {
+		line := raw_line.all_before('//').trim_space()
+		if line.starts_with('version:') {
+			value := line.all_after('version:').trim_space().trim('\'"')
+			if value != '' {
+				return value
+			}
+		}
+	}
+	return '0.0.0'
 }
 
 fn parse_route_bindings(route_dir string) !map[string]RouteBinding {
@@ -136,7 +151,7 @@ fn parse_route_bindings(route_dir string) !map[string]RouteBinding {
 				bindings[module_path] = RouteBinding{
 					module_path: module_path
 					base_path:   normalize_path(text[quote1 + 1..quote2])
-					secure:      route_kind == 'sys' || route_kind == 'core'
+					secure:      route_kind != 'no_auth'
 				}
 			}
 			pos = quote2 + 1
@@ -550,7 +565,7 @@ fn find_operations(text string) []Operation {
 			}
 			continue
 		}
-		if line.starts_with("@['") && line.contains(']') {
+		if is_potential_route_attr(line) {
 			current_attr = line
 			current_comments = pending_comments.clone()
 			pending_comments = []string{}
@@ -708,6 +723,20 @@ fn append_unique(mut items []string, value string) {
 		return
 	}
 	items << value
+}
+
+fn is_potential_route_attr(line string) bool {
+	if !line.starts_with('@[') || !line.contains(']') {
+		return false
+	}
+	content := line.all_after('@[').all_before_last(']')
+	for raw_token in content.split(';') {
+		token := raw_token.trim_space().to_lower().trim('\'"')
+		if is_http_method(token) {
+			return true
+		}
+	}
+	return false
 }
 
 fn parse_route_attrs(attr_line string) (string, []string) {
