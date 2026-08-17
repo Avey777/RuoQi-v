@@ -1,11 +1,13 @@
 module mysql_pool
 
 const config = DatabaseConfig{
-	host:     'mysql2.sqlpub.com'
-	port:     3307
-	username: 'vcore_test'
-	password: 'wfo8wS7CylT0qIMg'
-	dbname:   'vcore_test'
+	host:           'mysql2.sqlpub.com'
+	port:           3307
+	username:       'vcore_test'
+	password:       'wfo8wS7CylT0qIMg'
+	dbname:         'vcore_test'
+	max_conns:      1
+	min_idle_conns: 0
 }
 
 fn test_new_db_pool() {

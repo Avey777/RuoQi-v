@@ -3,35 +3,41 @@ module dbpool
 import os
 
 const config_mysql = DatabaseConfig{
-	type:     'mysql'
-	host:     'mysql2.sqlpub.com'
-	port:     3307
-	username: 'vcore_test'
-	password: 'wfo8wS7CylT0qIMg'
-	dbname:   'vcore_test'
+	type:           'mysql'
+	host:           'mysql2.sqlpub.com'
+	port:           3307
+	username:       'vcore_test'
+	password:       'wfo8wS7CylT0qIMg'
+	dbname:         'vcore_test'
+	max_conns:      1
+	min_idle_conns: 0
 }
 
 fn config_tidb() DatabaseConfig {
 	cert_path := os.join_path(os.dir(@FILE), '../../etc/client-cert.pem')
 	return DatabaseConfig{
-		type:       'mysql'
-		host:       'gateway01.ap-southeast-1.prod.aws.tidbcloud.com'
-		port:       4000
-		username:   'xfQRtLXKTtPHsUi.root'
-		password:   'GkFU6Q3uvt0O9F0A'
-		dbname:     'vcore'
-		ssl_verify: true
-		ssl_ca:     cert_path
+		type:           'mysql'
+		host:           'gateway01.ap-southeast-1.prod.aws.tidbcloud.com'
+		port:           4000
+		username:       'xfQRtLXKTtPHsUi.root'
+		password:       'GkFU6Q3uvt0O9F0A'
+		dbname:         'vcore'
+		ssl_verify:     true
+		ssl_ca:         cert_path
+		max_conns:      1
+		min_idle_conns: 0
 	}
 }
 
 const config_pg = DatabaseConfig{
-	type:     'pgsql'
-	host:     'ep-wandering-king-akw206lc-pooler.c-3.us-west-2.aws.neon.tech'
-	port:     5432
-	username: 'neondb_owner'
-	password: 'npg_U4j7sqBcgIMO'
-	dbname:   'vcore_test'
+	type:           'pgsql'
+	host:           'ep-wandering-king-akw206lc-pooler.c-3.us-west-2.aws.neon.tech'
+	port:           5432
+	username:       'neondb_owner'
+	password:       'npg_U4j7sqBcgIMO'
+	dbname:         'vcore_test'
+	max_conns:      1
+	min_idle_conns: 0
 }
 
 fn test_acquire_mysql() {
