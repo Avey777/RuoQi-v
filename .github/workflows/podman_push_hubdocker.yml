@@ -8,7 +8,7 @@ jobs:
   podman_push:
     if: startsWith(github.server_url, 'https://github.com')
     name: Build and Push Application with Podman
-    runs-on: codeberg-medium
+    runs-on: ubuntu-latest
     env:
       DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
       DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
@@ -37,7 +37,7 @@ jobs:
 
   notification:
     if: startsWith(github.server_url, 'https://github.com')
-    runs-on: codeberg-medium
+    runs-on: ubuntu-latest
     steps:
       - name: Pipeline status
         run: echo "🍏 This job's status is ${{ job.status }}."
