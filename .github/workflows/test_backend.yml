@@ -1,4 +1,4 @@
-name: Forgejo Actions v-workspace
+name: CI Test & Build
 on:
   push:
     branches:
@@ -12,7 +12,7 @@ on:
 jobs:
   test:
     name: Run Tests
-    runs-on: codeberg-medium
+    runs-on: ubuntu-latest
     container:
       image: thevlang/vlang:alpine-dev
     steps:
@@ -33,7 +33,7 @@ jobs:
 
   build:
     name: Build Application
-    runs-on: codeberg-medium
+    runs-on: ubuntu-latest
     container:
       image: thevlang/vlang:alpine-dev
     steps:
@@ -49,7 +49,7 @@ jobs:
         run: v -stats -cc gcc -o ruoqi-v ./main
 
   notification:
-    runs-on: codeberg-medium
+    runs-on: ubuntu-latest
     if: always()
     steps:
       - name: Pipeline status
