@@ -1,0 +1,25 @@
+name: ruoqi_flutter_ui
+description: RuoQi Flutter monorepo.
+publish_to: 'none'
+
+environment:
+  sdk: ^3.12.0
+
+workspace:
+  - apps/app/platform
+  - apps/app/customer
+  - apps/app/merchant
+  - apps/app/partner
+  - apps/pc/platform
+  - apps/pc/customer
+  - apps/pc/merchant
+  - apps/pc/partner
+  - packages/ruoqi_common
+  - packages/ruoqi_network
+  - packages/ruoqi_platform_api
+  - packages/ruoqi_customer_api
+  - packages/ruoqi_merchant_api
+  - packages/ruoqi_partner_api
+
+dev_dependencies:
+  melos: ^6.3.0
