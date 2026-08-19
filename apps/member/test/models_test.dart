@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ruoqi_iam_user/models/login_request.dart';
-import 'package:ruoqi_iam_user/models/login_response.dart';
+import 'package:ruoqi_member/models/login_request.dart';
+import 'package:ruoqi_member/models/login_response.dart';
 
 void main() {
   test('LoginRequest serializes to json', () {

@@ -1,6 +1,6 @@
 {
-    "name": "RuoQi IAM User",
-    "short_name": "RuoQi IAM User",
+    "name": "RuoQi 会员",
+    "short_name": "RuoQi 会员",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

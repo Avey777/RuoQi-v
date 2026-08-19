@@ -20,6 +20,6 @@ scripts:
   run:platform:
     run: melos exec --scope ruoqi_platform --concurrency 1 -- flutter run
     description: Run the platform app.
-  run:iam_user:
-    run: melos exec --scope ruoqi_iam_user --concurrency 1 -- flutter run
-    description: Run the iam_user app.
+  run:member:
+    run: melos exec --scope ruoqi_member --concurrency 1 -- flutter run
+    description: Run the member app.

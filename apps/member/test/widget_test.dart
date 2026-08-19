@@ -1,17 +1,17 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ruoqi_iam_user/main.dart';
+import 'package:ruoqi_member/main.dart';
 
 void main() {
-  testWidgets('IAM login page renders', (tester) async {
-    await tester.pumpWidget(const IamUserApp());
+  testWidgets('Member login page renders', (tester) async {
+    await tester.pumpWidget(const MemberApp());
 
-    expect(find.text('RuoQi IAM User'), findsOneWidget);
-    expect(find.text('IAM 用户登录'), findsOneWidget);
+    expect(find.text('RuoQi 会员'), findsOneWidget);
+    expect(find.text('会员登录'), findsOneWidget);
     expect(find.text('登 录'), findsOneWidget);
   });
 
   testWidgets('Login validates empty fields', (tester) async {
-    await tester.pumpWidget(const IamUserApp());
+    await tester.pumpWidget(const MemberApp());
 
     await tester.tap(find.text('登 录'));
     await tester.pump();

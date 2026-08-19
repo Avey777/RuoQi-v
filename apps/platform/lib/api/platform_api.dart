@@ -5,7 +5,7 @@ import '../models/system_info.dart';
 /// platform 后端的 API 客户端。
 ///
 /// baseUrl、接口路径、DTO 解析都只属于 platform，
-/// 与 iam_user 的后端互不相干。
+/// 与 member 的后端互不相干。
 ///
 /// 用法：
 /// ```dart
