@@ -8,6 +8,8 @@ RuoQi 多项目 Flutter 巨仓（monorepo），基于 Dart 原生 pub workspace 
 apps/
   platform/          # 平台 App（Dart 包名 ruoqi_platform）
   customer/          # 客户 App（Dart 包名 ruoqi_customer）
+  merchant/          # 商户 App（Dart 包名 ruoqi_merchant）
+  partner/           # 伙伴 App（Dart 包名 ruoqi_partner）
 packages/
   ruoqi_common/      # 共享包（品牌主题、通用组件、工具）
   ruoqi_network/     # 网络基础设施（dio 封装、统一错误、token 抽象，不绑定后端）
@@ -38,6 +40,8 @@ melos test
 # 运行某个 App（需连接设备或模拟器）
 melos run run:platform
 melos run run:customer
+melos run run:merchant
+melos run run:partner
 
 # 重新生成 JSON 序列化代码（改过 models/ 后执行）
 melos gen

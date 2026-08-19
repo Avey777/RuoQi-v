@@ -8,6 +8,8 @@ environment:
 workspace:
   - apps/platform
   - apps/customer
+  - apps/merchant
+  - apps/partner
   - packages/ruoqi_common
   - packages/ruoqi_network
 

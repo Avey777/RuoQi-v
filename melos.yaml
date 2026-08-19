@@ -23,3 +23,9 @@ scripts:
   run:customer:
     run: melos exec --scope ruoqi_customer --concurrency 1 -- flutter run
     description: Run the customer app.
+  run:merchant:
+    run: melos exec --scope ruoqi_merchant --concurrency 1 -- flutter run
+    description: Run the merchant app.
+  run:partner:
+    run: melos exec --scope ruoqi_partner --concurrency 1 -- flutter run
+    description: Run the partner app.
