@@ -1,4 +1,4 @@
-name: ruoqi_partner
+name: ruoqi_partner_pc
 description: "RuoQi partner application."
 resolution: workspace
 # The following line prevents the package from being accidentally published to
@@ -39,7 +39,8 @@ dependencies:
     path: ../../../packages/ruoqi_common
   ruoqi_network:
     path: ../../../packages/ruoqi_network
-  json_annotation: ^4.12.0
+  ruoqi_partner_api:
+    path: ../../../packages/ruoqi_partner_api
 
 dev_dependencies:
   flutter_test:
@@ -51,8 +52,6 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
-  build_runner: ^2.4.13
-  json_serializable: ^6.9.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -17,15 +17,27 @@ scripts:
   gen:
     run: melos exec --depends-on build_runner -- dart run build_runner build
     description: Regenerate json_serializable output in packages that use build_runner.
-  run:platform:
-    run: melos exec --scope ruoqi_platform --concurrency 1 -- flutter run
-    description: Run the platform app.
-  run:customer:
-    run: melos exec --scope ruoqi_customer --concurrency 1 -- flutter run
-    description: Run the customer app.
-  run:merchant:
-    run: melos exec --scope ruoqi_merchant --concurrency 1 -- flutter run
-    description: Run the merchant app.
-  run:partner:
-    run: melos exec --scope ruoqi_partner --concurrency 1 -- flutter run
-    description: Run the partner app.
+  run:platform_app:
+    run: melos exec --scope ruoqi_platform_app --concurrency 1 -- flutter run
+    description: Run the platform mobile app.
+  run:platform_pc:
+    run: melos exec --scope ruoqi_platform_pc --concurrency 1 -- flutter run
+    description: Run the platform PC web app.
+  run:customer_app:
+    run: melos exec --scope ruoqi_customer_app --concurrency 1 -- flutter run
+    description: Run the customer mobile app.
+  run:customer_pc:
+    run: melos exec --scope ruoqi_customer_pc --concurrency 1 -- flutter run
+    description: Run the customer PC web app.
+  run:merchant_app:
+    run: melos exec --scope ruoqi_merchant_app --concurrency 1 -- flutter run
+    description: Run the merchant mobile app.
+  run:merchant_pc:
+    run: melos exec --scope ruoqi_merchant_pc --concurrency 1 -- flutter run
+    description: Run the merchant PC web app.
+  run:partner_app:
+    run: melos exec --scope ruoqi_partner_app --concurrency 1 -- flutter run
+    description: Run the partner mobile app.
+  run:partner_pc:
+    run: melos exec --scope ruoqi_partner_pc --concurrency 1 -- flutter run
+    description: Run the partner PC web app.

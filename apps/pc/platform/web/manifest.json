@@ -1,6 +1,6 @@
 {
-    "name": "RuoQi Platform",
-    "short_name": "RuoQi Platform",
+    "name": "RuoQi 平台",
+    "short_name": "RuoQi 平台",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

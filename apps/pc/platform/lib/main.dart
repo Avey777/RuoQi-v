@@ -15,7 +15,7 @@ class PlatformApp extends StatelessWidget {
     return RuoQiPlatformScope(
       platform: RuoQiPlatform.pc,
       child: MaterialApp(
-        title: 'RuoQi Platform',
+        title: 'RuoQi 平台',
         debugShowCheckedModeBanner: false,
         theme: ruoQiTheme(),
         home: const HomePage(),

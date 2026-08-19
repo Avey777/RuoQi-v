@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
                 ),
                 const Padding(
                   padding: EdgeInsets.only(bottom: 16),
-                  child: AppBadge(appName: 'merchant', version: '1.0.0'),
+                  child: AppBadge(appName: 'merchant_pc', version: '1.0.0'),
                 ),
               ],
             );
@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 8),
               ],
               const Center(
-                child: AppBadge(appName: 'merchant', version: '1.0.0'),
+                child: AppBadge(appName: 'merchant_pc', version: '1.0.0'),
               ),
             ],
           );

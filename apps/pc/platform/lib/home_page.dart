@@ -7,7 +7,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('RuoQi Platform')),
+      appBar: AppBar(title: const Text('RuoQi 平台')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 16),
             Text('平台服务', style: Theme.of(context).textTheme.headlineSmall),
             const SizedBox(height: 16),
-            const AppBadge(appName: 'platform', version: '1.0.0'),
+            const AppBadge(appName: 'platform_pc', version: '1.0.0'),
           ],
         ),
       ),

@@ -1,6 +1,6 @@
 {
-    "name": "RuoQi 客户",
-    "short_name": "RuoQi 客户",
+    "name": "RuoQi 客户 App",
+    "short_name": "RuoQi 客户 App",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             const SizedBox(height: 16),
-            const AppBadge(appName: 'partner', version: '1.0.0'),
+            const AppBadge(appName: 'partner_pc', version: '1.0.0'),
           ],
         ),
       ),

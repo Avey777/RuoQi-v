@@ -15,7 +15,7 @@ class CustomerApp extends StatelessWidget {
     return RuoQiPlatformScope(
       platform: RuoQiPlatform.mobile,
       child: MaterialApp(
-        title: 'RuoQi 客户',
+        title: 'RuoQi 客户 App',
         debugShowCheckedModeBanner: false,
         theme: ruoQiTheme(),
         home: const LoginPage(),

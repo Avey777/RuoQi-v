@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ruoqi_customer/main.dart';
+import 'package:ruoqi_customer_app/main.dart';
 
 void main() {
   testWidgets('Customer login page renders', (tester) async {
     await tester.pumpWidget(const CustomerApp());
 
-    expect(find.text('RuoQi 客户'), findsOneWidget);
+    expect(find.text('RuoQi 客户 App'), findsOneWidget);
     expect(find.text('客户登录'), findsOneWidget);
     expect(find.text('登 录'), findsOneWidget);
   });
