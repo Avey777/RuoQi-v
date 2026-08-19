@@ -10,6 +10,7 @@ apps/
   iam_user/          # IAM 用户 App（Dart 包名 ruoqi_iam_user）
 packages/
   ruoqi_common/      # 共享包（品牌主题、通用组件、工具）
+  ruoqi_network/     # 网络基础设施（dio 封装、统一错误、token 抽象，不绑定后端）
 ```
 
 > 说明：`platform` 与 pub.dev 上的 `platform` 包同名，会与 workspace 解析冲突，
@@ -37,6 +38,25 @@ melos test
 # 运行某个 App（需连接设备或模拟器）
 melos run run:platform
 melos run run:iam_user
+
+# 重新生成 JSON 序列化代码（改过 models/ 后执行）
+melos gen
+```
+
+## API 分层约定
+
+每个 App 可能对接不同的后端，因此 API 代码不放在共享包中：
+
+- `packages/ruoqi_network`：只提供「怎么发请求」的能力——超时、token 注入、
+  统一错误映射；不含任何后端地址或接口。
+- `apps/<name>/lib/models/`：该 App 后端的 DTO，`json_serializable` 生成
+  `*.g.dart`，改动后执行 `melos gen`。
+- `apps/<name>/lib/api/`：该 App 后端的客户端，组装 baseUrl、路径与 DTO 解析。
+
+后端地址通过 `--dart-define` 注入，例如：
+
+```bash
+flutter run --dart-define=IAM_API_BASE_URL=https://iam.example.com
 ```
 
 ## 新增项目

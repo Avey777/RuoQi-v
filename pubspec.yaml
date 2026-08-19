@@ -9,6 +9,7 @@ workspace:
   - apps/platform
   - apps/iam_user
   - packages/ruoqi_common
+  - packages/ruoqi_network
 
 dev_dependencies:
   melos: ^6.3.0
