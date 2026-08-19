@@ -1,0 +1,22 @@
+name: ruoqi_flutter_ui
+
+packages:
+  - apps/**
+  - packages/**
+
+scripts:
+  get:
+    run: flutter pub get
+    description: Resolve dependencies for the whole workspace.
+  analyze:
+    run: melos exec -- flutter analyze
+    description: Analyze all workspace packages.
+  test:
+    run: melos exec -- flutter test
+    description: Run tests in all workspace packages.
+  run:platform:
+    run: melos exec --scope ruoqi_platform --concurrency 1 -- flutter run
+    description: Run the platform app.
+  run:iam_user:
+    run: melos exec --scope ruoqi_iam_user --concurrency 1 -- flutter run
+    description: Run the iam_user app.

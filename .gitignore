@@ -1,0 +1,23 @@
+# Dart / Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Melos
+melos_*.log
+
+# Env / secrets
+.env
+.env.*
+!.env.example

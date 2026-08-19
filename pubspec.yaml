@@ -1,0 +1,14 @@
+name: ruoqi_flutter_ui
+description: RuoQi Flutter monorepo.
+publish_to: 'none'
+
+environment:
+  sdk: ^3.12.0
+
+workspace:
+  - apps/platform
+  - apps/iam_user
+  - packages/ruoqi_common
+
+dev_dependencies:
+  melos: ^6.3.0
