@@ -2,7 +2,17 @@
 
 > [English](README.md) | [中文](README.zh-CN.md)
 
-RuoQi-V 是基于 v 语言的 veb 框架开发的后端项目
+RuoQi-V 是全栈 monorepo:后端基于 V 语言的 veb 框架开发,前端为 Flutter workspace(melos)。
+
+## 项目结构
+
+```
+backend/    # V / Veb 后端
+frontend/   # Flutter monorepo(melos workspace:4 个域 × app/pc + 共享包)
+deploy/     # Docker / Podman 部署脚本
+docs/       # 文档
+example/    # 后端示例
+```
 
 ## OpenAPI 文档
 
@@ -46,6 +56,27 @@ v -d autofree -prod -o app ./main
 ```
 
 > 默认端口: `9009`，启动后访问 `http://localhost:9009`
+
+### 前端
+
+```bash
+cd frontend
+flutter pub get
+melos run run:platform_app   # 或任意 run:* 脚本,详见 frontend/README.md
+```
+
+前端完整的目录结构与命令见 [frontend/README.md](frontend/README.md)。
+
+### 后续拆分前端
+
+前端以 git subtree 形式位于 `frontend/`(从 `RuoQi-flutter-ui` 导入)。
+若 monorepo 过大需要拆回独立仓库,可保留完整历史:
+
+```bash
+git subtree split --prefix=frontend -b frontend-export
+```
+
+再将 `frontend-export` 分支推送到新仓库即可。
 
 ## TODO
 

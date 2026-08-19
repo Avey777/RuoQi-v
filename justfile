@@ -20,6 +20,19 @@ build_prod:
 openapi:
     cd backend && v run openapi/openapi_generate.vsh
 
+# ─── 前端 ──────────────────────────────────────────
+frontend_get:
+    cd frontend && flutter pub get
+
+frontend_analyze:
+    cd frontend && melos analyze
+
+frontend_test:
+    cd frontend && melos test
+
+frontend_gen:
+    cd frontend && melos gen
+
 # ─── 工具 ──────────────────────────────────────────
 kill:
     lsof -ti :9009 | xargs -r sudo kill -9

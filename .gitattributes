@@ -1,5 +1,3 @@
-* linguist-language=V
-
 * text=auto eol=lf
 *.bat eol=crlf
 

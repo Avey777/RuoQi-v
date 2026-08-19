@@ -2,7 +2,18 @@
 
 > [English](README.md) | [中文](README.zh-CN.md)
 
-RuoQi-V is a backend project developed with the Veb framework based on the V language.
+RuoQi-V is a full-stack monorepo: the backend is developed with the Veb framework
+based on the V language, and the frontend is a Flutter workspace (melos).
+
+## Project Structure
+
+```
+backend/    # V / Veb backend
+frontend/   # Flutter monorepo (melos workspace: 4 domains × app/pc + shared packages)
+deploy/     # Docker / Podman deployment scripts
+docs/       # Documentation
+example/    # Backend examples
+```
 
 ## OpenAPI Documentation
 
@@ -46,6 +57,29 @@ v -d autofree -prod -o app ./main
 ```
 
 > Default port: `9009`. After startup, visit `http://localhost:9009`.
+
+### Frontend
+
+```bash
+cd frontend
+flutter pub get
+melos run run:platform_app   # or any run:* script, see frontend/README.md
+```
+
+The full frontend layout and commands are documented in
+[frontend/README.md](frontend/README.md).
+
+### Splitting the Frontend Later
+
+The frontend lives under `frontend/` as a git subtree (imported from
+`RuoQi-flutter-ui`). If the monorepo grows too large, split it back out
+while keeping its history:
+
+```bash
+git subtree split --prefix=frontend -b frontend-export
+```
+
+Then push `frontend-export` to a new repository.
 
 ## TODO
 

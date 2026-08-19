@@ -27,19 +27,10 @@ bin/
 
 # vweb and database
 *.db
-*.js
 
 ###
 !.commitlintrc.js
 
-
-# Nuxt dev/build outputs
-.output
-.data
-.nuxt
-.nitro
-.cache
-dist
 
 # Node dependencies
 node_modules
