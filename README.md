@@ -6,17 +6,19 @@ RuoQi 多项目 Flutter 巨仓（monorepo），基于 Dart 原生 pub workspace 
 
 ```
 apps/
-  platform/          # 平台 App（PC 端，ruoqi_platform）
-  customer/          # 客户 App（移动端，ruoqi_customer）
-  merchant/          # 商户 App（PC 端，ruoqi_merchant）
-  partner/           # 伙伴 App（PC 端，ruoqi_partner）
+  app/
+    customer/        # 客户 App（移动端，ruoqi_customer）
+  pc/
+    platform/        # 平台 App（PC 端，ruoqi_platform）
+    merchant/        # 商户 App（PC 端，ruoqi_merchant）
+    partner/         # 伙伴 App（PC 端，ruoqi_partner）
 packages/
   ruoqi_common/      # 共享包（品牌主题、通用组件、工具）
   ruoqi_network/     # 网络基础设施（dio 封装、统一错误、token 抽象，不绑定后端）
 ```
 
 > 说明：`platform` 与 pub.dev 上的 `platform` 包同名，会与 workspace 解析冲突，
-> 因此目录保持 `apps/platform`、`apps/customer`，Dart 包名使用 `ruoqi_` 前缀。
+> 因此目录保持 `apps/pc/platform` 等，Dart 包名使用 `ruoqi_` 前缀。
 
 ## 环境准备
 
@@ -80,12 +82,17 @@ flutter run --dart-define=CUSTOMER_API_BASE_URL=https://customer.example.com
 ## 新增项目
 
 ```bash
-flutter create --org com.ruoqi --platforms android,ios,web apps/<name>
+# 移动端 App
+flutter create --org com.ruoqi --platforms android,ios,web apps/app/<name>
+
+# PC 端（Web）
+flutter create --org com.ruoqi --platforms web apps/pc/<name>
 ```
 
 随后：
 
-1. 在 `apps/<name>/pubspec.yaml` 中把包名改为 `ruoqi_<name>`，并添加 `resolution: workspace`；
+1. 在 `apps/app/<name>` 或 `apps/pc/<name>` 的 `pubspec.yaml` 中把包名改为
+   `ruoqi_<name>`，并添加 `resolution: workspace`；
 2. 在根 `pubspec.yaml` 的 `workspace:` 列表中加入新目录；
 3. 在 `melos.yaml` 中按需添加运行脚本。
 

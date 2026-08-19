@@ -1,5 +1,5 @@
-name: ruoqi_customer
-description: "RuoQi customer application."
+name: ruoqi_partner
+description: "RuoQi partner application."
 resolution: workspace
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -36,9 +36,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   ruoqi_common:
-    path: ../../packages/ruoqi_common
+    path: ../../../packages/ruoqi_common
   ruoqi_network:
-    path: ../../packages/ruoqi_network
+    path: ../../../packages/ruoqi_network
   json_annotation: ^4.12.0
 
 dev_dependencies:
