@@ -6,7 +6,7 @@ description: >
   ThemeData / ColorScheme / TextTheme / ThemeExtension / Widget / MediaQuery。
   本文件可独立实现，不需要对照任何 CSS 文档。
 mode: "Brightness.light | Brightness.dark × RuQiPurpose.standard | marketing"
-related: DESIGN-consensus.md（CSS 版仅作为设计来源参考，不作为实现依据）
+related: 由原 CSS 版设计共识转换而来；本文件为 Flutter 端唯一设计规范。
 ---
 
 # RuoQi 设计系统 — Flutter 规范
@@ -204,7 +204,21 @@ const List<BoxShadow> shadowSm = [
   BoxShadow(offset: Offset(0, 1), blurRadius: 3, color: Color(0x0F000000)),
   BoxShadow(offset: Offset(0, 1), blurRadius: 2, color: Color(0x0A000000)),
 ];
-// shadowMd / shadowLg / shadowXl 依此类推（Offset、blurRadius、alpha 见 CSS 来源值）
+
+const List<BoxShadow> shadowMd = [
+  BoxShadow(offset: Offset(0, 4), blurRadius: 16, color: Color(0x1A000000)),
+  BoxShadow(offset: Offset(0, 2), blurRadius: 4, color: Color(0x0F000000)),
+];
+
+const List<BoxShadow> shadowLg = [
+  BoxShadow(offset: Offset(0, 12), blurRadius: 32, color: Color(0x1F000000)),
+  BoxShadow(offset: Offset(0, 4), blurRadius: 8, color: Color(0x0F000000)),
+];
+
+const List<BoxShadow> shadowXl = [
+  BoxShadow(offset: Offset(0, 24), blurRadius: 48, color: Color(0x26000000)),
+  BoxShadow(offset: Offset(0, 8), blurRadius: 16, color: Color(0x14000000)),
+];
 ```
 
 ### 4.2 `Card` 与焦点
