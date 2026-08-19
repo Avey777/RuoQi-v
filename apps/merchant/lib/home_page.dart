@@ -31,26 +31,67 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('RuoQi 商户')),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          for (final feature in _features) ...[
-            Card(
-              child: ListTile(
-                leading: Icon(
-                  feature.icon,
-                  color: Theme.of(context).colorScheme.primary,
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          final isPc = RuoQiPlatformScope.of(context) == RuoQiPlatform.pc;
+          final cards = [
+            for (final feature in _features) _FeatureCard(feature: feature),
+          ];
+
+          if (isPc) {
+            return Column(
+              children: [
+                Expanded(
+                  child: GridView.count(
+                    padding: const EdgeInsets.all(16),
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 12,
+                    crossAxisSpacing: 12,
+                    childAspectRatio: 3,
+                    children: cards,
+                  ),
                 ),
-                title: Text(feature.title),
-                subtitle: Text(feature.subtitle),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 16),
+                  child: AppBadge(appName: 'merchant', version: '1.0.0'),
+                ),
+              ],
+            );
+          }
+
+          return ListView(
+            padding: const EdgeInsets.all(16),
+            children: [
+              for (final card in cards) ...[
+                card,
+                const SizedBox(height: 8),
+              ],
+              const Center(
+                child: AppBadge(appName: 'merchant', version: '1.0.0'),
               ),
-            ),
-            const SizedBox(height: 8),
-          ],
-          const Center(
-            child: AppBadge(appName: 'merchant', version: '1.0.0'),
-          ),
-        ],
+            ],
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _FeatureCard extends StatelessWidget {
+  const _FeatureCard({required this.feature});
+
+  final ({IconData icon, String title, String subtitle}) feature;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        leading: Icon(
+          feature.icon,
+          color: Theme.of(context).colorScheme.primary,
+        ),
+        title: Text(feature.title),
+        subtitle: Text(feature.subtitle),
       ),
     );
   }

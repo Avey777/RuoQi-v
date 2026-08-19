@@ -12,11 +12,14 @@ class CustomerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'RuoQi 客户',
-      debugShowCheckedModeBanner: false,
-      theme: ruoQiTheme(),
-      home: const LoginPage(),
+    return RuoQiPlatformScope(
+      platform: RuoQiPlatform.mobile,
+      child: MaterialApp(
+        title: 'RuoQi 客户',
+        debugShowCheckedModeBanner: false,
+        theme: ruoQiTheme(),
+        home: const LoginPage(),
+      ),
     );
   }
 }

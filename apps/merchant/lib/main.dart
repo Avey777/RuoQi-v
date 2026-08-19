@@ -12,11 +12,14 @@ class MerchantApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'RuoQi 商户',
-      debugShowCheckedModeBanner: false,
-      theme: ruoQiTheme(),
-      home: const HomePage(),
+    return RuoQiPlatformScope(
+      platform: RuoQiPlatform.pc,
+      child: MaterialApp(
+        title: 'RuoQi 商户',
+        debugShowCheckedModeBanner: false,
+        theme: ruoQiTheme(),
+        home: const HomePage(),
+      ),
     );
   }
 }

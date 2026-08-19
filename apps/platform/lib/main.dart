@@ -12,11 +12,14 @@ class PlatformApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'RuoQi Platform',
-      debugShowCheckedModeBanner: false,
-      theme: ruoQiTheme(),
-      home: const HomePage(),
+    return RuoQiPlatformScope(
+      platform: RuoQiPlatform.pc,
+      child: MaterialApp(
+        title: 'RuoQi Platform',
+        debugShowCheckedModeBanner: false,
+        theme: ruoQiTheme(),
+        home: const HomePage(),
+      ),
     );
   }
 }

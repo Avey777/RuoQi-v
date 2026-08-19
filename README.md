@@ -6,10 +6,10 @@ RuoQi 多项目 Flutter 巨仓（monorepo），基于 Dart 原生 pub workspace 
 
 ```
 apps/
-  platform/          # 平台 App（Dart 包名 ruoqi_platform）
-  customer/          # 客户 App（Dart 包名 ruoqi_customer）
-  merchant/          # 商户 App（Dart 包名 ruoqi_merchant）
-  partner/           # 伙伴 App（Dart 包名 ruoqi_partner）
+  platform/          # 平台 App（PC 端，ruoqi_platform）
+  customer/          # 客户 App（移动端，ruoqi_customer）
+  merchant/          # 商户 App（PC 端，ruoqi_merchant）
+  partner/           # 伙伴 App（PC 端，ruoqi_partner）
 packages/
   ruoqi_common/      # 共享包（品牌主题、通用组件、工具）
   ruoqi_network/     # 网络基础设施（dio 封装、统一错误、token 抽象，不绑定后端）
@@ -62,6 +62,20 @@ melos gen
 ```bash
 flutter run --dart-define=CUSTOMER_API_BASE_URL=https://customer.example.com
 ```
+
+## 端类型（PC / 移动端）
+
+| App | 端 | 主要平台 | 布局取向 |
+|---|---|---|---|
+| platform | PC | web（可补桌面端） | 宽屏后台管理 |
+| merchant | PC | web（可补桌面端） | 宽屏后台管理 |
+| partner | PC | web（可补桌面端） | 宽屏后台管理 |
+| customer | 移动 | android / ios | 窄屏优先 |
+
+每个 App 在 `main.dart` 用 `RuoQiPlatformScope` 声明自己的端类型
+（`RuoQiPlatform.pc` / `RuoQiPlatform.mobile`），布局代码通过
+`RuoQiPlatformScope.of(context)` 或 `RuoQiBreakpoints` 断点自适应。
+断点常量为 `tablet: 600`、`desktop: 1024`。
 
 ## 新增项目
 
