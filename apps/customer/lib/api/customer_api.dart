@@ -3,21 +3,21 @@ import 'package:ruoqi_network/ruoqi_network.dart';
 import '../models/login_request.dart';
 import '../models/login_response.dart';
 
-/// 会员后端的 API 客户端。
+/// 客户后端的 API 客户端。
 ///
-/// 只属于 member，platform 不会用到：
+/// 只属于 customer，platform 不会用到：
 /// baseUrl、接口路径、DTO 解析都在这里维护。
 ///
 /// 用法：
 /// ```dart
 /// final client = RuoQiNetworkClient(
-///   baseUrl: String.fromEnvironment('MEMBER_API_BASE_URL', defaultValue: 'https://member.example.com'),
+///   baseUrl: String.fromEnvironment('CUSTOMER_API_BASE_URL', defaultValue: 'https://customer.example.com'),
 ///   tokenProvider: MyTokenProvider(),
 /// );
-/// final api = MemberApi(client);
+/// final api = CustomerApi(client);
 /// ```
-class MemberApi {
-  const MemberApi(this._client);
+class CustomerApi {
+  const CustomerApi(this._client);
 
   final RuoQiNetworkClient _client;
 

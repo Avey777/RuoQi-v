@@ -1,6 +1,6 @@
 {
-    "name": "RuoQi 会员",
-    "short_name": "RuoQi 会员",
+    "name": "RuoQi 客户",
+    "short_name": "RuoQi 客户",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -7,7 +7,7 @@ environment:
 
 workspace:
   - apps/platform
-  - apps/member
+  - apps/customer
   - packages/ruoqi_common
   - packages/ruoqi_network
 

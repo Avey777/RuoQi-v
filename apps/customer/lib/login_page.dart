@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('RuoQi 会员')),
+      appBar: AppBar(title: const Text('RuoQi 客户')),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
@@ -50,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    '会员登录',
+                    '客户登录',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
@@ -81,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                   FilledButton(onPressed: _submit, child: const Text('登 录')),
                   const SizedBox(height: 12),
                   const Center(
-                    child: AppBadge(appName: 'member', version: '1.0.0'),
+                    child: AppBadge(appName: 'customer', version: '1.0.0'),
                   ),
                 ],
               ),

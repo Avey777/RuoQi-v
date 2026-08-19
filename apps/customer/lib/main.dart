@@ -4,16 +4,16 @@ import 'package:ruoqi_common/ruoqi_common.dart';
 import 'login_page.dart';
 
 void main() {
-  runApp(const MemberApp());
+  runApp(const CustomerApp());
 }
 
-class MemberApp extends StatelessWidget {
-  const MemberApp({super.key});
+class CustomerApp extends StatelessWidget {
+  const CustomerApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'RuoQi 会员',
+      title: 'RuoQi 客户',
       debugShowCheckedModeBanner: false,
       theme: ruoQiTheme(),
       home: const LoginPage(),

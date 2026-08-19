@@ -7,14 +7,14 @@ RuoQi 多项目 Flutter 巨仓（monorepo），基于 Dart 原生 pub workspace 
 ```
 apps/
   platform/          # 平台 App（Dart 包名 ruoqi_platform）
-  member/            # 会员 App（Dart 包名 ruoqi_member）
+  customer/          # 客户 App（Dart 包名 ruoqi_customer）
 packages/
   ruoqi_common/      # 共享包（品牌主题、通用组件、工具）
   ruoqi_network/     # 网络基础设施（dio 封装、统一错误、token 抽象，不绑定后端）
 ```
 
 > 说明：`platform` 与 pub.dev 上的 `platform` 包同名，会与 workspace 解析冲突，
-> 因此目录保持 `apps/platform`、`apps/member`，Dart 包名使用 `ruoqi_` 前缀。
+> 因此目录保持 `apps/platform`、`apps/customer`，Dart 包名使用 `ruoqi_` 前缀。
 
 ## 环境准备
 
@@ -37,7 +37,7 @@ melos test
 
 # 运行某个 App（需连接设备或模拟器）
 melos run run:platform
-melos run run:member
+melos run run:customer
 
 # 重新生成 JSON 序列化代码（改过 models/ 后执行）
 melos gen
@@ -56,7 +56,7 @@ melos gen
 后端地址通过 `--dart-define` 注入，例如：
 
 ```bash
-flutter run --dart-define=MEMBER_API_BASE_URL=https://member.example.com
+flutter run --dart-define=CUSTOMER_API_BASE_URL=https://customer.example.com
 ```
 
 ## 新增项目

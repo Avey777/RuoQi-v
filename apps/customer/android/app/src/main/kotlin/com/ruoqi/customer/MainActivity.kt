@@ -1,4 +1,4 @@
-package com.ruoqi.member
+package com.ruoqi.customer
 
 import io.flutter.embedding.android.FlutterActivity
 
