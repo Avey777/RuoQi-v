@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ruoqi_platform_pc/business/system_settings_dialog.dart';
+import 'package:ruoqi_platform_pc/管理后台/system_settings_dialog.dart';
 
 void main() {
   Future<void> openDialog(WidgetTester tester) async {

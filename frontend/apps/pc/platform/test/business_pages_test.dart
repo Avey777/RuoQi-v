@@ -26,7 +26,7 @@ import 'package:ruoqi_platform_pc/business/region_page.dart';
 import 'package:ruoqi_platform_pc/business/role_list_page.dart';
 import 'package:ruoqi_platform_pc/business/subscription_page.dart';
 import 'package:ruoqi_platform_pc/business/system_manage_page.dart';
-import 'package:ruoqi_platform_pc/business/system_settings_dialog.dart';
+import 'package:ruoqi_platform_pc/管理后台/system_settings_dialog.dart';
 import 'package:ruoqi_platform_pc/business/team_page.dart';
 import 'package:ruoqi_platform_pc/business/team_settings_page.dart';
 import 'package:ruoqi_platform_pc/business/tenant_list_page.dart';
