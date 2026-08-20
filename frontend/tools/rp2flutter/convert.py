@@ -134,7 +134,7 @@ def _unescape(s: str) -> str:
     return s
 
 
-TOKEN_RE = re.compile(r"<[^>]*>|[^<&]+|&[^;]+;")
+TOKEN_RE = re.compile(r"<[^>]*>|[^<&]+|&[^;]+;|&")
 
 
 def parse_html(value: str) -> List[Tuple[str, Dict[str, Any]]]:
@@ -1116,6 +1116,112 @@ def section_for(path: str) -> str:
     return SECTIONS.get(first, "")
 
 
+SECTION_MENUS = {
+    # 每个板块侧栏的完整菜单（由原型中该板块各页面侧栏项的并集整理而来）
+    "设置": ["通用", "本土化", "电子邮件", "编码规则", "短信", "auth登录", "验证消息"],
+    "用户": ["用户", "角色"],
+    "菜单": ["菜单"],
+    "基础": ["世界地理规划", "地区&国家", "导入地区", "UTC", "时区数据库", "货币", "历史汇率"],
+    "语言": ["多语言", "翻译", "导入", "导出"],
+    "日志": ["验证日志", "操作日志", "登录日志", "支付日志"],
+}
+
+
+def complete_sidebar(comps: List[Dict[str, Any]], section: str) -> None:
+    """把原型页面中不完整的左侧菜单补全为该板块的完整菜单。
+
+    Mockplus 原型中每个页面只内联了侧栏菜单的局部切片，这里以页面内已有的
+    菜单项为模板（位置/尺寸/样式），按 42px 行距补齐该板块的全部菜单项。
+    """
+    menu = SECTION_MENUS.get(section)
+    if not menu:
+        return
+
+    # 1. 定位侧栏面板：位于 (8,145) 附近、宽 220、EFF1F3 填充的 canvas-panel
+    def find_panel(comp: Dict[str, Any], ox: float, oy: float):
+        pos = comp.get("position") or {}
+        x = float(pos.get("x", 0)) + ox
+        y = float(pos.get("y", 0)) + oy
+        if comp.get("type") == "canvas-panel" and 0 <= x <= 20 and 140 <= y <= 160:
+            size = comp.get("size") or {}
+            if 200 <= float(size.get("width", 0)) <= 240 and float(size.get("height", 0)) >= 400:
+                fill = comp.get("properties", {}).get("fill") or {}
+                col = fill.get("color") or {}
+                if not fill.get("disabled") and (col.get("r"), col.get("g"), col.get("b")) == (239, 241, 243):
+                    return comp, x, y
+        for c in comp.get("components", []):
+            r = find_panel(c, x, y)
+            if r:
+                return r
+        return None
+
+    panel = None
+    for c in comps:
+        panel = find_panel(c, 0, 0)
+        if panel:
+            break
+    if not panel:
+        return
+    panel_node, panel_x, panel_y = panel
+
+    # 2. 收集侧栏面板内已有的菜单项（含父链，便于移除/插入）
+    items: List[Tuple[float, float, Dict[str, Any], List[Tuple[Dict[str, Any], int]]]] = []
+
+    def collect(node: Dict[str, Any], rx: float, ry: float, chain: List[Tuple[Dict[str, Any], int]]) -> None:
+        kids = node.get("components", [])
+        for i, k in enumerate(kids):
+            pos = k.get("position") or {}
+            kx = rx + float(pos.get("x", 0))
+            ky = ry + float(pos.get("y", 0))
+            if k.get("type") == "pureText" and ky >= 20:
+                v = k.get("value")
+                if isinstance(v, str) and not v.startswith("@"):
+                    items.append((kx, ky, k, chain + [(node, i)]))
+            collect(k, kx, ky, chain + [(node, i)])
+
+    collect(panel_node, 0.0, 0.0, [])
+    if not items:
+        return
+    items.sort(key=lambda t: (t[1], t[0]))
+    tpl_x, tpl_y, tpl_node, tpl_chain = items[0]
+    tpl_size = tpl_node.get("size") or {}
+    tpl_props = tpl_node.get("properties") or {}
+
+    # 3. 移除已有的局部菜单项
+    for _, _, node, chain in items:
+        parent, idx = chain[-1]
+        kids = parent.get("components", [])
+        if idx < len(kids) and kids[idx] is node:
+            del kids[idx]
+
+    # 4. 找到插入目标容器：菜单项所在 list-layout-panel 或侧栏面板本身
+    host = panel_node
+    host_rx = host_ry = 0.0
+    for parent, _ in reversed(tpl_chain):
+        if parent.get("type") == "list-layout-panel":
+            host = parent
+            break
+    # 计算模板项相对 host 的坐标（chain[0] 即侧栏面板，坐标基准就是面板原点）
+    rx, ry = tpl_x, tpl_y
+    host_idx = next(i for i, (p, _) in enumerate(tpl_chain) if p is host)
+    for parent, _ in tpl_chain[1 : host_idx + 1]:
+        pos = parent.get("position") or {}
+        rx -= float(pos.get("x", 0))
+        ry -= float(pos.get("y", 0))
+    host.setdefault("components", [])
+
+    # 5. 生成完整菜单
+    for i, label in enumerate(menu):
+        node: Dict[str, Any] = {
+            "type": "pureText",
+            "value": label,
+            "position": {"x": rx, "y": ry + i * 42.0},
+            "size": dict(tpl_size),
+            "properties": {"textStyle": dict(tpl_props.get("textStyle") or {})},
+        }
+        host["components"].append(node)
+
+
 INVALID_FILENAME_RE = re.compile(r'[\\/:*?"<>|\x00-\x1f]')
 
 
@@ -1221,6 +1327,7 @@ def main() -> int:
             continue
         page = load_js(src)
         comps = page if isinstance(page, list) else page.get("components", [])
+        complete_sidebar(comps, section_for(pd.path))
         code = page_file(pd, comps)
         dst = os.path.join(pd.out_dir, pd.file_base + ".dart")
         with open(dst, "w", encoding="utf-8") as f:
