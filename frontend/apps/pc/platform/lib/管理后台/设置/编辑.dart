@@ -168,7 +168,7 @@ class DLYV6WACaPage extends StatelessWidget {
                                   width: 188,
                                   height: 17,
                                   child: Text(
-                                    '本土化',
+                                    '本地化',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontSize: 14,

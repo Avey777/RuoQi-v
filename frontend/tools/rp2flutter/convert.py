@@ -1119,7 +1119,7 @@ def section_for(path: str) -> str:
 
 SECTION_MENUS = {
     # 每个板块侧栏的完整菜单（由原型中该板块各页面侧栏项的并集整理而来）
-    "设置": ["通用", "本土化", "电子邮件", "编码规则", "短信", "auth登录", "验证消息"],
+    "设置": ["通用", "本地化", "电子邮件", "编码规则", "短信", "auth登录", "验证消息"],
     "用户": ["用户", "角色"],
     "菜单": ["菜单"],
     "基础": ["世界地理规划", "地区&国家", "导入地区", "UTC", "时区数据库", "货币", "历史汇率"],
@@ -1356,6 +1356,16 @@ def main() -> int:
 
     # 尽量用 dart format 把生成代码格式化成可读的多行样式
     dart = shutil.which("dart")
+    if not dart:
+        for candidate in (
+            os.path.expanduser("~/opt/flutter/bin/dart"),
+            os.path.expanduser("~/flutter/bin/dart"),
+            "/opt/flutter/bin/dart",
+            "/usr/local/flutter/bin/dart",
+        ):
+            if os.path.exists(candidate):
+                dart = candidate
+                break
     if dart:
         subprocess.run(
             [dart, "format", out_root, os.path.join(lib_root, "prototype_registry.dart")],
