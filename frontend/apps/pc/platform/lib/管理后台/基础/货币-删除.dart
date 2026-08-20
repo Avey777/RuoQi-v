@@ -10,9 +10,3219 @@ class OovUbRdjIPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-return SizedBox(width: 1920, height: 1080, child: Stack(children: [
-  Positioned.fill(child: Stack(children: [Positioned(left: 0, top: 0, width: 1920, height: 65, child: Container(decoration: BoxDecoration(color: Color(0xFF7172AD), borderRadius: BorderRadius.circular(0), boxShadow: [BoxShadow(color: Color(0x26000000), blurRadius: 6, offset: Offset(0, 3))]), child: Stack(children: [Positioned(left: 0, top: 0, width: 190, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 0), child: Text('XX管理后台', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFFFFFFFF), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 208, top: 21, width: 12, height: 12, child: Icon(IconData(0xE8F1, fontFamily: 'lightIconFont'), size: 12, color: Color(0xFF777777))), Positioned(left: 252, top: 0, width: 130, height: 56, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center)), Positioned(left: 15, top: 17, width: 32, height: 32, child: Icon(IconData(0xE8B2, fontFamily: 'boldIconFont'), size: 32, color: Color(0xFFFFFFFF))), Positioned(left: 1789, top: 11, width: 100, height: 44, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), border: Border.all(color: Color(0xFFD7D7D7), width: 1)), alignment: Alignment.center, child: Text('退出管理', textAlign: TextAlign.center, style: TextStyle(fontSize: 16, color: Color(0xFFFFFFFF), fontWeight: FontWeight.w700, height: 1.25), overflow: TextOverflow.visible)))]))), Positioned(left: 228, top: 597, width: 32, height: 420, child: CustomPaint(size: Size(32, 420), painter: _Path0Painter())), Positioned(left: 8, top: 145, width: 220, height: 921, child: Container(decoration: BoxDecoration(color: Color(0xFFEFF1F3), borderRadius: BorderRadius.circular(8), border: Border.all(color: Color(0xFFD7D7D7), width: 1)), child: Stack(children: [Positioned(left: 0, top: 56, width: 220, height: 147, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned(left: 4, top: 4, width: 212, height: 42, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)))), Positioned(left: 20, top: 17, width: 188, height: 17, child: Text('世界地理规划', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 59, width: 188, height: 17, child: Text('地区&国家', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 101, width: 188, height: 17, child: Text('导入地区', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 143, width: 188, height: 17, child: Text('UTC', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 185, width: 188, height: 17, child: Text('时区数据库', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 227, width: 188, height: 17, child: Text('货币', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 269, width: 188, height: 17, child: Text('历史汇率', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible))]))), Positioned(left: 0, top: 0, width: 220, height: 56, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 20, right: 0, top: 0, bottom: 0), child: Text('货币', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), height: 1.4286), overflow: TextOverflow.visible)))]))), Positioned(left: 8, top: 65, width: 220, height: 32, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0))), Positioned(left: 8, top: 97, width: 220, height: 32, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('基础', textAlign: TextAlign.left, style: TextStyle(fontSize: 21, color: Color(0xFF949AAB), fontWeight: FontWeight.w700, height: 0.9524), overflow: TextOverflow.visible))), Positioned(left: 8, top: 129, width: 220, height: 16, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0))), Positioned(left: 1072, top: 246, width: 168, height: 40, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0), border: Border(bottom: BorderSide(color: Color(0xFFF2F2F2), width: 1))), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('小数位', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 906, top: 246, width: 168, height: 40, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0), border: Border(bottom: BorderSide(color: Color(0xFFF2F2F2), width: 1))), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('符号', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 1742, top: 246, width: 150, height: 40, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0), border: Border(bottom: BorderSide(color: Color(0xFFF2F2F2), width: 1))), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0))), Positioned(left: 1577, top: 246, width: 165, height: 40, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0), border: Border(bottom: BorderSide(color: Color(0xFFF2F2F2), width: 1))), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('网站汇率', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 1407, top: 246, width: 170, height: 40, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0), border: Border(bottom: BorderSide(color: Color(0xFFF2F2F2), width: 1))), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('汇率浮动', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 1241, top: 246, width: 168, height: 40, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0), border: Border(bottom: BorderSide(color: Color(0xFFF2F2F2), width: 1))), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('实时汇率', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 518, top: 246, width: 220, height: 40, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0), border: Border(bottom: BorderSide(color: Color(0xFFF2F2F2), width: 1))), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('英文', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 228, top: 65, width: 1692, height: 90, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 20, right: 0, top: 0, bottom: 0))), Positioned(left: 244, top: 93, width: 300, height: 40, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned.fill(child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(2), border: Border.all(color: Color(0xFFD7D7D7), width: 1)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 6, top: 0, bottom: 0), child: Text('货币名称', textAlign: TextAlign.left, style: TextStyle(fontSize: 14), overflow: TextOverflow.ellipsis))), Positioned(left: 264, top: 11, width: 18, height: 18, child: Icon(IconData(0xE8FF, fontFamily: 'lightIconFont'), size: 18, color: Color(0xFFAAAAAA)))]))), Positioned(left: 340, top: 174, width: 80, height: 40, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), border: Border.all(color: Color(0xFF797979), width: 1)), child: Stack(children: [Positioned(left: 26, top: 11.5, width: 28, height: 17, child: Text('停用', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB)), overflow: TextOverflow.visible))]))), Positioned(left: 244, top: 174, width: 80, height: 40, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), border: Border.all(color: Color(0xFF4C5773), width: 1)), child: Stack(children: [Positioned(left: 26, top: 11.5, width: 28, height: 17, child: Text('启用', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible))]))), Positioned(left: 1769, top: 85, width: 120, height: 56, child: Container(decoration: BoxDecoration(color: Color(0xFF4C5773), borderRadius: BorderRadius.circular(4)), child: Stack(children: [Positioned(left: 44, top: 18.5, width: 32, height: 19, child: Text('添加', textAlign: TextAlign.center, style: TextStyle(fontSize: 16, color: Color(0xFFFFFFFF), fontWeight: FontWeight.w700), overflow: TextOverflow.visible))]))), Positioned(left: 532, top: 174, width: 80, height: 40, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), border: Border.all(color: Color(0xFF797979), width: 1)), child: Stack(children: [Positioned(left: 26, top: 11.5, width: 28, height: 17, child: Text('删除', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB)), overflow: TextOverflow.visible))]))), Positioned(left: 436, top: 174, width: 80, height: 40, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), border: Border.all(color: Color(0xFF797979), width: 1)), child: Stack(children: [Positioned(left: 26, top: 11.5, width: 28, height: 17, child: Text('编辑', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB)), overflow: TextOverflow.visible))]))), Positioned(left: 1241, top: 286, width: 168, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('无', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 1072, top: 286, width: 168, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('2', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 244, top: 246, width: 40, height: 40, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned.fill(child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0), border: Border(bottom: BorderSide(color: Color(0xFFF2F2F2), width: 1))), alignment: Alignment.center)), Positioned(left: 13, top: 12, width: 23, height: 16, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned(left: 0, top: 2, width: 13, height: 13, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0), border: Border.all(color: Color(0xFF777777), width: 1)))), Positioned(left: 23, top: 0, width: 0, height: 16, child: Text('', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF333333)), overflow: TextOverflow.visible))])))]))), Positioned(left: 1072, top: 356, width: 168, height: 70, child: Container(decoration: BoxDecoration(color: Color(0x80EFF1F3), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('2', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 1742, top: 356, width: 150, height: 70, child: Container(decoration: BoxDecoration(color: Color(0x80EFF1F3), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('...', textAlign: TextAlign.center, style: TextStyle(fontSize: 28, color: Color(0xFF4C5773), fontWeight: FontWeight.w700, height: 0.5), overflow: TextOverflow.visible))), Positioned(left: 738, top: 286, width: 168, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('CN', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 738, top: 246, width: 168, height: 40, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0), border: Border(bottom: BorderSide(color: Color(0xFFF2F2F2), width: 1))), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('货币代码', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 738, top: 356, width: 168, height: 70, child: Container(decoration: BoxDecoration(color: Color(0x80EFF1F3), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('US', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 906, top: 286, width: 168, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('￥', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 906, top: 356, width: 168, height: 70, child: Container(decoration: BoxDecoration(color: Color(0x80EFF1F3), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('\$', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 1241, top: 356, width: 168, height: 70, child: Container(decoration: BoxDecoration(color: Color(0x80EFF1F3), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('0.900222(xe)', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 298, top: 286, width: 220, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 20, right: 0, top: 0, bottom: 0), child: Text('人民币\n', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 298, top: 356, width: 220, height: 70, child: Container(decoration: BoxDecoration(color: Color(0x80EFF1F3), borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 20, right: 0, top: 0, bottom: 0), child: Text('美元\n', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 284, top: 246, width: 234, height: 40, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0), border: Border(bottom: BorderSide(color: Color(0xFFF2F2F2), width: 1))), alignment: Alignment.centerLeft, child: Text('货币名称：简体中文', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 256, top: 286, width: 42, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 56, right: 0, top: 0, bottom: 0))), Positioned(left: 256, top: 356, width: 42, height: 70, child: Container(decoration: BoxDecoration(color: Color(0x80EFF1F3), borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 56, right: 0, top: 0, bottom: 0))), Positioned(left: 518, top: 286, width: 220, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('CHinese Yuan', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 518, top: 356, width: 220, height: 70, child: Container(decoration: BoxDecoration(color: Color(0x80EFF1F3), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('dollar', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 1742, top: 286, width: 150, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('...', textAlign: TextAlign.center, style: TextStyle(fontSize: 28, color: Color(0xFF4C5773), fontWeight: FontWeight.w700, height: 0.5), overflow: TextOverflow.visible))), Positioned(left: 272, top: 313, width: 23, height: 16, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned(left: 0, top: 2, width: 13, height: 13, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0), border: Border.all(color: Color(0xFF777777), width: 1)))), Positioned(left: 23, top: 0, width: 0, height: 16, child: Text('', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF333333)), overflow: TextOverflow.visible))]))), Positioned(left: 272, top: 384, width: 23, height: 16, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned(left: 0, top: 2, width: 13, height: 13, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0), border: Border.all(color: Color(0xFF777777), width: 1)))), Positioned(left: 23, top: 0, width: 0, height: 16, child: Text('', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF333333)), overflow: TextOverflow.visible))]))), Positioned(left: 1407, top: 286, width: 170, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('无', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 1407, top: 356, width: 170, height: 70, child: Container(decoration: BoxDecoration(color: Color(0x80EFF1F3), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('+0.00020', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 1577, top: 286, width: 165, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('1', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 1577, top: 356, width: 165, height: 70, child: Container(decoration: BoxDecoration(color: Color(0x80EFF1F3), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('0.900220', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 355, top: 380, width: 50, height: 21, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('已停用', textAlign: TextAlign.center, style: TextStyle(fontSize: 10, color: Color(0xCCEC808D), height: 2), overflow: TextOverflow.visible))), Positioned(left: 355, top: 310, width: 50, height: 21, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('启用中', textAlign: TextAlign.center, style: TextStyle(fontSize: 10, color: Color(0x57A989C5), height: 2), overflow: TextOverflow.visible))), Positioned(left: 714, top: 93, width: 300, height: 40, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(2), border: Border(top: BorderSide(color: Color(0xFFD7D7D7), width: 1), right: BorderSide(color: Color(0xFFD7D7D7), width: 1), bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1))), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 6, top: 0, bottom: 0))), Positioned(left: 594, top: 93, width: 120, height: 40, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(2), border: Border(left: BorderSide(color: Color(0xFFD7D7D7), width: 1), top: BorderSide(color: Color(0xFFD7D7D7), width: 1), bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1))), child: Stack(children: [Positioned(left: 106, top: 17.5, width: 8, height: 5, child: CustomPaint(size: Size(8, 5), painter: _Path1Painter())), Positioned(left: 8, top: 6, width: 90, height: 27, child: Text('货币代码', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB)), overflow: TextOverflow.visible))]))), Positioned(left: 1867, top: 313, width: 16, height: 16, child: Icon(IconData(0xE999, fontFamily: 'boldIconFont'), size: 16, color: Color(0xFF4C5773))), Positioned(left: 1867, top: 384, width: 16, height: 16, child: Icon(IconData(0xE999, fontFamily: 'boldIconFont'), size: 16, color: Color(0xFF4C5773))), Positioned(left: 1045, top: 103, width: 170, height: 19, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned(left: 0, top: 0, width: 69, height: 19, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned(left: 0, top: 3, width: 13, height: 13, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned.fill(child: Container(decoration: BoxDecoration(shape: BoxShape.circle, color: Color(0xFFFFFFFF)))), Positioned(left: 3, top: 3, width: 7, height: 7, child: Container(decoration: BoxDecoration(shape: BoxShape.circle)))]))), Positioned(left: 21, top: 0, width: 48, height: 19, child: Text('启用中', style: TextStyle(fontSize: 16, color: Color(0xFF4C5773)), overflow: TextOverflow.visible))]))), Positioned(left: 101, top: 0, width: 69, height: 19, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned(left: 0, top: 3, width: 13, height: 13, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned.fill(child: Container(decoration: BoxDecoration(shape: BoxShape.circle, color: Color(0xFFFFFFFF)))), Positioned(left: 3, top: 3, width: 7, height: 7, child: Container(decoration: BoxDecoration(shape: BoxShape.circle)))]))), Positioned(left: 21, top: 0, width: 48, height: 19, child: Text('已停用', style: TextStyle(fontSize: 16, color: Color(0xFF4C5773)), overflow: TextOverflow.visible))])))]))), Positioned(left: 1241, top: 426, width: 168, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('0.820000(xe)', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 1072, top: 426, width: 168, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('2', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 1072, top: 496, width: 168, height: 70, child: Container(decoration: BoxDecoration(color: Color(0x80EFF1F3), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('3', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 1742, top: 496, width: 150, height: 70, child: Container(decoration: BoxDecoration(color: Color(0x80EFF1F3), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('...', textAlign: TextAlign.center, style: TextStyle(fontSize: 28, color: Color(0xFF4C5773), fontWeight: FontWeight.w700, height: 0.5), overflow: TextOverflow.visible))), Positioned(left: 738, top: 426, width: 168, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('GHS', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 738, top: 496, width: 168, height: 70, child: Container(decoration: BoxDecoration(color: Color(0x80EFF1F3), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('VND', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 906, top: 426, width: 168, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('￠', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 906, top: 496, width: 168, height: 70, child: Container(decoration: BoxDecoration(color: Color(0x80EFF1F3), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('₫\n', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 1241, top: 496, width: 168, height: 70, child: Container(decoration: BoxDecoration(color: Color(0x80EFF1F3), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('0.362565(xe)', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 298, top: 426, width: 220, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 20, right: 0, top: 0, bottom: 0), child: Text('塞地\n', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 298, top: 496, width: 220, height: 70, child: Container(decoration: BoxDecoration(color: Color(0x80EFF1F3), borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 20, right: 0, top: 0, bottom: 0), child: Text('越南盾\n', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 256, top: 426, width: 42, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 56, right: 0, top: 0, bottom: 0))), Positioned(left: 256, top: 496, width: 42, height: 70, child: Container(decoration: BoxDecoration(color: Color(0x80EFF1F3), borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 56, right: 0, top: 0, bottom: 0))), Positioned(left: 518, top: 426, width: 220, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0))), Positioned(left: 518, top: 496, width: 220, height: 70, child: Container(decoration: BoxDecoration(color: Color(0x80EFF1F3), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0))), Positioned(left: 1742, top: 426, width: 150, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('...', textAlign: TextAlign.center, style: TextStyle(fontSize: 28, color: Color(0xFF4C5773), fontWeight: FontWeight.w700, height: 0.5), overflow: TextOverflow.visible))), Positioned(left: 272, top: 453, width: 23, height: 16, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned(left: 0, top: 2, width: 13, height: 13, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0), border: Border.all(color: Color(0xFF777777), width: 1)))), Positioned(left: 23, top: 0, width: 0, height: 16, child: Text('', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF333333)), overflow: TextOverflow.visible))]))), Positioned(left: 272, top: 524, width: 23, height: 16, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned(left: 0, top: 2, width: 13, height: 13, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0), border: Border.all(color: Color(0xFF777777), width: 1)))), Positioned(left: 23, top: 0, width: 0, height: 16, child: Text('', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF333333)), overflow: TextOverflow.visible))]))), Positioned(left: 1407, top: 426, width: 170, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('+0.000360', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 1407, top: 496, width: 170, height: 70, child: Container(decoration: BoxDecoration(color: Color(0x80EFF1F3), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('+0.231560', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 1577, top: 426, width: 165, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('0.900220', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 1577, top: 496, width: 165, height: 70, child: Container(decoration: BoxDecoration(color: Color(0x80EFF1F3), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('0.900220', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 355, top: 520, width: 50, height: 21, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('已停用', textAlign: TextAlign.center, style: TextStyle(fontSize: 10, color: Color(0xCCEC808D), height: 2), overflow: TextOverflow.visible))), Positioned(left: 355, top: 450, width: 50, height: 21, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('启用中', textAlign: TextAlign.center, style: TextStyle(fontSize: 10, color: Color(0x57A989C5), height: 2), overflow: TextOverflow.visible))), Positioned(left: 1867, top: 453, width: 16, height: 16, child: Icon(IconData(0xE999, fontFamily: 'boldIconFont'), size: 16, color: Color(0xFF4C5773))), Positioned(left: 1867, top: 524, width: 16, height: 16, child: Icon(IconData(0xE999, fontFamily: 'boldIconFont'), size: 16, color: Color(0xFF4C5773))), Positioned(left: 1241, top: 566, width: 168, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('0.063565(xe)', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 1072, top: 566, width: 168, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('2', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 738, top: 566, width: 168, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('Br', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 906, top: 566, width: 168, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('Br', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 298, top: 566, width: 220, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 20, right: 0, top: 0, bottom: 0), child: Text('比尔\n', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 256, top: 566, width: 42, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 56, right: 0, top: 0, bottom: 0))), Positioned(left: 518, top: 566, width: 220, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0))), Positioned(left: 1742, top: 566, width: 150, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('...', textAlign: TextAlign.center, style: TextStyle(fontSize: 28, color: Color(0xFF4C5773), fontWeight: FontWeight.w700, height: 0.5), overflow: TextOverflow.visible))), Positioned(left: 272, top: 593, width: 23, height: 16, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned(left: 0, top: 2, width: 13, height: 13, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0), border: Border.all(color: Color(0xFF777777), width: 1)))), Positioned(left: 23, top: 0, width: 0, height: 16, child: Text('', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF333333)), overflow: TextOverflow.visible))]))), Positioned(left: 1407, top: 566, width: 170, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('-0.321563', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 1577, top: 566, width: 165, height: 70, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('0.900220', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: Color(0xFF4C5773), height: 1.1667), overflow: TextOverflow.visible))), Positioned(left: 355, top: 590, width: 50, height: 21, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('启用中', textAlign: TextAlign.center, style: TextStyle(fontSize: 10, color: Color(0x57A989C5), height: 2), overflow: TextOverflow.visible))), Positioned(left: 1867, top: 593, width: 16, height: 16, child: Icon(IconData(0xE999, fontFamily: 'boldIconFont'), size: 16, color: Color(0xFF4C5773))), Positioned(left: 1649, top: 547, width: 200, height: 154, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(8), boxShadow: [BoxShadow(color: Color(0x26000000), blurRadius: 6, offset: Offset(0, 3))]), child: Stack(children: [Positioned(left: 0, top: 15, width: 200, height: 35, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0), border: Border.all(color: Color(0xFFFFFFFF), width: 4)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 20, right: 0, top: 0, bottom: 0), child: Text('编辑', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 0, top: 85, width: 200, height: 35, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0), border: Border.all(color: Color(0xFFFFFFFF), width: 4)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 20, right: 0, top: 0, bottom: 0), child: Text('删除', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 0, top: 50, width: 200, height: 35, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0), border: Border.all(color: Color(0xFFFFFFFF), width: 4)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 20, right: 0, top: 0, bottom: 0), child: Text('启用', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible)))]))), Positioned(left: 420, top: 310, width: 50, height: 21, child: Container(decoration: BoxDecoration(color: Color(0xFFA989C5), borderRadius: BorderRadius.circular(2)), alignment: Alignment.center, child: Text('基础货币', textAlign: TextAlign.center, style: TextStyle(fontSize: 8, color: Color(0xFFFFFFFF), height: 2.5), overflow: TextOverflow.visible))), Positioned(left: 1649, top: 333, width: 200, height: 59, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(8), boxShadow: [BoxShadow(color: Color(0x26000000), blurRadius: 6, offset: Offset(0, 3))]), child: Stack(children: [Positioned(left: 0, top: 15, width: 200, height: 35, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0), border: Border.all(color: Color(0xFFFFFFFF), width: 4)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 20, right: 0, top: 0, bottom: 0), child: Text('编辑', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible)))]))), Positioned.fill(child: Container(decoration: BoxDecoration(color: Color(0x4C000000), borderRadius: BorderRadius.circular(0)), alignment: Alignment.center)), Positioned(left: 610, top: 341, width: 700, height: 300, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(12), boxShadow: [BoxShadow(color: Color(0x26000000), blurRadius: 6, offset: Offset(0, 3))]), child: Stack(children: [Positioned(left: 572, top: 228, width: 100, height: 40, child: Container(decoration: BoxDecoration(color: Color(0xFFED6E6E), borderRadius: BorderRadius.circular(4)), child: Stack(children: [Positioned(left: 22, top: 11.5, width: 56, height: 17, child: Text('确认删除', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFFFFFFFF)), overflow: TextOverflow.visible))]))), Positioned(left: 0, top: 0, width: 600, height: 72, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.bottomLeft, padding: EdgeInsets.only(left: 40, right: 32, top: 0, bottom: 0), child: Text('删除XXX？', textAlign: TextAlign.left, style: TextStyle(fontSize: 24, color: Color(0xFF4C5773), fontWeight: FontWeight.w700, height: 1), overflow: TextOverflow.visible))), Positioned(left: 648, top: 36, width: 24, height: 24, child: Icon(IconData(0xEA5B, fontFamily: 'boldIconFont'), size: 24, color: Color(0xFF4C5773))), Positioned(left: 40, top: 127, width: 620, height: 20, child: Text('确认删除此货币，此操作不可逆。', style: TextStyle(), overflow: TextOverflow.visible))])))]))
-]));
+    return SizedBox(
+      width: 1920,
+      height: 1080,
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: Stack(
+              children: [
+                Positioned(
+                  left: 0,
+                  top: 0,
+                  width: 1920,
+                  height: 65,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFF7172AD),
+                      borderRadius: BorderRadius.circular(0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x26000000),
+                          blurRadius: 6,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0,
+                          top: 0,
+                          width: 190,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            padding: EdgeInsets.only(
+                              left: 10,
+                              right: 0,
+                              top: 0,
+                              bottom: 0,
+                            ),
+                            child: Text(
+                              'XX管理后台',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFFFFFFFF),
+                                fontWeight: FontWeight.w700,
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 208,
+                          top: 21,
+                          width: 12,
+                          height: 12,
+                          child: Icon(
+                            IconData(0xE8F1, fontFamily: 'lightIconFont'),
+                            size: 12,
+                            color: Color(0xFF777777),
+                          ),
+                        ),
+                        Positioned(
+                          left: 252,
+                          top: 0,
+                          width: 130,
+                          height: 56,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                          ),
+                        ),
+                        Positioned(
+                          left: 15,
+                          top: 17,
+                          width: 32,
+                          height: 32,
+                          child: Icon(
+                            IconData(0xE8B2, fontFamily: 'boldIconFont'),
+                            size: 32,
+                            color: Color(0xFFFFFFFF),
+                          ),
+                        ),
+                        Positioned(
+                          left: 1789,
+                          top: 11,
+                          width: 100,
+                          height: 44,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              border: Border.all(
+                                color: Color(0xFFD7D7D7),
+                                width: 1,
+                              ),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '退出管理',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Color(0xFFFFFFFF),
+                                fontWeight: FontWeight.w700,
+                                height: 1.25,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 228,
+                  top: 597,
+                  width: 32,
+                  height: 420,
+                  child: CustomPaint(
+                    size: Size(32, 420),
+                    painter: _Path0Painter(),
+                  ),
+                ),
+                Positioned(
+                  left: 8,
+                  top: 145,
+                  width: 220,
+                  height: 921,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEFF1F3),
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Color(0xFFD7D7D7), width: 1),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0,
+                          top: 56,
+                          width: 220,
+                          height: 147,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            child: Stack(
+                              children: [
+                                Positioned(
+                                  left: 4,
+                                  top: 4,
+                                  width: 212,
+                                  height: 42,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 17,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '世界地理规划',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 59,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '地区&国家',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 101,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '导入地区',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 143,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    'UTC',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 185,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '时区数据库',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 227,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '货币',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 269,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '历史汇率',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 0,
+                          top: 0,
+                          width: 220,
+                          height: 56,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              left: 20,
+                              right: 0,
+                              top: 0,
+                              bottom: 0,
+                            ),
+                            child: Text(
+                              '货币',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFF949AAB),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 8,
+                  top: 65,
+                  width: 220,
+                  height: 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 8,
+                  top: 97,
+                  width: 220,
+                  height: 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '基础',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 21,
+                        color: Color(0xFF949AAB),
+                        fontWeight: FontWeight.w700,
+                        height: 0.9524,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 8,
+                  top: 129,
+                  width: 220,
+                  height: 16,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1072,
+                  top: 246,
+                  width: 168,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        bottom: BorderSide(color: Color(0xFFF2F2F2), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '小数位',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF4C5773),
+                        fontWeight: FontWeight.w700,
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 906,
+                  top: 246,
+                  width: 168,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        bottom: BorderSide(color: Color(0xFFF2F2F2), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '符号',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF4C5773),
+                        fontWeight: FontWeight.w700,
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1742,
+                  top: 246,
+                  width: 150,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        bottom: BorderSide(color: Color(0xFFF2F2F2), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1577,
+                  top: 246,
+                  width: 165,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        bottom: BorderSide(color: Color(0xFFF2F2F2), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '网站汇率',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF4C5773),
+                        fontWeight: FontWeight.w700,
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1407,
+                  top: 246,
+                  width: 170,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        bottom: BorderSide(color: Color(0xFFF2F2F2), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '汇率浮动',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF4C5773),
+                        fontWeight: FontWeight.w700,
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1241,
+                  top: 246,
+                  width: 168,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        bottom: BorderSide(color: Color(0xFFF2F2F2), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '实时汇率',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF4C5773),
+                        fontWeight: FontWeight.w700,
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 518,
+                  top: 246,
+                  width: 220,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        bottom: BorderSide(color: Color(0xFFF2F2F2), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '英文',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF4C5773),
+                        fontWeight: FontWeight.w700,
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 228,
+                  top: 65,
+                  width: 1692,
+                  height: 90,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 20,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 244,
+                  top: 93,
+                  width: 300,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned.fill(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(2),
+                              border: Border.all(
+                                color: Color(0xFFD7D7D7),
+                                width: 1,
+                              ),
+                            ),
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              left: 8,
+                              right: 6,
+                              top: 0,
+                              bottom: 0,
+                            ),
+                            child: Text(
+                              '货币名称',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(fontSize: 14),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 264,
+                          top: 11,
+                          width: 18,
+                          height: 18,
+                          child: Icon(
+                            IconData(0xE8FF, fontFamily: 'lightIconFont'),
+                            size: 18,
+                            color: Color(0xFFAAAAAA),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 340,
+                  top: 174,
+                  width: 80,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: Color(0xFF797979), width: 1),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 26,
+                          top: 11.5,
+                          width: 28,
+                          height: 17,
+                          child: Text(
+                            '停用',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color(0xFF949AAB),
+                            ),
+                            overflow: TextOverflow.visible,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 244,
+                  top: 174,
+                  width: 80,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: Color(0xFF4C5773), width: 1),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 26,
+                          top: 11.5,
+                          width: 28,
+                          height: 17,
+                          child: Text(
+                            '启用',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color(0xFF4C5773),
+                            ),
+                            overflow: TextOverflow.visible,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1769,
+                  top: 85,
+                  width: 120,
+                  height: 56,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFF4C5773),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 44,
+                          top: 18.5,
+                          width: 32,
+                          height: 19,
+                          child: Text(
+                            '添加',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color(0xFFFFFFFF),
+                              fontWeight: FontWeight.w700,
+                            ),
+                            overflow: TextOverflow.visible,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 532,
+                  top: 174,
+                  width: 80,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: Color(0xFF797979), width: 1),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 26,
+                          top: 11.5,
+                          width: 28,
+                          height: 17,
+                          child: Text(
+                            '删除',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color(0xFF949AAB),
+                            ),
+                            overflow: TextOverflow.visible,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 436,
+                  top: 174,
+                  width: 80,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: Color(0xFF797979), width: 1),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 26,
+                          top: 11.5,
+                          width: 28,
+                          height: 17,
+                          child: Text(
+                            '编辑',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color(0xFF949AAB),
+                            ),
+                            overflow: TextOverflow.visible,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1241,
+                  top: 286,
+                  width: 168,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '无',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1072,
+                  top: 286,
+                  width: 168,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '2',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 244,
+                  top: 246,
+                  width: 40,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned.fill(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Color(0xFFF2F2F2),
+                                  width: 1,
+                                ),
+                              ),
+                            ),
+                            alignment: Alignment.center,
+                          ),
+                        ),
+                        Positioned(
+                          left: 13,
+                          top: 12,
+                          width: 23,
+                          height: 16,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            child: Stack(
+                              children: [
+                                Positioned(
+                                  left: 0,
+                                  top: 2,
+                                  width: 13,
+                                  height: 13,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFFFFFFF),
+                                      borderRadius: BorderRadius.circular(0),
+                                      border: Border.all(
+                                        color: Color(0xFF777777),
+                                        width: 1,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 23,
+                                  top: 0,
+                                  width: 0,
+                                  height: 16,
+                                  child: Text(
+                                    '',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF333333),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1072,
+                  top: 356,
+                  width: 168,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x80EFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '2',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1742,
+                  top: 356,
+                  width: 150,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x80EFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '...',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 28,
+                        color: Color(0xFF4C5773),
+                        fontWeight: FontWeight.w700,
+                        height: 0.5,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 738,
+                  top: 286,
+                  width: 168,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'CN',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 738,
+                  top: 246,
+                  width: 168,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        bottom: BorderSide(color: Color(0xFFF2F2F2), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '货币代码',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF4C5773),
+                        fontWeight: FontWeight.w700,
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 738,
+                  top: 356,
+                  width: 168,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x80EFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'US',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 906,
+                  top: 286,
+                  width: 168,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '￥',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 906,
+                  top: 356,
+                  width: 168,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x80EFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '\$',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1241,
+                  top: 356,
+                  width: 168,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x80EFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '0.900222(xe)',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 298,
+                  top: 286,
+                  width: 220,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 20,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '人民币\n',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF4C5773),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 298,
+                  top: 356,
+                  width: 220,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x80EFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 20,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '美元\n',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF4C5773),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 284,
+                  top: 246,
+                  width: 234,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        bottom: BorderSide(color: Color(0xFFF2F2F2), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      '货币名称：简体中文',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF4C5773),
+                        fontWeight: FontWeight.w700,
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 256,
+                  top: 286,
+                  width: 42,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 56,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 256,
+                  top: 356,
+                  width: 42,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x80EFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 56,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 518,
+                  top: 286,
+                  width: 220,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'CHinese Yuan',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 518,
+                  top: 356,
+                  width: 220,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x80EFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'dollar',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1742,
+                  top: 286,
+                  width: 150,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '...',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 28,
+                        color: Color(0xFF4C5773),
+                        fontWeight: FontWeight.w700,
+                        height: 0.5,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 272,
+                  top: 313,
+                  width: 23,
+                  height: 16,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0,
+                          top: 2,
+                          width: 13,
+                          height: 13,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFFFFFF),
+                              borderRadius: BorderRadius.circular(0),
+                              border: Border.all(
+                                color: Color(0xFF777777),
+                                width: 1,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 23,
+                          top: 0,
+                          width: 0,
+                          height: 16,
+                          child: Text(
+                            '',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color(0xFF333333),
+                            ),
+                            overflow: TextOverflow.visible,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 272,
+                  top: 384,
+                  width: 23,
+                  height: 16,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0,
+                          top: 2,
+                          width: 13,
+                          height: 13,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFFFFFF),
+                              borderRadius: BorderRadius.circular(0),
+                              border: Border.all(
+                                color: Color(0xFF777777),
+                                width: 1,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 23,
+                          top: 0,
+                          width: 0,
+                          height: 16,
+                          child: Text(
+                            '',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color(0xFF333333),
+                            ),
+                            overflow: TextOverflow.visible,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1407,
+                  top: 286,
+                  width: 170,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '无',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1407,
+                  top: 356,
+                  width: 170,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x80EFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '+0.00020',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1577,
+                  top: 286,
+                  width: 165,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '1',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1577,
+                  top: 356,
+                  width: 165,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x80EFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '0.900220',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 355,
+                  top: 380,
+                  width: 50,
+                  height: 21,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '已停用',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Color(0xCCEC808D),
+                        height: 2,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 355,
+                  top: 310,
+                  width: 50,
+                  height: 21,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '启用中',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Color(0x57A989C5),
+                        height: 2,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 714,
+                  top: 93,
+                  width: 300,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(2),
+                      border: Border(
+                        top: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                        right: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                        bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 6,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 594,
+                  top: 93,
+                  width: 120,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(2),
+                      border: Border(
+                        left: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                        top: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                        bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                      ),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 106,
+                          top: 17.5,
+                          width: 8,
+                          height: 5,
+                          child: CustomPaint(
+                            size: Size(8, 5),
+                            painter: _Path1Painter(),
+                          ),
+                        ),
+                        Positioned(
+                          left: 8,
+                          top: 6,
+                          width: 90,
+                          height: 27,
+                          child: Text(
+                            '货币代码',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color(0xFF949AAB),
+                            ),
+                            overflow: TextOverflow.visible,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1867,
+                  top: 313,
+                  width: 16,
+                  height: 16,
+                  child: Icon(
+                    IconData(0xE999, fontFamily: 'boldIconFont'),
+                    size: 16,
+                    color: Color(0xFF4C5773),
+                  ),
+                ),
+                Positioned(
+                  left: 1867,
+                  top: 384,
+                  width: 16,
+                  height: 16,
+                  child: Icon(
+                    IconData(0xE999, fontFamily: 'boldIconFont'),
+                    size: 16,
+                    color: Color(0xFF4C5773),
+                  ),
+                ),
+                Positioned(
+                  left: 1045,
+                  top: 103,
+                  width: 170,
+                  height: 19,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0,
+                          top: 0,
+                          width: 69,
+                          height: 19,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            child: Stack(
+                              children: [
+                                Positioned(
+                                  left: 0,
+                                  top: 3,
+                                  width: 13,
+                                  height: 13,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                    child: Stack(
+                                      children: [
+                                        Positioned.fill(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Color(0xFFFFFFFF),
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          left: 3,
+                                          top: 3,
+                                          width: 7,
+                                          height: 7,
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 21,
+                                  top: 0,
+                                  width: 48,
+                                  height: 19,
+                                  child: Text(
+                                    '启用中',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 101,
+                          top: 0,
+                          width: 69,
+                          height: 19,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            child: Stack(
+                              children: [
+                                Positioned(
+                                  left: 0,
+                                  top: 3,
+                                  width: 13,
+                                  height: 13,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                    child: Stack(
+                                      children: [
+                                        Positioned.fill(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Color(0xFFFFFFFF),
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          left: 3,
+                                          top: 3,
+                                          width: 7,
+                                          height: 7,
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 21,
+                                  top: 0,
+                                  width: 48,
+                                  height: 19,
+                                  child: Text(
+                                    '已停用',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1241,
+                  top: 426,
+                  width: 168,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '0.820000(xe)',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1072,
+                  top: 426,
+                  width: 168,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '2',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1072,
+                  top: 496,
+                  width: 168,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x80EFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '3',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1742,
+                  top: 496,
+                  width: 150,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x80EFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '...',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 28,
+                        color: Color(0xFF4C5773),
+                        fontWeight: FontWeight.w700,
+                        height: 0.5,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 738,
+                  top: 426,
+                  width: 168,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'GHS',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 738,
+                  top: 496,
+                  width: 168,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x80EFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'VND',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 906,
+                  top: 426,
+                  width: 168,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '￠',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 906,
+                  top: 496,
+                  width: 168,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x80EFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '₫\n',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1241,
+                  top: 496,
+                  width: 168,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x80EFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '0.362565(xe)',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 298,
+                  top: 426,
+                  width: 220,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 20,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '塞地\n',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF4C5773),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 298,
+                  top: 496,
+                  width: 220,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x80EFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 20,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '越南盾\n',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF4C5773),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 256,
+                  top: 426,
+                  width: 42,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 56,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 256,
+                  top: 496,
+                  width: 42,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x80EFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 56,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 518,
+                  top: 426,
+                  width: 220,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 518,
+                  top: 496,
+                  width: 220,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x80EFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1742,
+                  top: 426,
+                  width: 150,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '...',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 28,
+                        color: Color(0xFF4C5773),
+                        fontWeight: FontWeight.w700,
+                        height: 0.5,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 272,
+                  top: 453,
+                  width: 23,
+                  height: 16,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0,
+                          top: 2,
+                          width: 13,
+                          height: 13,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFFFFFF),
+                              borderRadius: BorderRadius.circular(0),
+                              border: Border.all(
+                                color: Color(0xFF777777),
+                                width: 1,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 23,
+                          top: 0,
+                          width: 0,
+                          height: 16,
+                          child: Text(
+                            '',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color(0xFF333333),
+                            ),
+                            overflow: TextOverflow.visible,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 272,
+                  top: 524,
+                  width: 23,
+                  height: 16,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0,
+                          top: 2,
+                          width: 13,
+                          height: 13,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFFFFFF),
+                              borderRadius: BorderRadius.circular(0),
+                              border: Border.all(
+                                color: Color(0xFF777777),
+                                width: 1,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 23,
+                          top: 0,
+                          width: 0,
+                          height: 16,
+                          child: Text(
+                            '',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color(0xFF333333),
+                            ),
+                            overflow: TextOverflow.visible,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1407,
+                  top: 426,
+                  width: 170,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '+0.000360',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1407,
+                  top: 496,
+                  width: 170,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x80EFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '+0.231560',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1577,
+                  top: 426,
+                  width: 165,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '0.900220',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1577,
+                  top: 496,
+                  width: 165,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x80EFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '0.900220',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 355,
+                  top: 520,
+                  width: 50,
+                  height: 21,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '已停用',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Color(0xCCEC808D),
+                        height: 2,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 355,
+                  top: 450,
+                  width: 50,
+                  height: 21,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '启用中',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Color(0x57A989C5),
+                        height: 2,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1867,
+                  top: 453,
+                  width: 16,
+                  height: 16,
+                  child: Icon(
+                    IconData(0xE999, fontFamily: 'boldIconFont'),
+                    size: 16,
+                    color: Color(0xFF4C5773),
+                  ),
+                ),
+                Positioned(
+                  left: 1867,
+                  top: 524,
+                  width: 16,
+                  height: 16,
+                  child: Icon(
+                    IconData(0xE999, fontFamily: 'boldIconFont'),
+                    size: 16,
+                    color: Color(0xFF4C5773),
+                  ),
+                ),
+                Positioned(
+                  left: 1241,
+                  top: 566,
+                  width: 168,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '0.063565(xe)',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1072,
+                  top: 566,
+                  width: 168,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '2',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 738,
+                  top: 566,
+                  width: 168,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'Br',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 906,
+                  top: 566,
+                  width: 168,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'Br',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 298,
+                  top: 566,
+                  width: 220,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 20,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '比尔\n',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF4C5773),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 256,
+                  top: 566,
+                  width: 42,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 56,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 518,
+                  top: 566,
+                  width: 220,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1742,
+                  top: 566,
+                  width: 150,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '...',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 28,
+                        color: Color(0xFF4C5773),
+                        fontWeight: FontWeight.w700,
+                        height: 0.5,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 272,
+                  top: 593,
+                  width: 23,
+                  height: 16,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0,
+                          top: 2,
+                          width: 13,
+                          height: 13,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFFFFFF),
+                              borderRadius: BorderRadius.circular(0),
+                              border: Border.all(
+                                color: Color(0xFF777777),
+                                width: 1,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 23,
+                          top: 0,
+                          width: 0,
+                          height: 16,
+                          child: Text(
+                            '',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color(0xFF333333),
+                            ),
+                            overflow: TextOverflow.visible,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1407,
+                  top: 566,
+                  width: 170,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '-0.321563',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1577,
+                  top: 566,
+                  width: 165,
+                  height: 70,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '0.900220',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF4C5773),
+                        height: 1.1667,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 355,
+                  top: 590,
+                  width: 50,
+                  height: 21,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '启用中',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Color(0x57A989C5),
+                        height: 2,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1867,
+                  top: 593,
+                  width: 16,
+                  height: 16,
+                  child: Icon(
+                    IconData(0xE999, fontFamily: 'boldIconFont'),
+                    size: 16,
+                    color: Color(0xFF4C5773),
+                  ),
+                ),
+                Positioned(
+                  left: 1649,
+                  top: 547,
+                  width: 200,
+                  height: 154,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(8),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x26000000),
+                          blurRadius: 6,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0,
+                          top: 15,
+                          width: 200,
+                          height: 35,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                              border: Border.all(
+                                color: Color(0xFFFFFFFF),
+                                width: 4,
+                              ),
+                            ),
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              left: 20,
+                              right: 0,
+                              top: 0,
+                              bottom: 0,
+                            ),
+                            child: Text(
+                              '编辑',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFF4C5773),
+                                fontWeight: FontWeight.w700,
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 0,
+                          top: 85,
+                          width: 200,
+                          height: 35,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                              border: Border.all(
+                                color: Color(0xFFFFFFFF),
+                                width: 4,
+                              ),
+                            ),
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              left: 20,
+                              right: 0,
+                              top: 0,
+                              bottom: 0,
+                            ),
+                            child: Text(
+                              '删除',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFF4C5773),
+                                fontWeight: FontWeight.w700,
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 0,
+                          top: 50,
+                          width: 200,
+                          height: 35,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                              border: Border.all(
+                                color: Color(0xFFFFFFFF),
+                                width: 4,
+                              ),
+                            ),
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              left: 20,
+                              right: 0,
+                              top: 0,
+                              bottom: 0,
+                            ),
+                            child: Text(
+                              '启用',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFF4C5773),
+                                fontWeight: FontWeight.w700,
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 420,
+                  top: 310,
+                  width: 50,
+                  height: 21,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFA989C5),
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '基础货币',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 8,
+                        color: Color(0xFFFFFFFF),
+                        height: 2.5,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1649,
+                  top: 333,
+                  width: 200,
+                  height: 59,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(8),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x26000000),
+                          blurRadius: 6,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0,
+                          top: 15,
+                          width: 200,
+                          height: 35,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                              border: Border.all(
+                                color: Color(0xFFFFFFFF),
+                                width: 4,
+                              ),
+                            ),
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              left: 20,
+                              right: 0,
+                              top: 0,
+                              bottom: 0,
+                            ),
+                            child: Text(
+                              '编辑',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFF4C5773),
+                                fontWeight: FontWeight.w700,
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned.fill(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0x4C000000),
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.center,
+                  ),
+                ),
+                Positioned(
+                  left: 610,
+                  top: 341,
+                  width: 700,
+                  height: 300,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x26000000),
+                          blurRadius: 6,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 572,
+                          top: 228,
+                          width: 100,
+                          height: 40,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xFFED6E6E),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Stack(
+                              children: [
+                                Positioned(
+                                  left: 22,
+                                  top: 11.5,
+                                  width: 56,
+                                  height: 17,
+                                  child: Text(
+                                    '确认删除',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFFFFFFFF),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 0,
+                          top: 0,
+                          width: 600,
+                          height: 72,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.bottomLeft,
+                            padding: EdgeInsets.only(
+                              left: 40,
+                              right: 32,
+                              top: 0,
+                              bottom: 0,
+                            ),
+                            child: Text(
+                              '删除XXX？',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: Color(0xFF4C5773),
+                                fontWeight: FontWeight.w700,
+                                height: 1,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 648,
+                          top: 36,
+                          width: 24,
+                          height: 24,
+                          child: Icon(
+                            IconData(0xEA5B, fontFamily: 'boldIconFont'),
+                            size: 24,
+                            color: Color(0xFF4C5773),
+                          ),
+                        ),
+                        Positioned(
+                          left: 40,
+                          top: 127,
+                          width: 620,
+                          height: 20,
+                          child: Text(
+                            '确认删除此货币，此操作不可逆。',
+                            style: TextStyle(),
+                            overflow: TextOverflow.visible,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 

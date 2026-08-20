@@ -10,8 +10,1293 @@ class j7jNSg7DWPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-return SizedBox(width: 1920, height: 1458, child: Stack(children: [
-  Positioned.fill(child: Stack(children: [Positioned(left: 228, top: 65, width: 1692, height: 90, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 20, right: 0, top: 0, bottom: 0))), Positioned(left: 8, top: 145, width: 220, height: 1276, child: Container(decoration: BoxDecoration(color: Color(0xFFEFF1F3), borderRadius: BorderRadius.circular(8), border: Border.all(color: Color(0xFFD7D7D7), width: 1)), child: Stack(children: [Positioned(left: 0, top: 18, width: 220, height: 177, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned(left: 4, top: 4, width: 212, height: 42, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)))), Positioned(left: 4, top: 46, width: 212, height: 42, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)))), Positioned(left: 4, top: 88, width: 212, height: 42, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)))), Positioned(left: 4, top: 130, width: 212, height: 42, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)))), Positioned(left: 20, top: 17, width: 188, height: 17, child: Text('通用', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 59, width: 188, height: 17, child: Text('本土化', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 101, width: 188, height: 17, child: Text('电子邮件', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 143, width: 188, height: 17, child: Text('编码规则', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 185, width: 188, height: 17, child: Text('短信', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 227, width: 188, height: 17, child: Text('auth登录', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 269, width: 188, height: 17, child: Text('验证消息', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible))])))]))), Positioned(left: 8, top: 65, width: 220, height: 32, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0))), Positioned(left: 8, top: 97, width: 220, height: 32, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('设置', textAlign: TextAlign.left, style: TextStyle(fontSize: 21, color: Color(0xFF949AAB), fontWeight: FontWeight.w700, height: 0.9524), overflow: TextOverflow.visible))), Positioned(left: 8, top: 129, width: 220, height: 16, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0))), Positioned(left: 275, top: 186, width: 655, height: 20, child: Text('SMTP服务器地址, 用于用户邀请、密码重置。\n', style: TextStyle(), overflow: TextOverflow.visible)), Positioned(left: 260, top: 145, width: 220, height: 32, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('SMTP地址', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 275, top: 226, width: 400, height: 40, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(4), border: Border.all(color: Color(0xFF949AAB), width: 1)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 6, top: 0, bottom: 0), child: Text('smtp.yourservice.com', textAlign: TextAlign.left, style: TextStyle(fontSize: 14), overflow: TextOverflow.ellipsis))), Positioned(left: 275, top: 327, width: 655, height: 20, child: Text('你的SMTP服务器用于发送邮件的端口。\n', style: TextStyle(), overflow: TextOverflow.visible)), Positioned(left: 260, top: 286, width: 220, height: 32, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('SMTP端口', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 275, top: 367, width: 400, height: 40, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(4), border: Border.all(color: Color(0xFF949AAB), width: 1)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 6, top: 0, bottom: 0), child: Text('587', textAlign: TextAlign.left, style: TextStyle(fontSize: 14), overflow: TextOverflow.ellipsis))), Positioned(left: 260, top: 427, width: 220, height: 32, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('SMTP安全', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 275, top: 467, width: 225, height: 30, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)), child: Stack(children: [Positioned(left: 0, top: 0, width: 56, height: 30, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned(left: 9.5, top: 6.5, width: 37, height: 17, child: Text('None', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB)), overflow: TextOverflow.visible))]))), Positioned(left: 56, top: 0, width: 56, height: 30, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned(left: 16, top: 6.5, width: 24, height: 17, child: Text('SSL', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB)), overflow: TextOverflow.visible))]))), Positioned(left: 112, top: 0, width: 56, height: 30, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned(left: 16, top: 6.5, width: 24, height: 17, child: Text('TLS', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB)), overflow: TextOverflow.visible))]))), Positioned(left: 168, top: 0, width: 56, height: 30, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned(left: -5, top: 6.5, width: 66, height: 17, child: Text('STARTTLS', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB)), overflow: TextOverflow.visible))])))]))), Positioned(left: 260, top: 517, width: 220, height: 32, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('SMTP用户名', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 275, top: 557, width: 400, height: 40, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(4), border: Border.all(color: Color(0xFF949AAB), width: 1)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 6, top: 0, bottom: 0), child: Text('nicetoseeyou', textAlign: TextAlign.left, style: TextStyle(fontSize: 14), overflow: TextOverflow.ellipsis))), Positioned(left: 260, top: 617, width: 220, height: 32, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('SMTP密码', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 275, top: 657, width: 400, height: 40, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(4), border: Border.all(color: Color(0xFF949AAB), width: 1)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 6, top: 0, bottom: 0), child: Text('password', textAlign: TextAlign.left, style: TextStyle(fontSize: 14), overflow: TextOverflow.ellipsis))), Positioned(left: 275, top: 758, width: 655, height: 20, child: Text('用这个名字作为邮件发送人。\n', style: TextStyle(), overflow: TextOverflow.visible)), Positioned(left: 260, top: 717, width: 220, height: 32, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('发件人', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 275, top: 798, width: 400, height: 40, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(4), border: Border.all(color: Color(0xFF949AAB), width: 1)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 6, top: 0, bottom: 0), child: Text('CIAM', textAlign: TextAlign.left, style: TextStyle(fontSize: 14), overflow: TextOverflow.ellipsis))), Positioned(left: 275, top: 899, width: 655, height: 20, child: Text('用这个邮件地址作为邮件发送人。\n', style: TextStyle(), overflow: TextOverflow.visible)), Positioned(left: 260, top: 858, width: 220, height: 32, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('选择地址', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 275, top: 939, width: 400, height: 40, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(4), border: Border.all(color: Color(0xFF949AAB), width: 1)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 6, top: 0, bottom: 0), child: Text('email@yourcompany.com', textAlign: TextAlign.left, style: TextStyle(fontSize: 14), overflow: TextOverflow.ellipsis))), Positioned(left: 275, top: 1040, width: 655, height: 20, child: Text('你希望回复的电子邮件地址，如果与发件人地址不同。\n', style: TextStyle(), overflow: TextOverflow.visible)), Positioned(left: 260, top: 999, width: 220, height: 32, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('回复地址', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 275, top: 1080, width: 400, height: 40, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(4), border: Border.all(color: Color(0xFF949AAB), width: 1)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 6, top: 0, bottom: 0), child: Text('email-replies@yourcompany.com', textAlign: TextAlign.left, style: TextStyle(fontSize: 14), overflow: TextOverflow.ellipsis))), Positioned(left: 275, top: 1333, width: 120, height: 56, child: Container(decoration: BoxDecoration(color: Color(0xFF4C5773), borderRadius: BorderRadius.circular(4)), child: Stack(children: [Positioned(left: 28, top: 18.5, width: 64, height: 19, child: Text('保存修改', textAlign: TextAlign.center, style: TextStyle(fontSize: 16, color: Color(0xFFFFFFFF), fontWeight: FontWeight.w700), overflow: TextOverflow.visible))]))), Positioned(left: 645, top: 1333, width: 120, height: 56, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), border: Border.all(color: Color(0xFF949AAB), width: 1)), child: Stack(children: [Positioned(left: 44, top: 18.5, width: 32, height: 19, child: Text('清除', textAlign: TextAlign.center, style: TextStyle(fontSize: 16, color: Color(0xFF949AAB), fontWeight: FontWeight.w700), overflow: TextOverflow.visible))]))), Positioned(left: 0, top: 0, width: 1920, height: 65, child: Container(decoration: BoxDecoration(color: Color(0xFF7172AD), borderRadius: BorderRadius.circular(0), boxShadow: [BoxShadow(color: Color(0x26000000), blurRadius: 6, offset: Offset(0, 3))]), child: Stack(children: [Positioned(left: 0, top: 0, width: 190, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 0), child: Text('XX管理后台', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFFFFFFFF), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 230, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('设置', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 15, top: 17, width: 32, height: 32, child: Icon(IconData(0xE8B2, fontFamily: 'boldIconFont'), size: 32, color: Color(0xFFFFFFFF))), Positioned(left: 1789, top: 11, width: 100, height: 44, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), border: Border.all(color: Color(0xFFD7D7D7), width: 1)), alignment: Alignment.center, child: Text('退出管理', textAlign: TextAlign.center, style: TextStyle(fontSize: 16, color: Color(0xFFFFFFFF), fontWeight: FontWeight.w700, height: 1.25), overflow: TextOverflow.visible))), Positioned(left: 310, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('用户', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 390, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('权限', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 470, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('菜单', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 550, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('基础', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 630, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('语言', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 710, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('日志', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible)))]))), Positioned(left: 455, top: 1333, width: 130, height: 56, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), border: Border.all(color: Color(0xFF949AAB), width: 1)), child: Stack(children: [Positioned(left: 17, top: 18.5, width: 96, height: 19, child: Text('发送测试邮件', textAlign: TextAlign.center, style: TextStyle(fontSize: 16, color: Color(0xFF949AAB), fontWeight: FontWeight.w700), overflow: TextOverflow.visible))]))), Positioned(left: 275, top: 1181, width: 655, height: 20, child: Text('发送测试邮件时，您希望发送的内容\n', style: TextStyle(), overflow: TextOverflow.visible)), Positioned(left: 260, top: 1140, width: 220, height: 32, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('测试内容', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 275, top: 1221, width: 400, height: 40, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(4), border: Border.all(color: Color(0xFF949AAB), width: 1)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 6, top: 0, bottom: 0), child: Text('Your \${Site Name} emails are working — hooray!', textAlign: TextAlign.left, style: TextStyle(fontSize: 14), overflow: TextOverflow.ellipsis)))]))
-]));
+    return SizedBox(
+      width: 1920,
+      height: 1458,
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: Stack(
+              children: [
+                Positioned(
+                  left: 228,
+                  top: 65,
+                  width: 1692,
+                  height: 90,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 20,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 8,
+                  top: 145,
+                  width: 220,
+                  height: 1276,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEFF1F3),
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Color(0xFFD7D7D7), width: 1),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0,
+                          top: 18,
+                          width: 220,
+                          height: 177,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            child: Stack(
+                              children: [
+                                Positioned(
+                                  left: 4,
+                                  top: 4,
+                                  width: 212,
+                                  height: 42,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 4,
+                                  top: 46,
+                                  width: 212,
+                                  height: 42,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 4,
+                                  top: 88,
+                                  width: 212,
+                                  height: 42,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 4,
+                                  top: 130,
+                                  width: 212,
+                                  height: 42,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 17,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '通用',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 59,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '本土化',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 101,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '电子邮件',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 143,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '编码规则',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 185,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '短信',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 227,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    'auth登录',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 269,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '验证消息',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 8,
+                  top: 65,
+                  width: 220,
+                  height: 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 8,
+                  top: 97,
+                  width: 220,
+                  height: 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '设置',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 21,
+                        color: Color(0xFF949AAB),
+                        fontWeight: FontWeight.w700,
+                        height: 0.9524,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 8,
+                  top: 129,
+                  width: 220,
+                  height: 16,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 275,
+                  top: 186,
+                  width: 655,
+                  height: 20,
+                  child: Text(
+                    'SMTP服务器地址, 用于用户邀请、密码重置。\n',
+                    style: TextStyle(),
+                    overflow: TextOverflow.visible,
+                  ),
+                ),
+                Positioned(
+                  left: 260,
+                  top: 145,
+                  width: 220,
+                  height: 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'SMTP地址',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        fontWeight: FontWeight.w700,
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 275,
+                  top: 226,
+                  width: 400,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: Color(0xFF949AAB), width: 1),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 6,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'smtp.yourservice.com',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: 14),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 275,
+                  top: 327,
+                  width: 655,
+                  height: 20,
+                  child: Text(
+                    '你的SMTP服务器用于发送邮件的端口。\n',
+                    style: TextStyle(),
+                    overflow: TextOverflow.visible,
+                  ),
+                ),
+                Positioned(
+                  left: 260,
+                  top: 286,
+                  width: 220,
+                  height: 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'SMTP端口',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        fontWeight: FontWeight.w700,
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 275,
+                  top: 367,
+                  width: 400,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: Color(0xFF949AAB), width: 1),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 6,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '587',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: 14),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 260,
+                  top: 427,
+                  width: 220,
+                  height: 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'SMTP安全',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        fontWeight: FontWeight.w700,
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 275,
+                  top: 467,
+                  width: 225,
+                  height: 30,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0,
+                          top: 0,
+                          width: 56,
+                          height: 30,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            child: Stack(
+                              children: [
+                                Positioned(
+                                  left: 9.5,
+                                  top: 6.5,
+                                  width: 37,
+                                  height: 17,
+                                  child: Text(
+                                    'None',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF949AAB),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 56,
+                          top: 0,
+                          width: 56,
+                          height: 30,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            child: Stack(
+                              children: [
+                                Positioned(
+                                  left: 16,
+                                  top: 6.5,
+                                  width: 24,
+                                  height: 17,
+                                  child: Text(
+                                    'SSL',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF949AAB),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 112,
+                          top: 0,
+                          width: 56,
+                          height: 30,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            child: Stack(
+                              children: [
+                                Positioned(
+                                  left: 16,
+                                  top: 6.5,
+                                  width: 24,
+                                  height: 17,
+                                  child: Text(
+                                    'TLS',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF949AAB),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 168,
+                          top: 0,
+                          width: 56,
+                          height: 30,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            child: Stack(
+                              children: [
+                                Positioned(
+                                  left: -5,
+                                  top: 6.5,
+                                  width: 66,
+                                  height: 17,
+                                  child: Text(
+                                    'STARTTLS',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF949AAB),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 260,
+                  top: 517,
+                  width: 220,
+                  height: 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'SMTP用户名',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        fontWeight: FontWeight.w700,
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 275,
+                  top: 557,
+                  width: 400,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: Color(0xFF949AAB), width: 1),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 6,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'nicetoseeyou',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: 14),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 260,
+                  top: 617,
+                  width: 220,
+                  height: 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'SMTP密码',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        fontWeight: FontWeight.w700,
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 275,
+                  top: 657,
+                  width: 400,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: Color(0xFF949AAB), width: 1),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 6,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'password',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: 14),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 275,
+                  top: 758,
+                  width: 655,
+                  height: 20,
+                  child: Text(
+                    '用这个名字作为邮件发送人。\n',
+                    style: TextStyle(),
+                    overflow: TextOverflow.visible,
+                  ),
+                ),
+                Positioned(
+                  left: 260,
+                  top: 717,
+                  width: 220,
+                  height: 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '发件人',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        fontWeight: FontWeight.w700,
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 275,
+                  top: 798,
+                  width: 400,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: Color(0xFF949AAB), width: 1),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 6,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'CIAM',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: 14),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 275,
+                  top: 899,
+                  width: 655,
+                  height: 20,
+                  child: Text(
+                    '用这个邮件地址作为邮件发送人。\n',
+                    style: TextStyle(),
+                    overflow: TextOverflow.visible,
+                  ),
+                ),
+                Positioned(
+                  left: 260,
+                  top: 858,
+                  width: 220,
+                  height: 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '选择地址',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        fontWeight: FontWeight.w700,
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 275,
+                  top: 939,
+                  width: 400,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: Color(0xFF949AAB), width: 1),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 6,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'email@yourcompany.com',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: 14),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 275,
+                  top: 1040,
+                  width: 655,
+                  height: 20,
+                  child: Text(
+                    '你希望回复的电子邮件地址，如果与发件人地址不同。\n',
+                    style: TextStyle(),
+                    overflow: TextOverflow.visible,
+                  ),
+                ),
+                Positioned(
+                  left: 260,
+                  top: 999,
+                  width: 220,
+                  height: 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '回复地址',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        fontWeight: FontWeight.w700,
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 275,
+                  top: 1080,
+                  width: 400,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: Color(0xFF949AAB), width: 1),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 6,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'email-replies@yourcompany.com',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: 14),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 275,
+                  top: 1333,
+                  width: 120,
+                  height: 56,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFF4C5773),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 28,
+                          top: 18.5,
+                          width: 64,
+                          height: 19,
+                          child: Text(
+                            '保存修改',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color(0xFFFFFFFF),
+                              fontWeight: FontWeight.w700,
+                            ),
+                            overflow: TextOverflow.visible,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 645,
+                  top: 1333,
+                  width: 120,
+                  height: 56,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: Color(0xFF949AAB), width: 1),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 44,
+                          top: 18.5,
+                          width: 32,
+                          height: 19,
+                          child: Text(
+                            '清除',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color(0xFF949AAB),
+                              fontWeight: FontWeight.w700,
+                            ),
+                            overflow: TextOverflow.visible,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 0,
+                  top: 0,
+                  width: 1920,
+                  height: 65,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFF7172AD),
+                      borderRadius: BorderRadius.circular(0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x26000000),
+                          blurRadius: 6,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0,
+                          top: 0,
+                          width: 190,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            padding: EdgeInsets.only(
+                              left: 10,
+                              right: 0,
+                              top: 0,
+                              bottom: 0,
+                            ),
+                            child: Text(
+                              'XX管理后台',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFFFFFFFF),
+                                fontWeight: FontWeight.w700,
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 230,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '设置',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 15,
+                          top: 17,
+                          width: 32,
+                          height: 32,
+                          child: Icon(
+                            IconData(0xE8B2, fontFamily: 'boldIconFont'),
+                            size: 32,
+                            color: Color(0xFFFFFFFF),
+                          ),
+                        ),
+                        Positioned(
+                          left: 1789,
+                          top: 11,
+                          width: 100,
+                          height: 44,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              border: Border.all(
+                                color: Color(0xFFD7D7D7),
+                                width: 1,
+                              ),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '退出管理',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Color(0xFFFFFFFF),
+                                fontWeight: FontWeight.w700,
+                                height: 1.25,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 310,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '用户',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 390,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '权限',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 470,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '菜单',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 550,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '基础',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 630,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '语言',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 710,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '日志',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 455,
+                  top: 1333,
+                  width: 130,
+                  height: 56,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: Color(0xFF949AAB), width: 1),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 17,
+                          top: 18.5,
+                          width: 96,
+                          height: 19,
+                          child: Text(
+                            '发送测试邮件',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color(0xFF949AAB),
+                              fontWeight: FontWeight.w700,
+                            ),
+                            overflow: TextOverflow.visible,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 275,
+                  top: 1181,
+                  width: 655,
+                  height: 20,
+                  child: Text(
+                    '发送测试邮件时，您希望发送的内容\n',
+                    style: TextStyle(),
+                    overflow: TextOverflow.visible,
+                  ),
+                ),
+                Positioned(
+                  left: 260,
+                  top: 1140,
+                  width: 220,
+                  height: 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '测试内容',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        fontWeight: FontWeight.w700,
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 275,
+                  top: 1221,
+                  width: 400,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: Color(0xFF949AAB), width: 1),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 6,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'Your \${Site Name} emails are working — hooray!',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: 14),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

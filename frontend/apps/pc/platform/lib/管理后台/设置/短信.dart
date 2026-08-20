@@ -10,8 +10,617 @@ class P1d9YGUlpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-return SizedBox(width: 1920, height: 1278, child: Stack(children: [
-  Positioned.fill(child: Stack(children: [Positioned(left: 228, top: 65, width: 1692, height: 90, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 20, right: 0, top: 0, bottom: 0))), Positioned(left: 8, top: 145, width: 220, height: 1118, child: Container(decoration: BoxDecoration(color: Color(0xFFEFF1F3), borderRadius: BorderRadius.circular(8), border: Border.all(color: Color(0xFFD7D7D7), width: 1)), child: Stack(children: [Positioned(left: 0, top: 18, width: 220, height: 252, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned(left: 4, top: 4, width: 212, height: 42, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)))), Positioned(left: 4, top: 46, width: 212, height: 42, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)))), Positioned(left: 4, top: 88, width: 212, height: 42, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)))), Positioned(left: 4, top: 130, width: 212, height: 42, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)))), Positioned(left: 4, top: 172, width: 212, height: 42, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)))), Positioned(left: 20, top: 17, width: 188, height: 17, child: Text('通用', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 59, width: 188, height: 17, child: Text('本土化', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 101, width: 188, height: 17, child: Text('电子邮件', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 143, width: 188, height: 17, child: Text('编码规则', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 185, width: 188, height: 17, child: Text('短信', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 227, width: 188, height: 17, child: Text('auth登录', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 269, width: 188, height: 17, child: Text('验证消息', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible))])))]))), Positioned(left: 8, top: 65, width: 220, height: 32, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0))), Positioned(left: 8, top: 97, width: 220, height: 32, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('设置', textAlign: TextAlign.left, style: TextStyle(fontSize: 21, color: Color(0xFF949AAB), fontWeight: FontWeight.w700, height: 0.9524), overflow: TextOverflow.visible))), Positioned(left: 8, top: 129, width: 220, height: 16, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0))), Positioned(left: 250, top: 145, width: 500, height: 230, child: Container(decoration: BoxDecoration(color: Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(8), boxShadow: [BoxShadow(color: Color(0x26000000), blurRadius: 2, offset: Offset(0, 1))]), child: Stack(children: [Positioned(left: 30, top: 23, width: 120, height: 34, child: Text('阿里云短信', style: TextStyle(), overflow: TextOverflow.visible)), Positioned(left: 30, top: 75, width: 432, height: 40, child: Text('阿里云短信服务为用户提供一种通信服务能力，支持快速发送短信验证码、短信通知等，服务范围覆盖全球。 ', style: TextStyle(), overflow: TextOverflow.visible)), Positioned(left: 30, top: 157, width: 62, height: 46, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), border: Border.all(color: Color(0xFF949AAB), width: 1)), child: Stack(children: [Positioned(left: 15, top: 13.5, width: 32, height: 19, child: Text('设置', textAlign: TextAlign.center, style: TextStyle(fontSize: 16, color: Color(0xFF4C5773)), overflow: TextOverflow.visible))])))]))), Positioned(left: 0, top: 0, width: 1920, height: 65, child: Container(decoration: BoxDecoration(color: Color(0xFF7172AD), borderRadius: BorderRadius.circular(0), boxShadow: [BoxShadow(color: Color(0x26000000), blurRadius: 6, offset: Offset(0, 3))]), child: Stack(children: [Positioned(left: 0, top: 0, width: 190, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 0), child: Text('XX管理后台', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFFFFFFFF), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 230, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('设置', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 15, top: 17, width: 32, height: 32, child: Icon(IconData(0xE8B2, fontFamily: 'boldIconFont'), size: 32, color: Color(0xFFFFFFFF))), Positioned(left: 1789, top: 11, width: 100, height: 44, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), border: Border.all(color: Color(0xFFD7D7D7), width: 1)), alignment: Alignment.center, child: Text('退出管理', textAlign: TextAlign.center, style: TextStyle(fontSize: 16, color: Color(0xFFFFFFFF), fontWeight: FontWeight.w700, height: 1.25), overflow: TextOverflow.visible))), Positioned(left: 310, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('用户', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 390, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('权限', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 470, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('菜单', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 550, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('基础', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 630, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('语言', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 710, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('日志', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible)))])))]))
-]));
+    return SizedBox(
+      width: 1920,
+      height: 1278,
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: Stack(
+              children: [
+                Positioned(
+                  left: 228,
+                  top: 65,
+                  width: 1692,
+                  height: 90,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 20,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 8,
+                  top: 145,
+                  width: 220,
+                  height: 1118,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEFF1F3),
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Color(0xFFD7D7D7), width: 1),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0,
+                          top: 18,
+                          width: 220,
+                          height: 252,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            child: Stack(
+                              children: [
+                                Positioned(
+                                  left: 4,
+                                  top: 4,
+                                  width: 212,
+                                  height: 42,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 4,
+                                  top: 46,
+                                  width: 212,
+                                  height: 42,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 4,
+                                  top: 88,
+                                  width: 212,
+                                  height: 42,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 4,
+                                  top: 130,
+                                  width: 212,
+                                  height: 42,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 4,
+                                  top: 172,
+                                  width: 212,
+                                  height: 42,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 17,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '通用',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 59,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '本土化',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 101,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '电子邮件',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 143,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '编码规则',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 185,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '短信',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 227,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    'auth登录',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 269,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '验证消息',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 8,
+                  top: 65,
+                  width: 220,
+                  height: 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 8,
+                  top: 97,
+                  width: 220,
+                  height: 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '设置',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 21,
+                        color: Color(0xFF949AAB),
+                        fontWeight: FontWeight.w700,
+                        height: 0.9524,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 8,
+                  top: 129,
+                  width: 220,
+                  height: 16,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 250,
+                  top: 145,
+                  width: 500,
+                  height: 230,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(8),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x26000000),
+                          blurRadius: 2,
+                          offset: Offset(0, 1),
+                        ),
+                      ],
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 30,
+                          top: 23,
+                          width: 120,
+                          height: 34,
+                          child: Text(
+                            '阿里云短信',
+                            style: TextStyle(),
+                            overflow: TextOverflow.visible,
+                          ),
+                        ),
+                        Positioned(
+                          left: 30,
+                          top: 75,
+                          width: 432,
+                          height: 40,
+                          child: Text(
+                            '阿里云短信服务为用户提供一种通信服务能力，支持快速发送短信验证码、短信通知等，服务范围覆盖全球。 ',
+                            style: TextStyle(),
+                            overflow: TextOverflow.visible,
+                          ),
+                        ),
+                        Positioned(
+                          left: 30,
+                          top: 157,
+                          width: 62,
+                          height: 46,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              border: Border.all(
+                                color: Color(0xFF949AAB),
+                                width: 1,
+                              ),
+                            ),
+                            child: Stack(
+                              children: [
+                                Positioned(
+                                  left: 15,
+                                  top: 13.5,
+                                  width: 32,
+                                  height: 19,
+                                  child: Text(
+                                    '设置',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 0,
+                  top: 0,
+                  width: 1920,
+                  height: 65,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFF7172AD),
+                      borderRadius: BorderRadius.circular(0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x26000000),
+                          blurRadius: 6,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0,
+                          top: 0,
+                          width: 190,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            padding: EdgeInsets.only(
+                              left: 10,
+                              right: 0,
+                              top: 0,
+                              bottom: 0,
+                            ),
+                            child: Text(
+                              'XX管理后台',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFFFFFFFF),
+                                fontWeight: FontWeight.w700,
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 230,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '设置',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 15,
+                          top: 17,
+                          width: 32,
+                          height: 32,
+                          child: Icon(
+                            IconData(0xE8B2, fontFamily: 'boldIconFont'),
+                            size: 32,
+                            color: Color(0xFFFFFFFF),
+                          ),
+                        ),
+                        Positioned(
+                          left: 1789,
+                          top: 11,
+                          width: 100,
+                          height: 44,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              border: Border.all(
+                                color: Color(0xFFD7D7D7),
+                                width: 1,
+                              ),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '退出管理',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Color(0xFFFFFFFF),
+                                fontWeight: FontWeight.w700,
+                                height: 1.25,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 310,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '用户',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 390,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '权限',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 470,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '菜单',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 550,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '基础',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 630,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '语言',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 710,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '日志',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

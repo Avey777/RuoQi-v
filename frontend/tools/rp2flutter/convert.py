@@ -13,6 +13,7 @@ import math
 import os
 import re
 import shutil
+import subprocess
 import sys
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, Tuple
@@ -1352,6 +1353,17 @@ def main() -> int:
 
     # write registry
     write_registry(page_data, os.path.join(lib_root, "prototype_registry.dart"), args.module_dir)
+
+    # 尽量用 dart format 把生成代码格式化成可读的多行样式
+    dart = shutil.which("dart")
+    if dart:
+        subprocess.run(
+            [dart, "format", out_root, os.path.join(lib_root, "prototype_registry.dart")],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+    else:
+        print("提示：未找到 dart 命令，跳过代码格式化（可手动执行 dart format）", file=sys.stderr)
     print(f"generated {len(page_data)} pages, copied {copied} images")
     return 0
 

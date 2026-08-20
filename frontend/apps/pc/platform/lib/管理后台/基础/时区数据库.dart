@@ -10,9 +10,1059 @@ class aDfXovdwxKPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-return SizedBox(width: 1920, height: 1080, child: Stack(children: [
-  Positioned.fill(child: Stack(children: [Positioned(left: 228, top: 65, width: 1692, height: 90, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 20, right: 0, top: 0, bottom: 0))), Positioned(left: 228, top: 384, width: 32, height: 420, child: CustomPaint(size: Size(32, 420), painter: _Path0Painter())), Positioned(left: 8, top: 145, width: 220, height: 915, child: Container(decoration: BoxDecoration(color: Color(0xFFEFF1F3), borderRadius: BorderRadius.circular(8), border: Border.all(color: Color(0xFFD7D7D7), width: 1)), child: Stack(children: [Positioned(left: 0, top: 56, width: 220, height: 147, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), child: Stack(children: [Positioned(left: 4, top: 4, width: 212, height: 42, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)))), Positioned(left: 4, top: 46, width: 212, height: 42, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)))), Positioned(left: 20, top: 17, width: 188, height: 17, child: Text('世界地理规划', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 59, width: 188, height: 17, child: Text('地区&国家', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 101, width: 188, height: 17, child: Text('导入地区', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 143, width: 188, height: 17, child: Text('UTC', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 185, width: 188, height: 17, child: Text('时区数据库', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 227, width: 188, height: 17, child: Text('货币', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible)), Positioned(left: 20, top: 269, width: 188, height: 17, child: Text('历史汇率', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF4C5773)), overflow: TextOverflow.visible))]))), Positioned(left: 0, top: 0, width: 220, height: 56, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 20, right: 0, top: 0, bottom: 0), child: Text('时区', textAlign: TextAlign.left, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), height: 1.4286), overflow: TextOverflow.visible)))]))), Positioned(left: 8, top: 65, width: 220, height: 32, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0))), Positioned(left: 8, top: 97, width: 220, height: 32, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('基础', textAlign: TextAlign.left, style: TextStyle(fontSize: 21, color: Color(0xFF949AAB), fontWeight: FontWeight.w700, height: 0.9524), overflow: TextOverflow.visible))), Positioned(left: 8, top: 129, width: 220, height: 16, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0))), Positioned(left: 259, top: 194, width: 655, height: 61, child: Text('时区数据库（通常称为tz或zoneinfo）包含代表全球许多代表性地点的本地时间历史的代码和数据。它会定期更新以反映政治机构对时区边界、UTC 偏移量和夏令时规则所做的更改。\n数据来源：https://www.iana.org/time-zones', style: TextStyle(), overflow: TextOverflow.visible)), Positioned(left: 244, top: 145, width: 220, height: 32, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.centerLeft, padding: EdgeInsets.only(left: 8, right: 0, top: 0, bottom: 0), child: Text('时区数据库', textAlign: TextAlign.left, style: TextStyle(fontSize: 21, color: Color(0xFF4C5773), fontWeight: FontWeight.w700, height: 0.9524), overflow: TextOverflow.visible))), Positioned(left: 259, top: 270, width: 80, height: 40, child: Container(decoration: BoxDecoration(color: Color(0xFFEFF1F3), borderRadius: BorderRadius.circular(0), border: Border(bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1))), alignment: Alignment.center, child: Text('ID', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 856, top: 270, width: 260, height: 40, child: Container(decoration: BoxDecoration(color: Color(0xFFEFF1F3), borderRadius: BorderRadius.circular(0), border: Border(bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1))), alignment: Alignment.center, child: Text('夏令时', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 339, top: 310, width: 260, height: 39, child: Container(decoration: BoxDecoration(color: Color(0xFFEFF1F3), borderRadius: BorderRadius.circular(0), border: Border(left: BorderSide(color: Color(0xFFD7D7D7), width: 1), bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1))), alignment: Alignment.center, padding: EdgeInsets.only(left: 20, right: 0, top: 0, bottom: 0), child: Text('伦敦', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 339, top: 270, width: 260, height: 40, child: Container(decoration: BoxDecoration(color: Color(0xFFEFF1F3), borderRadius: BorderRadius.circular(0), border: Border(bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1))), alignment: Alignment.center, child: Text('时区ID', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 259, top: 310, width: 80, height: 39, child: Container(decoration: BoxDecoration(color: Color(0xFFEFF1F3), borderRadius: BorderRadius.circular(0), border: Border(bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1))), alignment: Alignment.center, child: Text('0', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 856, top: 310, width: 260, height: 39, child: Container(decoration: BoxDecoration(color: Color(0xFFEFF1F3), borderRadius: BorderRadius.circular(0), border: Border(left: BorderSide(color: Color(0xFFD7D7D7), width: 1), bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1))), alignment: Alignment.center, child: Text('无', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 596, top: 270, width: 260, height: 40, child: Container(decoration: BoxDecoration(color: Color(0xFFEFF1F3), borderRadius: BorderRadius.circular(0), border: Border(bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1))), alignment: Alignment.center, child: Text('UTC 偏移量', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 596, top: 310, width: 260, height: 39, child: Container(decoration: BoxDecoration(color: Color(0xFFEFF1F3), borderRadius: BorderRadius.circular(0), border: Border(left: BorderSide(color: Color(0xFFD7D7D7), width: 1), bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1))), alignment: Alignment.center, child: Text('UTC Z', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 339, top: 349, width: 260, height: 39, child: Container(decoration: BoxDecoration(color: Color(0xFFEFF1F3), borderRadius: BorderRadius.circular(0), border: Border(left: BorderSide(color: Color(0xFFD7D7D7), width: 1), bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1))), alignment: Alignment.center, padding: EdgeInsets.only(left: 20, right: 0, top: 0, bottom: 0), child: Text('XXX城市', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 259, top: 349, width: 80, height: 39, child: Container(decoration: BoxDecoration(color: Color(0xFFEFF1F3), borderRadius: BorderRadius.circular(0), border: Border(bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1))), alignment: Alignment.center, child: Text('1', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 596, top: 349, width: 260, height: 39, child: Container(decoration: BoxDecoration(color: Color(0xFFEFF1F3), borderRadius: BorderRadius.circular(0), border: Border(left: BorderSide(color: Color(0xFFD7D7D7), width: 1), bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1))), alignment: Alignment.center, child: Text('UTC +8:00', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 856, top: 349, width: 260, height: 39, child: Container(decoration: BoxDecoration(color: Color(0xFFEFF1F3), borderRadius: BorderRadius.circular(0), border: Border(left: BorderSide(color: Color(0xFFD7D7D7), width: 1), bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1))), alignment: Alignment.center, child: Text('无', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 339, top: 389, width: 260, height: 39, child: Container(decoration: BoxDecoration(color: Color(0xFFEFF1F3), borderRadius: BorderRadius.circular(0), border: Border(left: BorderSide(color: Color(0xFFD7D7D7), width: 1), bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1))), alignment: Alignment.center, padding: EdgeInsets.only(left: 20, right: 0, top: 0, bottom: 0), child: Text('XXX城市', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 259, top: 389, width: 80, height: 39, child: Container(decoration: BoxDecoration(color: Color(0xFFEFF1F3), borderRadius: BorderRadius.circular(0), border: Border(bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1))), alignment: Alignment.center, child: Text('2', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 856, top: 389, width: 260, height: 39, child: Container(decoration: BoxDecoration(color: Color(0xFFEFF1F3), borderRadius: BorderRadius.circular(0), border: Border(left: BorderSide(color: Color(0xFFD7D7D7), width: 1), bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1))), alignment: Alignment.center, child: Text('每年的07月的第N个周日的 24:00起~ 每年的10月的第三个周日的24:00止\n', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 596, top: 389, width: 260, height: 39, child: Container(decoration: BoxDecoration(color: Color(0xFFEFF1F3), borderRadius: BorderRadius.circular(0), border: Border(left: BorderSide(color: Color(0xFFD7D7D7), width: 1), bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1))), alignment: Alignment.center, child: Text('UTC +8:00', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFF949AAB), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 1691, top: 138, width: 120, height: 56, child: Container(decoration: BoxDecoration(color: Color(0xFF4C5773), borderRadius: BorderRadius.circular(4)), child: Stack(children: [Positioned(left: 44, top: 18.5, width: 32, height: 19, child: Text('同步', textAlign: TextAlign.center, style: TextStyle(fontSize: 16, color: Color(0xFFFFFFFF), fontWeight: FontWeight.w700), overflow: TextOverflow.visible))]))), Positioned(left: 0, top: 0, width: 1920, height: 65, child: Container(decoration: BoxDecoration(color: Color(0xFF7172AD), borderRadius: BorderRadius.circular(0), boxShadow: [BoxShadow(color: Color(0x26000000), blurRadius: 6, offset: Offset(0, 3))]), child: Stack(children: [Positioned(left: 0, top: 0, width: 190, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, padding: EdgeInsets.only(left: 10, right: 0, top: 0, bottom: 0), child: Text('XX管理后台', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xFFFFFFFF), fontWeight: FontWeight.w700, height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 230, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('设置', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 15, top: 17, width: 32, height: 32, child: Icon(IconData(0xE8B2, fontFamily: 'boldIconFont'), size: 32, color: Color(0xFFFFFFFF))), Positioned(left: 1789, top: 11, width: 100, height: 44, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), border: Border.all(color: Color(0xFFD7D7D7), width: 1)), alignment: Alignment.center, child: Text('退出管理', textAlign: TextAlign.center, style: TextStyle(fontSize: 16, color: Color(0xFFFFFFFF), fontWeight: FontWeight.w700, height: 1.25), overflow: TextOverflow.visible))), Positioned(left: 310, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('用户', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 390, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('权限', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 470, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('菜单', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 550, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('基础', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 630, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('语言', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible))), Positioned(left: 710, top: 0, width: 80, height: 65, child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(0)), alignment: Alignment.center, child: Text('日志', textAlign: TextAlign.center, style: TextStyle(fontSize: 14, color: Color(0xA1FFFFFF), height: 1.4286), overflow: TextOverflow.visible)))])))]))
-]));
+    return SizedBox(
+      width: 1920,
+      height: 1080,
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: Stack(
+              children: [
+                Positioned(
+                  left: 228,
+                  top: 65,
+                  width: 1692,
+                  height: 90,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 20,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 228,
+                  top: 384,
+                  width: 32,
+                  height: 420,
+                  child: CustomPaint(
+                    size: Size(32, 420),
+                    painter: _Path0Painter(),
+                  ),
+                ),
+                Positioned(
+                  left: 8,
+                  top: 145,
+                  width: 220,
+                  height: 915,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEFF1F3),
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Color(0xFFD7D7D7), width: 1),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0,
+                          top: 56,
+                          width: 220,
+                          height: 147,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            child: Stack(
+                              children: [
+                                Positioned(
+                                  left: 4,
+                                  top: 4,
+                                  width: 212,
+                                  height: 42,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 4,
+                                  top: 46,
+                                  width: 212,
+                                  height: 42,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 17,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '世界地理规划',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 59,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '地区&国家',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 101,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '导入地区',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 143,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    'UTC',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 185,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '时区数据库',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 227,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '货币',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 269,
+                                  width: 188,
+                                  height: 17,
+                                  child: Text(
+                                    '历史汇率',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFF4C5773),
+                                    ),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 0,
+                          top: 0,
+                          width: 220,
+                          height: 56,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              left: 20,
+                              right: 0,
+                              top: 0,
+                              bottom: 0,
+                            ),
+                            child: Text(
+                              '时区',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFF949AAB),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 8,
+                  top: 65,
+                  width: 220,
+                  height: 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 8,
+                  top: 97,
+                  width: 220,
+                  height: 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '基础',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 21,
+                        color: Color(0xFF949AAB),
+                        fontWeight: FontWeight.w700,
+                        height: 0.9524,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 8,
+                  top: 129,
+                  width: 220,
+                  height: 16,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 259,
+                  top: 194,
+                  width: 655,
+                  height: 61,
+                  child: Text(
+                    '时区数据库（通常称为tz或zoneinfo）包含代表全球许多代表性地点的本地时间历史的代码和数据。它会定期更新以反映政治机构对时区边界、UTC 偏移量和夏令时规则所做的更改。\n数据来源：https://www.iana.org/time-zones',
+                    style: TextStyle(),
+                    overflow: TextOverflow.visible,
+                  ),
+                ),
+                Positioned(
+                  left: 244,
+                  top: 145,
+                  width: 220,
+                  height: 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '时区数据库',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 21,
+                        color: Color(0xFF4C5773),
+                        fontWeight: FontWeight.w700,
+                        height: 0.9524,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 259,
+                  top: 270,
+                  width: 80,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      'ID',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 856,
+                  top: 270,
+                  width: 260,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '夏令时',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 339,
+                  top: 310,
+                  width: 260,
+                  height: 39,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        left: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                        bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 20,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      '伦敦',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 339,
+                  top: 270,
+                  width: 260,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '时区ID',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 259,
+                  top: 310,
+                  width: 80,
+                  height: 39,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '0',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 856,
+                  top: 310,
+                  width: 260,
+                  height: 39,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        left: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                        bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '无',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 596,
+                  top: 270,
+                  width: 260,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      'UTC 偏移量',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 596,
+                  top: 310,
+                  width: 260,
+                  height: 39,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        left: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                        bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      'UTC Z',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 339,
+                  top: 349,
+                  width: 260,
+                  height: 39,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        left: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                        bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 20,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'XXX城市',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 259,
+                  top: 349,
+                  width: 80,
+                  height: 39,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '1',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 596,
+                  top: 349,
+                  width: 260,
+                  height: 39,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        left: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                        bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      'UTC +8:00',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 856,
+                  top: 349,
+                  width: 260,
+                  height: 39,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        left: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                        bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '无',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 339,
+                  top: 389,
+                  width: 260,
+                  height: 39,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        left: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                        bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(
+                      left: 20,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      'XXX城市',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 259,
+                  top: 389,
+                  width: 80,
+                  height: 39,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '2',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 856,
+                  top: 389,
+                  width: 260,
+                  height: 39,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        left: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                        bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '每年的07月的第N个周日的 24:00起~ 每年的10月的第三个周日的24:00止\n',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 596,
+                  top: 389,
+                  width: 260,
+                  height: 39,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEFF1F3),
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border(
+                        left: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                        bottom: BorderSide(color: Color(0xFFD7D7D7), width: 1),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      'UTC +8:00',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF949AAB),
+                        height: 1.4286,
+                      ),
+                      overflow: TextOverflow.visible,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 1691,
+                  top: 138,
+                  width: 120,
+                  height: 56,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFF4C5773),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 44,
+                          top: 18.5,
+                          width: 32,
+                          height: 19,
+                          child: Text(
+                            '同步',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color(0xFFFFFFFF),
+                              fontWeight: FontWeight.w700,
+                            ),
+                            overflow: TextOverflow.visible,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 0,
+                  top: 0,
+                  width: 1920,
+                  height: 65,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFF7172AD),
+                      borderRadius: BorderRadius.circular(0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x26000000),
+                          blurRadius: 6,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0,
+                          top: 0,
+                          width: 190,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            padding: EdgeInsets.only(
+                              left: 10,
+                              right: 0,
+                              top: 0,
+                              bottom: 0,
+                            ),
+                            child: Text(
+                              'XX管理后台',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFFFFFFFF),
+                                fontWeight: FontWeight.w700,
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 230,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '设置',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 15,
+                          top: 17,
+                          width: 32,
+                          height: 32,
+                          child: Icon(
+                            IconData(0xE8B2, fontFamily: 'boldIconFont'),
+                            size: 32,
+                            color: Color(0xFFFFFFFF),
+                          ),
+                        ),
+                        Positioned(
+                          left: 1789,
+                          top: 11,
+                          width: 100,
+                          height: 44,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              border: Border.all(
+                                color: Color(0xFFD7D7D7),
+                                width: 1,
+                              ),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '退出管理',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Color(0xFFFFFFFF),
+                                fontWeight: FontWeight.w700,
+                                height: 1.25,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 310,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '用户',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 390,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '权限',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 470,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '菜单',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 550,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '基础',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 630,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '语言',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 710,
+                          top: 0,
+                          width: 80,
+                          height: 65,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '日志',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Color(0xA1FFFFFF),
+                                height: 1.4286,
+                              ),
+                              overflow: TextOverflow.visible,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
