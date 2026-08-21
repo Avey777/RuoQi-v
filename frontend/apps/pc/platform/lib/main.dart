@@ -18,6 +18,8 @@ class PlatformApp extends StatelessWidget {
         title: 'RuoQi 平台',
         debugShowCheckedModeBanner: false,
         theme: ruoQiTheme(),
+        darkTheme: ruoQiTheme(brightness: Brightness.dark),
+        themeMode: ThemeMode.light,
         home: const HomePage(),
       ),
     );

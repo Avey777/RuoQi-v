@@ -4,13 +4,14 @@
 // 而是由主页面按钮打开的动作弹窗：与主页面占用相同的空间，
 // 覆盖在内容区之上（左侧菜单与顶部导航栏保持可见）。
 import 'package:flutter/material.dart';
+import 'package:ruoqi_common/ruoqi_common.dart';
 
 import '../prototype_registry.dart';
 import 'operations_preview.dart';
 
 /// 左侧菜单宽度与顶部导航栏高度（与 运营后台 弹窗布局一致）。
 const _leftMenuWidth = 300.0;
-const _topBarHeight = 65.0;
+const _topBarHeight = 56.0;
 
 /// 打开主页面功能弹窗。
 ///
@@ -33,7 +34,7 @@ Future<void> showOperationsActionDialog(
     context: context,
     barrierDismissible: true,
     barrierLabel: '关闭',
-    barrierColor: Colors.black38,
+    barrierColor: Theme.of(context).colorScheme.scrim,
     transitionDuration: const Duration(milliseconds: 150),
     pageBuilder: (context, animation, secondaryAnimation) {
       final content = entry != null
@@ -54,14 +55,25 @@ Future<void> showOperationsActionDialog(
               right: 0,
               bottom: 0,
               child: Material(
-                color: const Color(0xFFF5F6F8),
+                color: Theme.of(context).colorScheme.surface,
                 elevation: 8,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    header,
-                    Expanded(child: content),
-                  ],
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Theme.of(context).colorScheme.outlineVariant,
+                      width: 1,
+                    ),
+                    boxShadow: Theme.of(context).brightness == Brightness.dark
+                        ? null
+                        : RuQiElevation.shadowLg,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      header,
+                      Expanded(child: content),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -75,14 +87,30 @@ Future<void> showOperationsActionDialog(
         child: Stack(
           children: [
             Material(
-              color: Colors.white,
-              elevation: 8,
-              borderRadius: BorderRadius.circular(4),
+              color: Theme.of(context).colorScheme.surface,
+              elevation: 0,
+              borderRadius: BorderRadius.circular(12),
               clipBehavior: Clip.antiAlias,
-              child: SizedBox(
-                width: size.width,
-                height: size.height,
-                child: content,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color:
+                        Theme.of(
+                          context,
+                        ).extension<RuQiThemeExtension>()?.hairlineStrong ??
+                        Theme.of(context).colorScheme.outline,
+                    width: 1,
+                  ),
+                  boxShadow: Theme.of(context).brightness == Brightness.dark
+                      ? null
+                      : RuQiElevation.shadowLg,
+                ),
+                child: SizedBox(
+                  width: size.width,
+                  height: size.height,
+                  child: content,
+                ),
               ),
             ),
             Positioned(
@@ -90,7 +118,11 @@ Future<void> showOperationsActionDialog(
               right: 8,
               child: IconButton(
                 icon: const Icon(Icons.close),
-                color: const Color(0xFF666666),
+                color:
+                    Theme.of(
+                      context,
+                    ).extension<RuQiThemeExtension>()?.inkMuted ??
+                    Theme.of(context).colorScheme.onSurfaceVariant,
                 tooltip: '关闭',
                 onPressed: () => Navigator.of(context).pop(),
               ),
@@ -116,11 +148,12 @@ class _DialogHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Container(
       height: 48,
-      padding: const EdgeInsets.only(left: 16),
+      padding: const EdgeInsets.only(left: RuQiSpacing.md),
       alignment: Alignment.centerLeft,
-      color: Colors.white,
+      color: theme.colorScheme.surfaceContainerLow,
       child: Row(
         children: [
           Expanded(
@@ -128,9 +161,8 @@ class _DialogHeader extends StatelessWidget {
               title,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 18,
-                color: Color(0xFF333333),
+              style: theme.textTheme.titleMedium?.copyWith(
+                color: theme.colorScheme.onSurface,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -138,7 +170,9 @@ class _DialogHeader extends StatelessWidget {
           ...?actions,
           IconButton(
             icon: const Icon(Icons.close),
-            color: const Color(0xFF666666),
+            color:
+                theme.extension<RuQiThemeExtension>()?.inkMuted ??
+                theme.colorScheme.onSurfaceVariant,
             tooltip: '关闭',
             onPressed: onClose,
           ),

@@ -53,7 +53,7 @@ class OperationsPrototypePreview extends StatelessWidget {
   Widget build(BuildContext context) {
     final (cropOffset, viewSize) = operationsPreviewGeometry(entry);
     return ColoredBox(
-      color: const Color(0xFFF5F6F8),
+      color: Theme.of(context).colorScheme.surface,
       child: Scrollbar(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),

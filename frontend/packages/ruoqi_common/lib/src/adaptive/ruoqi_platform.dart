@@ -12,13 +12,19 @@ enum RuoQiPlatform {
   mobile,
 }
 
-/// 常用响应式断点。
+/// 常用响应式断点（对齐 DESIGN-consensus.md §8）。
 abstract final class RuoQiBreakpoints {
-  /// 平板/大屏手机临界宽度。
-  static const double tablet = 600;
+  /// 宽屏：内容最大宽 1440。
+  static const double wide = 1440;
 
-  /// 桌面临界宽度。
+  /// 桌面：卡片 3 列、定价 3–4 列。
   static const double desktop = 1024;
+
+  /// 平板：卡片 2 列、定价 2 列、导航收起。
+  static const double tablet = 768;
+
+  /// 手机：单列、display 字号下调。
+  static const double mobile = 428;
 }
 
 /// 依据屏幕宽度推断端类型（未显式声明 Scope 时的兜底逻辑）。

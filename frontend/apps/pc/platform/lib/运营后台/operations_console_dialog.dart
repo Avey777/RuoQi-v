@@ -2,12 +2,13 @@
 //
 // 交互方式与 管理后台（系统管理）一致：点击左侧菜单项后，
 // 在弹窗右侧内容区直接打开对应页面，不再 push 完整页面路由。
-// 弹窗顶部为与 管理后台 一致的紫色导航栏（品牌 + 退出）；
+// 弹窗顶部为按规范 §6.7 实现的控制台导航栏（品牌 + 退出）；
 // 菜单导航全部在左侧树形菜单中（板块 → 页面 → 子页面）；
 // 已优化为业务静态页的菜单项展示其正文；未优化项回退到原型预览，
 // 裁掉原型自带的顶部菜单、左侧栏与面包屑，避免重复。
 import 'package:flutter/material.dart';
 
+import '../console_widgets/console_top_bar.dart';
 import '../prototype_registry.dart';
 import 'operations_preview.dart';
 import 'operations_sidebar.dart';
@@ -34,6 +35,7 @@ class OperationsConsoleDialog {
   static Future<void> show(BuildContext context) {
     return showDialog<void>(
       context: context,
+      barrierColor: Theme.of(context).colorScheme.scrim,
       builder: (_) => const _OperationsConsoleDialog(),
     );
   }
@@ -89,11 +91,14 @@ class _OperationsConsoleDialogState extends State<_OperationsConsoleDialog> {
     final entry = _selected;
     return Dialog(
       insetPadding: EdgeInsets.zero,
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       child: Column(
         children: [
           // 顶部导航栏：品牌 + 退出
-          _TopBar(onExit: () => Navigator.of(context).pop()),
+          ConsoleTopBar(
+            title: 'XX运营后台',
+            onExit: () => Navigator.of(context).pop(),
+          ),
           Expanded(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -106,7 +111,7 @@ class _OperationsConsoleDialogState extends State<_OperationsConsoleDialog> {
                 // 右侧内容区：展示选中菜单项对应的页面
                 Expanded(
                   child: entry == null
-                      ? const ColoredBox(color: Color(0xFFF5F6F8))
+                      ? ColoredBox(color: Theme.of(context).colorScheme.surface)
                       : _PageContent(key: ValueKey(entry.id), entry: entry),
                 ),
               ],
@@ -117,84 +122,6 @@ class _OperationsConsoleDialogState extends State<_OperationsConsoleDialog> {
     );
   }
 }
-
-/// 顶部紫色导航栏（参照 管理后台 弹窗）：品牌名 + 退出。
-class _TopBar extends StatelessWidget {
-  const _TopBar({required this.onExit});
-
-  final VoidCallback onExit;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: _topBarHeight,
-      decoration: const BoxDecoration(
-        color: Color(0xFF7172AD),
-        boxShadow: [
-          BoxShadow(
-            color: Color(0x26000000),
-            blurRadius: 6,
-            offset: Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          const SizedBox(width: 15),
-          const Icon(
-            IconData(0xE8B2, fontFamily: 'boldIconFont'),
-            size: 32,
-            color: Colors.white,
-          ),
-          const SizedBox(width: 8),
-          SizedBox(
-            width: 135,
-            child: Text(
-              'XX运营后台',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-                height: 1.4286,
-              ),
-            ),
-          ),
-          const SizedBox(width: 16),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.only(right: 31),
-            child: InkWell(
-              onTap: onExit,
-              borderRadius: BorderRadius.circular(4),
-              child: Container(
-                width: 100,
-                height: 44,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                  border: Border.all(color: const Color(0xFFD7D7D7), width: 1),
-                ),
-                child: const Text(
-                  '退出',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    height: 1.25,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// 顶栏高度，与 管理后台 弹窗一致。
-const _topBarHeight = 65.0;
 
 /// 右侧内容区：页面正文（业务静态页）或原型预览（未优化项）。
 class _PageContent extends StatelessWidget {
@@ -207,7 +134,7 @@ class _PageContent extends StatelessWidget {
     final bodyBuilder = _businessBodies[entry.id];
     return bodyBuilder != null
         ? ColoredBox(
-            color: const Color(0xFFF5F6F8),
+            color: Theme.of(context).colorScheme.surface,
             child: bodyBuilder(context),
           )
         : OperationsPrototypePreview(entry: entry);
