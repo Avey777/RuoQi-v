@@ -12,12 +12,12 @@ const systemSettingsTopBarHeight = 56.0;
 ///
 /// 展示样式：不渲染半透明遮罩与投影阴影，面板作为内容区内嵌层
 /// 从右侧滑入，仅用左侧/顶部细描边与菜单、顶栏分隔。
-Future<void> showSystemSettingsPanel(
+Future<T?> showSystemSettingsPanel<T>(
   BuildContext context, {
   required String title,
   required Widget child,
 }) {
-  return showGeneralDialog<void>(
+  return showGeneralDialog<T>(
     context: context,
     barrierDismissible: true,
     barrierLabel: '关闭',

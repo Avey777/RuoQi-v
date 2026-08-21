@@ -10,6 +10,8 @@ import 'business/general_settings_page.dart';
 import 'business/localization_settings_page.dart';
 import 'business/sms_settings_page.dart';
 import 'business/verification_messages_page.dart';
+import 'business/user_management/roles_page.dart';
+import 'business/user_management/user_management_page.dart';
 
 /// 系统管理（一账通 ID 独立体系）入口弹窗。
 ///
@@ -59,6 +61,8 @@ final _businessBodies = <String, WidgetBuilder>{
   'EDryRTyjx': (_) => const LocalizationBody(),
   'j7jNSg7DW': (_) => const EmailSettingsBody(),
   'jOWxGolr4': (_) => const EncodingRulesBody(),
+  'StMQ4cWti': (_) => const UsersBody(),
+  'c11sjQSJ1': (_) => const RolesBody(),
 };
 
 /// 七个板块及其左侧菜单项，顺序与 管理后台 原型顶部导航一致。
