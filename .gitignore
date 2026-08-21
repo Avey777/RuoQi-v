@@ -52,6 +52,7 @@ app.c
 # (reference data only, not part of the app source)
 frontend/apps/pc/platform/lib/管理后台/管理后台/
 frontend/apps/pc/platform/lib/运营后台/运营后台/
+frontend/apps/pc/platform/lib/运营后台/运营后台—HTML/
 frontend/apps/pc/platform/lib/登录/登录/
 
 # Python

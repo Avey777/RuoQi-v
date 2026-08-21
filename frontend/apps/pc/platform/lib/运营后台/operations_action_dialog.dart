@@ -1,0 +1,149 @@
+// 运营后台主页面功能弹窗（手写，勿被 rp2flutter 生成逻辑覆盖）。
+//
+// 查看 / 编辑 / 删除 / 绑定 等动作不再作为独立菜单页面，
+// 而是由主页面按钮打开的动作弹窗：与主页面占用相同的空间，
+// 覆盖在内容区之上（左侧菜单与顶部导航栏保持可见）。
+import 'package:flutter/material.dart';
+
+import '../prototype_registry.dart';
+import 'operations_preview.dart';
+
+/// 左侧菜单宽度与顶部导航栏高度（与 运营后台 弹窗布局一致）。
+const _leftMenuWidth = 300.0;
+const _topBarHeight = 65.0;
+
+/// 打开主页面功能弹窗。
+///
+/// [entry] 与 [child] 二选一：
+/// - [entry]：原型页面（如 查看租户、编辑租户、绑定），按原型裁切展示；
+/// - [child]：直接嵌入的内容（如 账号安全、多因素认证 等业务正文）。
+///
+/// 传入 [size] 时以小弹窗形式展示（尺寸贴合内容，居中覆盖），
+/// 不传时与主页面占用相同空间（覆盖内容区）。
+Future<void> showOperationsActionDialog(
+  BuildContext context, {
+  required String title,
+  PrototypeEntry? entry,
+  Widget? child,
+  List<Widget>? actions,
+  Size? size,
+}) {
+  assert(entry != null || child != null, 'entry 与 child 至少提供一个');
+  return showGeneralDialog<void>(
+    context: context,
+    barrierDismissible: true,
+    barrierLabel: '关闭',
+    barrierColor: Colors.black38,
+    transitionDuration: const Duration(milliseconds: 150),
+    pageBuilder: (context, animation, secondaryAnimation) {
+      final content = entry != null
+          ? OperationsPrototypePreview(entry: entry)
+          : child!;
+      final header = _DialogHeader(
+        title: title,
+        actions: actions,
+        onClose: () => Navigator.of(context).pop(),
+      );
+      if (size == null) {
+        // 大面板模式：覆盖内容区（与主页面同尺寸），左侧菜单与顶栏保持可见。
+        return Stack(
+          children: [
+            Positioned(
+              left: _leftMenuWidth,
+              top: _topBarHeight,
+              right: 0,
+              bottom: 0,
+              child: Material(
+                color: const Color(0xFFF5F6F8),
+                elevation: 8,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    header,
+                    Expanded(child: content),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
+      }
+      // 小弹窗模式：尺寸贴合内容，居中展示。
+      // 内容自带标题（如 审核 / 审核详情），不重复渲染标题条，
+      // 右上角悬浮关闭按钮。
+      return Center(
+        child: Stack(
+          children: [
+            Material(
+              color: Colors.white,
+              elevation: 8,
+              borderRadius: BorderRadius.circular(4),
+              clipBehavior: Clip.antiAlias,
+              child: SizedBox(
+                width: size.width,
+                height: size.height,
+                child: content,
+              ),
+            ),
+            Positioned(
+              top: 8,
+              right: 8,
+              child: IconButton(
+                icon: const Icon(Icons.close),
+                color: const Color(0xFF666666),
+                tooltip: '关闭',
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
+
+/// 弹窗标题条：标题 + 操作按钮 + 关闭按钮。
+class _DialogHeader extends StatelessWidget {
+  const _DialogHeader({
+    required this.title,
+    required this.onClose,
+    this.actions,
+  });
+
+  final String title;
+  final VoidCallback onClose;
+  final List<Widget>? actions;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 48,
+      padding: const EdgeInsets.only(left: 16),
+      alignment: Alignment.centerLeft,
+      color: Colors.white,
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 18,
+                color: Color(0xFF333333),
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+          ...?actions,
+          IconButton(
+            icon: const Icon(Icons.close),
+            color: const Color(0xFF666666),
+            tooltip: '关闭',
+            onPressed: onClose,
+          ),
+        ],
+      ),
+    );
+  }
+}

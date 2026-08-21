@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ruoqi_common/ruoqi_common.dart';
 
 import '管理后台/system_settings_dialog.dart';
+import '运营后台/operations_console_dialog.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -30,6 +31,15 @@ class HomePage extends StatelessWidget {
             title: '系统管理',
             subtitle: '一账通 ID 独立体系：设置 / 用户 / 权限 / 菜单 / 基础 / 语言 / 日志',
             onTap: () => SystemSettingsDialog.show(context),
+          ),
+          const SizedBox(height: 12),
+          // 运营后台入口：与系统管理一致的弹窗交互
+          _entryCard(
+            context,
+            icon: Icons.dashboard_customize,
+            title: '运营后台',
+            subtitle: '一账通运营端(SSO)：租户 / 团队空间 / 项目 / API授权 / 个人中心',
+            onTap: () => OperationsConsoleDialog.show(context),
           ),
         ],
       ),

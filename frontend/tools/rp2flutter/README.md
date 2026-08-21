@@ -26,6 +26,21 @@ python3 frontend/tools/rp2flutter/convert.py \
   --module-dir "<目标目录名>"
 ```
 
+运营后台（`运营后台—HTML` 离线包）示例：
+
+```bash
+python3 frontend/tools/rp2flutter/convert.py \
+  --prototype "frontend/apps/pc/platform/lib/运营后台/运营后台—HTML" \
+  --module "一账通(IDaaS & IAM)-运营端(SSO)" \
+  --module-dir 运营后台 \
+  --exclude-path "APP/H5-个人中心"
+```
+
+`prototype_registry.dart` 是多个模块共用的注册表：脚本会保留已有模块的
+import 与条目；本次生成的模块会整体替换（重跑或剔除页面后不残留旧条目），
+其他模块不受影响。`--exclude-path` 可重复传入，按页面路径子串剔除不需要的
+页面（例如运营后台的 H5 子模块）。
+
 ## 输出约定
 
 - 每个原型页面对应一个 `<pageId>.dart`，类名为 `<pageId>Page`（非法字符去除，
@@ -34,6 +49,10 @@ python3 frontend/tools/rp2flutter/convert.py \
 - 页面为绝对定位的 `SizedBox + Stack + Positioned` 结构，与原型坐标一一对应；
 - 图标使用 `boldIconFont` / `lightIconFont` 字体字形；
 - 矢量 path 转成页面内联的 `CustomPainter`。
+
+运营后台左侧菜单是 Mockplus 的 `navigationMenu` 组件，导出时会把所有
+`treeItem` 拍平到 (0,0)，转换器会按菜单属性（行高 / 层级缩进 / 内边距）与
+`value.relation` 的层级重建每一行（展开箭头 + 节点图标 + 文本，选中行加底色）。
 
 ## 侧栏补全
 
