@@ -8,9 +8,9 @@
 python3 frontend/tools/rp2flutter/convert.py
 ```
 
-默认从 `frontend/apps/pc/platform/lib/管理后台/管理后台`（离线包解压目录）读取
+默认从 `frontend/apps/pc/platform/lib/admin_pages/管理后台`（离线包解压目录）读取
 `一账通(IDaaS/IAM)-运营管理后台` 模块，把全部页面生成到
-`frontend/apps/pc/platform/lib/管理后台/<模块>/`，同时：
+`frontend/apps/pc/platform/lib/admin_pages/<模块>/`，同时：
 
 - 生成 `frontend/apps/pc/platform/lib/prototype_registry.dart`（页面注册表）；
 - 把页面引用的图片复制到 `frontend/apps/pc/platform/assets/images/`；
@@ -30,9 +30,9 @@ python3 frontend/tools/rp2flutter/convert.py \
 
 ```bash
 python3 frontend/tools/rp2flutter/convert.py \
-  --prototype "frontend/apps/pc/platform/lib/运营后台/运营后台—HTML" \
+  --prototype "frontend/apps/pc/platform/lib/ops_pages/运营后台—HTML" \
   --module "一账通(IDaaS & IAM)-运营端(SSO)" \
-  --module-dir 运营后台 \
+  --module-dir ops_pages \
   --exclude-path "APP/H5-个人中心"
 ```
 

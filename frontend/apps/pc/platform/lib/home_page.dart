@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ruoqi_common/ruoqi_common.dart';
 
-import '管理后台/system_settings_dialog.dart';
-import '运营后台/operations_console_dialog.dart';
+import 'admin_pages/system_settings_dialog.dart';
+import 'ops_pages/operations_console_dialog.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

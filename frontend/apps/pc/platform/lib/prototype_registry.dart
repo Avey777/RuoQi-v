@@ -2,116 +2,81 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
 
-import '管理后台/基础/世界地理规划.dart';
-import '管理后台/基础/地区&国家.dart';
-import '管理后台/基础/地区&国家-停用.dart';
-import '管理后台/基础/地区&国家-删除.dart';
-import '管理后台/基础/地区&国家-启用.dart';
-import '管理后台/基础/地区&国家-新增.dart';
-import '管理后台/基础/地区&国家-编辑.dart';
-import '管理后台/基础/行政区划.dart';
-import '管理后台/基础/行政区划-新增.dart';
-import '管理后台/基础/行政区划-编辑.dart';
-import '管理后台/基础/导入地区.dart';
-import '管理后台/基础/时区.dart';
-import '管理后台/基础/时区数据库.dart';
-import '管理后台/基础/历史汇率.dart';
-import '管理后台/基础/货币.dart';
-import '管理后台/基础/货币-停用.dart';
-import '管理后台/基础/货币-删除.dart';
-import '管理后台/基础/货币-启用.dart';
-import '管理后台/基础/添加(已设置基础货币).dart';
-import '管理后台/基础/添加(无基础货币).dart';
-import '管理后台/基础/货币-编辑.dart';
-import '管理后台/日志/操作日志.dart';
-import '管理后台/日志/支付日志.dart';
-import '管理后台/日志/登录日志.dart';
-import '管理后台/日志/验证日志.dart';
-import '管理后台/权限/权限.dart';
-import '管理后台/权限/保存权限.dart';
-import '管理后台/用户/用户(活跃).dart';
-import '管理后台/用户/停用账户.dart';
-import '管理后台/用户/用户(已停用).dart';
-import '管理后台/用户/重新激活.dart';
-import '管理后台/用户/编辑用户-main.dart';
-import '管理后台/用户/编辑用户-sub.dart';
-import '管理后台/用户/邀请用户.dart';
-import '管理后台/用户/邀请令牌-密码.dart';
-import '管理后台/用户/邀请令牌-邮件.dart';
-import '管理后台/用户/重置密码(密码重置URL方案).dart';
-import '管理后台/用户/重置密码（临时密码方案）.dart';
-import '管理后台/用户/密码重置成功.dart';
-import '管理后台/用户/角色.dart';
-import '管理后台/用户/创建角色.dart';
-import '管理后台/用户/删除角色组.dart';
-import '管理后台/用户/编辑角色.dart';
-import '管理后台/菜单/菜单.dart';
-import '管理后台/菜单/删除.dart';
-import '管理后台/菜单/新增-编辑.dart';
-import '管理后台/设置/auth登录.dart';
-import '管理后台/设置/Google登录.dart';
-import '管理后台/设置/本土化.dart';
-import '管理后台/设置/电子邮件.dart';
-import '管理后台/设置/短信.dart';
-import '管理后台/设置/阿里云短信.dart';
-import '管理后台/设置/编码规则.dart';
-import '管理后台/设置/编辑.dart';
-import '管理后台/设置/通用.dart';
-import '管理后台/设置/验证消息.dart';
-import '管理后台/设置/修改密码验证.dart';
-import '管理后台/设置/密码重置验证.dart';
-import '管理后台/设置/注册验证.dart';
-import '管理后台/设置/邀请用户.dart';
-import '管理后台/设置/验证码登录.dart';
-import '管理后台/设计规范.dart';
-import '管理后台/语言/多语言.dart';
-import '管理后台/语言/停用.dart';
-import '管理后台/语言/删除.dart';
-import '管理后台/语言/启用.dart';
-import '管理后台/语言/添加.dart';
-import '管理后台/语言/编辑.dart';
-import '管理后台/语言/导入.dart';
-import '管理后台/语言/取消导入.dart';
-import '管理后台/语言/导出.dart';
-import '管理后台/语言/翻译.dart';
-import '管理后台/邀请登录.dart';
-import '运营后台/API授权/APIToken.dart';
-import '运营后台/个人中心/PC-个人中心(基本信息).dart';
-import '运营后台/个人中心/API秘钥.dart';
-import '运营后台/个人中心/多因素认证.dart';
-import '运营后台/个人中心/取消绑定.dart';
-import '运营后台/个人中心/绑定(手机号、邮箱).dart';
-import '运营后台/个人中心/本地化.dart';
-import '运营后台/个人中心/账号安全.dart';
-import '运营后台/个人中心/修改密码.dart';
-import '运营后台/个人中心/设置密码.dart';
-import '运营后台/个人中心/通用验证(手机号、邮箱).dart';
-import '运营后台/团队空间/团队设置.dart';
-import '运营后台/团队空间/租户团队.dart';
-import '运营后台/团队空间/查看.dart';
-import '运营后台/团队空间/订阅计费.dart';
-import '运营后台/租户/开户审核.dart';
-import '运营后台/租户/查看.dart';
-import '运营后台/租户/成员管理.dart';
-import '运营后台/租户/租户列表.dart';
-import '运营后台/租户/查看租户.dart';
-import '运营后台/租户/添加租户.dart';
-import '运营后台/租户/邀请令牌-不能发送电子邮件.dart';
-import '运营后台/租户/激活.dart';
-import '运营后台/租户/编辑租户.dart';
-import '运营后台/租户/锁定.dart';
-import '运营后台/租户/租户设置.dart';
-import '运营后台/项目/(订阅)开通审核.dart';
-import '运营后台/项目/(订阅)开通审核-查看.dart';
-import '运营后台/项目/变更审核.dart';
-import '运营后台/项目/变更审核-查看.dart';
-import '运营后台/项目/审核弹窗-外部.dart';
-import '运营后台/项目/租户项目.dart';
-import '运营后台/项目/租户项目-查看.dart';
-import '运营后台/项目/订阅计费.dart';
-import '运营后台/项目/退订审核.dart';
-import '运营后台/项目/退订审核-查看.dart';
-import '运营后台/项目/项目设置.dart';
+import 'admin_pages/基础/世界地理规划.dart';
+import 'admin_pages/基础/地区&国家.dart';
+import 'admin_pages/基础/地区&国家-停用.dart';
+import 'admin_pages/基础/地区&国家-删除.dart';
+import 'admin_pages/基础/地区&国家-启用.dart';
+import 'admin_pages/基础/地区&国家-新增.dart';
+import 'admin_pages/基础/地区&国家-编辑.dart';
+import 'admin_pages/基础/行政区划.dart';
+import 'admin_pages/基础/行政区划-新增.dart';
+import 'admin_pages/基础/行政区划-编辑.dart';
+import 'admin_pages/基础/导入地区.dart';
+import 'admin_pages/基础/时区.dart';
+import 'admin_pages/基础/时区数据库.dart';
+import 'admin_pages/基础/历史汇率.dart';
+import 'admin_pages/基础/货币.dart';
+import 'admin_pages/基础/货币-停用.dart';
+import 'admin_pages/基础/货币-删除.dart';
+import 'admin_pages/基础/货币-启用.dart';
+import 'admin_pages/基础/添加(已设置基础货币).dart';
+import 'admin_pages/基础/添加(无基础货币).dart';
+import 'admin_pages/基础/货币-编辑.dart';
+import 'admin_pages/日志/操作日志.dart';
+import 'admin_pages/日志/支付日志.dart';
+import 'admin_pages/日志/登录日志.dart';
+import 'admin_pages/日志/验证日志.dart';
+import 'admin_pages/菜单/菜单.dart';
+import 'admin_pages/菜单/删除.dart';
+import 'admin_pages/菜单/新增-编辑.dart';
+import 'admin_pages/语言/多语言.dart';
+import 'admin_pages/语言/停用.dart';
+import 'admin_pages/语言/删除.dart';
+import 'admin_pages/语言/启用.dart';
+import 'admin_pages/语言/添加.dart';
+import 'admin_pages/语言/编辑.dart';
+import 'admin_pages/语言/导入.dart';
+import 'admin_pages/语言/取消导入.dart';
+import 'admin_pages/语言/导出.dart';
+import 'admin_pages/语言/翻译.dart';
+import 'ops_pages/API授权/APIToken.dart';
+import 'ops_pages/个人中心/PC-个人中心(基本信息).dart';
+import 'ops_pages/个人中心/API秘钥.dart';
+import 'ops_pages/个人中心/多因素认证.dart';
+import 'ops_pages/个人中心/取消绑定.dart';
+import 'ops_pages/个人中心/绑定(手机号、邮箱).dart';
+import 'ops_pages/个人中心/本地化.dart';
+import 'ops_pages/个人中心/账号安全.dart';
+import 'ops_pages/个人中心/修改密码.dart';
+import 'ops_pages/个人中心/设置密码.dart';
+import 'ops_pages/个人中心/通用验证(手机号、邮箱).dart';
+import 'ops_pages/团队空间/团队设置.dart';
+import 'ops_pages/团队空间/租户团队.dart';
+import 'ops_pages/团队空间/查看.dart';
+import 'ops_pages/团队空间/订阅计费.dart';
+import 'ops_pages/租户/开户审核.dart';
+import 'ops_pages/租户/查看.dart';
+import 'ops_pages/租户/成员管理.dart';
+import 'ops_pages/租户/租户列表.dart';
+import 'ops_pages/租户/查看租户.dart';
+import 'ops_pages/租户/添加租户.dart';
+import 'ops_pages/租户/邀请令牌-不能发送电子邮件.dart';
+import 'ops_pages/租户/激活.dart';
+import 'ops_pages/租户/编辑租户.dart';
+import 'ops_pages/租户/锁定.dart';
+import 'ops_pages/租户/租户设置.dart';
+import 'ops_pages/项目/(订阅)开通审核.dart';
+import 'ops_pages/项目/(订阅)开通审核-查看.dart';
+import 'ops_pages/项目/变更审核.dart';
+import 'ops_pages/项目/变更审核-查看.dart';
+import 'ops_pages/项目/审核弹窗-外部.dart';
+import 'ops_pages/项目/租户项目.dart';
+import 'ops_pages/项目/租户项目-查看.dart';
+import 'ops_pages/项目/订阅计费.dart';
+import 'ops_pages/项目/退订审核.dart';
+import 'ops_pages/项目/退订审核-查看.dart';
+import 'ops_pages/项目/项目设置.dart';
 
 class PrototypeFolder {
   const PrototypeFolder(this.name, this.children);
@@ -140,7 +105,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'xZC4jWHWG',
     '世界地理规划',
-    '管理后台/基础/地区/世界地理规划',
+    'admin_pages/基础/地区/世界地理规划',
     1920,
     1080,
     (_) => xZC4jWHWGPage(),
@@ -149,7 +114,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'X0RCGzKUh',
     '地区&国家',
-    '管理后台/基础/地区/地区&国家',
+    'admin_pages/基础/地区/地区&国家',
     1920,
     1080,
     (_) => X0RCGzKUhPage(),
@@ -158,7 +123,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'eS8xcvVn_',
     '停用',
-    '管理后台/基础/地区/地区&国家/停用',
+    'admin_pages/基础/地区/地区&国家/停用',
     1920,
     1080,
     (_) => eS8xcvVnPage(),
@@ -167,7 +132,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'P_tbqeIn5',
     '删除',
-    '管理后台/基础/地区/地区&国家/删除',
+    'admin_pages/基础/地区/地区&国家/删除',
     1920,
     1080,
     (_) => PtbqeIn5Page(),
@@ -176,7 +141,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     '0K4qXaSZY',
     '启用',
-    '管理后台/基础/地区/地区&国家/启用',
+    'admin_pages/基础/地区/地区&国家/启用',
     1920,
     1080,
     (_) => P0K4qXaSZYPage(),
@@ -185,7 +150,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'sXhDa1s0K',
     '新增',
-    '管理后台/基础/地区/地区&国家/新增',
+    'admin_pages/基础/地区/地区&国家/新增',
     1920,
     1080,
     (_) => sXhDa1s0KPage(),
@@ -194,7 +159,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'CIisUeiwx',
     '编辑',
-    '管理后台/基础/地区/地区&国家/编辑',
+    'admin_pages/基础/地区/地区&国家/编辑',
     1920,
     1080,
     (_) => CIisUeiwxPage(),
@@ -203,7 +168,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     '7d-qVh7xy',
     '行政区划',
-    '管理后台/基础/地区/地区&国家/行政区划',
+    'admin_pages/基础/地区/地区&国家/行政区划',
     1920,
     1080,
     (_) => P7dqVh7xyPage(),
@@ -212,7 +177,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'kfZXet-RC',
     '新增',
-    '管理后台/基础/地区/地区&国家/行政区划/新增',
+    'admin_pages/基础/地区/地区&国家/行政区划/新增',
     1920,
     1080,
     (_) => kfZXetRCPage(),
@@ -221,7 +186,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'giZ62VQ2t',
     '编辑',
-    '管理后台/基础/地区/地区&国家/行政区划/编辑',
+    'admin_pages/基础/地区/地区&国家/行政区划/编辑',
     1920,
     1080,
     (_) => giZ62VQ2tPage(),
@@ -230,7 +195,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     '2SonlUXcm',
     '导入地区',
-    '管理后台/基础/地区/导入地区',
+    'admin_pages/基础/地区/导入地区',
     1920,
     1080,
     (_) => P2SonlUXcmPage(),
@@ -239,7 +204,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'OJxsBTfEu',
     '时区',
-    '管理后台/基础/时区/时区',
+    'admin_pages/基础/时区/时区',
     1920,
     1300,
     (_) => OJxsBTfEuPage(),
@@ -248,7 +213,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'aDfXovdwxK',
     '时区数据库',
-    '管理后台/基础/时区/时区数据库',
+    'admin_pages/基础/时区/时区数据库',
     1920,
     1080,
     (_) => aDfXovdwxKPage(),
@@ -257,7 +222,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'zvYxL_RQg',
     '历史汇率',
-    '管理后台/基础/货币/历史汇率',
+    'admin_pages/基础/货币/历史汇率',
     1920,
     1080,
     (_) => zvYxLRQgPage(),
@@ -266,7 +231,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'kFob4v_V6',
     '货币',
-    '管理后台/基础/货币/货币',
+    'admin_pages/基础/货币/货币',
     1920,
     1080,
     (_) => kFob4vV6Page(),
@@ -275,7 +240,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'PWnjOiaHk',
     '停用',
-    '管理后台/基础/货币/货币/停用',
+    'admin_pages/基础/货币/货币/停用',
     1920,
     1080,
     (_) => PWnjOiaHkPage(),
@@ -284,7 +249,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'OovUbRdjI',
     '删除',
-    '管理后台/基础/货币/货币/删除',
+    'admin_pages/基础/货币/货币/删除',
     1920,
     1080,
     (_) => OovUbRdjIPage(),
@@ -293,7 +258,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'RJGKWcBi5',
     '启用',
-    '管理后台/基础/货币/货币/启用',
+    'admin_pages/基础/货币/货币/启用',
     1920,
     1080,
     (_) => RJGKWcBi5Page(),
@@ -302,7 +267,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'XQTrtKcsz',
     '添加 (已设置基础货币)',
-    '管理后台/基础/货币/货币/添加 (已设置基础货币)',
+    'admin_pages/基础/货币/货币/添加 (已设置基础货币)',
     1920,
     1080,
     (_) => XQTrtKcszPage(),
@@ -311,7 +276,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'Ef9HKcSdT',
     '添加 (无基础货币)',
-    '管理后台/基础/货币/货币/添加 (无基础货币)',
+    'admin_pages/基础/货币/货币/添加 (无基础货币)',
     1920,
     1080,
     (_) => Ef9HKcSdTPage(),
@@ -320,7 +285,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'to3AHbOfb',
     '编辑',
-    '管理后台/基础/货币/货币/编辑',
+    'admin_pages/基础/货币/货币/编辑',
     1920,
     1080,
     (_) => to3AHbOfbPage(),
@@ -329,7 +294,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'WkvHvCC8i',
     '操作日志',
-    '管理后台/日志/操作日志',
+    'admin_pages/日志/操作日志',
     1920,
     1080,
     (_) => WkvHvCC8iPage(),
@@ -338,7 +303,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'DwOYjtX0r',
     '支付日志',
-    '管理后台/日志/支付日志',
+    'admin_pages/日志/支付日志',
     1920,
     1080,
     (_) => DwOYjtX0rPage(),
@@ -347,7 +312,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'BYfUtX8cV',
     '登录日志',
-    '管理后台/日志/登录日志',
+    'admin_pages/日志/登录日志',
     1920,
     1080,
     (_) => BYfUtX8cVPage(),
@@ -356,178 +321,34 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'JSCSQH1Kc',
     '验证日志',
-    '管理后台/日志/验证日志',
+    'admin_pages/日志/验证日志',
     1920,
     1080,
     (_) => JSCSQH1KcPage(),
   ),
 
-  PrototypeEntry(
-    'c50tDa7pFz',
-    '权限',
-    '管理后台/权限',
-    1920,
-    1120,
-    (_) => c50tDa7pFzPage(),
-  ),
 
-  PrototypeEntry(
-    'PRkO8x-5W',
-    '保存权限',
-    '管理后台/权限/保存权限',
-    1920,
-    1120,
-    (_) => PRkO8x5WPage(),
-  ),
 
-  PrototypeEntry(
-    'StMQ4cWti',
-    '用户(活跃)',
-    '管理后台/用户/用户(活跃)',
-    1920,
-    1080,
-    (_) => StMQ4cWtiPage(),
-  ),
 
-  PrototypeEntry(
-    'OcrcbIfrU',
-    '停用账户',
-    '管理后台/用户/用户(活跃)/停用账户',
-    1920,
-    1080,
-    (_) => OcrcbIfrUPage(),
-  ),
 
-  PrototypeEntry(
-    '8ZOzhvAFn',
-    '用户(已停用)',
-    '管理后台/用户/用户(活跃)/用户(已停用)',
-    1920,
-    1080,
-    (_) => P8ZOzhvAFnPage(),
-  ),
 
-  PrototypeEntry(
-    'F4GocyML3',
-    '重新激活',
-    '管理后台/用户/用户(活跃)/用户(已停用)/重新激活',
-    1920,
-    1080,
-    (_) => F4GocyML3Page(),
-  ),
 
-  PrototypeEntry(
-    'uD_ShJGWx',
-    '编辑用户:main',
-    '管理后台/用户/用户(活跃)/编辑用户:main',
-    1920,
-    1080,
-    (_) => uDShJGWxPage(),
-  ),
 
-  PrototypeEntry(
-    'Mj8sOGr1Ej',
-    '编辑用户:sub',
-    '管理后台/用户/用户(活跃)/编辑用户:main/编辑用户:sub',
-    1920,
-    1080,
-    (_) => Mj8sOGr1EjPage(),
-  ),
 
-  PrototypeEntry(
-    '4_vyFS_o4',
-    '邀请用户',
-    '管理后台/用户/用户(活跃)/邀请用户',
-    1920,
-    1080,
-    (_) => P4vyFSo4Page(),
-  ),
 
-  PrototypeEntry(
-    'cbYKKkuhzX',
-    '邀请令牌-密码',
-    '管理后台/用户/用户(活跃)/邀请用户/邀请令牌-密码',
-    1920,
-    1080,
-    (_) => cbYKKkuhzXPage(),
-  ),
 
-  PrototypeEntry(
-    'KZRBJPYGq',
-    '邀请令牌-邮件',
-    '管理后台/用户/用户(活跃)/邀请用户/邀请令牌-邮件',
-    1920,
-    1080,
-    (_) => KZRBJPYGqPage(),
-  ),
 
-  PrototypeEntry(
-    'YeKBL-pU_',
-    '重置密码(密码重置URL方案)',
-    '管理后台/用户/用户(活跃)/重置密码(密码重置URL方案)',
-    1920,
-    1080,
-    (_) => YeKBLpUPage(),
-  ),
 
-  PrototypeEntry(
-    '426dBWS7_',
-    '重置密码（临时密码方案）',
-    '管理后台/用户/用户(活跃)/重置密码（临时密码方案）',
-    1920,
-    1080,
-    (_) => P426dBWS7Page(),
-  ),
 
-  PrototypeEntry(
-    '7zugkJfzL',
-    '密码重置成功',
-    '管理后台/用户/用户(活跃)/重置密码（临时密码方案）/密码重置成功',
-    1920,
-    1080,
-    (_) => P7zugkJfzLPage(),
-  ),
 
-  PrototypeEntry(
-    'c11sjQSJ1',
-    '角色',
-    '管理后台/用户/角色',
-    1920,
-    1080,
-    (_) => c11sjQSJ1Page(),
-  ),
 
-  PrototypeEntry(
-    'UDJRULPgU',
-    '创建角色',
-    '管理后台/用户/角色/创建角色',
-    1920,
-    1080,
-    (_) => UDJRULPgUPage(),
-  ),
 
-  PrototypeEntry(
-    'RAx18ZzNd',
-    '删除角色组',
-    '管理后台/用户/角色/删除角色组',
-    1920,
-    1080,
-    (_) => RAx18ZzNdPage(),
-  ),
 
-  PrototypeEntry(
-    'zMTj3wX8L',
-    '编辑角色',
-    '管理后台/用户/角色/编辑角色',
-    1920,
-    1080,
-    (_) => zMTj3wX8LPage(),
-  ),
 
   PrototypeEntry(
     'XdvqIaB7_',
     '菜单',
-    '管理后台/菜单',
+    'admin_pages/菜单',
     1920,
     1080,
     (_) => XdvqIaB7Page(),
@@ -536,7 +357,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'lLSJaLdOX',
     '删除',
-    '管理后台/菜单/删除',
+    'admin_pages/菜单/删除',
     1920,
     1080,
     (_) => lLSJaLdOXPage(),
@@ -545,160 +366,32 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'nR7nqD__k',
     '新增/编辑',
-    '管理后台/菜单/新增/编辑',
+    'admin_pages/菜单/新增/编辑',
     1920,
     1080,
     (_) => nR7nqDkPage(),
   ),
 
-  PrototypeEntry(
-    'S6BHB6tQQ',
-    'auth登录',
-    '管理后台/设置/auth登录',
-    1920,
-    1278,
-    (_) => S6BHB6tQQPage(),
-  ),
 
-  PrototypeEntry(
-    '9m4HsZU3g',
-    'Google登录',
-    '管理后台/设置/auth登录/Google登录',
-    1920,
-    1278,
-    (_) => P9m4HsZU3gPage(),
-  ),
 
-  PrototypeEntry(
-    'EDryRTyjx',
-    '本土化',
-    '管理后台/设置/本土化',
-    1920,
-    3356,
-    (_) => EDryRTyjxPage(),
-  ),
 
-  PrototypeEntry(
-    'j7jNSg7DW',
-    '电子邮件',
-    '管理后台/设置/电子邮件',
-    1920,
-    1458,
-    (_) => j7jNSg7DWPage(),
-  ),
 
-  PrototypeEntry(
-    '1_d9YGUlp',
-    '短信',
-    '管理后台/设置/短信',
-    1920,
-    1278,
-    (_) => P1d9YGUlpPage(),
-  ),
 
-  PrototypeEntry(
-    's2vv357YbV',
-    '阿里云短信',
-    '管理后台/设置/短信/阿里云短信',
-    1920,
-    1278,
-    (_) => s2vv357YbVPage(),
-  ),
 
-  PrototypeEntry(
-    'jOWxGolr4',
-    '编码规则',
-    '管理后台/设置/编码规则',
-    1920,
-    1080,
-    (_) => jOWxGolr4Page(),
-  ),
 
-  PrototypeEntry(
-    'DLYV6WACa',
-    '编辑',
-    '管理后台/设置/编码规则/编辑',
-    1920,
-    1080,
-    (_) => DLYV6WACaPage(),
-  ),
 
-  PrototypeEntry(
-    'Z0K3xYMgZ',
-    '通用',
-    '管理后台/设置/通用',
-    1920,
-    1200,
-    (_) => Z0K3xYMgZPage(),
-  ),
 
-  PrototypeEntry(
-    'ja7Hc6Rku',
-    '验证消息',
-    '管理后台/设置/验证消息',
-    1920,
-    1278,
-    (_) => ja7Hc6RkuPage(),
-  ),
 
-  PrototypeEntry(
-    'blfDhFojx',
-    '修改密码验证',
-    '管理后台/设置/验证消息/修改密码验证',
-    1920,
-    1291,
-    (_) => blfDhFojxPage(),
-  ),
 
-  PrototypeEntry(
-    'HoFCJpX8l',
-    '密码重置验证',
-    '管理后台/设置/验证消息/密码重置验证',
-    1920,
-    1291,
-    (_) => HoFCJpX8lPage(),
-  ),
 
-  PrototypeEntry(
-    'pCSmyi46y',
-    '注册验证',
-    '管理后台/设置/验证消息/注册验证',
-    1920,
-    1291,
-    (_) => pCSmyi46yPage(),
-  ),
 
-  PrototypeEntry(
-    'gVJn83fkO',
-    '邀请用户',
-    '管理后台/设置/验证消息/邀请用户',
-    1920,
-    1080,
-    (_) => gVJn83fkOPage(),
-  ),
 
-  PrototypeEntry(
-    'nGsj5J3pT',
-    '验证码登录',
-    '管理后台/设置/验证消息/验证码登录',
-    1920,
-    1291,
-    (_) => nGsj5J3pTPage(),
-  ),
 
-  PrototypeEntry(
-    'mlYLRsfXM',
-    '设计规范',
-    '管理后台/设计规范',
-    1920,
-    1080,
-    (_) => mlYLRsfXMPage(),
-  ),
 
   PrototypeEntry(
     'u7tmb4OBc',
     '多语言',
-    '管理后台/语言/多语言',
+    'admin_pages/语言/多语言',
     1920,
     1080,
     (_) => u7tmb4OBcPage(),
@@ -707,7 +400,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'zSh-8R_-8',
     '停用',
-    '管理后台/语言/多语言/停用',
+    'admin_pages/语言/多语言/停用',
     1920,
     1080,
     (_) => zSh8R8Page(),
@@ -716,7 +409,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'pGT5Czgo-',
     '删除',
-    '管理后台/语言/多语言/删除',
+    'admin_pages/语言/多语言/删除',
     1920,
     1080,
     (_) => pGT5CzgoPage(),
@@ -725,7 +418,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'VqqjHrjlZ',
     '启用',
-    '管理后台/语言/多语言/启用',
+    'admin_pages/语言/多语言/启用',
     1920,
     1080,
     (_) => VqqjHrjlZPage(),
@@ -734,7 +427,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'Eg4MYxW25',
     '添加',
-    '管理后台/语言/多语言/添加',
+    'admin_pages/语言/多语言/添加',
     1920,
     1080,
     (_) => Eg4MYxW25Page(),
@@ -743,7 +436,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'ihF98EWST',
     '编辑',
-    '管理后台/语言/多语言/编辑',
+    'admin_pages/语言/多语言/编辑',
     1920,
     1080,
     (_) => ihF98EWSTPage(),
@@ -752,7 +445,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'TpHbkdGMq',
     '导入',
-    '管理后台/语言/导入',
+    'admin_pages/语言/导入',
     1920,
     1080,
     (_) => TpHbkdGMqPage(),
@@ -761,7 +454,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'Va4OSi31k',
     '取消导入',
-    '管理后台/语言/导入/取消导入',
+    'admin_pages/语言/导入/取消导入',
     1920,
     1080,
     (_) => Va4OSi31kPage(),
@@ -770,7 +463,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'yq9YeBSKX',
     '导出',
-    '管理后台/语言/导出',
+    'admin_pages/语言/导出',
     1920,
     1080,
     (_) => yq9YeBSKXPage(),
@@ -779,25 +472,17 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'UXGGZPuR9',
     '翻译',
-    '管理后台/语言/翻译',
+    'admin_pages/语言/翻译',
     1920,
     1080,
     (_) => UXGGZPuR9Page(),
   ),
 
-  PrototypeEntry(
-    'aZrZ6KCEA',
-    '邀请登录',
-    '管理后台/邀请登录',
-    1920,
-    1080,
-    (_) => aZrZ6KCEAPage(),
-  ),
 
   PrototypeEntry(
     'ncUGMKi7_',
     'API Token',
-    '运营后台/API授权/API Token',
+    'ops_pages/API授权/API Token',
     1920,
     1080,
     (_) => ncUGMKi7Page(),
@@ -805,7 +490,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'B44C4h3edeR2',
     'PC-个人中心(基本信息)',
-    '运营后台/个人中心/PC-个人中心(基本信息)',
+    'ops_pages/个人中心/PC-个人中心(基本信息)',
     1920,
     1080,
     (_) => B44C4h3edeR2Page(),
@@ -813,7 +498,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'rjvZWT5Dw',
     'API秘钥',
-    '运营后台/个人中心/PC-个人中心(基本信息)/API秘钥',
+    'ops_pages/个人中心/PC-个人中心(基本信息)/API秘钥',
     1920,
     1080,
     (_) => rjvZWT5DwPage(),
@@ -821,7 +506,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'DAZ8_zIokgWI',
     '多因素认证',
-    '运营后台/个人中心/PC-个人中心(基本信息)/多因素认证',
+    'ops_pages/个人中心/PC-个人中心(基本信息)/多因素认证',
     1920,
     1250,
     (_) => DAZ8zIokgWIPage(),
@@ -829,7 +514,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     '9U6oXpOcF',
     '取消绑定',
-    '运营后台/个人中心/PC-个人中心(基本信息)/多因素认证/取消绑定',
+    'ops_pages/个人中心/PC-个人中心(基本信息)/多因素认证/取消绑定',
     1920,
     1080,
     (_) => P9U6oXpOcFPage(),
@@ -837,7 +522,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'hG6mHCdXn',
     '绑定(手机号、邮箱)',
-    '运营后台/个人中心/PC-个人中心(基本信息)/多因素认证/绑定(手机号、邮箱)',
+    'ops_pages/个人中心/PC-个人中心(基本信息)/多因素认证/绑定(手机号、邮箱)',
     1920,
     1080,
     (_) => hG6mHCdXnPage(),
@@ -845,7 +530,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     '1J5Ra7pGo',
     '本地化',
-    '运营后台/个人中心/PC-个人中心(基本信息)/本地化',
+    'ops_pages/个人中心/PC-个人中心(基本信息)/本地化',
     1920,
     2136,
     (_) => P1J5Ra7pGoPage(),
@@ -853,7 +538,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'ntgGZaqJgUZC',
     '账号安全',
-    '运营后台/个人中心/PC-个人中心(基本信息)/账号安全',
+    'ops_pages/个人中心/PC-个人中心(基本信息)/账号安全',
     1920,
     1080,
     (_) => ntgGZaqJgUZCPage(),
@@ -861,7 +546,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'zBO3EW3ax',
     '修改密码',
-    '运营后台/个人中心/PC-个人中心(基本信息)/账号安全/修改密码',
+    'ops_pages/个人中心/PC-个人中心(基本信息)/账号安全/修改密码',
     1920,
     1080,
     (_) => zBO3EW3axPage(),
@@ -869,7 +554,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'i8ZEUJ9_N',
     '设置密码',
-    '运营后台/个人中心/PC-个人中心(基本信息)/账号安全/设置密码',
+    'ops_pages/个人中心/PC-个人中心(基本信息)/账号安全/设置密码',
     1920,
     1080,
     (_) => i8ZEUJ9NPage(),
@@ -877,7 +562,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'xdLB4kjm1',
     '通用验证(手机号、邮箱)',
-    '运营后台/个人中心/PC-个人中心(基本信息)/通用验证(手机号、邮箱)',
+    'ops_pages/个人中心/PC-个人中心(基本信息)/通用验证(手机号、邮箱)',
     1920,
     1080,
     (_) => xdLB4kjm1Page(),
@@ -885,7 +570,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'xtOLR-LhK',
     '团队设置',
-    '运营后台/团队空间/团队设置',
+    'ops_pages/团队空间/团队设置',
     1920,
     1080,
     (_) => xtOLRLhKPage(),
@@ -893,7 +578,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'fj714uUhe',
     '租户团队',
-    '运营后台/团队空间/租户团队',
+    'ops_pages/团队空间/租户团队',
     1920,
     1080,
     (_) => fj714uUhePage(),
@@ -901,7 +586,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'UaSDK99Jnr',
     '查看',
-    '运营后台/团队空间/租户团队/查看',
+    'ops_pages/团队空间/租户团队/查看',
     1920,
     2476,
     (_) => UaSDK99JnrPage(),
@@ -909,7 +594,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'I_XkSZmY5',
     '订阅计费',
-    '运营后台/团队空间/订阅计费',
+    'ops_pages/团队空间/订阅计费',
     1920,
     1080,
     (_) => IXkSZmY5Page(),
@@ -917,7 +602,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     '_n1LmDFij',
     '开户审核',
-    '运营后台/租户/开户审核',
+    'ops_pages/租户/开户审核',
     1920,
     1080,
     (_) => n1LmDFijPage(),
@@ -925,7 +610,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'CbJh5Rt66c',
     '查看',
-    '运营后台/租户/开户审核/查看',
+    'ops_pages/租户/开户审核/查看',
     1920,
     1080,
     (_) => CbJh5Rt66cPage(),
@@ -933,7 +618,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'hEcuv5lQ8',
     '成员管理',
-    '运营后台/租户/成员管理',
+    'ops_pages/租户/成员管理',
     1920,
     1080,
     (_) => hEcuv5lQ8Page(),
@@ -941,7 +626,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'jSTfPprJez',
     '租户列表',
-    '运营后台/租户/租户列表',
+    'ops_pages/租户/租户列表',
     1920,
     1080,
     (_) => jSTfPprJezPage(),
@@ -949,7 +634,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'p__DNO8Bl',
     '查看租户',
-    '运营后台/租户/租户列表/查看租户',
+    'ops_pages/租户/租户列表/查看租户',
     1920,
     1080,
     (_) => pDNO8BlPage(),
@@ -957,7 +642,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'iupqUFDpMq',
     '添加租户',
-    '运营后台/租户/租户列表/添加租户',
+    'ops_pages/租户/租户列表/添加租户',
     1920,
     1080,
     (_) => iupqUFDpMqPage(),
@@ -965,7 +650,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'WQ8SMXI9q',
     '邀请令牌-不能发送电子邮件',
-    '运营后台/租户/租户列表/添加租户/邀请令牌-不能发送电子邮件',
+    'ops_pages/租户/租户列表/添加租户/邀请令牌-不能发送电子邮件',
     1920,
     1080,
     (_) => WQ8SMXI9qPage(),
@@ -973,7 +658,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     '7nmA84IrR',
     '激活',
-    '运营后台/租户/租户列表/激活',
+    'ops_pages/租户/租户列表/激活',
     1920,
     1080,
     (_) => P7nmA84IrRPage(),
@@ -981,7 +666,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'i0OrqJ3XW',
     '编辑租户',
-    '运营后台/租户/租户列表/编辑租户',
+    'ops_pages/租户/租户列表/编辑租户',
     1920,
     1518,
     (_) => i0OrqJ3XWPage(),
@@ -989,7 +674,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     '2IJ_wvki9',
     '锁定',
-    '运营后台/租户/租户列表/锁定',
+    'ops_pages/租户/租户列表/锁定',
     1920,
     1080,
     (_) => P2IJwvki9Page(),
@@ -997,7 +682,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'MPkqxQ-kE',
     '租户设置',
-    '运营后台/租户/租户设置',
+    'ops_pages/租户/租户设置',
     1920,
     1080,
     (_) => MPkqxQkEPage(),
@@ -1005,7 +690,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'hzWGnXvBu',
     '(订阅)开通审核',
-    '运营后台/项目/(订阅)开通审核',
+    'ops_pages/项目/(订阅)开通审核',
     1920,
     1080,
     (_) => hzWGnXvBuPage(),
@@ -1013,7 +698,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     '3Hf4pr7Pu',
     '查看',
-    '运营后台/项目/(订阅)开通审核/查看',
+    'ops_pages/项目/(订阅)开通审核/查看',
     1920,
     2476,
     (_) => P3Hf4pr7PuPage(),
@@ -1021,7 +706,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'LW_OP_AQE',
     '变更审核',
-    '运营后台/项目/变更审核',
+    'ops_pages/项目/变更审核',
     1920,
     1080,
     (_) => LWOPAQEPage(),
@@ -1029,7 +714,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     '44XebQ4IX',
     '查看',
-    '运营后台/项目/变更审核/查看',
+    'ops_pages/项目/变更审核/查看',
     1920,
     2476,
     (_) => P44XebQ4IXPage(),
@@ -1037,7 +722,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'Q5vjP_vc9',
     '审核弹窗-外部',
-    '运营后台/项目/审核弹窗-外部',
+    'ops_pages/项目/审核弹窗-外部',
     1920,
     1288,
     (_) => Q5vjPvc9Page(),
@@ -1045,7 +730,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'HLLVxR2i7',
     '租户项目',
-    '运营后台/项目/租户项目',
+    'ops_pages/项目/租户项目',
     1920,
     1080,
     (_) => HLLVxR2i7Page(),
@@ -1053,7 +738,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     '9IFTEPF_T',
     '查看',
-    '运营后台/项目/租户项目/查看',
+    'ops_pages/项目/租户项目/查看',
     1920,
     2476,
     (_) => P9IFTEPFTPage(),
@@ -1061,7 +746,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'a2iuwP9vz',
     '订阅计费',
-    '运营后台/项目/订阅计费',
+    'ops_pages/项目/订阅计费',
     1920,
     1080,
     (_) => a2iuwP9vzPage(),
@@ -1069,7 +754,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'p7lljuBnu',
     '退订审核',
-    '运营后台/项目/退订审核',
+    'ops_pages/项目/退订审核',
     1920,
     1080,
     (_) => p7lljuBnuPage(),
@@ -1077,7 +762,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'G_6_cDuG2',
     '查看',
-    '运营后台/项目/退订审核/查看',
+    'ops_pages/项目/退订审核/查看',
     1920,
     2476,
     (_) => G6cDuG2Page(),
@@ -1085,7 +770,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'CniE3ZtPiE0',
     '项目设置',
-    '运营后台/项目/项目设置',
+    'ops_pages/项目/项目设置',
     1920,
     1080,
     (_) => CniE3ZtPiE0Page(),

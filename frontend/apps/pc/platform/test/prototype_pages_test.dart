@@ -5,7 +5,7 @@ import 'package:ruoqi_platform_pc/prototype_registry.dart';
 void main() {
   testWidgets('all 管理后台 prototype pages render without exceptions',
       (tester) async {
-    expect(prototypePages.length, 73, reason: '73 pages expected');
+    expect(prototypePages.length, 75, reason: '75 pages expected');
     for (final entry in prototypePages) {
       final key = ValueKey('page-${entry.id}');
       tester.view.physicalSize = Size(entry.width, entry.height);

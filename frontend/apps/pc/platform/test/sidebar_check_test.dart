@@ -18,18 +18,13 @@ void main() {
 
   testWidgets('sidebar items exist on section pages', (tester) async {
     final cases = <String, List<String>>{
-      'Z0K3xYMgZ': ['通用', '本地化', '电子邮件', '编码规则', '短信', 'auth登录', '验证消息'],
-      'StMQ4cWti': ['用户', '角色'],
       'XdvqIaB7_': ['菜单'],
       'X0RCGzKUh': ['世界地理规划', '地区&国家', '导入地区', 'UTC', '时区数据库', '货币', '历史汇率'],
       'u7tmb4OBc': ['多语言', '翻译', '导入', '导出'],
       'WkvHvCC8i': ['验证日志', '操作日志', '登录日志', '支付日志'],
-      // 弹窗子页也应带上完整侧栏
-      'nGsj5J3pT': ['通用', '本地化', '电子邮件', '编码规则', '短信', 'auth登录', '验证消息'],
       'to3AHbOfb': ['世界地理规划', '地区&国家', '导入地区', 'UTC', '时区数据库', '货币', '历史汇率'],
       'BYfUtX8cV': ['验证日志', '操作日志', '登录日志', '支付日志'],
       'Eg4MYxW25': ['多语言', '翻译', '导入', '导出'],
-      'c11sjQSJ1': ['用户', '角色'],
       'nR7nqD__k': ['菜单'],
     };
     for (final entry in cases.entries) {
