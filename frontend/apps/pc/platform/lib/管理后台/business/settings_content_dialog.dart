@@ -9,6 +9,9 @@ const systemSettingsTopBarHeight = 56.0;
 ///
 /// 面板覆盖在内容区之上（左侧菜单与顶部导航保持可见），
 /// 与运营后台的「大面板模式」一致；返回后由 [Navigator.pop] 关闭。
+///
+/// 展示样式：不渲染半透明遮罩与投影阴影，面板作为内容区内嵌层
+/// 从右侧滑入，仅用左侧/顶部细描边与菜单、顶栏分隔。
 Future<void> showSystemSettingsPanel(
   BuildContext context, {
   required String title,
@@ -18,8 +21,22 @@ Future<void> showSystemSettingsPanel(
     context: context,
     barrierDismissible: true,
     barrierLabel: '关闭',
-    barrierColor: Theme.of(context).colorScheme.scrim,
-    transitionDuration: RuQiMotion.normal,
+    barrierColor: Colors.transparent,
+    transitionDuration: RuQiMotion.resolve(context, RuQiMotion.normal),
+    transitionBuilder: (context, animation, secondaryAnimation, child) {
+      return SlideTransition(
+        position: Tween<Offset>(
+          begin: const Offset(1, 0),
+          end: Offset.zero,
+        ).animate(
+          CurvedAnimation(
+            parent: animation,
+            curve: RuQiMotion.resolveCurve(context, RuQiMotion.easeOut),
+          ),
+        ),
+        child: child,
+      );
+    },
     pageBuilder: (context, animation, secondaryAnimation) {
       return Stack(
         children: [
@@ -55,13 +72,20 @@ class SettingsContentPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final ext = theme.extension<RuQiThemeExtension>();
-    final isDark = theme.brightness == Brightness.dark;
     return Material(
       color: theme.colorScheme.surface,
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: theme.colorScheme.outlineVariant, width: 1),
-          boxShadow: isDark ? null : RuQiElevation.shadowLg,
+          border: Border(
+            left: BorderSide(
+              color: theme.colorScheme.outlineVariant,
+              width: 1,
+            ),
+            top: BorderSide(
+              color: theme.colorScheme.outlineVariant,
+              width: 1,
+            ),
+          ),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
