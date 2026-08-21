@@ -69,7 +69,10 @@ def color_of(c: Any) -> Optional[str]:
     a = c.get("a", 1)
     if a is not None and float(a) <= 0:
         return None
-    return color(c.get("r", 0), c.get("g", 0), c.get("b", 0), a if a is not None else 1)
+    r, g, b = c.get("r"), c.get("g"), c.get("b")
+    if r is None or g is None or b is None:
+        return None
+    return color(r, g, b, a if a is not None else 1)
 
 
 def parse_color_str(s: str) -> Optional[str]:
@@ -720,6 +723,139 @@ def panel_widget(comp: Dict[str, Any], ctx: Ctx, path_reg: Dict[Any, int]) -> st
     return "SizedBox.shrink()"
 
 
+def navigation_menu_widget(comp: Dict[str, Any], ctx: Ctx) -> str:
+    """navigationMenu：运营后台左侧导航菜单。
+
+    Mockplus 导出时把所有 treeItem 拍平在 (0,0)，实际布局由菜单属性
+    （itemLineHeight / levelIndent / padding）与 value.relation 的层级决定，
+    这里按组件顺序逐行重建：展开箭头 + 节点图标 + 文本，选中行加底色。
+    """
+    p = comp.get("properties") or {}
+    items = [c for c in comp.get("components", []) if c.get("type") == "treeItem" and not c.get("hidden")]
+    if not items:
+        return "SizedBox.shrink()"
+
+    def num_prop(key: str, default: float) -> float:
+        node = p.get(key)
+        if isinstance(node, dict):
+            v = node.get("value")
+            if isinstance(v, dict):
+                v = v.get("value")
+            try:
+                return float(v) if v is not None else default
+            except (TypeError, ValueError):
+                return default
+        return default
+
+    line_height = num_prop("itemLineHeight", 50.0)
+    level_indent = num_prop("levelIndent", 16.0)
+    pad_left = 10.0
+    pad = p.get("padding")
+    if isinstance(pad, dict) and not pad.get("disabled"):
+        try:
+            pad_left = float(pad.get("left", 10) or 10)
+        except (TypeError, ValueError):
+            pass
+
+    rel = (comp.get("value") or {}).get("relation") or []
+    depth: Dict[str, int] = {}
+
+    def walk(nodes: List[Dict[str, Any]], d: int) -> None:
+        for n in nodes:
+            nid = n.get("id")
+            if nid:
+                depth[nid] = d
+            walk(n.get("children") or [], d + 1)
+
+    walk(rel, 0)
+
+    checked_fill = color_of(p.get("itemCheckedFill", {}).get("color")) if isinstance(p.get("itemCheckedFill"), dict) else None
+    dec_parts = decoration_parts(comp)
+    dec = "BoxDecoration(" + ", ".join(dec_parts) + ")" if dec_parts else None
+    w = float(comp.get("size", {}).get("width", 0))
+    h = float(comp.get("size", {}).get("height", 0))
+
+    rows: List[str] = []
+    for i, ti in enumerate(items):
+        d = depth.get(ti.get("_id"), 0)
+        try:
+            row_h = float(ti.get("size", {}).get("height", 30) or 30)
+        except (TypeError, ValueError):
+            row_h = 30.0
+        y0 = i * line_height
+        kids = ti.get("components") or []
+        expand = None
+        node_icon = None
+        text = None
+        for k in kids:
+            if k.get("type") != "icon":
+                continue
+            v = k.get("value") or {}
+            if k.get("alias") == "expandIcon" or (isinstance(v, dict) and v.get("iconCode") in (60570, 60571)):
+                if expand is None:
+                    expand = k
+                continue
+            if node_icon is None:
+                node_icon = k
+        for k in kids:
+            if k.get("type") in ("pureText", "text"):
+                text = k
+                break
+
+        cell: List[str] = []
+        if ti.get("selected") and checked_fill:
+            cell.append(
+                f"Positioned(left: 0, top: {fnum(y0)}, width: {fnum(w)}, height: {fnum(row_h)}, "
+                f"child: ColoredBox(color: {checked_fill}))"
+            )
+        x0 = pad_left + d * level_indent
+        if expand is not None:
+            es = expand.get("size") or {}
+            ew = float(es.get("width", 12) or 12)
+            eh = float(es.get("height", 12) or 12)
+            cell.append(
+                f"Positioned(left: {fnum(x0)}, top: {fnum(y0 + (row_h - eh) / 2)}, "
+                f"width: {fnum(ew)}, height: {fnum(eh)}, child: {icon_widget(expand, ctx)})"
+            )
+            x0 += ew + 8
+        if node_icon is not None:
+            ns = node_icon.get("size") or {}
+            nw = float(ns.get("width", 12) or 12)
+            nh = float(ns.get("height", 12) or 12)
+            cell.append(
+                f"Positioned(left: {fnum(x0)}, top: {fnum(y0 + (row_h - nh) / 2)}, "
+                f"width: {fnum(nw)}, height: {fnum(nh)}, child: {icon_widget(node_icon, ctx)})"
+            )
+            x0 += nw + 8
+        if text is not None:
+            tf = text.get("properties", {}).get("textStyle") or {}
+            resolved = tf
+            if isinstance(tf, dict) and tf.get("ref"):
+                ref = str(tf["ref"])
+                if ref == "@properties.textStyle":
+                    resolved = p.get("textStyle") or {}
+                else:
+                    resolved = ctx.resolve(ref)
+            if not isinstance(resolved, dict):
+                resolved = {}
+            ts = text.get("size") or {}
+            tw = float(ts.get("width", 0) or 0)
+            th = float(ts.get("height", 0) or 0)
+            tx = x0
+            ty = y0 + (row_h - th) / 2 if th else y0
+            value = text.get("value") or ""
+            cell.append(
+                f"Positioned(left: {fnum(tx)}, top: {fnum(ty)}, width: {fnum(tw)}, height: {fnum(th)}, "
+                f"child: {text_widget(str(value), resolved)})"
+            )
+        rows.append("Stack(children: [" + ", ".join(cell) + "])" if cell else "SizedBox.shrink()")
+
+    inner = "Stack(children: [" + ", ".join(rows) + "])"
+    if dec:
+        return f"Container(width: {fnum(w)}, height: {fnum(h)}, decoration: {dec}, child: {inner})"
+    return f"SizedBox(width: {fnum(w)}, height: {fnum(h)}, child: {inner})"
+
+
 def text_component_widget(comp: Dict[str, Any], ctx: Ctx, default_tf: Optional[Dict[str, Any]]) -> str:
     p = comp.get("properties", {})
     tf = p.get("textStyle") or {}
@@ -915,6 +1051,8 @@ def component_widget(
         return path_widget(comp, ctx, path_reg)
     if t in ("text", "pureText"):
         return text_component_widget(comp, ctx, default_tf)
+    if t == "navigationMenu":
+        return navigation_menu_widget(comp, ctx)
     if t in ("canvas-panel", "stack-panel", "group", "list-layout-panel", "grid-panel"):
         return panel_widget(comp, ctx, path_reg)
     # unknown types degrade to a plain stack of children
@@ -1109,6 +1247,12 @@ SECTIONS = {
     "基础": "基础",
     "语言": "语言",
     "日志": "日志",
+    # 运营后台（一账通(IDaaS & IAM)-运营端(SSO)）板块
+    "租户": "租户",
+    "团队空间": "团队空间",
+    "项目": "项目",
+    "API授权": "API授权",
+    "个人中心": "个人中心",
 }
 
 
@@ -1274,6 +1418,12 @@ def main() -> int:
     parser.add_argument("--out-lib", default=None, help="target Flutter lib directory")
     parser.add_argument("--module", default="一账通(IDaaS/IAM)-运营管理后台", help="prototype folder to convert")
     parser.add_argument("--module-dir", default="管理后台", help="output directory name under lib")
+    parser.add_argument(
+        "--exclude-path",
+        action="append",
+        default=[],
+        help="skip pages whose path contains this substring (repeatable, e.g. APP/H5-个人中心)",
+    )
     args = parser.parse_args()
 
     cwd = os.getcwd()
@@ -1307,6 +1457,8 @@ def main() -> int:
     page_data: List[PageData] = []
 
     for node, path in pages:
+        if any(sub in path for sub in args.exclude_path):
+            continue
         pid = node["_id"]
         size = node.get("size") or {}
         width = int(round(float(size.get("width", 1920))))
@@ -1378,15 +1530,82 @@ def main() -> int:
     return 0
 
 
+REGISTRY_ENTRY_RE = re.compile(r"^  PrototypeEntry\((?:(?!^  \),).)*?^  \),\s*$", re.M | re.S)
+REGISTRY_IMPORT_RE = re.compile(r"^import '[^']+';\s*$", re.M)
+
+
+def extract_registry_entries(text: str) -> List[str]:
+    """Extract existing ``PrototypeEntry(...)`` blocks from a registry file.
+
+    兼容 dart format 之后的多行写法与脚本原始的整行写法。
+    """
+    lines = text.splitlines()
+    entries: List[str] = []
+    i = 0
+    while i < len(lines):
+        if lines[i].startswith("  PrototypeEntry("):
+            if lines[i].rstrip().endswith("),"):
+                entries.append(lines[i] + "\n")
+                i += 1
+                continue
+            j = i
+            while j < len(lines) and not lines[j].strip().startswith("),"):
+                j += 1
+            if j >= len(lines):
+                break
+            entries.append("\n".join(lines[i : j + 1]) + "\n")
+            i = j + 1
+        else:
+            i += 1
+    return entries
+
+
+def format_registry_entry(pd: PageData, module_dir: str) -> str:
+    rel_path = module_dir + "/" + pd.path
+    return (
+        "  PrototypeEntry(\n"
+        f"    {dart_str(pd.pid)},\n"
+        f"    {dart_str(pd.title)},\n"
+        f"    {dart_str(rel_path)},\n"
+        f"    {fnum(pd.width)},\n"
+        f"    {fnum(pd.height)},\n"
+        f"    (_) => {class_name(pd.pid)}(),\n"
+        "  ),"
+    )
+
+
 def write_registry(pages: List[PageData], dst: str, module_dir: str) -> None:
+    # 多个模块共用同一注册表：本次生成的模块整体替换（删除该模块旧条目，
+    # 避免重跑/剔除页面后残留），其他模块的 import 与条目保持不变。
+    existing_imports: List[str] = []
+    existing_entries: List[str] = []
+    if os.path.exists(dst):
+        with open(dst, encoding="utf-8") as f:
+            text = f.read()
+        existing_imports = [i.strip() for i in dict.fromkeys(REGISTRY_IMPORT_RE.findall(text))]
+        existing_entries = extract_registry_entries(text)
+    # material 依赖由头部统一输出，避免旧文件残留导致重复
+    existing_imports = [i for i in existing_imports if "package:flutter/material.dart" not in i]
+    prefix = module_dir + "/"
+    existing_imports = [i for i in existing_imports if "import '" + prefix not in i]
+    existing_entries = [e for e in existing_entries if prefix not in e]
+
+    new_imports: List[str] = []
+    seen_imports = set(existing_imports)
+    for pd in pages:
+        rel = os.path.relpath(os.path.join(pd.out_dir, pd.file_base + ".dart"), os.path.dirname(dst))
+        imp = f"import {dart_str(rel.replace(os.sep, '/'))};"
+        if imp not in seen_imports:
+            seen_imports.add(imp)
+            new_imports.append(imp)
+
     lines: List[str] = []
     lines.append("// Generated by tools/rp2flutter/convert.py — do not edit by hand.")
     lines.append("// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables")
     lines.append("import 'package:flutter/material.dart';")
     lines.append("")
-    for pd in pages:
-        rel = os.path.relpath(os.path.join(pd.out_dir, pd.file_base + ".dart"), os.path.dirname(dst))
-        lines.append(f"import {dart_str(rel.replace(os.sep, '/'))};")
+    lines.extend(existing_imports)
+    lines.extend(new_imports)
     lines.append("")
     lines.append("class PrototypeFolder {")
     lines.append("  const PrototypeFolder(this.name, this.children);")
@@ -1405,12 +1624,8 @@ def write_registry(pages: List[PageData], dst: str, module_dir: str) -> None:
     lines.append("}")
     lines.append("")
     lines.append("final List<PrototypeEntry> prototypePages = [")
-    for pd in pages:
-        rel_path = "管理后台/" + pd.path
-        lines.append(
-            f"  PrototypeEntry({dart_str(pd.pid)}, {dart_str(pd.title)}, {dart_str(rel_path)}, "
-            f"{fnum(pd.width)}, {fnum(pd.height)}, (_) => {class_name(pd.pid)}()),"
-        )
+    lines.extend(existing_entries)
+    lines.extend(format_registry_entry(pd, module_dir) for pd in pages)
     lines.append("];")
     lines.append("")
     lines.append("final Map<String, PrototypeEntry> prototypePageById = {")
