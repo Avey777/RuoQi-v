@@ -18,6 +18,8 @@ class CustomerApp extends StatelessWidget {
         title: 'RuoQi 客户 App',
         debugShowCheckedModeBanner: false,
         theme: ruoQiTheme(),
+        darkTheme: ruoQiTheme(brightness: Brightness.dark),
+        themeMode: ThemeMode.light,
         home: const LoginPage(),
       ),
     );

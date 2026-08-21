@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:ruoqi_common/ruoqi_common.dart';
 
+import '../console_widgets/console_top_bar.dart';
 import '../prototype_registry.dart';
+import 'business/auth_login_settings_page.dart';
+import 'business/email_settings_page.dart';
+import 'business/encoding_rules_page.dart';
+import 'business/general_settings_page.dart';
+import 'business/localization_settings_page.dart';
+import 'business/sms_settings_page.dart';
+import 'business/verification_messages_page.dart';
 
 /// 系统管理（一账通 ID 独立体系）入口弹窗。
 ///
-/// 样式还原自 管理后台 原型：
-/// - 顶部紫色导航栏（#7172AD）：品牌名 + 板块 Tab + 退出管理；
-/// - 左侧菜单（300px，右侧描边，含搜索框）：参照 权限 页的左侧面板实现，
-///   列出当前板块的子菜单，选中项为 #807172AD 紫色底 + 白字；
+/// 按 DESIGN-consensus.md 规范实现：
+/// - 顶部导航栏：surface 背景 + onSurface 文本、高 56、无阴影（§6.7）；
+/// - 左侧菜单：surface + `outlineVariant` 描边，选中项 `primaryContainer` + 主色；
 /// - 右侧内容区：按比例展示对应原型页面（裁掉原型自身的顶栏与侧栏，避免重复）。
 ///
 /// 后续接入真实业务页面时，把 [_sections] 中每一项的 pageId 换成真实页面即可。
@@ -15,6 +23,7 @@ class SystemSettingsDialog {
   static Future<void> show(BuildContext context) {
     return showDialog<void>(
       context: context,
+      barrierColor: Theme.of(context).colorScheme.scrim,
       builder: (_) => const _SystemSettingsDialog(),
     );
   }
@@ -39,6 +48,18 @@ class _SidebarSection {
   final String label;
   final List<_SidebarItem> items;
 }
+
+/// 已优化为业务静态页的菜单项（原型 pageId → 正文组件）。
+/// 未收录的菜单项仍回退到原型预览。
+final _businessBodies = <String, WidgetBuilder>{
+  'ja7Hc6Rku': (_) => const VerificationMessagesBody(),
+  '1_d9YGUlp': (_) => const SmsSettingsBody(),
+  'S6BHB6tQQ': (_) => const AuthLoginBody(),
+  'Z0K3xYMgZ': (_) => const GeneralSettingsBody(),
+  'EDryRTyjx': (_) => const LocalizationBody(),
+  'j7jNSg7DW': (_) => const EmailSettingsBody(),
+  'jOWxGolr4': (_) => const EncodingRulesBody(),
+};
 
 /// 七个板块及其左侧菜单项，顺序与 管理后台 原型顶部导航一致。
 /// 每个菜单项的裁切起点与展示尺寸由原型页面实际内容边界计算得到，
@@ -87,12 +108,6 @@ const _sections = [
   ]),
 ];
 
-/// 原型页面顶部导航栏高度。
-const _topBarHeight = 65.0;
-
-/// 原型页面标题条（顶栏下方、侧栏上方）高度。
-const _titleStripHeight = 80.0;
-
 /// 左侧菜单宽度，与 权限 页左侧面板一致。
 const _leftMenuWidth = 300.0;
 
@@ -126,15 +141,16 @@ class _SystemSettingsDialogState extends State<_SystemSettingsDialog> {
     final entry = prototypePageById[item.pageId]!;
     return Dialog(
       insetPadding: EdgeInsets.zero,
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       child: Column(
         children: [
-          _TopBar(
+          ConsoleTopBar(
+            title: 'XX管理后台',
             sectionIndex: _sectionIndex,
             onSectionSelected: _selectSection,
             onExit: () => Navigator.of(context).pop(),
+            tabs: [for (final s in _sections) s.label],
           ),
-          _TitleStrip(label: _section.label),
           Expanded(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -150,6 +166,7 @@ class _SystemSettingsDialogState extends State<_SystemSettingsDialog> {
                     entry: entry,
                     cropOffset: item.cropOffset,
                     viewSize: item.viewSize,
+                    body: _businessBodies[item.pageId]?.call(context),
                   ),
                 ),
               ],
@@ -161,167 +178,8 @@ class _SystemSettingsDialogState extends State<_SystemSettingsDialog> {
   }
 }
 
-/// 顶部紫色导航栏：品牌名 + 板块 Tab + 退出管理。
-class _TopBar extends StatelessWidget {
-  const _TopBar({
-    required this.sectionIndex,
-    required this.onSectionSelected,
-    required this.onExit,
-  });
-
-  final int sectionIndex;
-  final ValueChanged<int> onSectionSelected;
-  final VoidCallback onExit;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: _topBarHeight,
-      decoration: const BoxDecoration(
-        color: Color(0xFF7172AD),
-        boxShadow: [
-          BoxShadow(
-            color: Color(0x26000000),
-            blurRadius: 6,
-            offset: Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          const SizedBox(width: 15),
-          const Icon(
-            IconData(0xE8B2, fontFamily: 'boldIconFont'),
-            size: 32,
-            color: Colors.white,
-          ),
-          const SizedBox(width: 8),
-          SizedBox(
-            width: 135,
-            child: Text(
-              'XX管理后台',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-                height: 1.4286,
-              ),
-            ),
-          ),
-          const SizedBox(width: 16),
-          for (var i = 0; i < _sections.length; i++)
-            _TabButton(
-              label: _sections[i].label,
-              selected: i == sectionIndex,
-              onTap: () => onSectionSelected(i),
-            ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.only(right: 31),
-            child: InkWell(
-              onTap: onExit,
-              borderRadius: BorderRadius.circular(4),
-              child: Container(
-                width: 100,
-                height: 44,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                  border: Border.all(color: const Color(0xFFD7D7D7), width: 1),
-                ),
-                child: const Text(
-                  '退出管理',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    height: 1.25,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _TabButton extends StatelessWidget {
-  const _TabButton({
-    required this.label,
-    required this.selected,
-    required this.onTap,
-  });
-
-  final String label;
-  final bool selected;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: SizedBox(
-        width: 80,
-        height: _topBarHeight,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 14,
-                color: selected ? Colors.white : const Color(0xA1FFFFFF),
-                fontWeight: selected ? FontWeight.w700 : FontWeight.w400,
-                height: 1.4286,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Container(
-              width: 32,
-              height: 3,
-              decoration: BoxDecoration(
-                color: selected ? Colors.white : Colors.transparent,
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-/// 顶栏下方的标题条，展示当前板块名（还原原型 65~145 区间的样式）。
-class _TitleStrip extends StatelessWidget {
-  const _TitleStrip({required this.label});
-
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: _titleStripHeight,
-      alignment: Alignment.centerLeft,
-      padding: const EdgeInsets.only(left: 16),
-      color: Colors.white,
-      child: Text(
-        label,
-        style: const TextStyle(
-          fontSize: 21,
-          color: Color(0xFF949AAB),
-          fontWeight: FontWeight.w700,
-          height: 0.9524,
-        ),
-      ),
-    );
-  }
-}
-
 /// 左侧菜单：300px 宽、右侧描边，含搜索框；
-/// 选中项样式参照 权限 页（#807172AD 底 + 白字）。
+/// 选中项 `primaryContainer` 底 + 主色文本（规范 §6.6/§1.2）。
 class _LeftMenu extends StatefulWidget {
   const _LeftMenu({
     required this.section,
@@ -342,68 +200,48 @@ class _LeftMenuState extends State<_LeftMenu> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final items = widget.section.items
         .where((item) => item.label.contains(_query))
         .toList();
     return Container(
       width: _leftMenuWidth,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        border: Border(right: BorderSide(color: Color(0xFFD7D7D7), width: 1)),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface,
+        border: Border(
+          right: BorderSide(color: theme.colorScheme.outlineVariant, width: 1),
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(20, 16, 20, 12),
-            child: Container(
-              height: 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(2),
-                border: Border.all(color: const Color(0xFFD7D7D7), width: 1),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      onChanged: (value) {
-                        setState(() => _query = value.trim());
-                      },
-                      style: const TextStyle(fontSize: 14),
-                      decoration: const InputDecoration(
-                        hintText: '搜索菜单',
-                        hintStyle: TextStyle(
-                          fontSize: 14,
-                          color: Color(0xFFAAAAAA),
-                        ),
-                        isDense: true,
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 10,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 8),
-                    child: Icon(
-                      Icons.search,
-                      size: 18,
-                      color: Color(0xFFAAAAAA),
-                    ),
-                  ),
-                ],
+            padding: const EdgeInsets.fromLTRB(
+              RuQiSpacing.lg,
+              RuQiSpacing.md,
+              RuQiSpacing.lg,
+              RuQiSpacing.sm,
+            ),
+            child: TextField(
+              onChanged: (value) {
+                setState(() => _query = value.trim());
+              },
+              decoration: const InputDecoration(
+                hintText: '搜索菜单',
+                prefixIcon: Icon(Icons.search, size: 18),
+                isDense: true,
+                contentPadding: EdgeInsets.symmetric(
+                  horizontal: RuQiSpacing.xs,
+                  vertical: 10,
+                ),
               ),
             ),
           ),
+          Divider(height: 1, color: theme.colorScheme.outlineVariant),
           Expanded(
             child: items.isEmpty
                 ? const Center(
-                    child: Text(
-                      '无匹配菜单',
-                      style: TextStyle(fontSize: 14, color: Color(0xFFAAAAAA)),
-                    ),
+                    child: Text('无匹配菜单', style: TextStyle(fontSize: 14)),
                   )
                 : ListView.builder(
                     padding: EdgeInsets.zero,
@@ -414,23 +252,35 @@ class _LeftMenuState extends State<_LeftMenu> {
                       final selected = originalIndex == widget.selectedIndex;
                       return InkWell(
                         onTap: () => widget.onSelected(originalIndex),
+                        onHover: (_) {},
                         child: Container(
                           height: 40,
                           alignment: Alignment.centerLeft,
                           padding: const EdgeInsets.only(left: 40),
                           color: selected
-                              ? const Color(0x807172AD)
+                              ? theme.colorScheme.primaryContainer
                               : Colors.transparent,
-                          child: Text(
-                            item.label,
-                            style: TextStyle(
-                              fontSize: 14,
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: RuQiSpacing.xs,
+                            ),
+                            decoration: BoxDecoration(
                               color: selected
-                                  ? Colors.white
-                                  : const Color(0xFF333333),
-                              fontWeight: selected
-                                  ? FontWeight.w700
-                                  : FontWeight.w400,
+                                  ? theme.colorScheme.primaryContainer
+                                  : Colors.transparent,
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Text(
+                              item.label,
+                              style: theme.textTheme.titleSmall?.copyWith(
+                                color: selected
+                                    ? theme.colorScheme.primary
+                                    : theme.colorScheme.onSurface,
+                                fontWeight: selected
+                                    ? FontWeight.w600
+                                    : FontWeight.w400,
+                              ),
                             ),
                           ),
                         ),
@@ -451,16 +301,26 @@ class _PageContentView extends StatelessWidget {
     required this.entry,
     required this.cropOffset,
     required this.viewSize,
+    this.body,
   });
 
   final PrototypeEntry entry;
   final Offset cropOffset;
   final Size viewSize;
 
+  /// 已优化为业务页的正文；为空时回退到原型裁剪预览。
+  final Widget? body;
+
   @override
   Widget build(BuildContext context) {
+    if (body != null) {
+      return ColoredBox(
+        color: Theme.of(context).colorScheme.surface,
+        child: body,
+      );
+    }
     return ColoredBox(
-      color: const Color(0xFFF5F6F8),
+      color: Theme.of(context).colorScheme.surface,
       child: Scrollbar(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),

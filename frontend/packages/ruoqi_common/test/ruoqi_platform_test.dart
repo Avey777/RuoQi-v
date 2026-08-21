@@ -4,14 +4,8 @@ import 'package:ruoqi_common/ruoqi_common.dart';
 
 void main() {
   test('platform inferred from width', () {
-    expect(
-      ruoQiPlatformFromSize(const Size(800, 600)),
-      RuoQiPlatform.mobile,
-    );
-    expect(
-      ruoQiPlatformFromSize(const Size(1280, 720)),
-      RuoQiPlatform.pc,
-    );
+    expect(ruoQiPlatformFromSize(const Size(800, 600)), RuoQiPlatform.mobile);
+    expect(ruoQiPlatformFromSize(const Size(1280, 720)), RuoQiPlatform.pc);
   });
 
   testWidgets('RuoQiPlatformScope overrides size inference', (tester) async {

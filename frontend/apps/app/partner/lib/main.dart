@@ -18,6 +18,8 @@ class PartnerApp extends StatelessWidget {
         title: 'RuoQi 伙伴 App',
         debugShowCheckedModeBanner: false,
         theme: ruoQiTheme(),
+        darkTheme: ruoQiTheme(brightness: Brightness.dark),
+        themeMode: ThemeMode.light,
         home: const HomePage(),
       ),
     );

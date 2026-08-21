@@ -4,6 +4,7 @@
 // API授权 / 个人中心），二级为主页面。查看/编辑/删除/绑定等动作
 // 子页面不进入菜单，由主页面按钮以弹窗方式打开。
 import 'package:flutter/material.dart';
+import 'package:ruoqi_common/ruoqi_common.dart';
 
 import '../prototype_registry.dart';
 
@@ -108,68 +109,47 @@ class _OperationsSidebarState extends State<OperationsSidebar> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final roots = _filterTree(_buildFullTree(), _query);
 
     return Container(
       width: 300,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        border: Border(right: BorderSide(color: Color(0xFFD7D7D7), width: 1)),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface,
+        border: Border(
+          right: BorderSide(color: theme.colorScheme.outlineVariant, width: 1),
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(20, 16, 20, 12),
-            child: Container(
-              height: 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(2),
-                border: Border.all(color: const Color(0xFFD7D7D7), width: 1),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      onChanged: (value) {
-                        setState(() => _query = value.trim());
-                      },
-                      style: const TextStyle(fontSize: 14),
-                      decoration: const InputDecoration(
-                        hintText: '搜索菜单',
-                        hintStyle: TextStyle(
-                          fontSize: 14,
-                          color: Color(0xFFAAAAAA),
-                        ),
-                        isDense: true,
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 10,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 8),
-                    child: Icon(
-                      Icons.search,
-                      size: 18,
-                      color: Color(0xFFAAAAAA),
-                    ),
-                  ),
-                ],
+            padding: const EdgeInsets.fromLTRB(
+              RuQiSpacing.lg,
+              RuQiSpacing.md,
+              RuQiSpacing.lg,
+              RuQiSpacing.sm,
+            ),
+            child: TextField(
+              onChanged: (value) {
+                setState(() => _query = value.trim());
+              },
+              decoration: const InputDecoration(
+                hintText: '搜索菜单',
+                prefixIcon: Icon(Icons.search, size: 18),
+                isDense: true,
+                contentPadding: EdgeInsets.symmetric(
+                  horizontal: RuQiSpacing.xs,
+                  vertical: 10,
+                ),
               ),
             ),
           ),
-          const Divider(height: 1, thickness: 1, color: Color(0xFFD7D7D7)),
+          Divider(height: 1, color: theme.colorScheme.outlineVariant),
           Expanded(
             child: roots.isEmpty
                 ? const Center(
-                    child: Text(
-                      '无匹配菜单',
-                      style: TextStyle(fontSize: 14, color: Color(0xFFAAAAAA)),
-                    ),
+                    child: Text('无匹配菜单', style: TextStyle(fontSize: 14)),
                   )
                 : ListView(
                     padding: EdgeInsets.zero,
@@ -184,6 +164,7 @@ class _OperationsSidebarState extends State<OperationsSidebar> {
   }
 
   List<Widget> _buildRows(_TreeNode node, int depth) {
+    final theme = Theme.of(context);
     final hasChildren = node.children.isNotEmpty;
     // 搜索时强制展开，方便查看命中项。
     final expanded = _isExpanded(node);
@@ -196,7 +177,9 @@ class _OperationsSidebarState extends State<OperationsSidebar> {
           height: 40,
           alignment: Alignment.centerLeft,
           padding: EdgeInsets.only(left: 12.0 + depth * 20),
-          color: selected ? const Color(0x807172AD) : Colors.transparent,
+          color: selected
+              ? theme.colorScheme.primaryContainer
+              : Colors.transparent,
           child: Row(
             children: [
               SizedBox(
@@ -206,8 +189,8 @@ class _OperationsSidebarState extends State<OperationsSidebar> {
                         expanded ? Icons.expand_more : Icons.chevron_right,
                         size: 16,
                         color: selected
-                            ? Colors.white
-                            : const Color(0xFF777777),
+                            ? theme.colorScheme.primary
+                            : theme.colorScheme.onSurfaceVariant,
                       )
                     : null,
               ),
@@ -217,9 +200,10 @@ class _OperationsSidebarState extends State<OperationsSidebar> {
                   node.title,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: selected ? Colors.white : const Color(0xFF333333),
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    color: selected
+                        ? theme.colorScheme.primary
+                        : theme.colorScheme.onSurface,
                     fontWeight: isSection || selected
                         ? FontWeight.w700
                         : FontWeight.w400,
