@@ -62,7 +62,6 @@ final _businessBodies = <String, WidgetBuilder>{
   'j7jNSg7DW': (_) => const EmailSettingsBody(),
   'jOWxGolr4': (_) => const EncodingRulesBody(),
   'StMQ4cWti': (_) => const UsersBody(),
-  'c11sjQSJ1': (_) => const RolesBody(),
 };
 
 /// 七个板块及其左侧菜单项，顺序与 管理后台 原型顶部导航一致。
@@ -139,6 +138,21 @@ class _SystemSettingsDialogState extends State<_SystemSettingsDialog> {
     setState(() => _itemIndex = index);
   }
 
+  /// 角色页「设置权限」跳转到权限板块（选中 权限 子项）。
+  void _openPermissions() {
+    setState(() {
+      _sectionIndex = _sections.indexWhere((section) => section.label == '权限');
+      _itemIndex = 0;
+    });
+  }
+
+  Widget? _bodyFor(BuildContext context, _SidebarItem item) {
+    if (item.pageId == 'c11sjQSJ1') {
+      return RolesBody(onOpenPermissions: _openPermissions);
+    }
+    return _businessBodies[item.pageId]?.call(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     final item = _section.items[_itemIndex];
@@ -170,7 +184,7 @@ class _SystemSettingsDialogState extends State<_SystemSettingsDialog> {
                     entry: entry,
                     cropOffset: item.cropOffset,
                     viewSize: item.viewSize,
-                    body: _businessBodies[item.pageId]?.call(context),
+                    body: _bodyFor(context, item),
                   ),
                 ),
               ],

@@ -248,6 +248,33 @@ void main() {
     tester.view.reset();
   });
 
+  testWidgets('角色页设置权限跳转到权限板块', (tester) async {
+    tester.view.physicalSize = const Size(1600, 1000);
+    tester.view.devicePixelRatio = 1.0;
+    await tester.pumpWidget(
+      const MaterialApp(home: Scaffold(body: SizedBox())),
+    );
+    SystemSettingsDialog.show(tester.element(find.byType(SizedBox)));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('用户').hitTestable().first);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('角色').hitTestable().first);
+    await tester.pumpAndSettle();
+    expect(find.text('创建角色组'), findsOneWidget);
+
+    await tester.tap(find.byIcon(Icons.more_horiz).first);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('设置权限').last);
+    await tester.pumpAndSettle();
+
+    // 已跳转到权限板块：左侧菜单显示 权限/保存权限，内容为权限原型
+    expect(find.text('保存权限'), findsOneWidget);
+    expect(find.textContaining('角色权限'), findsWidgets);
+    expect(tester.takeException(), isNull);
+    tester.view.reset();
+  });
+
   testWidgets('系统管理弹窗中 用户/角色 展示业务正文', (tester) async {
     tester.view.physicalSize = const Size(1600, 1000);
     tester.view.devicePixelRatio = 1.0;

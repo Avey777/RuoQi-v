@@ -10,7 +10,10 @@ import 'user_management_widgets.dart';
 /// 角色组表格 + 创建 / 编辑 / 设置权限 / 删除操作；
 /// 管理员与所有用户为特殊默认组，不可删除。
 class RolesBody extends StatelessWidget {
-  const RolesBody({super.key});
+  const RolesBody({super.key, this.onOpenPermissions});
+
+  /// 点击「设置权限」时跳转到权限板块；为空时回退到站内权限面板。
+  final VoidCallback? onOpenPermissions;
 
   void _showSnack(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -27,7 +30,11 @@ class RolesBody extends StatelessWidget {
       case '编辑名称':
         await showEditRolePanel(context, role);
       case '设置权限':
-        await showRolePermissionsPanel(context, role);
+        if (onOpenPermissions != null) {
+          onOpenPermissions!();
+        } else {
+          await showRolePermissionsPanel(context, role);
+        }
       case '删除角色组':
         if (role.isDefault) {
           _showSnack(context, '${role.name} 是特殊默认组，不能被删除');
