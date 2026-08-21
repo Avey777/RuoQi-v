@@ -8,6 +8,7 @@ import 'business/email_settings_page.dart';
 import 'business/encoding_rules_page.dart';
 import 'business/general_settings_page.dart';
 import 'business/localization_settings_page.dart';
+import 'business/permission_management/permission_management_page.dart';
 import 'business/sms_settings_page.dart';
 import 'business/verification_messages_page.dart';
 import 'business/user_management/roles_page.dart';
@@ -62,6 +63,7 @@ final _businessBodies = <String, WidgetBuilder>{
   'j7jNSg7DW': (_) => const EmailSettingsBody(),
   'jOWxGolr4': (_) => const EncodingRulesBody(),
   'StMQ4cWti': (_) => const UsersBody(),
+  'c50tDa7pFz': (_) => const PermissionsBody(),
 };
 
 /// 七个板块及其左侧菜单项，顺序与 管理后台 原型顶部导航一致。
@@ -83,7 +85,6 @@ const _sections = [
   ]),
   _SidebarSection('权限', [
     _SidebarItem('权限', 'c50tDa7pFz', Offset(325, 189), Size(1585, 930)),
-    _SidebarItem('保存权限', 'PRkO8x-5W', Offset(325, 189), Size(1585, 930)),
   ]),
   _SidebarSection('菜单', [
     _SidebarItem('菜单', 'XdvqIaB7_', Offset(244, 145), Size(1657, 613)),
@@ -173,11 +174,14 @@ class _SystemSettingsDialogState extends State<_SystemSettingsDialog> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                _LeftMenu(
-                  section: _section,
-                  selectedIndex: _itemIndex,
-                  onSelected: _selectItem,
-                ),
+                // 权限板块使用页面自身的角色左侧栏（原型中角色栏位于最左侧），
+                // 隐藏通用左菜单，板块切换仍通过顶部导航。
+                if (_section.label != '权限')
+                  _LeftMenu(
+                    section: _section,
+                    selectedIndex: _itemIndex,
+                    onSelected: _selectItem,
+                  ),
                 Expanded(
                   child: _PageContentView(
                     key: ValueKey(item.pageId),

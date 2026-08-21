@@ -93,16 +93,15 @@ void main() {
     tester.view.reset();
   });
 
-  testWidgets('权限 板块使用其自身的左侧面板裁切', (tester) async {
+  testWidgets('权限 板块隐藏通用左菜单，角色左侧栏位于最左侧', (tester) async {
     await openDialog(tester);
 
     await tester.tap(find.text('权限').hitTestable().first);
     await tester.pumpAndSettle();
-    expect(inSidebar(tester, '权限'), isTrue);
-    expect(inSidebar(tester, '保存权限'), isTrue);
-
-    await tester.tap(find.text('保存权限').hitTestable().first);
-    await tester.pumpAndSettle();
+    // 通用左侧菜单隐藏，角色左侧栏占据最左侧
+    expect(inSidebar(tester, '权限'), isFalse);
+    expect(inSidebar(tester, 'Administrators'), isTrue);
+    expect(find.text('一级菜单'), findsOneWidget);
     expect(tester.takeException(), isNull);
     tester.view.reset();
   });

@@ -268,8 +268,8 @@ void main() {
     await tester.tap(find.text('设置权限').last);
     await tester.pumpAndSettle();
 
-    // 已跳转到权限板块：左侧菜单显示 权限/保存权限，内容为权限原型
-    expect(find.text('保存权限'), findsOneWidget);
+    // 已跳转到权限板块：内容为权限业务页
+    expect(find.text('保存权限'), findsNothing);
     expect(find.textContaining('角色权限'), findsWidgets);
     expect(tester.takeException(), isNull);
     tester.view.reset();
