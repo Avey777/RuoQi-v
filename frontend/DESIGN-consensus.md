@@ -508,6 +508,57 @@ FloatingPromo({
 `EdgeInsets.symmetric(horizontal: 24, vertical: 64)`；桌面 4–6 列、
 平板 2 列、移动 1 列；末行法律与版权信息。
 
+### 6.9 弹层面板（In-Place Panel）
+
+后台控制台（管理后台 / 运营后台）的内容区弹层：点击卡片「设置 / 编辑」等
+动作后，面板覆盖在内容区之上，左侧菜单与顶部导航保持可见；面板是内容区的
+内嵌层而非悬浮模态，返回时 `Navigator.pop` 关闭。
+
+| 项 | 规范 |
+|---|---|
+| 尺寸 | 与内容区同尺寸（大面板模式）：`Positioned(left: 菜单宽, top: 顶栏高, right: 0, bottom: 0)` |
+| 遮罩 | 无：`barrierColor: Colors.transparent`；仍保留 `barrierDismissible: true`（点击外部关闭）与 `barrierLabel` |
+| 阴影 | 无：深度 0，不引用 `RuQiElevation`，`Material` 不设 `elevation` |
+| 描边 | 仅 `left` / `top` 两条 `BorderSide(width: 1, color: outlineVariant)`，与菜单、顶栏分隔；右 / 下边缘贴齐窗口，不画框线 |
+| 背景 | `surface` |
+| 标题条 | 高 48、`surfaceContainerLow` 背景、左侧 `RuQiSpacing.md` 内边距；标题 `titleMedium` / 700 / `onSurface`，右侧关闭按钮（tooltip「关闭」，图标 `inkMuted`） |
+| 分隔线 | 标题条与正文之间 `Divider(height: 1, color: outlineVariant)` |
+| 正文 | 可滚动区域（`SingleChildScrollView` / `ListView`）；表单类弹层底部固定操作行：`button-tertiary` 取消 + `button-primary` 主操作 |
+
+动效（§5 令牌）：
+
+- 进入 / 返回：从右侧滑入 / 滑出，`SlideTransition` 位移
+  `Offset(1, 0) → Offset.zero`，`RuQiMotion.normal`（250ms）+ `easeOut`；
+- 减少动态：命中 `MediaQuery.disableAnimationsOf(context)` 时动画时长归零。
+
+实现约定：
+
+```dart
+showGeneralDialog<void>(
+  context: context,
+  barrierDismissible: true,
+  barrierLabel: '关闭',
+  barrierColor: Colors.transparent,
+  transitionDuration: RuQiMotion.resolve(context, RuQiMotion.normal),
+  transitionBuilder: (context, animation, secondaryAnimation, child) {
+    return SlideTransition(
+      position: Tween<Offset>(begin: const Offset(1, 0), end: Offset.zero)
+          .animate(CurvedAnimation(
+        parent: animation,
+        curve: RuQiMotion.resolveCurve(context, RuQiMotion.easeOut),
+      )),
+      child: child,
+    );
+  },
+  pageBuilder: (context, animation, secondaryAnimation) {
+    // Positioned(left: 菜单宽, top: 顶栏高, right: 0, bottom: 0, child: 面板)
+  },
+);
+```
+
+参考实现：管理后台设置内容面板（`SettingsContentPanel` /
+`showSystemSettingsPanel`）与运营后台动作弹窗的大面板模式。
+
 ---
 
 ## 7. 营销约束

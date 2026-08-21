@@ -394,9 +394,7 @@ void main() {
     await tester.tap(find.text('编辑').hitTestable().first);
     await tester.pumpAndSettle();
 
-    final dialog = find
-        .ancestor(of: find.text('保存生效'), matching: find.byType(Dialog))
-        .first;
+    final dialog = find.byType(SettingsContentPanel);
     expect(
       find.descendant(of: dialog, matching: find.text('名称')),
       findsOneWidget,
