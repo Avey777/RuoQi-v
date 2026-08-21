@@ -40,43 +40,43 @@ import 'admin_pages/语言/导入.dart';
 import 'admin_pages/语言/取消导入.dart';
 import 'admin_pages/语言/导出.dart';
 import 'admin_pages/语言/翻译.dart';
-import '运营后台/API授权/APIToken.dart';
-import '运营后台/个人中心/PC-个人中心(基本信息).dart';
-import '运营后台/个人中心/API秘钥.dart';
-import '运营后台/个人中心/多因素认证.dart';
-import '运营后台/个人中心/取消绑定.dart';
-import '运营后台/个人中心/绑定(手机号、邮箱).dart';
-import '运营后台/个人中心/本地化.dart';
-import '运营后台/个人中心/账号安全.dart';
-import '运营后台/个人中心/修改密码.dart';
-import '运营后台/个人中心/设置密码.dart';
-import '运营后台/个人中心/通用验证(手机号、邮箱).dart';
-import '运营后台/团队空间/团队设置.dart';
-import '运营后台/团队空间/租户团队.dart';
-import '运营后台/团队空间/查看.dart';
-import '运营后台/团队空间/订阅计费.dart';
-import '运营后台/租户/开户审核.dart';
-import '运营后台/租户/查看.dart';
-import '运营后台/租户/成员管理.dart';
-import '运营后台/租户/租户列表.dart';
-import '运营后台/租户/查看租户.dart';
-import '运营后台/租户/添加租户.dart';
-import '运营后台/租户/邀请令牌-不能发送电子邮件.dart';
-import '运营后台/租户/激活.dart';
-import '运营后台/租户/编辑租户.dart';
-import '运营后台/租户/锁定.dart';
-import '运营后台/租户/租户设置.dart';
-import '运营后台/项目/(订阅)开通审核.dart';
-import '运营后台/项目/(订阅)开通审核-查看.dart';
-import '运营后台/项目/变更审核.dart';
-import '运营后台/项目/变更审核-查看.dart';
-import '运营后台/项目/审核弹窗-外部.dart';
-import '运营后台/项目/租户项目.dart';
-import '运营后台/项目/租户项目-查看.dart';
-import '运营后台/项目/订阅计费.dart';
-import '运营后台/项目/退订审核.dart';
-import '运营后台/项目/退订审核-查看.dart';
-import '运营后台/项目/项目设置.dart';
+import 'ops_pages/API授权/APIToken.dart';
+import 'ops_pages/个人中心/PC-个人中心(基本信息).dart';
+import 'ops_pages/个人中心/API秘钥.dart';
+import 'ops_pages/个人中心/多因素认证.dart';
+import 'ops_pages/个人中心/取消绑定.dart';
+import 'ops_pages/个人中心/绑定(手机号、邮箱).dart';
+import 'ops_pages/个人中心/本地化.dart';
+import 'ops_pages/个人中心/账号安全.dart';
+import 'ops_pages/个人中心/修改密码.dart';
+import 'ops_pages/个人中心/设置密码.dart';
+import 'ops_pages/个人中心/通用验证(手机号、邮箱).dart';
+import 'ops_pages/团队空间/团队设置.dart';
+import 'ops_pages/团队空间/租户团队.dart';
+import 'ops_pages/团队空间/查看.dart';
+import 'ops_pages/团队空间/订阅计费.dart';
+import 'ops_pages/租户/开户审核.dart';
+import 'ops_pages/租户/查看.dart';
+import 'ops_pages/租户/成员管理.dart';
+import 'ops_pages/租户/租户列表.dart';
+import 'ops_pages/租户/查看租户.dart';
+import 'ops_pages/租户/添加租户.dart';
+import 'ops_pages/租户/邀请令牌-不能发送电子邮件.dart';
+import 'ops_pages/租户/激活.dart';
+import 'ops_pages/租户/编辑租户.dart';
+import 'ops_pages/租户/锁定.dart';
+import 'ops_pages/租户/租户设置.dart';
+import 'ops_pages/项目/(订阅)开通审核.dart';
+import 'ops_pages/项目/(订阅)开通审核-查看.dart';
+import 'ops_pages/项目/变更审核.dart';
+import 'ops_pages/项目/变更审核-查看.dart';
+import 'ops_pages/项目/审核弹窗-外部.dart';
+import 'ops_pages/项目/租户项目.dart';
+import 'ops_pages/项目/租户项目-查看.dart';
+import 'ops_pages/项目/订阅计费.dart';
+import 'ops_pages/项目/退订审核.dart';
+import 'ops_pages/项目/退订审核-查看.dart';
+import 'ops_pages/项目/项目设置.dart';
 
 class PrototypeFolder {
   const PrototypeFolder(this.name, this.children);
@@ -482,7 +482,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'ncUGMKi7_',
     'API Token',
-    '运营后台/API授权/API Token',
+    'ops_pages/API授权/API Token',
     1920,
     1080,
     (_) => ncUGMKi7Page(),
@@ -490,7 +490,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'B44C4h3edeR2',
     'PC-个人中心(基本信息)',
-    '运营后台/个人中心/PC-个人中心(基本信息)',
+    'ops_pages/个人中心/PC-个人中心(基本信息)',
     1920,
     1080,
     (_) => B44C4h3edeR2Page(),
@@ -498,7 +498,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'rjvZWT5Dw',
     'API秘钥',
-    '运营后台/个人中心/PC-个人中心(基本信息)/API秘钥',
+    'ops_pages/个人中心/PC-个人中心(基本信息)/API秘钥',
     1920,
     1080,
     (_) => rjvZWT5DwPage(),
@@ -506,7 +506,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'DAZ8_zIokgWI',
     '多因素认证',
-    '运营后台/个人中心/PC-个人中心(基本信息)/多因素认证',
+    'ops_pages/个人中心/PC-个人中心(基本信息)/多因素认证',
     1920,
     1250,
     (_) => DAZ8zIokgWIPage(),
@@ -514,7 +514,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     '9U6oXpOcF',
     '取消绑定',
-    '运营后台/个人中心/PC-个人中心(基本信息)/多因素认证/取消绑定',
+    'ops_pages/个人中心/PC-个人中心(基本信息)/多因素认证/取消绑定',
     1920,
     1080,
     (_) => P9U6oXpOcFPage(),
@@ -522,7 +522,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'hG6mHCdXn',
     '绑定(手机号、邮箱)',
-    '运营后台/个人中心/PC-个人中心(基本信息)/多因素认证/绑定(手机号、邮箱)',
+    'ops_pages/个人中心/PC-个人中心(基本信息)/多因素认证/绑定(手机号、邮箱)',
     1920,
     1080,
     (_) => hG6mHCdXnPage(),
@@ -530,7 +530,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     '1J5Ra7pGo',
     '本地化',
-    '运营后台/个人中心/PC-个人中心(基本信息)/本地化',
+    'ops_pages/个人中心/PC-个人中心(基本信息)/本地化',
     1920,
     2136,
     (_) => P1J5Ra7pGoPage(),
@@ -538,7 +538,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'ntgGZaqJgUZC',
     '账号安全',
-    '运营后台/个人中心/PC-个人中心(基本信息)/账号安全',
+    'ops_pages/个人中心/PC-个人中心(基本信息)/账号安全',
     1920,
     1080,
     (_) => ntgGZaqJgUZCPage(),
@@ -546,7 +546,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'zBO3EW3ax',
     '修改密码',
-    '运营后台/个人中心/PC-个人中心(基本信息)/账号安全/修改密码',
+    'ops_pages/个人中心/PC-个人中心(基本信息)/账号安全/修改密码',
     1920,
     1080,
     (_) => zBO3EW3axPage(),
@@ -554,7 +554,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'i8ZEUJ9_N',
     '设置密码',
-    '运营后台/个人中心/PC-个人中心(基本信息)/账号安全/设置密码',
+    'ops_pages/个人中心/PC-个人中心(基本信息)/账号安全/设置密码',
     1920,
     1080,
     (_) => i8ZEUJ9NPage(),
@@ -562,7 +562,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'xdLB4kjm1',
     '通用验证(手机号、邮箱)',
-    '运营后台/个人中心/PC-个人中心(基本信息)/通用验证(手机号、邮箱)',
+    'ops_pages/个人中心/PC-个人中心(基本信息)/通用验证(手机号、邮箱)',
     1920,
     1080,
     (_) => xdLB4kjm1Page(),
@@ -570,7 +570,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'xtOLR-LhK',
     '团队设置',
-    '运营后台/团队空间/团队设置',
+    'ops_pages/团队空间/团队设置',
     1920,
     1080,
     (_) => xtOLRLhKPage(),
@@ -578,7 +578,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'fj714uUhe',
     '租户团队',
-    '运营后台/团队空间/租户团队',
+    'ops_pages/团队空间/租户团队',
     1920,
     1080,
     (_) => fj714uUhePage(),
@@ -586,7 +586,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'UaSDK99Jnr',
     '查看',
-    '运营后台/团队空间/租户团队/查看',
+    'ops_pages/团队空间/租户团队/查看',
     1920,
     2476,
     (_) => UaSDK99JnrPage(),
@@ -594,7 +594,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'I_XkSZmY5',
     '订阅计费',
-    '运营后台/团队空间/订阅计费',
+    'ops_pages/团队空间/订阅计费',
     1920,
     1080,
     (_) => IXkSZmY5Page(),
@@ -602,7 +602,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     '_n1LmDFij',
     '开户审核',
-    '运营后台/租户/开户审核',
+    'ops_pages/租户/开户审核',
     1920,
     1080,
     (_) => n1LmDFijPage(),
@@ -610,7 +610,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'CbJh5Rt66c',
     '查看',
-    '运营后台/租户/开户审核/查看',
+    'ops_pages/租户/开户审核/查看',
     1920,
     1080,
     (_) => CbJh5Rt66cPage(),
@@ -618,7 +618,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'hEcuv5lQ8',
     '成员管理',
-    '运营后台/租户/成员管理',
+    'ops_pages/租户/成员管理',
     1920,
     1080,
     (_) => hEcuv5lQ8Page(),
@@ -626,7 +626,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'jSTfPprJez',
     '租户列表',
-    '运营后台/租户/租户列表',
+    'ops_pages/租户/租户列表',
     1920,
     1080,
     (_) => jSTfPprJezPage(),
@@ -634,7 +634,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'p__DNO8Bl',
     '查看租户',
-    '运营后台/租户/租户列表/查看租户',
+    'ops_pages/租户/租户列表/查看租户',
     1920,
     1080,
     (_) => pDNO8BlPage(),
@@ -642,7 +642,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'iupqUFDpMq',
     '添加租户',
-    '运营后台/租户/租户列表/添加租户',
+    'ops_pages/租户/租户列表/添加租户',
     1920,
     1080,
     (_) => iupqUFDpMqPage(),
@@ -650,7 +650,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'WQ8SMXI9q',
     '邀请令牌-不能发送电子邮件',
-    '运营后台/租户/租户列表/添加租户/邀请令牌-不能发送电子邮件',
+    'ops_pages/租户/租户列表/添加租户/邀请令牌-不能发送电子邮件',
     1920,
     1080,
     (_) => WQ8SMXI9qPage(),
@@ -658,7 +658,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     '7nmA84IrR',
     '激活',
-    '运营后台/租户/租户列表/激活',
+    'ops_pages/租户/租户列表/激活',
     1920,
     1080,
     (_) => P7nmA84IrRPage(),
@@ -666,7 +666,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'i0OrqJ3XW',
     '编辑租户',
-    '运营后台/租户/租户列表/编辑租户',
+    'ops_pages/租户/租户列表/编辑租户',
     1920,
     1518,
     (_) => i0OrqJ3XWPage(),
@@ -674,7 +674,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     '2IJ_wvki9',
     '锁定',
-    '运营后台/租户/租户列表/锁定',
+    'ops_pages/租户/租户列表/锁定',
     1920,
     1080,
     (_) => P2IJwvki9Page(),
@@ -682,7 +682,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'MPkqxQ-kE',
     '租户设置',
-    '运营后台/租户/租户设置',
+    'ops_pages/租户/租户设置',
     1920,
     1080,
     (_) => MPkqxQkEPage(),
@@ -690,7 +690,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'hzWGnXvBu',
     '(订阅)开通审核',
-    '运营后台/项目/(订阅)开通审核',
+    'ops_pages/项目/(订阅)开通审核',
     1920,
     1080,
     (_) => hzWGnXvBuPage(),
@@ -698,7 +698,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     '3Hf4pr7Pu',
     '查看',
-    '运营后台/项目/(订阅)开通审核/查看',
+    'ops_pages/项目/(订阅)开通审核/查看',
     1920,
     2476,
     (_) => P3Hf4pr7PuPage(),
@@ -706,7 +706,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'LW_OP_AQE',
     '变更审核',
-    '运营后台/项目/变更审核',
+    'ops_pages/项目/变更审核',
     1920,
     1080,
     (_) => LWOPAQEPage(),
@@ -714,7 +714,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     '44XebQ4IX',
     '查看',
-    '运营后台/项目/变更审核/查看',
+    'ops_pages/项目/变更审核/查看',
     1920,
     2476,
     (_) => P44XebQ4IXPage(),
@@ -722,7 +722,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'Q5vjP_vc9',
     '审核弹窗-外部',
-    '运营后台/项目/审核弹窗-外部',
+    'ops_pages/项目/审核弹窗-外部',
     1920,
     1288,
     (_) => Q5vjPvc9Page(),
@@ -730,7 +730,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'HLLVxR2i7',
     '租户项目',
-    '运营后台/项目/租户项目',
+    'ops_pages/项目/租户项目',
     1920,
     1080,
     (_) => HLLVxR2i7Page(),
@@ -738,7 +738,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     '9IFTEPF_T',
     '查看',
-    '运营后台/项目/租户项目/查看',
+    'ops_pages/项目/租户项目/查看',
     1920,
     2476,
     (_) => P9IFTEPFTPage(),
@@ -746,7 +746,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'a2iuwP9vz',
     '订阅计费',
-    '运营后台/项目/订阅计费',
+    'ops_pages/项目/订阅计费',
     1920,
     1080,
     (_) => a2iuwP9vzPage(),
@@ -754,7 +754,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'p7lljuBnu',
     '退订审核',
-    '运营后台/项目/退订审核',
+    'ops_pages/项目/退订审核',
     1920,
     1080,
     (_) => p7lljuBnuPage(),
@@ -762,7 +762,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'G_6_cDuG2',
     '查看',
-    '运营后台/项目/退订审核/查看',
+    'ops_pages/项目/退订审核/查看',
     1920,
     2476,
     (_) => G6cDuG2Page(),
@@ -770,7 +770,7 @@ final List<PrototypeEntry> prototypePages = [
   PrototypeEntry(
     'CniE3ZtPiE0',
     '项目设置',
-    '运营后台/项目/项目设置',
+    'ops_pages/项目/项目设置',
     1920,
     1080,
     (_) => CniE3ZtPiE0Page(),

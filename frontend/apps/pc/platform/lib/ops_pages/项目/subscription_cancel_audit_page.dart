@@ -2,33 +2,42 @@ import 'package:flutter/material.dart';
 
 import '../../prototype_registry.dart';
 import '../operations_action_dialog.dart';
-import '../项目/审核弹窗-外部-拆分.dart';
+import '审核弹窗-外部-拆分.dart';
 
-/// (订阅)开通审核（运营后台）——业务静态页。
-class SubscriptionOpenAuditPage extends StatelessWidget {
-  const SubscriptionOpenAuditPage({super.key});
+/// 退订审核（运营后台）——业务静态页。
+class SubscriptionCancelAuditPage extends StatelessWidget {
+  const SubscriptionCancelAuditPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('(订阅)开通审核')),
-      body: const SubscriptionOpenAuditBody(),
+      appBar: AppBar(title: const Text('退订审核')),
+      body: const SubscriptionCancelAuditBody(),
     );
   }
 }
 
-/// (订阅)开通审核正文（供运营后台对话框右侧内容区内嵌展示）。
-class SubscriptionOpenAuditBody extends StatelessWidget {
-  const SubscriptionOpenAuditBody({super.key});
+/// 退订审核正文（供运营后台对话框右侧内容区内嵌展示）。
+class SubscriptionCancelAuditBody extends StatelessWidget {
+  const SubscriptionCancelAuditBody({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-        _auditCard(context, '星云科技有限公司', '专业版 · ¥999/月', '2024-08-18 10:24'),
-        _auditCard(context, '宏图物流有限公司', '标准版 · ¥499/月', '2024-08-17 15:40'),
-        _auditCard(context, '绿源环保科技有限公司', '专业版 · ¥999/月', '2024-08-16 09:12'),
+        _auditCard(
+          context,
+          '宏图物流有限公司',
+          '专业版 ¥999/月 · 到期日 2024-09-12',
+          '2024-08-18 09:40',
+        ),
+        _auditCard(
+          context,
+          '云端网络工作室',
+          '标准版 ¥499/月 · 到期日 2024-08-30',
+          '2024-08-17 17:25',
+        ),
       ],
     );
   }
@@ -51,7 +60,7 @@ class SubscriptionOpenAuditBody extends StatelessWidget {
               onPressed: () => showOperationsActionDialog(
                 context,
                 title: '查看',
-                entry: prototypePageById['3Hf4pr7Pu'],
+                entry: prototypePageById['G_6_cDuG2'],
               ),
               child: const Text('查看'),
             ),
@@ -62,7 +71,7 @@ class SubscriptionOpenAuditBody extends StatelessWidget {
                 child: const AuditFormOptionalDialog(),
                 size: const Size(700, 600),
               ),
-              child: const Text('通过'),
+              child: const Text('同意退订'),
             ),
             const SizedBox(width: 8),
             OutlinedButton(
@@ -72,7 +81,7 @@ class SubscriptionOpenAuditBody extends StatelessWidget {
                 child: const AuditFormRequiredDialog(),
                 size: const Size(700, 600),
               ),
-              child: const Text('拒绝'),
+              child: const Text('驳回'),
             ),
           ],
         ),

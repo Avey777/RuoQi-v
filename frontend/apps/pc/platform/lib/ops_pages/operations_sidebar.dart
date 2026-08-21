@@ -15,7 +15,7 @@ const operationsSections = ['租户', '团队空间', '项目', 'API授权', '�
 List<PrototypeEntry> operationsEntriesOf(String section) {
   return [
     for (final e in prototypePages)
-      if (e.path.startsWith('运营后台/') &&
+      if (e.path.startsWith('ops_pages/') &&
           (e.path.split('/').length > 2 ? e.path.split('/')[1] : '其他') ==
               section)
         e,
@@ -26,7 +26,7 @@ List<PrototypeEntry> operationsEntriesOf(String section) {
 List<PrototypeEntry> operationsMainPagesOf(String section) {
   return [
     for (final e in prototypePages)
-      if (e.path.startsWith('运营后台/') &&
+      if (e.path.startsWith('ops_pages/') &&
           (e.path.split('/').length > 2 ? e.path.split('/')[1] : '其他') ==
               section &&
           e.path.split('/').length == 3 &&
@@ -54,7 +54,7 @@ List<_TreeNode> _buildFullTree() {
       _TreeNode(s, null, [
         for (final e in operationsMainPagesOf(s))
           _TreeNode(e.title, e, const [], e.path),
-      ], '运营后台/$s'),
+      ], 'ops_pages/$s'),
   ];
 }
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ruoqi_common/ruoqi_common.dart';
 import 'package:ruoqi_platform_pc/admin_pages/system_settings_dialog.dart';
-import 'package:ruoqi_platform_pc/运营后台/operations_console_dialog.dart';
+import 'package:ruoqi_platform_pc/ops_pages/operations_console_dialog.dart';
 
 /// 控制台外壳按 DESIGN-consensus.md 规范落地：surface 导航栏、
 /// 无紫色原型色、选中菜单项 primaryContainer、内容区 surface。

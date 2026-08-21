@@ -30,9 +30,9 @@ python3 frontend/tools/rp2flutter/convert.py \
 
 ```bash
 python3 frontend/tools/rp2flutter/convert.py \
-  --prototype "frontend/apps/pc/platform/lib/运营后台/运营后台—HTML" \
+  --prototype "frontend/apps/pc/platform/lib/ops_pages/运营后台—HTML" \
   --module "一账通(IDaaS & IAM)-运营端(SSO)" \
-  --module-dir 运营后台 \
+  --module-dir ops_pages \
   --exclude-path "APP/H5-个人中心"
 ```
 

@@ -1,48 +1,34 @@
 import 'package:flutter/material.dart';
 
+import '../../prototype_registry.dart';
 import '../operations_action_dialog.dart';
-import '../项目/审核弹窗-外部-拆分.dart';
+import '审核弹窗-外部-拆分.dart';
 
-/// 变更审核（运营后台）——业务静态页。
-class SubscriptionChangeAuditPage extends StatelessWidget {
-  const SubscriptionChangeAuditPage({super.key});
+/// (订阅)开通审核（运营后台）——业务静态页。
+class SubscriptionOpenAuditPage extends StatelessWidget {
+  const SubscriptionOpenAuditPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('变更审核')),
-      body: const SubscriptionChangeAuditBody(),
+      appBar: AppBar(title: const Text('(订阅)开通审核')),
+      body: const SubscriptionOpenAuditBody(),
     );
   }
 }
 
-/// 变更审核正文（供运营后台对话框右侧内容区内嵌展示）。
-class SubscriptionChangeAuditBody extends StatelessWidget {
-  const SubscriptionChangeAuditBody({super.key});
+/// (订阅)开通审核正文（供运营后台对话框右侧内容区内嵌展示）。
+class SubscriptionOpenAuditBody extends StatelessWidget {
+  const SubscriptionOpenAuditBody({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-        _auditCard(
-          context,
-          '星云科技有限公司',
-          '标准版 ¥499/月 → 专业版 ¥999/月',
-          '2024-08-18 14:05',
-        ),
-        _auditCard(
-          context,
-          '蓝海贸易有限公司',
-          '专业版 ¥999/月 → 旗舰版 ¥1999/月',
-          '2024-08-17 11:30',
-        ),
-        _auditCard(
-          context,
-          '晨曦教育科技有限公司',
-          '标准版 ¥499/月 → 标准版 ¥499/月（续费）',
-          '2024-08-16 16:20',
-        ),
+        _auditCard(context, '星云科技有限公司', '专业版 · ¥999/月', '2024-08-18 10:24'),
+        _auditCard(context, '宏图物流有限公司', '标准版 · ¥499/月', '2024-08-17 15:40'),
+        _auditCard(context, '绿源环保科技有限公司', '专业版 · ¥999/月', '2024-08-16 09:12'),
       ],
     );
   }
@@ -50,23 +36,22 @@ class SubscriptionChangeAuditBody extends StatelessWidget {
   Widget _auditCard(
     BuildContext context,
     String tenant,
-    String change,
+    String plan,
     String time,
   ) {
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
       child: ListTile(
         title: Text(tenant),
-        subtitle: Text('$change · $time'),
+        subtitle: Text('$plan · $time'),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextButton(
               onPressed: () => showOperationsActionDialog(
                 context,
-                title: '审核详情',
-                child: const AuditDetailDialog(),
-                size: const Size(700, 600),
+                title: '查看',
+                entry: prototypePageById['3Hf4pr7Pu'],
               ),
               child: const Text('查看'),
             ),
