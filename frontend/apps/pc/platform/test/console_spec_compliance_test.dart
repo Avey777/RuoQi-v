@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ruoqi_common/ruoqi_common.dart';
-import 'package:ruoqi_platform_pc/管理后台/system_settings_dialog.dart';
+import 'package:ruoqi_platform_pc/admin_pages/system_settings_dialog.dart';
 import 'package:ruoqi_platform_pc/运营后台/operations_console_dialog.dart';
 
 /// 控制台外壳按 DESIGN-consensus.md 规范落地：surface 导航栏、

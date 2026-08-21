@@ -1417,7 +1417,7 @@ def main() -> int:
     parser.add_argument("--prototype", default=None, help="path to the extracted prototype package (containing data/project.js)")
     parser.add_argument("--out-lib", default=None, help="target Flutter lib directory")
     parser.add_argument("--module", default="一账通(IDaaS/IAM)-运营管理后台", help="prototype folder to convert")
-    parser.add_argument("--module-dir", default="管理后台", help="output directory name under lib")
+    parser.add_argument("--module-dir", default="admin_pages", help="output directory name under lib")
     parser.add_argument(
         "--exclude-path",
         action="append",
@@ -1427,7 +1427,7 @@ def main() -> int:
     args = parser.parse_args()
 
     cwd = os.getcwd()
-    default_proto = os.path.join(cwd, "frontend/apps/pc/platform/lib/管理后台/管理后台")
+    default_proto = os.path.join(cwd, "frontend/apps/pc/platform/lib/admin_pages/管理后台")
     default_lib = os.path.join(cwd, "frontend/apps/pc/platform/lib")
     proto_root = args.prototype or default_proto
     lib_root = args.out_lib or default_lib
