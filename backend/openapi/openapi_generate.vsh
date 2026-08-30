@@ -81,8 +81,7 @@ fn main() {
 	response_profiles := parse_api_response_profiles(common_api_file) or {
 		map[string]ApiResponseProfile{}
 	}
-	paths, mut used_components := parse_operations(service_dir, route_bindings, indexes,
-		response_profiles) or { panic(err) }
+	paths, mut used_components := parse_operations(service_dir, route_bindings, indexes, response_profiles) or { panic(err) }
 	components := build_components(indexes.struct_defs, mut used_components)
 
 	mut info := map[string]json2.Any{}
@@ -150,8 +149,8 @@ fn parse_route_bindings(route_dir string) !map[string]RouteBinding {
 			if module_path.starts_with('service.') {
 				bindings[module_path] = RouteBinding{
 					module_path: module_path
-					base_path:   normalize_path(text[quote1 + 1..quote2])
-					secure:      route_kind != 'no_auth'
+					base_path: normalize_path(text[quote1 + 1..quote2])
+					secure: route_kind != 'no_auth'
 				}
 			}
 			pos = quote2 + 1
@@ -202,8 +201,8 @@ fn resolve_import_module(controller_ref string, imports map[string]string) strin
 
 fn parse_structs(service_dir string, route_bindings map[string]RouteBinding) !StructIndexes {
 	mut indexes := StructIndexes{
-		struct_defs:  map[string]StructDef{}
-		file_index:   map[string]map[string]StructDef{}
+		struct_defs: map[string]StructDef{}
+		file_index: map[string]map[string]StructDef{}
 		global_index: map[string][]StructDef{}
 	}
 
@@ -219,11 +218,11 @@ fn parse_structs(service_dir string, route_bindings map[string]RouteBinding) !St
 		for block in struct_blocks {
 			component_name := component_name_for(module_path, block.struct_name)
 			struct_def := StructDef{
-				file_path:      service_file
-				module_path:    module_path
+				file_path: service_file
+				module_path: module_path
 				component_name: component_name
-				struct_name:    block.struct_name
-				schema:         struct_body_to_schema(block.body, module_path, block.struct_name)
+				struct_name: block.struct_name
+				schema: struct_body_to_schema(block.body, module_path, block.struct_name)
 			}
 			indexes.struct_defs[component_name] = struct_def
 			schema_map[block.struct_name] = struct_def
@@ -262,8 +261,7 @@ fn parse_operations(service_dir string,
 		used_response_codes := find_used_response_status_codes(text)
 		tag_name := module_path.all_after('service.').replace('.', '/')
 		request_component := resolve_component_name(request_type, struct_map, indexes.global_index)
-		response_component := resolve_component_name(response_type, struct_map,
-			indexes.global_index)
+		response_component := resolve_component_name(response_type, struct_map, indexes.global_index)
 		if request_component != '' {
 			used_components[request_component] = true
 		}
@@ -281,9 +279,13 @@ fn parse_operations(service_dir string,
 			for method in operation.methods {
 				method_lower := method.to_lower()
 				mut op_spec := map[string]json2.Any{}
-				tag_values := if operation.tags.len > 0 { operation.tags.clone() } else { [
+				tag_values := if operation.tags.len > 0 {
+					operation.tags.clone()
+				} else {
+					[
 						tag_name,
-					] }
+					]
+				}
 				op_spec['tags'] = string_array_to_any(tag_values)
 				op_spec['summary'] = if operation.summary != '' {
 					operation.summary
@@ -294,10 +296,7 @@ fn parse_operations(service_dir string,
 					op_spec['description'] = operation.description
 				}
 				op_spec['operationId'] = '${tag_name.replace('/', '_')}_${operation.function_name}_${method_lower}'
-				op_spec['responses'] = build_responses(method_lower, success_status,
-					response_component, response_type, mut used_components, binding.secure,
-					operation.responses, used_response_codes, response_profiles, struct_map,
-					indexes.global_index)
+				op_spec['responses'] = build_responses(method_lower, success_status, response_component, response_type, mut used_components, binding.secure, operation.responses, used_response_codes, response_profiles, struct_map, indexes.global_index)
 				if operation.security_defined {
 					if operation.security.len > 0 {
 						op_spec['security'] = build_security_requirement(operation.security)
@@ -307,14 +306,12 @@ fn parse_operations(service_dir string,
 				}
 				if request_type != '' {
 					if is_request_body_method(method_lower) {
-						schema := schema_ref_or_inline(request_component, request_type, struct_map,
-							indexes.global_index, mut used_components)
+						schema := schema_ref_or_inline(request_component, request_type, struct_map, indexes.global_index, mut used_components)
 						if schema.len > 0 {
 							op_spec['requestBody'] = build_request_body(schema)
 						}
 					} else if is_query_param_method(method_lower) {
-						parameters := build_query_parameters(request_type, request_component,
-							struct_map, indexes.global_index, mut used_components)
+						parameters := build_query_parameters(request_type, request_component, struct_map, indexes.global_index, mut used_components)
 						if parameters.len > 0 {
 							op_spec['parameters'] = parameters
 						}
@@ -364,7 +361,7 @@ fn find_struct_blocks(text string) []StructBlock {
 		brace_end := find_matching_brace(text, brace_start) or { break }
 		blocks << StructBlock{
 			struct_name: struct_name
-			body:        text[brace_start + 1..brace_end]
+			body: text[brace_start + 1..brace_end]
 		}
 		pos = brace_end + 1
 	}
@@ -480,10 +477,8 @@ fn strip_attributes(line string) string {
 fn type_expr_to_schema(type_expr string, module_path string) (map[string]json2.Any, bool) {
 	mut expr := type_expr.trim_space()
 	mut required := true
-	mut nullable := false
 	if expr.starts_with('?') {
 		required = false
-		nullable = true
 		expr = expr[1..].trim_space()
 	}
 
@@ -526,9 +521,6 @@ fn type_expr_to_schema(type_expr string, module_path string) (map[string]json2.A
 		schema = schema_ref(component_name_for(module_path, ref_name))
 	}
 
-	if nullable {
-		schema['nullable'] = true
-	}
 	return schema, required
 }
 
@@ -577,15 +569,15 @@ fn find_operations(text string) []Operation {
 			doc_meta := parse_comment_metadata(current_comments)
 			if sub_path != '' && methods.len > 0 && function_name != '' {
 				operations << Operation{
-					sub_path:         sub_path
-					methods:          methods
-					function_name:    function_name
-					summary:          doc_meta.summary
-					description:      doc_meta.description
-					tags:             doc_meta.tags.clone()
-					security:         doc_meta.security.clone()
+					sub_path: sub_path
+					methods: methods
+					function_name: function_name
+					summary: doc_meta.summary
+					description: doc_meta.description
+					tags: doc_meta.tags.clone()
+					security: doc_meta.security.clone()
 					security_defined: doc_meta.security_defined
-					responses:        doc_meta.responses.clone()
+					responses: doc_meta.responses.clone()
 				}
 			}
 			current_attr = ''
@@ -700,7 +692,7 @@ fn parse_response_override(value string) ?ResponseOverride {
 	description := value.all_after(status_code).trim_space().all_after(type_name).trim_space()
 	return ResponseOverride{
 		status_code: status_code
-		type_name:   type_name
+		type_name: type_name
 		description: description
 	}
 }
@@ -715,7 +707,41 @@ fn parse_example_value(value string) json2.Any {
 }
 
 fn is_decorative_comment(line string) bool {
-	return line.contains('---') || line.contains('===')
+	if line.contains('---') || line.contains('===') {
+		return true
+	}
+	return is_box_banner(line)
+}
+
+// is_box_banner reports whether a comment line is a purely decorative section
+// banner, such as "══════════════" or "═══ Handler ═══". These are section
+// labels rather than descriptions/summaries, so they must not leak into the
+// generated OpenAPI metadata.
+fn is_box_banner(line string) bool {
+	trimmed := line.trim_space()
+	if trimmed == '' {
+		return true
+	}
+	runes := trimmed.runes()
+	mut left := 0
+	for left < runes.len && is_box_rune(runes[left]) {
+		left++
+	}
+	mut right := runes.len
+	for right > left && is_box_rune(runes[right - 1]) {
+		right--
+	}
+	if left >= 2 && (right == left || runes.len - right >= 2) {
+		return true
+	}
+	return false
+}
+
+fn is_box_rune(r rune) bool {
+	return r == rune(0x2500) // ─
+	 || r == rune(0x2501) // ━
+	 || r == rune(0x2550) // ═
+	 || r == rune(0x2261) // ≡
 }
 
 fn append_unique(mut items []string, value string) {
@@ -794,9 +820,7 @@ fn find_response_type(text string) string {
 		}
 	}
 
-	if text.contains("json_success_200('") || text.contains("json_success_201('")
-		|| text.contains("json_success_202('")
-		|| (text.contains('json_success(') && text.contains("data: '")) {
+	if text.contains("json_success_200('") || text.contains("json_success_201('") || text.contains("json_success_202('") || (text.contains('json_success(') && text.contains("data: '")) {
 		return 'string'
 	}
 	return ''
@@ -956,35 +980,26 @@ fn build_responses(method string,
 	response_profiles map[string]ApiResponseProfile,
 	file_structs map[string]StructDef,
 	global_index map[string][]StructDef) map[string]json2.Any {
-	success_wrapper := ensure_success_wrapper(response_component, response_type, mut
-		used_components)
+	success_wrapper := ensure_success_wrapper(response_component, response_type, mut used_components)
 	mut responses := map[string]json2.Any{}
-	responses[success_status.str()] = response_entry(default_response_description(success_status.str(),
-		response_profiles), success_wrapper)
-	responses['400'] = error_response(default_response_description('400', response_profiles), mut
-		used_components)
-	responses['500'] = error_response(default_response_description('500', response_profiles), mut
-		used_components)
+	responses[success_status.str()] = response_entry(default_response_description(success_status.str(), response_profiles), success_wrapper)
+	responses['400'] = error_response(default_response_description('400', response_profiles), mut used_components)
+	responses['500'] = error_response(default_response_description('500', response_profiles), mut used_components)
 	if method != 'get' && method != 'head' {
-		responses['422'] = error_response(default_response_description('422', response_profiles), mut
-			used_components)
+		responses['422'] = error_response(default_response_description('422', response_profiles), mut used_components)
 	}
 	if secured {
-		responses['401'] = error_response(default_response_description('401', response_profiles), mut
-			used_components)
-		responses['403'] = error_response(default_response_description('403', response_profiles), mut
-			used_components)
+		responses['401'] = error_response(default_response_description('401', response_profiles), mut used_components)
+		responses['403'] = error_response(default_response_description('403', response_profiles), mut used_components)
 	}
 	for status_code in used_response_codes {
 		if status_code.starts_with('2') || status_code in responses {
 			continue
 		}
-		responses[status_code] = error_response(default_response_description(status_code,
-			response_profiles), mut used_components)
+		responses[status_code] = error_response(default_response_description(status_code, response_profiles), mut used_components)
 	}
 	for override in response_overrides {
-		responses[override.status_code] = response_entry_for_override(override, file_structs,
-			global_index, mut used_components, response_profiles)
+		responses[override.status_code] = response_entry_for_override(override, file_structs, global_index, mut used_components, response_profiles)
 	}
 	return responses
 }
@@ -1044,8 +1059,7 @@ fn response_entry_for_override(override ResponseOverride,
 	} else {
 		default_response_description(override.status_code, response_profiles)
 	}
-	schema := response_schema_for_override(override.status_code, override.type_name, file_structs,
-		global_index, mut used_components)
+	schema := response_schema_for_override(override.status_code, override.type_name, file_structs, global_index, mut used_components)
 	if schema.len == 0 {
 		mut response := map[string]json2.Any{}
 		response['description'] = description
@@ -1068,12 +1082,10 @@ fn response_schema_for_override(status_code string,
 		return schema_ref(normalized_type)
 	}
 	if status_code.starts_with('2') {
-		wrapper_name := ensure_success_wrapper_for_type(normalized_type, file_structs,
-			global_index, mut used_components)
+		wrapper_name := ensure_success_wrapper_for_type(normalized_type, file_structs, global_index, mut used_components)
 		return schema_ref(wrapper_name)
 	}
-	return schema_for_annotation_type(normalized_type, file_structs, global_index, mut
-		used_components)
+	return schema_for_annotation_type(normalized_type, file_structs, global_index, mut used_components)
 }
 
 fn ensure_success_wrapper_for_type(type_name string,
@@ -1103,8 +1115,7 @@ fn schema_for_annotation_type(type_name string,
 	if normalized_type.starts_with('[]') {
 		mut schema := map[string]json2.Any{}
 		schema['type'] = 'array'
-		schema['items'] = schema_for_annotation_type(normalized_type[2..].trim_space(),
-			file_structs, global_index, mut used_components)
+		schema['items'] = schema_for_annotation_type(normalized_type[2..].trim_space(), file_structs, global_index, mut used_components)
 		return schema
 	}
 	match normalized_type {
@@ -1125,9 +1136,7 @@ fn schema_for_annotation_type(type_name string,
 		else {}
 	}
 
-	if component_name := resolve_annotation_component_name(normalized_type, file_structs,
-		global_index)
-	{
+	if component_name := resolve_annotation_component_name(normalized_type, file_structs, global_index) {
 		used_components[component_name] = true
 		return schema_ref(component_name)
 	}
@@ -1142,8 +1151,7 @@ fn resolve_annotation_component_name(type_name string,
 		return component_name
 	}
 	if type_name.contains('.') {
-		component_name_by_short_name := resolve_component_name(type_name.all_after_last('.'),
-			file_structs, global_index)
+		component_name_by_short_name := resolve_component_name(type_name.all_after_last('.'), file_structs, global_index)
 		if component_name_by_short_name != '' {
 			return component_name_by_short_name
 		}
@@ -1184,10 +1192,8 @@ fn parse_api_response_profiles(file_path string) !map[string]ApiResponseProfile 
 				profiles[status_code] = ApiResponseProfile{
 					status_code: status_code
 					description: if description != '' {
-						description
-					} else {
-						default_response_description_fallback(status_code)
-					}
+						description} else {
+						default_response_description_fallback(status_code)}
 				}
 			}
 		}
@@ -1354,7 +1360,6 @@ fn build_api_error_response_schema() map[string]json2.Any {
 
 	mut details_schema := map[string]json2.Any{}
 	details_schema['type'] = 'array'
-	details_schema['nullable'] = true
 	details_schema['items'] = schema_ref('ValidationError')
 	properties['details'] = details_schema
 
@@ -1372,7 +1377,6 @@ fn success_wrapper_schema(data_schema map[string]json2.Any) map[string]json2.Any
 	properties['data'] = data_schema
 
 	mut msg_schema := string_schema()
-	msg_schema['nullable'] = true
 	properties['msg'] = msg_schema
 
 	mut schema := object_schema()
@@ -1520,8 +1524,7 @@ fn normalize_path(path string) string {
 }
 
 fn is_http_method(method string) bool {
-	return method == 'get' || method == 'post' || method == 'put' || method == 'patch'
-		|| method == 'delete' || method == 'options' || method == 'head'
+	return method == 'get' || method == 'post' || method == 'put' || method == 'patch' || method == 'delete' || method == 'options' || method == 'head'
 }
 
 fn is_request_body_method(method string) bool {
