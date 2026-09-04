@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ruoqi_common/ruoqi_common.dart';
 import 'package:ruoqi_platform_pc/admin_pages/settings_content_dialog.dart';
-import 'package:ruoqi_platform_pc/admin_pages/用户/roles_page.dart';
-import 'package:ruoqi_platform_pc/admin_pages/用户/user_management_page.dart';
+import 'package:ruoqi_platform_pc/admin_pages/users_module/roles_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/users_module/user_management_page/index.dart';
 import 'package:ruoqi_platform_pc/admin_pages/system_settings_dialog.dart';
 
 void main() {

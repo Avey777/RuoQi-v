@@ -2,33 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:ruoqi_common/ruoqi_common.dart';
 
 import '../console_widgets/console_top_bar.dart';
-import '../prototype_registry.dart';
-import '设置/auth_login_settings_page.dart';
-import '设置/email_settings_page.dart';
-import '设置/encoding_rules_page.dart';
-import '设置/general_settings_page.dart';
-import '设置/localization_settings_page.dart';
-import '权限/permission_management_page.dart';
-import '设置/sms_settings_page.dart';
-import '设置/verification_messages_page.dart';
-import '用户/roles_page.dart';
-import '用户/user_management_page.dart';
-import '菜单/menus_page.dart';
-import '基础/currency_page.dart';
-import '基础/import_regions_page.dart';
-import '基础/rate_history_page.dart';
-import '基础/region_country_page.dart';
-import '基础/tz_database_page.dart';
-import '基础/utc_timezone_page.dart';
-import '基础/world_geo_page.dart';
-import '语言/export_translations_page.dart';
-import '语言/import_translations_page.dart';
-import '语言/languages_page.dart';
-import '语言/translations_page.dart';
-import '日志/login_logs_page.dart';
-import '日志/operation_logs_page.dart';
-import '日志/payment_logs_page.dart';
-import '日志/verification_logs_page.dart';
+import 'package:ruoqi_platform_pc/admin_pages/settings_module/auth_login_settings_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/settings_module/email_settings_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/settings_module/encoding_rules_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/settings_module/general_settings_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/settings_module/localization_settings_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/permissions_module/permission_management_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/settings_module/sms_settings_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/settings_module/verification_messages_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/users_module/roles_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/users_module/user_management_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/menus_module/menus_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/basic_module/currency_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/basic_module/import_regions_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/basic_module/rate_history_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/basic_module/region_country_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/basic_module/tz_database_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/basic_module/utc_timezone_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/basic_module/world_geo_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/localization_module/export_translations_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/localization_module/import_translations_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/localization_module/languages_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/localization_module/translations_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/logs_module/login_logs_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/logs_module/operation_logs_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/logs_module/payment_logs_page/index.dart';
+import 'package:ruoqi_platform_pc/admin_pages/logs_module/verification_logs_page/index.dart';
 
 /// 系统管理（一账通 ID 独立体系）入口弹窗。
 ///
@@ -49,16 +48,10 @@ class SystemSettingsDialog {
 }
 
 class _SidebarItem {
-  const _SidebarItem(this.label, this.pageId, this.cropOffset, this.viewSize);
+  const _SidebarItem(this.label, this.pageId);
 
   final String label;
   final String pageId;
-
-  /// 原型页面内容区相对画布左上角的裁切起点（去掉原型自带的顶栏/侧栏）。
-  final Offset cropOffset;
-
-  /// 内容区展示尺寸（实际内容边界 + 少量安全边距）。
-  final Size viewSize;
 }
 
 class _SidebarSection {
@@ -103,44 +96,44 @@ final _businessBodies = <String, WidgetBuilder>{
 /// 避免固定偏移把页面元素裁掉。
 const _sections = [
   _SidebarSection('设置', [
-    _SidebarItem('通用', 'Z0K3xYMgZ', Offset(260, 145), Size(686, 947)),
-    _SidebarItem('本地化', 'EDryRTyjx', Offset(260, 145), Size(686, 2776)),
-    _SidebarItem('电子邮件', 'j7jNSg7DW', Offset(260, 145), Size(686, 1260)),
-    _SidebarItem('编码规则', 'jOWxGolr4', Offset(244, 145), Size(1668, 907)),
-    _SidebarItem('短信', '1_d9YGUlp', Offset(250, 145), Size(516, 246)),
-    _SidebarItem('auth登录', 'S6BHB6tQQ', Offset(250, 145), Size(516, 246)),
-    _SidebarItem('验证消息', 'ja7Hc6Rku', Offset(250, 145), Size(1056, 770)),
+    _SidebarItem('通用', 'Z0K3xYMgZ'),
+    _SidebarItem('本地化', 'EDryRTyjx'),
+    _SidebarItem('电子邮件', 'j7jNSg7DW'),
+    _SidebarItem('编码规则', 'jOWxGolr4'),
+    _SidebarItem('短信', '1_d9YGUlp'),
+    _SidebarItem('auth登录', 'S6BHB6tQQ'),
+    _SidebarItem('验证消息', 'ja7Hc6Rku'),
   ]),
   _SidebarSection('用户', [
-    _SidebarItem('用户', 'StMQ4cWti', Offset(228, 85), Size(1684, 997)),
-    _SidebarItem('角色', 'c11sjQSJ1', Offset(244, 145), Size(1668, 740)),
+    _SidebarItem('用户', 'StMQ4cWti'),
+    _SidebarItem('角色', 'c11sjQSJ1'),
   ]),
   _SidebarSection('权限', [
-    _SidebarItem('权限', 'c50tDa7pFz', Offset(325, 189), Size(1585, 930)),
+    _SidebarItem('权限', 'c50tDa7pFz'),
   ]),
   _SidebarSection('菜单', [
-    _SidebarItem('菜单', 'XdvqIaB7_', Offset(244, 145), Size(1657, 613)),
+    _SidebarItem('菜单', 'XdvqIaB7_'),
   ]),
   _SidebarSection('基础', [
-    _SidebarItem('世界地理规划', 'xZC4jWHWG', Offset(228, 145), Size(1680, 933)),
-    _SidebarItem('地区&国家', 'X0RCGzKUh', Offset(244, 85), Size(1664, 991)),
-    _SidebarItem('导入地区', '2SonlUXcm', Offset(244, 118), Size(1686, 892)),
-    _SidebarItem('UTC', 'OJxsBTfEu', Offset(244, 138), Size(1583, 1133)),
-    _SidebarItem('时区数据库', 'aDfXovdwxK', Offset(244, 138), Size(1583, 306)),
-    _SidebarItem('货币', 'kFob4v_V6', Offset(228, 85), Size(1680, 948)),
-    _SidebarItem('历史汇率', 'zvYxL_RQg', Offset(228, 85), Size(1680, 948)),
+    _SidebarItem('世界地理规划', 'xZC4jWHWG'),
+    _SidebarItem('地区&国家', 'X0RCGzKUh'),
+    _SidebarItem('导入地区', '2SonlUXcm'),
+    _SidebarItem('UTC', 'OJxsBTfEu'),
+    _SidebarItem('时区数据库', 'aDfXovdwxK'),
+    _SidebarItem('货币', 'kFob4v_V6'),
+    _SidebarItem('历史汇率', 'zvYxL_RQg'),
   ]),
   _SidebarSection('语言', [
-    _SidebarItem('多语言', 'u7tmb4OBc', Offset(244, 85), Size(1664, 775)),
-    _SidebarItem('翻译', 'UXGGZPuR9', Offset(255, 85), Size(1650, 620)),
-    _SidebarItem('导入', 'TpHbkdGMq', Offset(678, 93), Size(1192, 575)),
-    _SidebarItem('导出', 'yq9YeBSKX', Offset(678, 155), Size(716, 401)),
+    _SidebarItem('多语言', 'u7tmb4OBc'),
+    _SidebarItem('翻译', 'UXGGZPuR9'),
+    _SidebarItem('导入', 'TpHbkdGMq'),
+    _SidebarItem('导出', 'yq9YeBSKX'),
   ]),
   _SidebarSection('日志', [
-    _SidebarItem('验证日志', 'JSCSQH1Kc', Offset(228, 93), Size(1684, 689)),
-    _SidebarItem('操作日志', 'WkvHvCC8i', Offset(228, 93), Size(1684, 689)),
-    _SidebarItem('登录日志', 'BYfUtX8cV', Offset(228, 93), Size(1684, 899)),
-    _SidebarItem('支付日志', 'DwOYjtX0r', Offset(228, 93), Size(1684, 689)),
+    _SidebarItem('验证日志', 'JSCSQH1Kc'),
+    _SidebarItem('操作日志', 'WkvHvCC8i'),
+    _SidebarItem('登录日志', 'BYfUtX8cV'),
+    _SidebarItem('支付日志', 'DwOYjtX0r'),
   ]),
 ];
 
@@ -189,9 +182,6 @@ class _SystemSettingsDialogState extends State<_SystemSettingsDialog> {
   @override
   Widget build(BuildContext context) {
     final item = _section.items[_itemIndex];
-    final body = _bodyFor(context, item);
-    // 仅原型回退需要裁剪信息；已接入业务页的菜单项可能已无原型条目。
-    final entry = body == null ? prototypePageById[item.pageId] : null;
     return Dialog(
       insetPadding: EdgeInsets.zero,
       backgroundColor: Theme.of(context).colorScheme.surface,
@@ -219,9 +209,6 @@ class _SystemSettingsDialogState extends State<_SystemSettingsDialog> {
                 Expanded(
                   child: _PageContentView(
                     key: ValueKey(item.pageId),
-                    entry: entry,
-                    cropOffset: item.cropOffset,
-                    viewSize: item.viewSize,
                     body: _bodyFor(context, item),
                   ),
                 ),
@@ -350,21 +337,14 @@ class _LeftMenuState extends State<_LeftMenu> {
   }
 }
 
-/// 内容区：裁掉原型页面自带的顶栏与左侧栏后按比例展示，支持缩放。
+/// 内容区：展示业务页正文。
 class _PageContentView extends StatelessWidget {
   const _PageContentView({
     super.key,
-    this.entry,
-    required this.cropOffset,
-    required this.viewSize,
     this.body,
   });
 
-  final PrototypeEntry? entry;
-  final Offset cropOffset;
-  final Size viewSize;
-
-  /// 已优化为业务页的正文；为空时回退到原型裁剪预览。
+  /// 业务页正文；
   final Widget? body;
 
   @override
@@ -375,41 +355,9 @@ class _PageContentView extends StatelessWidget {
         child: body,
       );
     }
-    final prototype = entry;
-    if (prototype == null) {
-      return ColoredBox(
-        color: Theme.of(context).colorScheme.surface,
-        child: const Center(child: Text('页面开发中')),
-      );
-    }
     return ColoredBox(
       color: Theme.of(context).colorScheme.surface,
-      child: Scrollbar(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
-          child: FittedBox(
-            // 默认按宽度适配：窄而高的页面（如 本地化）不再被整体缩小，
-            // 超高内容通过纵向滚动查看。
-            fit: BoxFit.fitWidth,
-            alignment: Alignment.topLeft,
-            child: SizedBox(
-              width: viewSize.width,
-              height: viewSize.height,
-              child: ClipRect(
-                child: OverflowBox(
-                  alignment: Alignment.topLeft,
-                  maxWidth: prototype.width,
-                  maxHeight: prototype.height,
-                  child: Transform.translate(
-                    offset: -cropOffset,
-                    child: prototype.builder(context),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
+      child: const Center(child: Text('页面开发中')),
     );
   }
 }
