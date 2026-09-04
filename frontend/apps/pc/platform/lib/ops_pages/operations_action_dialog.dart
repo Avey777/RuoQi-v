@@ -6,30 +6,23 @@
 import 'package:flutter/material.dart';
 import 'package:ruoqi_common/ruoqi_common.dart';
 
-import '../prototype_registry.dart';
-import 'operations_preview.dart';
-
 /// 左侧菜单宽度与顶部导航栏高度（与 运营后台 弹窗布局一致）。
 const _leftMenuWidth = 300.0;
 const _topBarHeight = 56.0;
 
 /// 打开主页面功能弹窗。
 ///
-/// [entry] 与 [child] 二选一：
-/// - [entry]：原型页面（如 查看租户、编辑租户、绑定），按原型裁切展示；
-/// - [child]：直接嵌入的内容（如 账号安全、多因素认证 等业务正文）。
+/// [child]：直接嵌入的内容（如 审核、账号安全 等业务正文）。
 ///
 /// 传入 [size] 时以小弹窗形式展示（尺寸贴合内容，居中覆盖），
 /// 不传时与主页面占用相同空间（覆盖内容区）。
 Future<void> showOperationsActionDialog(
   BuildContext context, {
   required String title,
-  PrototypeEntry? entry,
-  Widget? child,
+  required Widget child,
   List<Widget>? actions,
   Size? size,
 }) {
-  assert(entry != null || child != null, 'entry 与 child 至少提供一个');
   return showGeneralDialog<void>(
     context: context,
     barrierDismissible: true,
@@ -37,9 +30,7 @@ Future<void> showOperationsActionDialog(
     barrierColor: Theme.of(context).colorScheme.scrim,
     transitionDuration: const Duration(milliseconds: 150),
     pageBuilder: (context, animation, secondaryAnimation) {
-      final content = entry != null
-          ? OperationsPrototypePreview(entry: entry)
-          : child!;
+      final content = child;
       final header = _DialogHeader(
         title: title,
         actions: actions,

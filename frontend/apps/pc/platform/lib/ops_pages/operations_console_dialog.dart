@@ -1,34 +1,14 @@
 // 运营后台入口弹窗（手写，勿被 rp2flutter 生成逻辑覆盖）。
 //
 // 交互方式与 管理后台（系统管理）一致：点击左侧菜单项后，
-// 在弹窗右侧内容区直接打开对应页面，不再 push 完整页面路由。
+// 在弹窗右侧内容区直接打开对应的真实业务页，不再 push 完整页面路由。
 // 弹窗顶部为按规范 §6.7 实现的控制台导航栏（品牌 + 退出）；
-// 菜单导航全部在左侧树形菜单中（板块 → 页面 → 子页面）；
-// 已优化为业务静态页的菜单项展示其正文；未优化项回退到原型预览，
-// 裁掉原型自带的顶部菜单、左侧栏与面包屑，避免重复。
+// 菜单导航全部在左侧树形菜单中（板块 → 页面），来源为真实业务页。
 import 'package:flutter/material.dart';
 
 import '../console_widgets/console_top_bar.dart';
-import '../prototype_registry.dart';
-import 'operations_preview.dart';
+import 'operations_nav.dart';
 import 'operations_sidebar.dart';
-import '个人中心/account_security_page.dart';
-import 'API授权/api_token_page.dart';
-import '个人中心/localization_page.dart';
-import '租户/member_manage_page.dart';
-import '个人中心/mfa_page.dart';
-import '个人中心/profile_page.dart';
-import '项目/project_list_page.dart';
-import '项目/project_settings_page.dart';
-import '项目/subscription_billing_page.dart';
-import '项目/subscription_cancel_audit_page.dart';
-import '项目/subscription_change_audit_page.dart';
-import '项目/subscription_open_audit_page.dart';
-import '团队空间/team_settings_page.dart';
-import '团队空间/team_space_page.dart';
-import '租户/tenant_audit_page.dart';
-import '租户/tenant_list_page.dart';
-import '租户/tenant_settings_page.dart';
 
 /// 运营后台（一账通运营端 SSO）入口弹窗。
 class OperationsConsoleDialog {
@@ -41,28 +21,6 @@ class OperationsConsoleDialog {
   }
 }
 
-/// 已优化为业务静态页的菜单项（原型 pageId → 正文组件）。
-/// 未收录的菜单项仍回退到原型预览。
-final _businessBodies = <String, WidgetBuilder>{
-  'jSTfPprJez': (_) => const TenantListBody(),
-  'hEcuv5lQ8': (_) => const MemberManageBody(),
-  '_n1LmDFij': (_) => const TenantAuditBody(),
-  'MPkqxQ-kE': (_) => const TenantSettingsBody(),
-  'HLLVxR2i7': (_) => const ProjectListBody(),
-  'CniE3ZtPiE0': (_) => const ProjectSettingsBody(),
-  'a2iuwP9vz': (_) => const SubscriptionBillingBody(),
-  'hzWGnXvBu': (_) => const SubscriptionOpenAuditBody(),
-  'LW_OP_AQE': (_) => const SubscriptionChangeAuditBody(),
-  'p7lljuBnu': (_) => const SubscriptionCancelAuditBody(),
-  'fj714uUhe': (_) => const TeamSpaceBody(),
-  'xtOLR-LhK': (_) => const TeamSettingsBody(),
-  'ncUGMKi7_': (_) => const ApiTokenBody(),
-  'B44C4h3edeR2': (_) => const ProfileBody(),
-  'ntgGZaqJgUZC': (_) => const AccountSecurityBody(),
-  'DAZ8_zIokgWI': (_) => const MfaBody(),
-  '1J5Ra7pGo': (_) => const LocalizationBody(),
-};
-
 class _OperationsConsoleDialog extends StatefulWidget {
   const _OperationsConsoleDialog();
 
@@ -72,23 +30,19 @@ class _OperationsConsoleDialog extends StatefulWidget {
 }
 
 class _OperationsConsoleDialogState extends State<_OperationsConsoleDialog> {
-  PrototypeEntry? _selected;
+  OperationsNavItem? _selected;
 
   @override
   void initState() {
     super.initState();
     // 默认打开第一个板块的第一个菜单项，与 管理后台 一致。
-    _selected = _firstEntryOf(operationsSections.first);
-  }
-
-  PrototypeEntry? _firstEntryOf(String section) {
-    final items = operationsEntriesOf(section);
-    return items.isEmpty ? null : items.first;
+    final first = operationsNavSections.first;
+    _selected = first.items.isEmpty ? null : first.items.first;
   }
 
   @override
   Widget build(BuildContext context) {
-    final entry = _selected;
+    final selected = _selected;
     return Dialog(
       insetPadding: EdgeInsets.zero,
       backgroundColor: Theme.of(context).colorScheme.surface,
@@ -105,14 +59,18 @@ class _OperationsConsoleDialogState extends State<_OperationsConsoleDialog> {
               children: [
                 // 左侧菜单
                 OperationsSidebar(
-                  selectedId: entry?.id,
-                  onSelected: (e) => setState(() => _selected = e),
+                  selectedId: selected?.label,
+                  onSelected: (item) => setState(() => _selected = item),
                 ),
-                // 右侧内容区：展示选中菜单项对应的页面
+                // 右侧内容区：展示选中菜单项对应的真实业务页
                 Expanded(
-                  child: entry == null
+                  child: selected == null
                       ? ColoredBox(color: Theme.of(context).colorScheme.surface)
-                      : _PageContent(key: ValueKey(entry.id), entry: entry),
+                      : ColoredBox(
+                          key: ValueKey(selected.label),
+                          color: Theme.of(context).colorScheme.surface,
+                          child: selected.builder(context),
+                        ),
                 ),
               ],
             ),
@@ -120,23 +78,5 @@ class _OperationsConsoleDialogState extends State<_OperationsConsoleDialog> {
         ],
       ),
     );
-  }
-}
-
-/// 右侧内容区：页面正文（业务静态页）或原型预览（未优化项）。
-class _PageContent extends StatelessWidget {
-  const _PageContent({super.key, required this.entry});
-
-  final PrototypeEntry entry;
-
-  @override
-  Widget build(BuildContext context) {
-    final bodyBuilder = _businessBodies[entry.id];
-    return bodyBuilder != null
-        ? ColoredBox(
-            color: Theme.of(context).colorScheme.surface,
-            child: bodyBuilder(context),
-          )
-        : OperationsPrototypePreview(entry: entry);
   }
 }
